@@ -1,0 +1,254 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict Zxo5bFWLKEaM9jsCa5mRSdGUlCyriC49l6Kh7eW7Cxla5cidLch1YaZPUyvwQxE
+
+-- Dumped from database version 17.7 (Debian 17.7-3.pgdg13+1)
+-- Dumped by pg_dump version 18.1
+
+-- Started on 2026-02-10 10:33:46
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 219 (class 1259 OID 16410)
+-- Name: salones_costos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_costos (
+    id_salon integer NOT NULL,
+    cantidad_eventos_salon integer,
+    total_invitados_salon integer,
+    costos_variables_salon numeric(18,2),
+    costos_fijos_salon numeric(18,2),
+    ventas_totales_salon numeric(18,2),
+    rentabilidad_salon numeric(7,2)
+);
+
+
+ALTER TABLE public.salones_costos OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16462)
+-- Name: salones_estado; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_estado (
+    id_salon integer NOT NULL,
+    nombre_salon text NOT NULL,
+    estado_salon text NOT NULL,
+    CONSTRAINT salones_estado_estado_salon_check CHECK ((estado_salon = ANY (ARRAY['ACTIVO'::text, 'INACTIVO'::text, 'OBRA'::text])))
+);
+
+
+ALTER TABLE public.salones_estado OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 16498)
+-- Name: salones_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_master (
+    id_salon integer NOT NULL,
+    nombre_salon text NOT NULL,
+    estado_salon text DEFAULT 'ACTIVO'::text NOT NULL,
+    CONSTRAINT salones_master_estado_salon_check CHECK ((estado_salon = ANY (ARRAY['ACTIVO'::text, 'INACTIVO'::text, 'OBRA'::text])))
+);
+
+
+ALTER TABLE public.salones_master OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16396)
+-- Name: salones_mt2; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_mt2 (
+    id_salon integer NOT NULL,
+    mt2_salon numeric
+);
+
+
+ALTER TABLE public.salones_mt2 OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16389)
+-- Name: salones_pax; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_pax (
+    id_salon integer NOT NULL,
+    pax_formal_pista integer,
+    pax_informal_pista integer,
+    pax_informal_auditorio integer,
+    pax_calculado integer
+);
+
+
+ALTER TABLE public.salones_pax OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16423)
+-- Name: salones_ubicacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salones_ubicacion (
+    id_salon integer NOT NULL,
+    direccion_salon text,
+    cp_salon text,
+    lat_salon numeric(17,15),
+    lon_salon numeric(17,15),
+    municipio_salon text
+);
+
+
+ALTER TABLE public.salones_ubicacion OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 16527)
+-- Name: salones_integral; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.salones_integral AS
+ SELECT s.id_salon,
+    s.nombre_salon,
+    u.direccion_salon,
+    u.cp_salon,
+    u.municipio_salon,
+    u.lat_salon,
+    u.lon_salon,
+    p.pax_calculado,
+    p.pax_formal_pista,
+    p.pax_informal_pista,
+    p.pax_informal_auditorio,
+    m.mt2_salon,
+    c.cantidad_eventos_salon,
+    c.total_invitados_salon,
+    c.costos_variables_salon,
+    c.costos_fijos_salon,
+    c.ventas_totales_salon,
+    c.rentabilidad_salon,
+    s.estado_salon
+   FROM ((((public.salones_master s
+     LEFT JOIN public.salones_ubicacion u ON ((u.id_salon = s.id_salon)))
+     LEFT JOIN public.salones_pax p ON ((p.id_salon = s.id_salon)))
+     LEFT JOIN public.salones_mt2 m ON ((m.id_salon = s.id_salon)))
+     LEFT JOIN public.salones_costos c ON ((c.id_salon = s.id_salon)))
+  WHERE (s.estado_salon = 'ACTIVO'::text);
+
+
+ALTER VIEW public.salones_integral OWNER TO postgres;
+
+--
+-- TOC entry 3305 (class 2606 OID 16416)
+-- Name: salones_costos salones_costos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_costos
+    ADD CONSTRAINT salones_costos_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3309 (class 2606 OID 16469)
+-- Name: salones_estado salones_estado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_estado
+    ADD CONSTRAINT salones_estado_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3311 (class 2606 OID 16506)
+-- Name: salones_master salones_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_master
+    ADD CONSTRAINT salones_master_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3303 (class 2606 OID 16402)
+-- Name: salones_mt2 salones_mt2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_mt2
+    ADD CONSTRAINT salones_mt2_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3301 (class 2606 OID 16395)
+-- Name: salones_pax salones_services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_pax
+    ADD CONSTRAINT salones_services_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3307 (class 2606 OID 16429)
+-- Name: salones_ubicacion salones_ubicacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_ubicacion
+    ADD CONSTRAINT salones_ubicacion_pkey PRIMARY KEY (id_salon);
+
+
+--
+-- TOC entry 3314 (class 2606 OID 16507)
+-- Name: salones_costos salones_costos_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_costos
+    ADD CONSTRAINT salones_costos_fk FOREIGN KEY (id_salon) REFERENCES public.salones_master(id_salon) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3313 (class 2606 OID 16512)
+-- Name: salones_mt2 salones_mt2_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_mt2
+    ADD CONSTRAINT salones_mt2_fk FOREIGN KEY (id_salon) REFERENCES public.salones_master(id_salon) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3312 (class 2606 OID 16517)
+-- Name: salones_pax salones_pax_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_pax
+    ADD CONSTRAINT salones_pax_fk FOREIGN KEY (id_salon) REFERENCES public.salones_master(id_salon) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3315 (class 2606 OID 16522)
+-- Name: salones_ubicacion salones_ubicacion_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salones_ubicacion
+    ADD CONSTRAINT salones_ubicacion_fk FOREIGN KEY (id_salon) REFERENCES public.salones_master(id_salon) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2026-02-10 10:33:58
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict Zxo5bFWLKEaM9jsCa5mRSdGUlCyriC49l6Kh7eW7Cxla5cidLch1YaZPUyvwQxE
+

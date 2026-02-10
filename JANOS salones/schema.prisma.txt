@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabla Principal (Corazón de la estructura) [cite: 9]
+model SalonesMaster {
+  id_salon      Int      @id @default(autoincrement())
+  nombre_salon  String
+  estado_salon  String   @default("ACTIVO") // ACTIVO, INACTIVO, OBRA [cite: 9]
+
+  // Relaciones 
+  costos        SalonesCostos?
+  pax           SalonesPax?
+  mt2           SalonesMt2?
+  ubicacion     SalonesUbicacion?
+
+  @@map("salones_master")
+}
+
+// Datos de Rentabilidad y Ventas [cite: 5]
+model SalonesCostos {
+  id_salon                Int      @id
+  cantidad_eventos_salon  Int?
+  total_invitados_salon   Int?
+  costos_variables_salon  Decimal? @db.Decimal(18, 2)
+  costos_fijos_salon      Decimal? @db.Decimal(18, 2)
+  ventas_totales_salon    Decimal? @db.Decimal(18, 2)
+  rentabilidad_salon      Decimal? @db.Decimal(7, 2)
+
+  master SalonesMaster @relation(fields: [id_salon], references: [id_salon], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("salones_costos")
+}
+
+// Capacidad de personas por formato [cite: 13]
+model SalonesPax {
+  id_salon                Int  @id
+  pax_formal_pista        Int?
+  pax_informal_pista      Int?
+  pax_informal_auditorio  Int?
+  pax_calculado           Int?
+
+  master SalonesMaster @relation(fields: [id_salon], references: [id_salon], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("salones_pax")
+}
+
+// Superficie del inmueble [cite: 11]
+model SalonesMt2 {
+  id_salon  Int      @id
+  mt2_salon Decimal? @db.Decimal
+
+  master SalonesMaster @relation(fields: [id_salon], references: [id_salon], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("salones_mt2")
+}
+
+// Información Geográfica 
+model SalonesUbicacion {
+  id_salon        Int      @id
+  direccion_salon String?
+  cp_salon        String?
+  lat_salon       Decimal? @db.Decimal(17, 15)
+  lon_salon       Decimal? @db.Decimal(17, 15)
+  municipio_salon String?
+
+  master SalonesMaster @relation(fields: [id_salon], references: [id_salon], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("salones_ubicacion")
+}
