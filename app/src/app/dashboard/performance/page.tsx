@@ -106,7 +106,7 @@ export default function PerformancePage() {
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `${(v / 1000000).toFixed(0)}M`} />
                             <Tooltip
                                 contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }}
-                                formatter={(value: number) => formatARS(value) as any}
+                                formatter={(value: any) => formatARS(Number(value))}
                                 labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
                             />
                             <Legend />

@@ -77,7 +77,7 @@ export default function BenchmarkingPage() {
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                             <XAxis dataKey="tier" tick={{ fill: "#94a3b8", fontSize: 12 }} />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
-                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: number) => formatARS(value)} />
+                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: any) => formatARS(Number(value))} />
                             <Bar dataKey="promedioReal" name="Costo Real /m²" fill="#ef4444" radius={[4, 4, 0, 0]} />
                             <Bar dataKey="promedioMercado" name="Mercado /m²" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         </BarChart>
@@ -127,7 +127,7 @@ export default function BenchmarkingPage() {
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                             <XAxis type="number" tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
                             <YAxis type="category" dataKey="name" tick={{ fill: "#94a3b8", fontSize: 11 }} width={140} />
-                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: number) => formatARS(value) as any} />
+                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: any) => formatARS(Number(value))} />
                             <Bar dataKey="costPerMt2" name="Real /m²" fill="#ef4444" radius={[0, 4, 4, 0]} />
                             <Bar dataKey="marketCost" name="Mercado /m²" fill="#3b82f6" radius={[0, 4, 4, 0]} />
                         </BarChart>
