@@ -16,6 +16,7 @@ import {
     ResponsiveContainer,
     Legend,
     Cell,
+    LabelList,
 } from "recharts";
 
 export default function PerformancePage() {
@@ -100,16 +101,11 @@ export default function PerformancePage() {
                 </h2>
                 <div className="h-[350px]">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={chartData} barGap={2}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                        <BarChart data={chartData} barGap={2} margin={{ top: 40, bottom: 20 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
                             <XAxis
                                 dataKey="name"
-                                tick={{ fill: "#94a3b8", fontSize: 10 }}
-                                angle={-45}
-                                textAnchor="end"
-                                height={80}
-                                interval={0}
-                                tickMargin={10}
+                                hide={true}
                             />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `${(v / 1000000).toFixed(0)}M`} />
                             <Tooltip
@@ -117,8 +113,17 @@ export default function PerformancePage() {
                                 formatter={(value: any) => formatARS(Number(value))}
                                 labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
                             />
-                            <Legend />
-                            <Bar dataKey="facturacion" name="Facturación" fill="#2563eb" radius={[4, 4, 0, 0]} />
+                            <Legend verticalAlign="top" height={36} />
+                            <Bar dataKey="facturacion" name="Facturación" fill="#2563eb" radius={[4, 4, 0, 0]}>
+                                <LabelList
+                                    dataKey="name"
+                                    position="top"
+                                    angle={-45}
+                                    offset={15}
+                                    fill="#94a3b8"
+                                    fontSize={9}
+                                />
+                            </Bar>
                             <Bar dataKey="alquiler" name="Alquiler" radius={[4, 4, 0, 0]}>
                                 {chartData.map((entry, i) => (
                                     <Cell key={i} fill={entry.color} />
