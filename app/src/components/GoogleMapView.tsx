@@ -42,6 +42,7 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                     gestureHandling={'greedy'}
                     disableDefaultUI={false}
                     styles={darkMapStyle}
+                    colorScheme={"DARK"}
                 >
                     {salones.map((salon) => {
                         if (!salon.lat_salon || !salon.lon_salon) return null;
