@@ -1,39 +1,35 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/auth";
+import { NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl;
+export default auth((req) => {
+    const { nextUrl } = req;
+    const isLoggedIn = !!req.auth;
 
-    // Check for NextAuth session via getToken (more secure than just cookie presence)
-    const token = await getToken({
-        req,
-        secret: process.env.NEXTAUTH_SECRET
-    });
+    const isAuthPage = nextUrl.pathname === "/login";
+    const isDashboardPage = nextUrl.pathname.startsWith("/dashboard");
 
-    const isAuth = !!token;
-    const isAuthPage = pathname === "/login";
-    const isDashboardPage = pathname.startsWith("/dashboard");
-
-    // Protect dashboard routes
-    if (isDashboardPage && !isAuth) {
-        let callbackUrl = pathname;
-        if (req.nextUrl.search) {
-            callbackUrl += req.nextUrl.search;
+    if (isAuthPage) {
+        if (isLoggedIn) {
+            return NextResponse.redirect(new URL("/dashboard", nextUrl));
         }
-
-        const loginUrl = new URL("/login", req.url);
-        loginUrl.searchParams.set("callbackUrl", callbackUrl);
-        return NextResponse.redirect(loginUrl);
+        return NextResponse.next();
     }
 
-    // Redirect authenticated users from login to dashboard
-    if (isAuthPage && isAuth) {
-        return NextResponse.redirect(new URL("/dashboard", req.url));
+    if (isDashboardPage && !isLoggedIn) {
+        let callbackUrl = nextUrl.pathname;
+        if (nextUrl.search) {
+            callbackUrl += nextUrl.search;
+        }
+
+        const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+        return NextResponse.redirect(
+            new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+        );
     }
 
     return NextResponse.next();
-}
+});
 
 export const config = {
-    matcher: ["/dashboard/:path*", "/login"],
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

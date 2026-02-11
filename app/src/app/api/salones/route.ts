@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 import { getSalonesData } from "@/lib/sample-data";
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/auth";
 
 export async function GET(request: Request) {
     try {
-        const token = await getToken({
-            req: request as any,
-            secret: process.env.NEXTAUTH_SECRET
-        });
+        const session = await auth();
 
-        if (!token) {
+        if (!session) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
