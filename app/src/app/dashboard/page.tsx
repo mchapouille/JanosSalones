@@ -19,6 +19,7 @@ import {
 import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus } from "@/lib/calculations";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
+import GoogleMapView from "@/components/GoogleMapView";
 
 export default function DashboardPage() {
     const salones = useMemo(() => getSalonesData(), []);
@@ -270,33 +271,12 @@ export default function DashboardPage() {
                         <MapPin size={18} className="text-blue-400" />
                         Mapa de Red de Salones
                     </h2>
-                    <div className="relative w-full h-[360px] bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/30">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="relative w-full h-full">
-                                <div className="absolute inset-4 border border-slate-700/20 rounded-xl" />
-                                {filtered.map((salon) => {
-                                    if (!salon.lat_salon || !salon.lon_salon) return null;
-                                    const minLat = -35.0, maxLat = -34.4, minLon = -59.0, maxLon = -57.8;
-                                    const x = ((salon.lon_salon - minLon) / (maxLon - minLon)) * 100;
-                                    const y = ((salon.lat_salon - minLat) / (maxLat - minLat)) * 100;
-                                    const effColor = salon.efficiency ? getSemaphoreColor(salon.efficiency.color) : "#6b7280";
-
-                                    return (
-                                        <button
-                                            key={salon.id_salon}
-                                            onClick={() => setSelectedSalon(salon)}
-                                            className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
-                                            style={{ left: `${Math.min(90, Math.max(10, x))}%`, top: `${Math.min(90, Math.max(10, y))}%` }}
-                                        >
-                                            <div
-                                                className={`w-4 h-4 rounded-full border-2 border-slate-900 shadow-lg transition-transform group-hover:scale-150 ${selectedSalon?.id_salon === salon.id_salon ? "scale-150 ring-4 ring-white/20" : ""}`}
-                                                style={{ background: effColor, boxShadow: `0 0 8px ${effColor}80` }}
-                                            />
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
+                    <div className="w-full h-[400px]">
+                        <GoogleMapView
+                            salones={filtered}
+                            selectedSalon={selectedSalon}
+                            onSelectSalon={setSelectedSalon}
+                        />
                     </div>
                 </div>
 
