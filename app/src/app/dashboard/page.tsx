@@ -14,8 +14,8 @@ import {
     LayoutGrid,
     Info,
 } from "lucide-react";
-import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";
-import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus } from "@/lib/calculations";
+import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus, type StrategicWeights, DEFAULT_WEIGHTS, TIER_MEDIANS } from "@/lib/calculations";
+import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
 import GoogleMapView from "@/components/GoogleMapView";
 import { useDashboard } from "@/components/DashboardContext";
@@ -28,6 +28,8 @@ export default function DashboardPage() {
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
     const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
     const [selectedSalon, setSelectedSalon] = useState<SalonIntegral | null>(null);
+    const [weights, setWeights] = useState<StrategicWeights>(DEFAULT_WEIGHTS);
+    const [showWeights, setShowWeights] = useState(false);
 
     const municipios = useMemo(
         () => [...new Set(salones.map((s) => s.municipio_salon).filter(Boolean))] as string[],
@@ -80,9 +82,10 @@ export default function DashboardPage() {
             selectedSalon.performance ?? undefined,
             selectedSalon.benchmark,
             selectedSalon.efficiency,
-            selectedSalon.contractAudit ?? undefined
+            selectedSalon.contractAudit ?? undefined,
+            weights
         );
-    }, [selectedSalon]);
+    }, [selectedSalon, weights]);
 
     return (
         <div className="space-y-6">
@@ -324,59 +327,134 @@ export default function DashboardPage() {
 
                             {/* Right: The 4 Semaphores & Key Info */}
                             <div className="lg:w-2/3 space-y-8">
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                    {[
-                                        { label: "Performance", val: selectedSalon.performance ? formatPercentage(selectedSalon.performance.rentIncidence) : "—", color: selectedSalon.performance?.color || "gray" },
-                                        { label: "Market m²", val: selectedSalon.benchmark ? `${formatPercentage(selectedSalon.benchmark.deviation)} dev.` : "—", color: selectedSalon.benchmark?.color || "gray" },
-                                        { label: "Eficiencia", val: selectedSalon.efficiency ? selectedSalon.efficiency.globalIndex.toFixed(2) : "—", color: selectedSalon.efficiency?.color || "gray" },
-                                        { label: "Auditoría", val: selectedSalon.contractAudit ? `${Math.abs(selectedSalon.contractAudit.deviationPercent).toFixed(1)}%` : "—", color: selectedSalon.contractAudit?.color || "gray" },
-                                    ].map((item) => (
-                                        <div key={item.label} className="flex flex-col gap-2 p-3 rounded-xl bg-white/5 border border-white/5">
-                                            <span className="text-[10px] text-slate-500 uppercase font-bold">{item.label}</span>
+                                <div className="space-y-6">
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                        {[
+                                            { id: 'performance', label: "Performance", val: selectedSalon.performance ? formatPercentage(selectedSalon.performance.rentIncidence) : "—", color: selectedSalon.performance?.color || "gray" },
+                                            { id: 'benchmarking', label: "Benchmarking", val: selectedSalon.benchmark ? formatPercentage(selectedSalon.benchmark.deviation) : "—", color: selectedSalon.benchmark?.color || "gray" },
+                                            { id: 'efficiency', label: "Eficiencia", val: selectedSalon.efficiency ? selectedSalon.efficiency.globalIndex.toFixed(2) : "—", color: selectedSalon.efficiency?.color || "gray" },
+                                            { id: 'audit', label: "Contratos", val: selectedSalon.contractAudit ? `${Math.abs(selectedSalon.contractAudit.deviationPercent).toFixed(1)}%` : "—", color: selectedSalon.contractAudit?.color || "gray" },
+                                        ].map((item) => (
+                                            <div key={item.label} className="flex flex-col p-3 rounded-xl bg-white/5 border border-white/5 relative group/item items-center text-center justify-center min-h-[72px]">
+                                                <div className="flex justify-center items-center w-full relative mb-1.5">
+                                                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">{item.label}</span>
+                                                    <span className="absolute -right-1 -top-1 text-[9px] text-blue-400 font-bold opacity-0 group-hover/item:opacity-100 transition-opacity">{(weights as any)[item.id]}%</span>
+                                                </div>
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: getSemaphoreColor(item.color), boxShadow: `0 0 8px ${getSemaphoreColor(item.color)}30` }} />
+                                                    <span className="text-sm font-bold text-white leading-none tracking-tight">{item.val}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Weight sliders section */}
+                                    <div className="p-5 rounded-xl bg-slate-900/60 border border-white/5 shadow-inner">
+                                        <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 rounded-full" style={{ background: getSemaphoreColor(item.color) }} />
-                                                <span className="text-sm font-bold text-white">{item.val}</span>
+                                                <BrainCircuit size={14} className="text-blue-400" />
+                                                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ponderación del Estatus Global</h4>
+                                            </div>
+                                            <span className="text-[10px] text-slate-500 italic">IA Strategic Weights</span>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+                                            {[
+                                                { id: 'performance', label: 'Performance', color: 'bg-blue-500' },
+                                                { id: 'benchmarking', label: 'Benchmarking', color: 'bg-cyan-500' },
+                                                { id: 'efficiency', label: 'Eficiencia', color: 'bg-emerald-500' },
+                                                { id: 'audit', label: 'Contratos', color: 'bg-indigo-500' }
+                                            ].map((w) => (
+                                                <div key={w.id} className="space-y-2.5">
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="text-[11px] text-slate-400 font-semibold">{w.label}</span>
+                                                        <span className="text-[11px] font-mono font-bold text-blue-400">{(weights as any)[w.id]}%</span>
+                                                    </div>
+                                                    <div className="relative flex items-center group">
+                                                        <input
+                                                            type="range"
+                                                            min="0"
+                                                            max="100"
+                                                            step="5"
+                                                            value={(weights as any)[w.id]}
+                                                            onChange={(e) => setWeights({ ...weights, [w.id]: parseInt(e.target.value) })}
+                                                            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 group-hover:bg-slate-700 transition-colors"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="mt-5 pt-4 border-t border-white/5 flex justify-between items-center">
+                                            <p className="text-[9px] text-slate-600 max-w-[300px]">
+                                                Ajuste la importancia relativa de cada semáforo en el cálculo del estatus estratégico global.
+                                            </p>
+                                            <button
+                                                onClick={() => setWeights(DEFAULT_WEIGHTS)}
+                                                className="text-[10px] font-bold text-slate-500 hover:text-blue-400 transition-all uppercase tracking-tight flex items-center gap-1.5"
+                                            >
+                                                Restablecer valores IA
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mb-6 flex items-end border-b border-white/5 pb-4">
+                                    <div>
+                                        <h4 className="text-xl font-bold text-white tracking-tight">{selectedSalon.nombre_salon}</h4>
+                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mt-1">
+                                            Tier {selectedSalon.tier} • {selectedSalon.municipio_salon} • {selectedSalon.mt2_salon} m² • {selectedSalon.pax_calculado} PAX
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    {[
+                                        {
+                                            id: 'performance',
+                                            label: 'Performance',
+                                            rows: [
+                                                { label: 'Multiplicador', value: selectedSalon.performance ? formatMultiplier(selectedSalon.performance.multiplier) : '—' },
+                                                { label: 'Margen Contrib.', value: selectedSalon.performance ? formatARS(selectedSalon.performance.marginContribution) : '—', color: 'text-emerald-400' }
+                                            ]
+                                        },
+                                        {
+                                            id: 'benchmarking',
+                                            label: 'Benchmarking',
+                                            rows: [
+                                                { label: 'Alquiler m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.costPerMt2) : '—' },
+                                                { label: 'Mercado m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.marketCostPerMt2) : '—' }
+                                            ]
+                                        },
+                                        {
+                                            id: 'efficiency',
+                                            label: 'Eficiencia',
+                                            rows: [
+                                                { label: 'Costo por PAX', value: formatARS((selectedSalon.costos_fijos_salon || 0) / (selectedSalon.pax_calculado || 1)) },
+                                                { label: 'Mediana Tier', value: formatARS(TIER_MEDIANS[selectedSalon.tier]?.paxMedian || 0) }
+                                            ]
+                                        },
+                                        {
+                                            id: 'audit',
+                                            label: 'Contratos',
+                                            rows: [
+                                                { label: 'Monto Contrato', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.contractAmount) : '—' },
+                                                { label: 'Pago Efectivo', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.realPayment) : '—' }
+                                            ]
+                                        }
+                                    ].map((group) => (
+                                        <div key={group.id} className="flex flex-col bg-slate-900/40 rounded-xl border border-white/5 overflow-hidden">
+                                            <div className="bg-white/5 px-4 py-2 border-b border-white/5 text-center">
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest leading-none">{group.label}</span>
+                                            </div>
+                                            <div className="p-4 flex flex-col gap-4 items-center text-center">
+                                                {group.rows.map((row, idx) => (
+                                                    <div key={idx} className="w-full">
+                                                        <p className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</p>
+                                                        <p className={`text-sm font-bold leading-none ${row.color || 'text-white'}`}>{row.value}</p>
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
                                     ))}
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/5">
-                                    <div>
-                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Información General</span>
-                                        <p className="text-sm text-white font-medium">{selectedSalon.nombre_salon}</p>
-                                        <p className="text-xs text-slate-400 mt-0.5">{selectedSalon.direccion_salon}</p>
-                                        <div className="flex gap-2 mt-2">
-                                            <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] text-blue-300">Tier {selectedSalon.tier}</span>
-                                            <span className="px-2 py-0.5 rounded bg-slate-500/10 border border-slate-500/20 text-[10px] text-slate-300">{selectedSalon.municipio_salon}</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Carga Operativa</span>
-                                        <div className="space-y-1">
-                                            <div className="flex justify-between text-xs">
-                                                <span className="text-slate-500">Alquiler Real:</span>
-                                                <span className="text-white font-medium">{formatARS(selectedSalon.costos_fijos_salon || 0)}</span>
-                                            </div>
-                                            <div className="flex justify-between text-xs">
-                                                <span className="text-slate-500">Ventas:</span>
-                                                <span className="text-white font-medium">{formatARS(selectedSalon.ventas_totales_salon || 0)}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Activos</span>
-                                        <div className="space-y-1">
-                                            <div className="flex justify-between text-xs">
-                                                <span className="text-slate-500">Superficie:</span>
-                                                <span className="text-white font-medium">{selectedSalon.mt2_salon} m²</span>
-                                            </div>
-                                            <div className="flex justify-between text-xs">
-                                                <span className="text-slate-500">Capacidad:</span>
-                                                <span className="text-white font-medium">{selectedSalon.pax_calculado} PAX</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
 import { getSalonesData } from "@/lib/sample-data";
+import { getToken } from "next-auth/jwt";
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const token = await getToken({
+            req: request as any,
+            secret: process.env.NEXTAUTH_SECRET
+        });
+
+        if (!token) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
         const { id } = await params;
         const salones = getSalonesData();
         const salon = salones.find((s) => s.id_salon === parseInt(id));

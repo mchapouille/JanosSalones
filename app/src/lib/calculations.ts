@@ -196,67 +196,86 @@ export function simulateRentReduction(
 
 // ---- SEMAPHORE COLOR HELPER ----
 
-// ---- GLOBAL STRATEGIC STATUS ----
-
 export interface GlobalStatusResult {
     color: "green" | "yellow" | "red";
     label: string;
     description: string;
 }
 
+export interface StrategicWeights {
+    performance: number;
+    benchmarking: number;
+    efficiency: number;
+    audit: number;
+}
+
+export const DEFAULT_WEIGHTS: StrategicWeights = {
+    performance: 40,
+    benchmarking: 25,
+    efficiency: 20,
+    audit: 15
+};
+
 export function calcGlobalStatus(
     performance?: PerformanceResult,
     benchmark?: BenchmarkResult | null,
     efficiency?: EfficiencyResult | null,
-    audit?: ContractAuditResult
+    audit?: ContractAuditResult,
+    weights: StrategicWeights = DEFAULT_WEIGHTS
 ): GlobalStatusResult {
-    // 1. Critical Priority: Performance
-    if (performance?.color === "critical" || performance?.color === "red") {
+    const getColorScore = (color?: string) => {
+        switch (color) {
+            case "green": return 10;
+            case "yellow": return 5;
+            case "red": return 2;
+            case "critical": return 0;
+            default: return 5; // Default to neutral if unknown
+        }
+    };
+
+    const scores = {
+        performance: getColorScore(performance?.color),
+        benchmarking: getColorScore(benchmark?.color),
+        efficiency: getColorScore(efficiency?.color),
+        audit: getColorScore(audit?.color)
+    };
+
+    const totalWeight = weights.performance + weights.benchmarking + weights.efficiency + weights.audit;
+    if (totalWeight === 0) return { color: "yellow", label: "Sin Ponderación", description: "Asigne pesos para calcular el estatus." };
+
+    const weightedScore = (
+        (scores.performance * weights.performance) +
+        (scores.benchmarking * weights.benchmarking) +
+        (scores.efficiency * weights.efficiency) +
+        (scores.audit * weights.audit)
+    ) / totalWeight;
+
+    // Determine Global Status based on Weighted Score
+    if (weightedScore >= 8.5) {
+        return {
+            color: "green",
+            label: "Salón Eficiente",
+            description: "Operación saludable. Cumple con los estándares de rentabilidad y mercado.",
+        };
+    } else if (weightedScore >= 5.0) {
+        return {
+            color: "yellow",
+            label: "Atención / Seguimiento",
+            description: "Desvíos menores detectados. Monitorear evolución antes de tomar decisiones.",
+        };
+    } else if (weightedScore >= 2.5) {
+        return {
+            color: "red",
+            label: "Analizar Renegociación",
+            description: "Múltiples indicadores fuera de mercado. El activo es ineficiente respecto a la competencia.",
+        };
+    } else {
         return {
             color: "red",
             label: "Acción Urgente",
             description: "Rentabilidad comprometida. Requiere renegociación inmediata o revisión de costos.",
         };
     }
-
-    // 2. High Priority: Market vs Efficiency
-    const redCount = [
-        benchmark?.color === "red",
-        efficiency?.color === "red",
-        audit?.color === "red"
-    ].filter(Boolean).length;
-
-    if (redCount >= 2) {
-        return {
-            color: "red",
-            label: "Analizar Renegociación",
-            description: "Múltiples indicadores fuera de mercado. El activo es ineficiente respecto a la competencia.",
-        };
-    }
-
-    // 3. Medium Priority: Warnings
-    const yellowCount = [
-        performance?.color === "yellow",
-        benchmark?.color === "yellow",
-        efficiency?.color === "yellow",
-        audit?.color === "yellow",
-        redCount === 1
-    ].filter(Boolean).length;
-
-    if (yellowCount >= 1) {
-        return {
-            color: "yellow",
-            label: "Atención / Seguimiento",
-            description: "Desvíos menores detectados. Monitorear evolución antes de tomar decisiones.",
-        };
-    }
-
-    // 4. Goal: Healthy
-    return {
-        color: "green",
-        label: "Salón Eficiente",
-        description: "Operación saludable. Cumple con los estándares de rentabilidad y mercado.",
-    };
 }
 
 export function getSemaphoreColor(color: string): string {
