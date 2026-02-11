@@ -12,7 +12,6 @@ import {
     Activity,
     BrainCircuit,
     LayoutGrid,
-    CheckCircle2,
     Info,
 } from "lucide-react";
 import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";

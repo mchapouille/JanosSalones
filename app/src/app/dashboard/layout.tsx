@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import SerendipLogo from "@/components/SerendipLogo";
+import JanosLogo from "@/components/JanosLogo";
 import { useDashboard } from "@/components/DashboardContext";
 import {
     LayoutDashboard,
@@ -60,11 +60,7 @@ export default function DashboardLayout({
             >
                 {/* Logo */}
                 <div className="p-5 border-b border-slate-800/50 flex items-center justify-between">
-                    {collapsed ? (
-                        <SerendipLogo size="sm" showText={false} />
-                    ) : (
-                        <SerendipLogo size="sm" showText={true} />
-                    )}
+                    <JanosLogo size="sm" />
                     <button
                         onClick={() => setCollapsed(!collapsed)}
                         className="hidden md:flex w-8 h-8 items-center justify-center rounded-lg hover:bg-slate-800/60 text-slate-400 hover:text-white transition-colors"
@@ -73,15 +69,6 @@ export default function DashboardLayout({
                     </button>
                 </div>
 
-                {/* Client label */}
-                {!collapsed && (
-                    <div className="px-5 py-3 border-b border-slate-800/30">
-                        <span className="text-[10px] uppercase tracking-[0.15em] text-slate-500 font-medium">
-                            Cliente
-                        </span>
-                        <p className="text-sm font-semibold text-blue-400 mt-0.5">Jano&apos;s Eventos</p>
-                    </div>
-                )}
 
                 {/* Navigation */}
                 <nav className="flex-1 p-3 space-y-1 overflow-y-auto">

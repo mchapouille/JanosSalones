@@ -23,4 +23,5 @@ def remove_white_background(input_path, output_path):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    remove_white_background("./app/public/logo.png", "./app/public/logo-v2.png")
+    # Process Jano's Logo
+    remove_white_background("./app/public/janos-raw.png", "./app/public/janos-logo.png")
