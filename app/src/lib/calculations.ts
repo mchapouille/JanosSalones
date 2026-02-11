@@ -195,6 +195,69 @@ export function simulateRentReduction(
 
 // ---- SEMAPHORE COLOR HELPER ----
 
+// ---- GLOBAL STRATEGIC STATUS ----
+
+export interface GlobalStatusResult {
+    color: "green" | "yellow" | "red";
+    label: string;
+    description: string;
+}
+
+export function calcGlobalStatus(
+    performance?: PerformanceResult,
+    benchmark?: BenchmarkResult | null,
+    efficiency?: EfficiencyResult | null,
+    audit?: ContractAuditResult
+): GlobalStatusResult {
+    // 1. Critical Priority: Performance
+    if (performance?.color === "critical" || performance?.color === "red") {
+        return {
+            color: "red",
+            label: "Acción Urgente",
+            description: "Rentabilidad comprometida. Requiere renegociación inmediata o revisión de costos.",
+        };
+    }
+
+    // 2. High Priority: Market vs Efficiency
+    const redCount = [
+        benchmark?.color === "red",
+        efficiency?.color === "red",
+        audit?.color === "red"
+    ].filter(Boolean).length;
+
+    if (redCount >= 2) {
+        return {
+            color: "red",
+            label: "Analizar Renegociación",
+            description: "Múltiples indicadores fuera de mercado. El activo es ineficiente respecto a la competencia.",
+        };
+    }
+
+    // 3. Medium Priority: Warnings
+    const yellowCount = [
+        performance?.color === "yellow",
+        benchmark?.color === "yellow",
+        efficiency?.color === "yellow",
+        audit?.color === "yellow",
+        redCount === 1
+    ].filter(Boolean).length;
+
+    if (yellowCount >= 1) {
+        return {
+            color: "yellow",
+            label: "Atención / Seguimiento",
+            description: "Desvíos menores detectados. Monitorear evolución antes de tomar decisiones.",
+        };
+    }
+
+    // 4. Goal: Healthy
+    return {
+        color: "green",
+        label: "Salón Eficiente",
+        description: "Operación saludable. Cumple con los estándares de rentabilidad y mercado.",
+    };
+}
+
 export function getSemaphoreColor(color: string): string {
     switch (color) {
         case "green": return "#22c55e";

@@ -1,7 +1,3 @@
-"use client";
-
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
     Building2,
     Users,
@@ -10,9 +6,14 @@ import {
     MapPin,
     X,
     Activity,
+    BrainCircuit,
+    ArrowRight,
+    AlertTriangle,
+    CheckCircle2,
+    Info,
 } from "lucide-react";
 import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";
-import { getSemaphoreColor, TIER_DEFINITIONS } from "@/lib/calculations";
+import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus } from "@/lib/calculations";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
 
 export default function DashboardPage() {
@@ -20,7 +21,7 @@ export default function DashboardPage() {
     const [selectedTier, setSelectedTier] = useState<number | null>(null);
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
     const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
-    const [selectedSalon, setSelectedSalon] = useState<SalonIntegral | null>(null);
+    const [selectedSalon, setSelectedSalon] = useState<SalonIntegral | null>(salones[0]); // Default to first
 
     const municipios = useMemo(
         () => [...new Set(salones.map((s) => s.municipio_salon).filter(Boolean))] as string[],
@@ -43,18 +44,139 @@ export default function DashboardPage() {
         ? activeSalones.reduce((s, x) => s + (x.performance?.rentIncidence || 0), 0) / activeSalones.length
         : 0;
 
+    const strategicStatus = useMemo(() => {
+        if (!selectedSalon) return null;
+        return calcGlobalStatus(
+            selectedSalon.performance,
+            selectedSalon.benchmark,
+            selectedSalon.efficiency,
+            selectedSalon.contractAudit
+        );
+    }, [selectedSalon]);
+
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div>
-                <h1 className="text-2xl font-bold text-white">Command Center</h1>
-                <p className="text-slate-400 text-sm mt-1">
-                    Vista integral de la red de salones de Jano&apos;s Eventos
-                </p>
+            {/* Header & Strategic Selector */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">Command Center</h1>
+                    <p className="text-slate-400 text-sm mt-1">
+                        Análisis estratégico y monitoreo de red
+                    </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Seleccionar Salón para Análisis</label>
+                    <select
+                        value={selectedSalon?.id_salon ?? ""}
+                        onChange={(e) => {
+                            const s = salones.find(x => x.id_salon === parseInt(e.target.value));
+                            if (s) setSelectedSalon(s);
+                        }}
+                        className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[240px] font-medium"
+                    >
+                        {salones.map(s => (
+                            <option key={s.id_salon} value={s.id_salon} className="bg-slate-900">{s.nombre_salon}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
-            {/* Filters */}
-            <div className="flex flex-wrap gap-3">
+            {/* Strategic Decision Highlight */}
+            {selectedSalon && strategicStatus && (
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="relative overflow-hidden group"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-transparent rounded-2xl border border-blue-500/20" />
+                    <div className="glass-card p-6 md:p-8 relative">
+                        <div className="flex flex-col lg:flex-row gap-8">
+                            {/* Left: Global Indicator */}
+                            <div className="lg:w-1/3 flex flex-col justify-center items-center text-center p-6 rounded-2xl bg-slate-900/40 border border-white/5">
+                                <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4 font-bold">Estatus Estratégico Global</span>
+                                <div
+                                    className="w-20 h-20 rounded-full flex items-center justify-center mb-6 relative"
+                                    style={{ background: `${getSemaphoreColor(strategicStatus.color)}15`, border: `2px solid ${getSemaphoreColor(strategicStatus.color)}40` }}
+                                >
+                                    <div
+                                        className="w-12 h-12 rounded-full animate-pulse"
+                                        style={{ background: getSemaphoreColor(strategicStatus.color), opacity: 0.2 }}
+                                    />
+                                    <div
+                                        className="absolute w-4 h-4 rounded-full"
+                                        style={{ background: getSemaphoreColor(strategicStatus.color), boxShadow: `0 0 20px ${getSemaphoreColor(strategicStatus.color)}` }}
+                                    />
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-2">{strategicStatus.label}</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed max-w-[240px]">
+                                    {strategicStatus.description}
+                                </p>
+                            </div>
+
+                            {/* Right: The 4 Semaphores & Key Info */}
+                            <div className="lg:w-2/3 space-y-8">
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    {[
+                                        { label: "Performance", val: selectedSalon.performance ? formatPercentage(selectedSalon.performance.rentIncidence) : "—", color: selectedSalon.performance?.color || "gray" },
+                                        { label: "Market m²", val: selectedSalon.benchmark ? `${formatPercentage(selectedSalon.benchmark.deviation)} dev.` : "—", color: selectedSalon.benchmark?.color || "gray" },
+                                        { label: "Eficiencia", val: selectedSalon.efficiency ? selectedSalon.efficiency.globalIndex.toFixed(2) : "—", color: selectedSalon.efficiency?.color || "gray" },
+                                        { label: "Auditoría", val: selectedSalon.contractAudit ? `${Math.abs(selectedSalon.contractAudit.deviationPercent).toFixed(1)}%` : "—", color: selectedSalon.contractAudit?.color || "gray" },
+                                    ].map((item) => (
+                                        <div key={item.label} className="flex flex-col gap-2 p-3 rounded-xl bg-white/5 border border-white/5">
+                                            <span className="text-[10px] text-slate-500 uppercase font-bold">{item.label}</span>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full" style={{ background: getSemaphoreColor(item.color) }} />
+                                                <span className="text-sm font-bold text-white">{item.val}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/5">
+                                    <div>
+                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Información General</span>
+                                        <p className="text-sm text-white font-medium">{selectedSalon.nombre_salon}</p>
+                                        <p className="text-xs text-slate-400 mt-0.5">{selectedSalon.direccion_salon}</p>
+                                        <div className="flex gap-2 mt-2">
+                                            <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] text-blue-300">Tier {selectedSalon.tier}</span>
+                                            <span className="px-2 py-0.5 rounded bg-slate-500/10 border border-slate-500/20 text-[10px] text-slate-300">{selectedSalon.municipio_salon}</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Carga Operativa</span>
+                                        <div className="space-y-1">
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-slate-500">Alquiler Real:</span>
+                                                <span className="text-white font-medium">{formatARS(selectedSalon.costos_fijos_salon || 0)}</span>
+                                            </div>
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-slate-500">Ventas:</span>
+                                                <span className="text-white font-medium">{formatARS(selectedSalon.ventas_totales_salon || 0)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-1">Activos</span>
+                                        <div className="space-y-1">
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-slate-500">Superficie:</span>
+                                                <span className="text-white font-medium">{selectedSalon.mt2_salon} m²</span>
+                                            </div>
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-slate-500">Capacidad:</span>
+                                                <span className="text-white font-medium">{selectedSalon.pax_calculado} PAX</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            )}
+
+            {/* General Filters */}
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-white/5">
                 <select
                     value={selectedTier ?? ""}
                     onChange={(e) => setSelectedTier(e.target.value ? parseInt(e.target.value) : null)}
@@ -97,7 +219,7 @@ export default function DashboardPage() {
                 )}
             </div>
 
-            {/* KPI Cards */}
+            {/* KPI Cards (Global Context) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                     { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
@@ -130,21 +252,17 @@ export default function DashboardPage() {
                 })}
             </div>
 
-            {/* Map + Salon List */}
+            {/* Map + Portfolio Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Map placeholder */}
                 <div className="lg:col-span-2 glass-card p-6 min-h-[400px]">
                     <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <MapPin size={18} className="text-blue-400" />
                         Mapa de Red de Salones
                     </h2>
                     <div className="relative w-full h-[360px] bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/30">
-                        {/* Map with markers */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="relative w-full h-full">
-                                {/* Argentina outline hint */}
                                 <div className="absolute inset-4 border border-slate-700/20 rounded-xl" />
-                                {/* Salon markers */}
                                 {filtered.map((salon) => {
                                     if (!salon.lat_salon || !salon.lon_salon) return null;
                                     const minLat = -35.0, maxLat = -34.4, minLon = -59.0, maxLon = -57.8;
@@ -158,60 +276,41 @@ export default function DashboardPage() {
                                             onClick={() => setSelectedSalon(salon)}
                                             className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
                                             style={{ left: `${Math.min(90, Math.max(10, x))}%`, top: `${Math.min(90, Math.max(10, y))}%` }}
-                                            title={salon.nombre_salon}
                                         >
                                             <div
-                                                className="w-4 h-4 rounded-full border-2 border-slate-900 shadow-lg transition-transform group-hover:scale-150"
+                                                className={`w-4 h-4 rounded-full border-2 border-slate-900 shadow-lg transition-transform group-hover:scale-150 ${selectedSalon?.id_salon === salon.id_salon ? "scale-150 ring-4 ring-white/20" : ""}`}
                                                 style={{ background: effColor, boxShadow: `0 0 8px ${effColor}80` }}
                                             />
-                                            <span className="absolute top-5 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 px-2 py-0.5 rounded">
-                                                {salon.nombre_salon}
-                                            </span>
                                         </button>
                                     );
                                 })}
                             </div>
                         </div>
-                        {/* Legend */}
-                        <div className="absolute bottom-3 left-3 flex items-center gap-4 bg-slate-900/90 px-3 py-2 rounded-lg text-[10px]">
-                            <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-green-500" />Eficiente</span>
-                            <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />Atención</span>
-                            <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-500" />Renegociar</span>
-                        </div>
                     </div>
                 </div>
 
-                {/* Salon List */}
-                <div className="glass-card p-6 max-h-[500px] overflow-y-auto">
+                {/* Simplified List */}
+                <div className="glass-card p-6 max-h-[460px] overflow-y-auto">
                     <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <Activity size={18} className="text-cyan-400" />
-                        Salones ({filtered.length})
+                        Listado General ({filtered.length})
                     </h2>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         {filtered.map((salon) => (
                             <button
                                 key={salon.id_salon}
                                 onClick={() => setSelectedSalon(salon)}
-                                className={`w-full text-left p-3 rounded-xl transition-all duration-200 border ${selectedSalon?.id_salon === salon.id_salon
-                                        ? "border-blue-500/40 bg-blue-500/10"
-                                        : "border-transparent hover:bg-slate-800/40"
+                                className={`w-full text-left px-3 py-2 rounded-lg transition-all border ${selectedSalon?.id_salon === salon.id_salon
+                                    ? "border-blue-500/40 bg-blue-500/10"
+                                    : "border-transparent hover:bg-white/5"
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-white">{salon.nombre_salon}</p>
-                                        <p className="text-[11px] text-slate-500">
-                                            Tier {salon.tier} · {salon.municipio_salon || "—"} · {salon.estado_salon}
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        {salon.performance && (
-                                            <span
-                                                className="semaphore-dot"
-                                                style={{ backgroundColor: getSemaphoreColor(salon.performance.color) }}
-                                                title={`Incidencia: ${formatPercentage(salon.performance.rentIncidence)}`}
-                                            />
-                                        )}
+                                    <span className={`text-xs ${selectedSalon?.id_salon === salon.id_salon ? "text-white font-medium" : "text-slate-400"}`}>{salon.nombre_salon}</span>
+                                    <div className="flex gap-1">
+                                        {[salon.performance?.color, salon.efficiency?.color].map((c, i) => (
+                                            c && <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getSemaphoreColor(c) }} />
+                                        ))}
                                     </div>
                                 </div>
                             </button>
@@ -219,76 +318,6 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
-
-            {/* Salon Detail Drawer */}
-            {selectedSalon && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="glass-card p-6"
-                >
-                    <div className="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 className="text-xl font-bold text-white">{selectedSalon.nombre_salon}</h2>
-                            <p className="text-sm text-slate-400">
-                                {selectedSalon.direccion_salon} · {selectedSalon.municipio_salon}
-                            </p>
-                        </div>
-                        <button
-                            onClick={() => setSelectedSalon(null)}
-                            className="w-8 h-8 rounded-lg hover:bg-slate-800/60 flex items-center justify-center text-slate-400"
-                        >
-                            <X size={18} />
-                        </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {/* Performance */}
-                        <div className="glass-card-light p-4">
-                            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Incidencia Alquiler</p>
-                            <p className="text-2xl font-bold" style={{ color: getSemaphoreColor(selectedSalon.performance?.color || "gray") }}>
-                                {selectedSalon.performance ? formatPercentage(selectedSalon.performance.rentIncidence) : "—"}
-                            </p>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Multiplicador: {selectedSalon.performance ? `${selectedSalon.performance.multiplier.toFixed(1)}x` : "—"}
-                            </p>
-                        </div>
-
-                        {/* Revenue */}
-                        <div className="glass-card-light p-4">
-                            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Facturación</p>
-                            <p className="text-2xl font-bold text-white">
-                                {selectedSalon.ventas_totales_salon ? formatARS(selectedSalon.ventas_totales_salon) : "—"}
-                            </p>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Alquiler: {selectedSalon.costos_fijos_salon ? formatARS(selectedSalon.costos_fijos_salon) : "—"}
-                            </p>
-                        </div>
-
-                        {/* PAX */}
-                        <div className="glass-card-light p-4">
-                            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Capacidad PAX</p>
-                            <p className="text-2xl font-bold text-white">
-                                {selectedSalon.pax_calculado ? formatNumber(selectedSalon.pax_calculado) : "—"}
-                            </p>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Formal: {selectedSalon.pax_formal_pista || "—"} · Informal: {selectedSalon.pax_informal_pista || "—"}
-                            </p>
-                        </div>
-
-                        {/* Efficiency */}
-                        <div className="glass-card-light p-4">
-                            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Índice Global</p>
-                            <p className="text-2xl font-bold" style={{ color: getSemaphoreColor(selectedSalon.efficiency?.color || "gray") }}>
-                                {selectedSalon.efficiency ? selectedSalon.efficiency.globalIndex.toFixed(2) : "—"}
-                            </p>
-                            <p className="text-xs text-slate-500 mt-1">
-                                {selectedSalon.mt2_salon ? `${selectedSalon.mt2_salon} m²` : "—"} · {selectedSalon.cantidad_eventos_salon || 0} eventos
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
         </div>
     );
 }
