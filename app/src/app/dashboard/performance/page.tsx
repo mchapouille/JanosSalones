@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, AlertTriangle, Award, Sliders } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSemaphoreColor, simulateRentReduction } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
+import { useDashboard } from "@/components/DashboardContext";
 import {
     BarChart,
     Bar,
@@ -20,9 +21,17 @@ import {
 } from "recharts";
 
 export default function PerformancePage() {
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const salones = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
     const [rentReduction, setRentReduction] = useState(0);
-    const [selectedSalon, setSelectedSalon] = useState(salones[0]?.id_salon || null);
+    const [selectedSalon, setSelectedSalon] = useState<number | null>(null);
+
+    // Update selected salon if it's not in the filtered list
+    useEffect(() => {
+        if (salones.length > 0 && (!selectedSalon || !salones.find(s => s.id_salon === selectedSalon))) {
+            setSelectedSalon(salones[0].id_salon);
+        }
+    }, [salones, selectedSalon]);
 
     // Sort by rent incidence descending for chart
     const chartData = useMemo(() => {
@@ -69,9 +78,22 @@ export default function PerformancePage() {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-2xl font-bold text-white">Performance</h1>
-                <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad Mensualizada</p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">Performance</h1>
+                    <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad Mensualizada</p>
+                </div>
+
+                <select
+                    value={selectedYear ?? ""}
+                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
+                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
+                >
+                    <option value="">Año (Todos)</option>
+                    {availableYears.map((y) => (
+                        <option key={y} value={y}>Año {y}</option>
+                    ))}
+                </select>
             </div>
 
             {/* Alert Cards */}
@@ -95,13 +117,28 @@ export default function PerformancePage() {
 
             {/* Revenue vs Rent Chart */}
             <div className="glass-card p-6">
-                <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                    <TrendingUp size={18} className="text-blue-400" />
-                    Facturación vs Alquiler por Salón
-                </h2>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+                        <TrendingUp size={18} className="text-blue-400" />
+                        Facturación vs Alquiler por Salón
+                    </h2>
+
+                    {/* Custom Legend moved to header */}
+                    <div className="flex items-center gap-6 px-4 py-2 rounded-xl bg-slate-900/40 border border-white/5">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#3b82f6]" />
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-tight">Facturación</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#94a3b8]" />
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-tight">Alquiler</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="h-[350px]">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={chartData} barGap={4} barCategoryGap="30%" margin={{ top: 60, bottom: 20 }}>
+                        <BarChart data={chartData} barGap={4} barCategoryGap="30%" margin={{ top: 20, bottom: 20 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} opacity={0.5} />
                             <XAxis
                                 dataKey="name"
@@ -126,8 +163,8 @@ export default function PerformancePage() {
                                 }}
                                 labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
                             />
-                            <Legend verticalAlign="top" height={40} iconType="circle" />
-                            <Bar dataKey="facturacion" name="Facturación" fill="#2563eb" radius={[6, 6, 0, 0]} barSize={25}>
+                            {/* Legend component removed from here */}
+                            <Bar dataKey="facturacion" name="Facturación" fill="#3b82f6" radius={[6, 6, 0, 0]} barSize={25}>
                                 <LabelList
                                     dataKey="name"
                                     position="top"
@@ -138,9 +175,9 @@ export default function PerformancePage() {
                                     fontWeight="bold"
                                 />
                             </Bar>
-                            <Bar dataKey="alquiler" name="Alquiler" radius={[6, 6, 0, 0]} barSize={25}>
+                            <Bar dataKey="alquiler" name="Alquiler" fill="#94a3b8" radius={[6, 6, 0, 0]} barSize={25}>
                                 {chartData.map((entry, i) => (
-                                    <Cell key={i} fill={entry.color} />
+                                    <Cell key={`cell-${i}-${entry.fullName}`} fill={entry.color === "#6b7280" ? "#94a3b8" : entry.color} />
                                 ))}
                             </Bar>
                         </BarChart>

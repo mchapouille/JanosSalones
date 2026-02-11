@@ -6,28 +6,27 @@ import { FileCheck, AlertCircle } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, USD_ARS_RATE, calcContractDeviation } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
-
-// Simulated contract data (since contracts table is not in the DDL)
-const contractData = [
-    { id_salon: 1, nombre: "Sans Souci", contratoUSD: 6200, pagoRealARS: 8500000 },
-    { id_salon: 2, nombre: "Costanera", contratoUSD: 6800, pagoRealARS: 9200000 },
-    { id_salon: 3, nombre: "Palermo Soho", contratoUSD: 4200, pagoRealARS: 5800000 },
-    { id_salon: 4, nombre: "Belgrano Events", contratoUSD: 3800, pagoRealARS: 5200000 },
-    { id_salon: 5, nombre: "Canning Grand", contratoUSD: 4500, pagoRealARS: 7200000 },
-    { id_salon: 6, nombre: "Hudson Palace", contratoUSD: 4000, pagoRealARS: 6800000 },
-    { id_salon: 7, nombre: "Ramos Mejía Centro", contratoUSD: 2800, pagoRealARS: 4500000 },
-    { id_salon: 8, nombre: "La Plata Eventos", contratoUSD: 3200, pagoRealARS: 5100000 },
-    { id_salon: 9, nombre: "Villa Luzuriaga Fiestas", contratoUSD: 1800, pagoRealARS: 3200000 },
-    { id_salon: 10, nombre: "Merlo Social", contratoUSD: 1600, pagoRealARS: 2900000 },
-    { id_salon: 11, nombre: "Pilar Premium", contratoUSD: 4100, pagoRealARS: 6000000 },
-];
+import { useDashboard } from "@/components/DashboardContext";
 
 export default function ContractsPage() {
+    const { selectedYear, setSelectedYear, availableYears, conversionRate } = useDashboard();
+    const salones = useMemo(() => getSalonesData(selectedYear), [selectedYear]);
+
     const audits = useMemo(() =>
-        contractData.map((c) => {
-            const result = calcContractDeviation(c.contratoUSD, c.pagoRealARS);
-            return { ...c, ...result };
-        }), []
+        salones.map((s) => {
+            // Re-calculate with dynamic conversion rate
+            const contractUSD = s.contractAudit?.contractAmount ? s.contractAudit.contractAmount / 1470 : 0;
+            const result = calcContractDeviation(contractUSD, s.costos_fijos_salon || 0, conversionRate);
+
+            return {
+                id_salon: s.id_salon,
+                year: s.year,
+                nombre: s.nombre_salon,
+                contratoUSD: contractUSD,
+                pagoRealARS: s.costos_fijos_salon || 0,
+                ...result
+            };
+        }).filter(a => a.id_salon < 12), [salones, conversionRate]
     );
 
     const totalDeviation = audits.reduce((s, a) => s + a.deviation, 0);
@@ -35,11 +34,24 @@ export default function ContractsPage() {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-2xl font-bold text-white">Auditoría de Contratos</h1>
-                <p className="text-slate-400 text-sm mt-1">
-                    Cruce: &quot;Excel de Alquileres&quot; (USD) vs &quot;Alquileres Salones&quot; (ARS real)
-                </p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">Auditoría de Contratos</h1>
+                    <p className="text-slate-400 text-sm mt-1">
+                        Cruce: &quot;Excel de Alquileres&quot; (USD) vs &quot;Alquileres Salones&quot; (ARS real)
+                    </p>
+                </div>
+
+                <select
+                    value={selectedYear ?? ""}
+                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
+                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
+                >
+                    <option value="">Año (Todos)</option>
+                    {availableYears.map((y: number) => (
+                        <option key={y} value={y}>Año {y}</option>
+                    ))}
+                </select>
             </div>
 
             {alertCount > 0 && (
@@ -67,8 +79,8 @@ export default function ContractsPage() {
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Tasa Conversión</p>
-                    <p className="text-3xl font-bold text-cyan-400">{formatARS(USD_ARS_RATE)}</p>
-                    <p className="text-xs text-slate-500 mt-1">USD → ARS proyectada</p>
+                    <p className="text-3xl font-bold text-cyan-400">{formatARS(conversionRate)}</p>
+                    <p className="text-xs text-slate-500 mt-1">USD → ARS (Manual)</p>
                 </motion.div>
             </div>
 
@@ -97,7 +109,7 @@ export default function ContractsPage() {
                                 .map((a) => {
                                     const color = getSemaphoreColor(a.color);
                                     return (
-                                        <tr key={a.id_salon} className="border-b border-slate-800/30 hover:bg-slate-800/20">
+                                        <tr key={`${a.id_salon}-${a.year || selectedYear || 'hist'}`} className="border-b border-slate-800/30 hover:bg-slate-800/20">
                                             <td className="py-3 px-3 text-white font-medium">{a.nombre}</td>
                                             <td className="py-3 px-3 text-right text-slate-400">USD {a.contratoUSD.toLocaleString("es-AR")}</td>
                                             <td className="py-3 px-3 text-right text-slate-300">{formatARS(a.contractAmount)}</td>

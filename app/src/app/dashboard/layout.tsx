@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import SerendipLogo from "@/components/SerendipLogo";
+import { useDashboard } from "@/components/DashboardContext";
 import {
     LayoutDashboard,
     TrendingUp,
@@ -16,6 +17,7 @@ import {
     ChevronLeft,
     ChevronRight,
     Menu,
+    DollarSign,
 } from "lucide-react";
 
 const menuItems = [
@@ -32,6 +34,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
+    const { conversionRate, setConversionRate } = useDashboard();
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -92,8 +95,8 @@ export default function DashboardLayout({
                                 href={item.href}
                                 onClick={() => setMobileOpen(false)}
                                 className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group ${isActive
-                                        ? "bg-blue-500/15 border border-blue-500/30 text-white"
-                                        : "text-slate-400 hover:text-white hover:bg-slate-800/40 border border-transparent"
+                                    ? "bg-blue-500/15 border border-blue-500/30 text-white"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800/40 border border-transparent"
                                     }`}
                             >
                                 <Icon
@@ -139,10 +142,27 @@ export default function DashboardLayout({
                         <Menu size={20} />
                     </button>
 
-                    <div className="flex items-center gap-3 ml-auto">
-                        <span className="text-sm text-slate-400">Admin</span>
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold">
-                            A
+                    <div className="flex items-center gap-6 ml-auto">
+                        {/* Manual Conversion Rate Input */}
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/5 border border-blue-500/10">
+                            <DollarSign size={14} className="text-blue-400" />
+                            <span className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Tasa USD</span>
+                            <div className="flex items-center">
+                                <span className="text-sm font-bold text-blue-300/60 mr-0.5">$</span>
+                                <input
+                                    type="number"
+                                    value={conversionRate}
+                                    onChange={(e) => setConversionRate(Number(e.target.value))}
+                                    className="w-16 bg-transparent border-none text-sm font-bold text-blue-300 focus:outline-none focus:ring-0 p-0 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <span className="text-sm text-slate-400">Admin</span>
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold">
+                                A
+                            </div>
                         </div>
                     </div>
                 </header>

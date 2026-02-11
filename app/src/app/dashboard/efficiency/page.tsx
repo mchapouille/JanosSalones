@@ -6,17 +6,32 @@ import { Gauge, Info } from "lucide-react";
 import { formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, TIER_DEFINITIONS } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
+import { useDashboard } from "@/components/DashboardContext";
 
 export default function EfficiencyPage() {
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const salones = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
 
     const salonesWithEfficiency = salones.filter((s) => s.efficiency);
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-2xl font-bold text-white">Eficiencia de Activos</h1>
-                <p className="text-slate-400 text-sm mt-1">Índice Global de Eficiencia — PAX & $m² vs Mediana del Tier</p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">Eficiencia de Activos</h1>
+                    <p className="text-slate-400 text-sm mt-1">Índice Global de Eficiencia — PAX & $m² vs Mediana del Tier</p>
+                </div>
+
+                <select
+                    value={selectedYear ?? ""}
+                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
+                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
+                >
+                    <option value="">Año (Todos)</option>
+                    {availableYears.map((y) => (
+                        <option key={y} value={y}>Año {y}</option>
+                    ))}
+                </select>
             </div>
 
             <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
@@ -54,7 +69,7 @@ export default function EfficiencyPage() {
 
                         return (
                             <motion.div
-                                key={salon.id_salon}
+                                key={`${salon.id_salon}-${salon.year}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.05 }}
@@ -131,7 +146,7 @@ export default function EfficiencyPage() {
                                 const eff = s.efficiency!;
                                 const color = getSemaphoreColor(eff.color);
                                 return (
-                                    <tr key={s.id_salon} className="border-b border-slate-800/30 hover:bg-slate-800/20">
+                                    <tr key={`${s.id_salon}-${s.year}`} className="border-b border-slate-800/30 hover:bg-slate-800/20">
                                         <td className="py-3 px-3 text-white font-medium">{s.nombre_salon}</td>
                                         <td className="py-3 px-3 text-center text-slate-400">{s.tier}</td>
                                         <td className="py-3 px-3 text-right text-white">{eff.paxRatio.toFixed(2)}</td>

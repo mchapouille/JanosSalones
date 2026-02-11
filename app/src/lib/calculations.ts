@@ -158,9 +158,10 @@ export interface ContractAuditResult {
 
 export function calcContractDeviation(
     contractAmountUSD: number,
-    realPaymentARS: number
+    realPaymentARS: number,
+    conversionRate: number = USD_ARS_RATE
 ): ContractAuditResult {
-    const contractAmount = contractAmountUSD * USD_ARS_RATE;
+    const contractAmount = contractAmountUSD * conversionRate;
     const deviation = realPaymentARS - contractAmount;
     const deviationPercent = contractAmount > 0 ? (deviation / contractAmount) * 100 : 0;
 

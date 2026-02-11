@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
     Building2,
@@ -11,8 +11,7 @@ import {
     X,
     Activity,
     BrainCircuit,
-    ArrowRight,
-    AlertTriangle,
+    LayoutGrid,
     CheckCircle2,
     Info,
 } from "lucide-react";
@@ -20,13 +19,16 @@ import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus } from "@/lib/calculations";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
 import GoogleMapView from "@/components/GoogleMapView";
+import { useDashboard } from "@/components/DashboardContext";
 
 export default function DashboardPage() {
-    const salones = useMemo(() => getSalonesData(), []);
+    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const [localYear, setLocalYear] = useState<number | null>(selectedYear);
+    const salones = useMemo(() => getSalonesData(selectedYear), [selectedYear]);
     const [selectedTier, setSelectedTier] = useState<number | null>(null);
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
     const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
-    const [selectedSalon, setSelectedSalon] = useState<SalonIntegral | null>(salones[0]); // Default to first
+    const [selectedSalon, setSelectedSalon] = useState<SalonIntegral | null>(null);
 
     const municipios = useMemo(
         () => [...new Set(salones.map((s) => s.municipio_salon).filter(Boolean))] as string[],
@@ -34,13 +36,37 @@ export default function DashboardPage() {
     );
 
     const filtered = useMemo(() => {
-        return salones.filter((s) => {
+        let list = salones.filter((s) => {
             if (selectedTier && s.tier !== selectedTier) return false;
             if (selectedEstado && s.estado_salon !== selectedEstado) return false;
             if (selectedMunicipio && s.municipio_salon !== selectedMunicipio) return false;
             return true;
         });
-    }, [salones, selectedTier, selectedEstado, selectedMunicipio]);
+
+        if (selectedYear === null) {
+            const uniqueSalons: Record<number, SalonIntegral> = {};
+            list.forEach(s => {
+                if (!uniqueSalons[s.id_salon] || s.year > uniqueSalons[s.id_salon].year) {
+                    uniqueSalons[s.id_salon] = s;
+                }
+            });
+            return Object.values(uniqueSalons).sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon));
+        }
+        return list;
+    }, [salones, selectedTier, selectedEstado, selectedMunicipio, selectedYear]);
+
+    // Sync selected salon with filter/year changes
+    useEffect(() => {
+        if (filtered.length > 0) {
+            const currentId = selectedSalon?.id_salon;
+            const updated = filtered.find(s => s.id_salon === currentId) || filtered[0];
+            if (updated !== selectedSalon) {
+                setSelectedSalon(updated);
+            }
+        } else if (selectedSalon !== null) {
+            setSelectedSalon(null);
+        }
+    }, [filtered, selectedSalon]);
 
     const activeSalones = filtered.filter((s) => s.estado_salon === "ACTIVO");
     const totalRevenue = activeSalones.reduce((s, x) => s + (x.ventas_totales_salon || 0), 0);
@@ -61,92 +87,162 @@ export default function DashboardPage() {
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div>
-                <h1 className="text-2xl font-bold text-white">Command Center</h1>
-                <p className="text-slate-400 text-sm mt-1">
-                    Análisis estratégico y monitoreo de red
-                </p>
-            </div>
-
-            {/* KPI Cards (Global Context) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                    { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
-                    { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "período analizado" },
-                    { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
-                    { label: "Incidencia Promedio", value: formatPercentage(avgIncidence), icon: TrendingUp, color: avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e", sub: avgIncidence > 25 ? "⚠ Alerta" : "normal" },
-                ].map((kpi, idx) => {
-                    const Icon = kpi.icon;
-                    return (
-                        <motion.div
-                            key={kpi.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="kpi-card"
-                        >
-                            <div className="flex items-center justify-between mb-4">
-                                <div
-                                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                                    style={{ background: `${kpi.color}15`, border: `1px solid ${kpi.color}30` }}
-                                >
-                                    <Icon size={20} style={{ color: kpi.color }} />
-                                </div>
-                                <span className="text-xs text-slate-500 uppercase tracking-wider">{kpi.sub}</span>
+            {/* Dashboard Title & General Overview Section */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative overflow-hidden group"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-800/10 via-transparent to-blue-950/10 rounded-2xl border border-white/5 shadow-2xl" />
+                <div className="glass-card p-6 md:p-8 relative">
+                    {/* Header with Title and Global Filters */}
+                    <div className="flex flex-col gap-6 mb-8">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                <LayoutGrid size={18} className="text-blue-400" />
                             </div>
-                            <p className="text-2xl font-bold text-white">{kpi.value}</p>
-                            <p className="text-sm text-slate-400 mt-1">{kpi.label}</p>
-                        </motion.div>
-                    );
-                })}
+                            <div>
+                                <h2 className="text-lg font-bold text-white tracking-wider">Vista General de Salones</h2>
+                            </div>
+                        </div>
+
+                        {/* General Filters Section (NOW ABOVE KPIs) */}
+                        <div className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-slate-900/40 border border-white/5">
+                            {/* Year Filter */}
+                            <select
+                                value={selectedYear ?? ""}
+                                onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
+                                className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
+                            >
+                                <option value="">Año (Todos)</option>
+                                {availableYears.map((y) => (
+                                    <option key={y} value={y}>Año {y}</option>
+                                ))}
+                            </select>
+
+                            <select
+                                value={selectedEstado ?? ""}
+                                onChange={(e) => setSelectedEstado(e.target.value || null)}
+                                className="bg-slate-900 border border-slate-700/60 rounded-lg px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50 min-w-[180px]"
+                            >
+                                <option value="">Estado (Todos)</option>
+                                <option value="ACTIVO">ACTIVO</option>
+                                <option value="OBRA">EN OBRA</option>
+                                <option value="DEVUELTOS">DEVUELTOS</option>
+                            </select>
+
+                            <select
+                                value={selectedTier ?? ""}
+                                onChange={(e) => setSelectedTier(e.target.value ? parseInt(e.target.value) : null)}
+                                className="bg-slate-900 border border-slate-700/60 rounded-lg px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50 min-w-[180px]"
+                            >
+                                <option value="">Tipo Salon (Todos)</option>
+                                {[1, 2, 3, 4, 5].map((t) => (
+                                    <option key={t} value={t}>Tier {t}: {TIER_DEFINITIONS[t]?.name}</option>
+                                ))}
+                            </select>
+
+                            <select
+                                value={selectedMunicipio ?? ""}
+                                onChange={(e) => setSelectedMunicipio(e.target.value || null)}
+                                className="bg-slate-900 border border-slate-700/60 rounded-lg px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50 min-w-[200px]"
+                            >
+                                <option value="">Municipio (Todos)</option>
+                                {municipios.sort().map((m) => (
+                                    <option key={m} value={m}>{m}</option>
+                                ))}
+                            </select>
+
+                            {(selectedTier || selectedEstado || selectedMunicipio) && (
+                                <button
+                                    onClick={() => { setSelectedTier(null); setSelectedEstado(null); setSelectedMunicipio(null); }}
+                                    className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1.5 ml-2 font-medium bg-blue-500/5 px-3 py-1.5 rounded-lg border border-blue-500/10 transition-colors"
+                                >
+                                    <X size={12} /> Limpiar filtros
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* KPI Cards (Now below filters within the same container) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {[
+                            { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
+                            { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "período analizado" },
+                            { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
+                            { label: "Incidencia Promedio", value: formatPercentage(avgIncidence), icon: TrendingUp, color: avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e", sub: avgIncidence > 25 ? "⚠ Alerta" : "normal" },
+                        ].map((kpi, idx) => {
+                            const Icon = kpi.icon;
+                            return (
+                                <div
+                                    key={kpi.label}
+                                    className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all group/kpi"
+                                >
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div
+                                            className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors group-hover/kpi:scale-110 duration-300"
+                                            style={{ background: `${kpi.color}15`, border: `1px solid ${kpi.color}30` }}
+                                        >
+                                            <Icon size={20} style={{ color: kpi.color }} />
+                                        </div>
+                                        <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">{kpi.sub}</span>
+                                    </div>
+                                    <p className="text-2xl font-bold text-white">{kpi.value}</p>
+                                    <p className="text-xs text-slate-500 uppercase font-bold mt-1 tracking-tight">{kpi.label}</p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Map + Portfolio Overview (NOW SECOND) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 glass-card p-6 min-h-[400px]">
+                    <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <MapPin size={18} className="text-blue-400" />
+                        Mapa de Red de Salones
+                    </h2>
+                    <div className="w-full h-[400px]">
+                        <GoogleMapView
+                            salones={filtered}
+                            selectedSalon={selectedSalon}
+                            onSelectSalon={setSelectedSalon}
+                        />
+                    </div>
+                </div>
+
+                {/* Simplified List */}
+                <div className="glass-card p-6 max-h-[460px] overflow-y-auto">
+                    <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <Activity size={18} className="text-cyan-400" />
+                        Listado General ({filtered.length})
+                    </h2>
+                    <div className="space-y-1">
+                        {filtered.map((salon) => (
+                            <button
+                                key={`${salon.id_salon}-${salon.year}`}
+                                onClick={() => setSelectedSalon(salon)}
+                                className={`w-full text-left px-3 py-2 rounded-lg transition-all border ${selectedSalon?.id_salon === salon.id_salon && selectedSalon?.year === salon.year
+                                    ? "border-blue-500/40 bg-blue-500/10"
+                                    : "border-transparent hover:bg-white/5"
+                                    }`}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <span className={`text-xs ${selectedSalon?.id_salon === salon.id_salon ? "text-white font-medium" : "text-slate-400"}`}>{salon.nombre_salon}</span>
+                                    <div className="flex gap-1">
+                                        {[salon.performance?.color, salon.efficiency?.color].map((c, i) => (
+                                            c && <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getSemaphoreColor(c) }} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
-            {/* General Filters */}
-            <div className="flex flex-wrap gap-3 pt-4 border-t border-white/5">
-                <select
-                    value={selectedTier ?? ""}
-                    onChange={(e) => setSelectedTier(e.target.value ? parseInt(e.target.value) : null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Tiers</option>
-                    {[1, 2, 3, 4, 5].map((t) => (
-                        <option key={t} value={t}>Tier {t} — {TIER_DEFINITIONS[t]?.name}</option>
-                    ))}
-                </select>
-
-                <select
-                    value={selectedEstado ?? ""}
-                    onChange={(e) => setSelectedEstado(e.target.value || null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Estados</option>
-                    <option value="ACTIVO">ACTIVO</option>
-                    <option value="OBRA">EN OBRA</option>
-                </select>
-
-                <select
-                    value={selectedMunicipio ?? ""}
-                    onChange={(e) => setSelectedMunicipio(e.target.value || null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Municipios</option>
-                    {municipios.sort().map((m) => (
-                        <option key={m} value={m}>{m}</option>
-                    ))}
-                </select>
-
-                {(selectedTier || selectedEstado || selectedMunicipio) && (
-                    <button
-                        onClick={() => { setSelectedTier(null); setSelectedEstado(null); setSelectedMunicipio(null); }}
-                        className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
-                    >
-                        <X size={14} /> Limpiar filtros
-                    </button>
-                )}
-            </div>
-
-            {/* Strategic Decision Highlight */}
+            {/* Strategic Decision Highlight (NOW THIRD) */}
             {selectedSalon && strategicStatus && (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
@@ -155,26 +251,51 @@ export default function DashboardPage() {
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/5" />
                     <div className="glass-card p-6 md:p-8 relative">
-                        {/* Internal Selector for the specific salon analysis */}
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-6 border-b border-white/5">
+                        <div className="flex flex-col gap-6 mb-8 pb-6 border-b border-white/5">
                             <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
                                     <BrainCircuit size={18} className="text-blue-400" />
                                 </div>
                                 <h3 className="text-lg font-bold text-white">Análisis de Decisión por Salón</h3>
                             </div>
-                            <div className="flex flex-col gap-1 w-full sm:w-auto">
+
+                            <div className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-slate-900/40 border border-white/5">
+                                {/* Local Year Selector */}
                                 <select
-                                    value={selectedSalon?.id_salon ?? ""}
+                                    value={localYear ?? ""}
+                                    onChange={(e) => setLocalYear(e.target.value ? parseInt(e.target.value) : null)}
+                                    className="bg-slate-900 border border-slate-700/60 rounded-lg px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50 min-w-[140px] font-medium"
+                                >
+                                    <option value="">Año (Todos)</option>
+                                    {availableYears.map((y) => (
+                                        <option key={y} value={y}>Año {y}</option>
+                                    ))}
+                                </select>
+
+                                <select
+                                    value={selectedSalon ? `${selectedSalon.id_salon}-${selectedSalon.year}` : ""}
                                     onChange={(e) => {
-                                        const s = salones.find(x => x.id_salon === parseInt(e.target.value));
+                                        const [id, year] = e.target.value.split("-").map(Number);
+                                        const s = getSalonesData(null).find(x => x.id_salon === id && x.year === year);
                                         if (s) setSelectedSalon(s);
                                     }}
-                                    className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[240px] font-medium"
+                                    className="bg-slate-900 border border-slate-700/60 rounded-lg px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50 min-w-[240px] font-medium"
                                 >
-                                    {salones.map(s => (
-                                        <option key={s.id_salon} value={s.id_salon} className="bg-slate-900">{s.nombre_salon}</option>
-                                    ))}
+                                    {(() => {
+                                        const displayedSalones = localYear
+                                            ? getSalonesData(localYear)
+                                            : Array.from(new Set(getSalonesData(null).map(s => s.id_salon)))
+                                                .map(id => {
+                                                    const allOfId = getSalonesData(null).filter(s => s.id_salon === id);
+                                                    return allOfId.sort((a, b) => b.year - a.year)[0];
+                                                });
+
+                                        return displayedSalones.map(s => (
+                                            <option key={`${s.id_salon}-${s.year}`} value={`${s.id_salon}-${s.year}`} className="bg-slate-900">
+                                                {s.nombre_salon}
+                                            </option>
+                                        ));
+                                    })()}
                                 </select>
                             </div>
                         </div>
@@ -263,52 +384,6 @@ export default function DashboardPage() {
                     </div>
                 </motion.div>
             )}
-
-            {/* Map + Portfolio Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 glass-card p-6 min-h-[400px]">
-                    <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                        <MapPin size={18} className="text-blue-400" />
-                        Mapa de Red de Salones
-                    </h2>
-                    <div className="w-full h-[400px]">
-                        <GoogleMapView
-                            salones={filtered}
-                            selectedSalon={selectedSalon}
-                            onSelectSalon={setSelectedSalon}
-                        />
-                    </div>
-                </div>
-
-                {/* Simplified List */}
-                <div className="glass-card p-6 max-h-[460px] overflow-y-auto">
-                    <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                        <Activity size={18} className="text-cyan-400" />
-                        Listado General ({filtered.length})
-                    </h2>
-                    <div className="space-y-1">
-                        {filtered.map((salon) => (
-                            <button
-                                key={salon.id_salon}
-                                onClick={() => setSelectedSalon(salon)}
-                                className={`w-full text-left px-3 py-2 rounded-lg transition-all border ${selectedSalon?.id_salon === salon.id_salon
-                                    ? "border-blue-500/40 bg-blue-500/10"
-                                    : "border-transparent hover:bg-white/5"
-                                    }`}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <span className={`text-xs ${selectedSalon?.id_salon === salon.id_salon ? "text-white font-medium" : "text-slate-400"}`}>{salon.nombre_salon}</span>
-                                    <div className="flex gap-1">
-                                        {[salon.performance?.color, salon.efficiency?.color].map((c, i) => (
-                                            c && <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getSemaphoreColor(c) }} />
-                                        ))}
-                                    </div>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }

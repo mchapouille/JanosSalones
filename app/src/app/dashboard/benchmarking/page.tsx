@@ -6,10 +6,12 @@ import { BarChart3, Info } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
 import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
+import { useDashboard } from "@/components/DashboardContext";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 export default function BenchmarkingPage() {
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const salones = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
 
     const tierComparison = Object.entries(BENCHMARK_DATA).map(([tier, data]) => ({
         tier: `Tier ${tier}`, promedioReal: data.promedioReal,
@@ -25,9 +27,22 @@ export default function BenchmarkingPage() {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
-                <p className="text-slate-400 text-sm mt-1">Comparación $m² vs Mercado (Zonaprop / Argenprop)</p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
+                    <p className="text-slate-400 text-sm mt-1">Comparación $m² vs Mercado (Zonaprop / Argenprop)</p>
+                </div>
+
+                <select
+                    value={selectedYear ?? ""}
+                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
+                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
+                >
+                    <option value="">Año (Todos)</option>
+                    {availableYears.map((y) => (
+                        <option key={y} value={y}>Año {y}</option>
+                    ))}
+                </select>
             </div>
 
             <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
@@ -48,7 +63,7 @@ export default function BenchmarkingPage() {
                         const benchmark = BENCHMARK_DATA[tier];
                         const salonesInTier = salones.filter((s) => s.tier === tier);
                         return (
-                            <motion.div key={tier} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: tier * 0.1 }}
+                            <motion.div key={`${tier}-${selectedYear || 'hist'}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: tier * 0.1 }}
                                 className="w-full" style={{ maxWidth: `${20 + (5 - tier) * 15 + 20}%` }}>
                                 <div className="py-3 px-5 rounded-xl" style={{ background: `${colors[tier - 1]}15`, border: `1px solid ${colors[tier - 1]}30` }}>
                                     <div className="flex items-center justify-between">
