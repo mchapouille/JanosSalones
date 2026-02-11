@@ -2,12 +2,13 @@ import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
     const { pathname } = req.nextUrl;
+    // Check for NextAuth session cookie (standard name)
+    const sessionCookie = req.cookies.get("next-auth.session-token") || req.cookies.get("__Secure-next-auth.session-token");
 
     // Protect dashboard routes
     if (pathname.startsWith("/dashboard")) {
-        if (!token) {
+        if (!sessionCookie) {
             const loginUrl = new URL("/login", req.url);
             loginUrl.searchParams.set("callbackUrl", pathname);
             return NextResponse.redirect(loginUrl);
@@ -15,7 +16,7 @@ export async function middleware(req: NextRequest) {
     }
 
     // Redirect authenticated users from login to dashboard
-    if (pathname === "/login" && token) {
+    if (pathname === "/login" && sessionCookie) {
         return NextResponse.redirect(new URL("/dashboard", req.url));
     }
 
