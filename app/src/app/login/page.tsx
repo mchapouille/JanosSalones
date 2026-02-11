@@ -70,7 +70,7 @@ export default function LoginPage() {
                     <div className="text-center mb-8">
                         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium tracking-wider uppercase">
                             <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                            Panel de Auditoría — Jano&apos;s Eventos
+                            Panel de Auditoría — Jano&apos;s Eventos (v1.1)
                         </span>
                     </div>
 
