@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
     Building2,
     Users,
@@ -47,52 +51,136 @@ export default function DashboardPage() {
     const strategicStatus = useMemo(() => {
         if (!selectedSalon) return null;
         return calcGlobalStatus(
-            selectedSalon.performance,
+            selectedSalon.performance ?? undefined,
             selectedSalon.benchmark,
             selectedSalon.efficiency,
-            selectedSalon.contractAudit
+            selectedSalon.contractAudit ?? undefined
         );
     }, [selectedSalon]);
 
     return (
         <div className="space-y-6">
-            {/* Header & Strategic Selector */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-white">Command Center</h1>
-                    <p className="text-slate-400 text-sm mt-1">
-                        Análisis estratégico y monitoreo de red
-                    </p>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Seleccionar Salón para Análisis</label>
-                    <select
-                        value={selectedSalon?.id_salon ?? ""}
-                        onChange={(e) => {
-                            const s = salones.find(x => x.id_salon === parseInt(e.target.value));
-                            if (s) setSelectedSalon(s);
-                        }}
-                        className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[240px] font-medium"
+            {/* Header */}
+            <div>
+                <h1 className="text-2xl font-bold text-white">Command Center</h1>
+                <p className="text-slate-400 text-sm mt-1">
+                    Análisis estratégico y monitoreo de red
+                </p>
+            </div>
+
+            {/* KPI Cards (Global Context) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                    { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
+                    { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "período analizado" },
+                    { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
+                    { label: "Incidencia Promedio", value: formatPercentage(avgIncidence), icon: TrendingUp, color: avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e", sub: avgIncidence > 25 ? "⚠ Alerta" : "normal" },
+                ].map((kpi, idx) => {
+                    const Icon = kpi.icon;
+                    return (
+                        <motion.div
+                            key={kpi.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="kpi-card"
+                        >
+                            <div className="flex items-center justify-between mb-4">
+                                <div
+                                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                                    style={{ background: `${kpi.color}15`, border: `1px solid ${kpi.color}30` }}
+                                >
+                                    <Icon size={20} style={{ color: kpi.color }} />
+                                </div>
+                                <span className="text-xs text-slate-500 uppercase tracking-wider">{kpi.sub}</span>
+                            </div>
+                            <p className="text-2xl font-bold text-white">{kpi.value}</p>
+                            <p className="text-sm text-slate-400 mt-1">{kpi.label}</p>
+                        </motion.div>
+                    );
+                })}
+            </div>
+
+            {/* General Filters */}
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-white/5">
+                <select
+                    value={selectedTier ?? ""}
+                    onChange={(e) => setSelectedTier(e.target.value ? parseInt(e.target.value) : null)}
+                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
+                >
+                    <option value="">Todos los Tiers</option>
+                    {[1, 2, 3, 4, 5].map((t) => (
+                        <option key={t} value={t}>Tier {t} — {TIER_DEFINITIONS[t]?.name}</option>
+                    ))}
+                </select>
+
+                <select
+                    value={selectedEstado ?? ""}
+                    onChange={(e) => setSelectedEstado(e.target.value || null)}
+                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
+                >
+                    <option value="">Todos los Estados</option>
+                    <option value="ACTIVO">ACTIVO</option>
+                    <option value="OBRA">EN OBRA</option>
+                </select>
+
+                <select
+                    value={selectedMunicipio ?? ""}
+                    onChange={(e) => setSelectedMunicipio(e.target.value || null)}
+                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
+                >
+                    <option value="">Todos los Municipios</option>
+                    {municipios.sort().map((m) => (
+                        <option key={m} value={m}>{m}</option>
+                    ))}
+                </select>
+
+                {(selectedTier || selectedEstado || selectedMunicipio) && (
+                    <button
+                        onClick={() => { setSelectedTier(null); setSelectedEstado(null); setSelectedMunicipio(null); }}
+                        className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
                     >
-                        {salones.map(s => (
-                            <option key={s.id_salon} value={s.id_salon} className="bg-slate-900">{s.nombre_salon}</option>
-                        ))}
-                    </select>
-                </div>
+                        <X size={14} /> Limpiar filtros
+                    </button>
+                )}
             </div>
 
             {/* Strategic Decision Highlight */}
             {selectedSalon && strategicStatus && (
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="relative overflow-hidden group"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="relative overflow-hidden group pt-2"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-transparent rounded-2xl border border-blue-500/20" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/5" />
                     <div className="glass-card p-6 md:p-8 relative">
+                        {/* Internal Selector for the specific salon analysis */}
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-6 border-b border-white/5">
+                            <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                    <BrainCircuit size={18} className="text-blue-400" />
+                                </div>
+                                <h3 className="text-lg font-bold text-white">Análisis de Decisión por Salón</h3>
+                            </div>
+                            <div className="flex flex-col gap-1 w-full sm:w-auto">
+                                <select
+                                    value={selectedSalon?.id_salon ?? ""}
+                                    onChange={(e) => {
+                                        const s = salones.find(x => x.id_salon === parseInt(e.target.value));
+                                        if (s) setSelectedSalon(s);
+                                    }}
+                                    className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[240px] font-medium"
+                                >
+                                    {salones.map(s => (
+                                        <option key={s.id_salon} value={s.id_salon} className="bg-slate-900">{s.nombre_salon}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
                         <div className="flex flex-col lg:flex-row gap-8">
                             {/* Left: Global Indicator */}
-                            <div className="lg:w-1/3 flex flex-col justify-center items-center text-center p-6 rounded-2xl bg-slate-900/40 border border-white/5">
+                            <div className="lg:w-1/3 flex flex-col justify-center items-center text-center p-6 rounded-2xl bg-slate-900/40 border border-white/5 shadow-inner">
                                 <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4 font-bold">Estatus Estratégico Global</span>
                                 <div
                                     className="w-20 h-20 rounded-full flex items-center justify-center mb-6 relative"
@@ -174,83 +262,6 @@ export default function DashboardPage() {
                     </div>
                 </motion.div>
             )}
-
-            {/* General Filters */}
-            <div className="flex flex-wrap gap-3 pt-4 border-t border-white/5">
-                <select
-                    value={selectedTier ?? ""}
-                    onChange={(e) => setSelectedTier(e.target.value ? parseInt(e.target.value) : null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Tiers</option>
-                    {[1, 2, 3, 4, 5].map((t) => (
-                        <option key={t} value={t}>Tier {t} — {TIER_DEFINITIONS[t]?.name}</option>
-                    ))}
-                </select>
-
-                <select
-                    value={selectedEstado ?? ""}
-                    onChange={(e) => setSelectedEstado(e.target.value || null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Estados</option>
-                    <option value="ACTIVO">ACTIVO</option>
-                    <option value="OBRA">EN OBRA</option>
-                </select>
-
-                <select
-                    value={selectedMunicipio ?? ""}
-                    onChange={(e) => setSelectedMunicipio(e.target.value || null)}
-                    className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                >
-                    <option value="">Todos los Municipios</option>
-                    {municipios.sort().map((m) => (
-                        <option key={m} value={m}>{m}</option>
-                    ))}
-                </select>
-
-                {(selectedTier || selectedEstado || selectedMunicipio) && (
-                    <button
-                        onClick={() => { setSelectedTier(null); setSelectedEstado(null); setSelectedMunicipio(null); }}
-                        className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
-                    >
-                        <X size={14} /> Limpiar filtros
-                    </button>
-                )}
-            </div>
-
-            {/* KPI Cards (Global Context) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                    { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
-                    { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "período analizado" },
-                    { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
-                    { label: "Incidencia Promedio", value: formatPercentage(avgIncidence), icon: TrendingUp, color: avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e", sub: avgIncidence > 25 ? "⚠ Alerta" : "normal" },
-                ].map((kpi, idx) => {
-                    const Icon = kpi.icon;
-                    return (
-                        <motion.div
-                            key={kpi.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="kpi-card"
-                        >
-                            <div className="flex items-center justify-between mb-4">
-                                <div
-                                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                                    style={{ background: `${kpi.color}15`, border: `1px solid ${kpi.color}30` }}
-                                >
-                                    <Icon size={20} style={{ color: kpi.color }} />
-                                </div>
-                                <span className="text-xs text-slate-500 uppercase tracking-wider">{kpi.sub}</span>
-                            </div>
-                            <p className="text-2xl font-bold text-white">{kpi.value}</p>
-                            <p className="text-sm text-slate-400 mt-1">{kpi.label}</p>
-                        </motion.div>
-                    );
-                })}
-            </div>
 
             {/* Map + Portfolio Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

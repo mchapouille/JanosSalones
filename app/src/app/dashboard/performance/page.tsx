@@ -102,7 +102,15 @@ export default function PerformancePage() {
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={chartData} barGap={2}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                            <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 11 }} angle={-45} textAnchor="end" height={80} />
+                            <XAxis
+                                dataKey="name"
+                                tick={{ fill: "#94a3b8", fontSize: 10 }}
+                                angle={-45}
+                                textAnchor="end"
+                                height={80}
+                                interval={0}
+                                tickMargin={10}
+                            />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `${(v / 1000000).toFixed(0)}M`} />
                             <Tooltip
                                 contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }}

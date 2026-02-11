@@ -1,7 +1,7 @@
 // Sample data for development when DB is not connected
 // This mirrors the salones_integral view structure
 
-import { assignTier, calcPerformance, calcBenchmark, calcEfficiency } from "./calculations";
+import { assignTier, calcPerformance, calcBenchmark, calcEfficiency, calcContractDeviation, type PerformanceResult, type BenchmarkResult, type EfficiencyResult, type ContractAuditResult } from "./calculations";
 
 export interface SalonIntegral {
     id_salon: number;
@@ -25,9 +25,10 @@ export interface SalonIntegral {
     rentabilidad_salon: number | null;
     // Computed fields
     tier: number;
-    performance: ReturnType<typeof calcPerformance> | null;
-    benchmark: ReturnType<typeof calcBenchmark> | null;
-    efficiency: ReturnType<typeof calcEfficiency> | null;
+    performance: PerformanceResult | null;
+    benchmark: BenchmarkResult | null;
+    efficiency: EfficiencyResult | null;
+    contractAudit: ContractAuditResult | null;
 }
 
 export const SAMPLE_SALONES: SalonIntegral[] = [
@@ -163,6 +164,7 @@ export const SAMPLE_SALONES: SalonIntegral[] = [
         performance: ventasTotales > 0 ? calcPerformance(costosFijos, ventasTotales, costosVariables) : null,
         benchmark: calcBenchmark(costosFijos, mt2, salon.tier),
         efficiency: calcEfficiency(costosFijos, pax, mt2, salon.tier),
+        contractAudit: calcContractDeviation(costosFijos / 1470 * (1 + (salon.id_salon % 10) / 100), costosFijos), // Deterministic deviation
     };
 });
 
