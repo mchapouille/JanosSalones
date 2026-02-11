@@ -101,30 +101,44 @@ export default function PerformancePage() {
                 </h2>
                 <div className="h-[350px]">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={chartData} barGap={2} margin={{ top: 40, bottom: 20 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                        <BarChart data={chartData} barGap={4} barCategoryGap="30%" margin={{ top: 60, bottom: 20 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} opacity={0.5} />
                             <XAxis
                                 dataKey="name"
                                 hide={true}
                             />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => `${(v / 1000000).toFixed(0)}M`} />
                             <Tooltip
-                                contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }}
-                                formatter={(value: any) => formatARS(Number(value))}
+                                contentStyle={{
+                                    background: "rgba(15, 23, 42, 0.9)",
+                                    backdropFilter: "blur(10px)",
+                                    border: "1px solid rgba(59, 130, 246, 0.2)",
+                                    borderRadius: 12,
+                                    padding: '12px'
+                                }}
+                                itemStyle={{ fontSize: '13px', fontWeight: 'bold' }}
+                                labelStyle={{ color: '#fff', marginBottom: '8px', fontWeight: 'bold' }}
+                                formatter={(value: any, name?: string) => {
+                                    const val = formatARS(Number(value));
+                                    // Make sure "Alquiler" text is readable (light gray instead of deep color)
+                                    const color = name === "Alquiler" ? "#cbd5e1" : "#3b82f6";
+                                    return [val, name || "", { color }] as any;
+                                }}
                                 labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
                             />
-                            <Legend verticalAlign="top" height={36} />
-                            <Bar dataKey="facturacion" name="Facturación" fill="#2563eb" radius={[4, 4, 0, 0]}>
+                            <Legend verticalAlign="top" height={40} iconType="circle" />
+                            <Bar dataKey="facturacion" name="Facturación" fill="#2563eb" radius={[6, 6, 0, 0]} barSize={25}>
                                 <LabelList
                                     dataKey="name"
                                     position="top"
-                                    angle={-45}
-                                    offset={15}
-                                    fill="#94a3b8"
-                                    fontSize={9}
+                                    angle={-35}
+                                    offset={25}
+                                    fill="#cbd5e1"
+                                    fontSize={10}
+                                    fontWeight="bold"
                                 />
                             </Bar>
-                            <Bar dataKey="alquiler" name="Alquiler" radius={[4, 4, 0, 0]}>
+                            <Bar dataKey="alquiler" name="Alquiler" radius={[6, 6, 0, 0]} barSize={25}>
                                 {chartData.map((entry, i) => (
                                     <Cell key={i} fill={entry.color} />
                                 ))}
