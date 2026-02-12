@@ -350,117 +350,110 @@ export default function DashboardPage() {
 
                                     {/* Weight sliders section */}
                                     <div className="p-5 rounded-xl bg-slate-900/60 border border-white/5 shadow-inner">
-                                        <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
-                                            <div className="flex items-center gap-2">
-                                                <BrainCircuit size={14} className="text-blue-400" />
-                                                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ponderación del Estatus Global</h4>
-                                            </div>
-                                            <span className="text-[10px] text-slate-500 italic">IA Strategic Weights</span>
-                                        </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
-                                            {[
-                                                { id: 'performance', label: 'Performance', color: 'bg-blue-500' },
-                                                { id: 'benchmarking', label: 'Benchmarking', color: 'bg-cyan-500' },
-                                                { id: 'efficiency', label: 'Eficiencia', color: 'bg-emerald-500' },
-                                                { id: 'audit', label: 'Contratos', color: 'bg-indigo-500' }
-                                            ].map((w) => (
-                                                <div key={w.id} className="space-y-2.5">
-                                                    <div className="flex justify-between items-center">
-                                                        <span className="text-[11px] text-slate-400 font-semibold">{w.label}</span>
-                                                        <span className="text-[11px] font-mono font-bold text-blue-400">{(weights as any)[w.id]}%</span>
-                                                    </div>
-                                                    <div className="relative flex items-center group">
-                                                        <input
-                                                            type="range"
-                                                            min="0"
-                                                            max="100"
-                                                            step="5"
-                                                            value={(weights as any)[w.id]}
-                                                            onChange={(e) => setWeights({ ...weights, [w.id]: parseInt(e.target.value) })}
-                                                            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 group-hover:bg-slate-700 transition-colors"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="mt-5 pt-4 border-t border-white/5 flex justify-between items-center">
-                                            <p className="text-[9px] text-slate-600 max-w-[300px]">
-                                                Ajuste la importancia relativa de cada semáforo en el cálculo del estatus estratégico global.
-                                            </p>
-                                            <button
-                                                onClick={() => setWeights(DEFAULT_WEIGHTS)}
-                                                className="text-[10px] font-bold text-slate-500 hover:text-blue-400 transition-all uppercase tracking-tight flex items-center gap-1.5"
-                                            >
-                                                Restablecer valores IA
-                                            </button>
+                                        <div className="flex items-center gap-2">
+                                            <BrainCircuit size={14} className="text-blue-400" />
+                                            <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ponderación del Estatus Global</h4>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="mb-6 flex items-end border-b border-white/5 pb-4">
-                                    <div>
-                                        <h4 className="text-xl font-bold text-white tracking-tight">{selectedSalon.nombre_salon}</h4>
-                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mt-1">
-                                            Tier {selectedSalon.tier} • {selectedSalon.municipio_salon} • {selectedSalon.mt2_salon} m² • {selectedSalon.pax_calculado} PAX
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+                                        {[
+                                            { id: 'performance', label: 'Performance', color: 'bg-blue-500' },
+                                            { id: 'benchmarking', label: 'Benchmarking', color: 'bg-cyan-500' },
+                                            { id: 'efficiency', label: 'Eficiencia', color: 'bg-emerald-500' },
+                                            { id: 'audit', label: 'Contratos', color: 'bg-indigo-500' }
+                                        ].map((w) => (
+                                            <div key={w.id} className="space-y-2.5">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-[11px] text-slate-400 font-semibold">{w.label}</span>
+                                                    <span className="text-[11px] font-mono font-bold text-blue-400">{(weights as any)[w.id]}%</span>
+                                                </div>
+                                                <div className="relative flex items-center group">
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        step="5"
+                                                        value={(weights as any)[w.id]}
+                                                        onChange={(e) => setWeights({ ...weights, [w.id]: parseInt(e.target.value) })}
+                                                        className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 group-hover:bg-slate-700 transition-colors"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-5 pt-4 border-t border-white/5">
+                                        <p className="text-[9px] text-slate-600">
+                                            Ajuste la importancia relativa de cada semáforo en el cálculo del estatus estratégico global.
                                         </p>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                    {[
-                                        {
-                                            id: 'performance',
-                                            label: 'Performance',
-                                            rows: [
-                                                { label: 'Multiplicador', value: selectedSalon.performance ? formatMultiplier(selectedSalon.performance.multiplier) : '—' },
-                                                { label: 'Margen Contrib.', value: selectedSalon.performance ? formatARS(selectedSalon.performance.marginContribution) : '—', color: 'text-emerald-400' }
-                                            ]
-                                        },
-                                        {
-                                            id: 'benchmarking',
-                                            label: 'Benchmarking',
-                                            rows: [
-                                                { label: 'Alquiler m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.costPerMt2) : '—' },
-                                                { label: 'Mercado m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.marketCostPerMt2) : '—' }
-                                            ]
-                                        },
-                                        {
-                                            id: 'efficiency',
-                                            label: 'Eficiencia',
-                                            rows: [
-                                                { label: 'Costo por PAX', value: formatARS((selectedSalon.costos_fijos_salon || 0) / (selectedSalon.pax_calculado || 1)) },
-                                                { label: 'Mediana Tier', value: formatARS(TIER_MEDIANS[selectedSalon.tier]?.paxMedian || 0) }
-                                            ]
-                                        },
-                                        {
-                                            id: 'audit',
-                                            label: 'Contratos',
-                                            rows: [
-                                                { label: 'Monto Contrato', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.contractAmount) : '—' },
-                                                { label: 'Pago Efectivo', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.realPayment) : '—' }
-                                            ]
-                                        }
-                                    ].map((group) => (
-                                        <div key={group.id} className="flex flex-col bg-slate-900/40 rounded-xl border border-white/5 overflow-hidden">
-                                            <div className="bg-white/5 px-4 py-2 border-b border-white/5 text-center">
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest leading-none">{group.label}</span>
-                                            </div>
-                                            <div className="p-4 flex flex-col gap-4 items-center text-center">
-                                                {group.rows.map((row, idx) => (
-                                                    <div key={idx} className="w-full">
-                                                        <p className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</p>
-                                                        <p className={`text-sm font-bold leading-none ${row.color || 'text-white'}`}>{row.value}</p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
+                            <div className="mb-6 flex items-end border-b border-white/5 pb-4">
+                                <div>
+                                    <h4 className="text-xl font-bold text-white tracking-tight">{selectedSalon.nombre_salon}</h4>
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mt-1">
+                                        Tier {selectedSalon.tier} • {selectedSalon.municipio_salon} • {selectedSalon.mt2_salon} m² • {selectedSalon.pax_calculado} PAX
+                                    </p>
                                 </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {[
+                                    {
+                                        id: 'performance',
+                                        label: 'Performance',
+                                        rows: [
+                                            { label: 'Multiplicador', value: selectedSalon.performance ? formatMultiplier(selectedSalon.performance.multiplier) : '—' },
+                                            { label: 'Margen Contrib.', value: selectedSalon.performance ? formatARS(selectedSalon.performance.marginContribution) : '—', color: 'text-emerald-400' }
+                                        ]
+                                    },
+                                    {
+                                        id: 'benchmarking',
+                                        label: 'Benchmarking',
+                                        rows: [
+                                            { label: 'Alquiler m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.costPerMt2) : '—' },
+                                            { label: 'Mercado m²', value: selectedSalon.benchmark ? formatARS(selectedSalon.benchmark.marketCostPerMt2) : '—' }
+                                        ]
+                                    },
+                                    {
+                                        id: 'efficiency',
+                                        label: 'Eficiencia',
+                                        rows: [
+                                            { label: 'Costo por PAX', value: formatARS((selectedSalon.costos_fijos_salon || 0) / (selectedSalon.pax_calculado || 1)) },
+                                            { label: 'Mediana Tier', value: formatARS(TIER_MEDIANS[selectedSalon.tier]?.paxMedian || 0) }
+                                        ]
+                                    },
+                                    {
+                                        id: 'audit',
+                                        label: 'Contratos',
+                                        rows: [
+                                            { label: 'Monto Contrato', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.contractAmount) : '—' },
+                                            { label: 'Pago Efectivo', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.realPayment) : '—' }
+                                        ]
+                                    }
+                                ].map((group) => (
+                                    <div key={group.id} className="flex flex-col bg-slate-900/40 rounded-xl border border-white/5 overflow-hidden">
+                                        <div className="bg-white/5 px-4 py-2 border-b border-white/5 text-center">
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest leading-none">{group.label}</span>
+                                        </div>
+                                        <div className="p-4 flex flex-col gap-4 items-center text-center">
+                                            {group.rows.map((row, idx) => (
+                                                <div key={idx} className="w-full">
+                                                    <p className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</p>
+                                                    <p className={`text-sm font-bold leading-none ${row.color || 'text-white'}`}>{row.value}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
+                </div>
                 </motion.div>
-            )}
-        </div>
+    )
+}
+        </div >
     );
 }

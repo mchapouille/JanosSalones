@@ -6,7 +6,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Serendip.IA — Plataforma de Auditoría & BI",
+  title: {
+    default: "Serendip.IA — Plataforma de Auditoría & BI",
+    template: "%s | Serendip.IA",
+  },
   description:
     "Plataforma de auditoría inteligente para la gestión de rentabilidad y eficiencia de activos inmobiliarios.",
   keywords: ["auditoría", "BI", "rentabilidad", "salones", "eventos", "control interno"],
