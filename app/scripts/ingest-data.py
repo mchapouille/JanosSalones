@@ -63,11 +63,20 @@ def ingest():
     
     for _, row in df.iterrows():
         # Map basic fields
+        estado_raw = str(row['estado_salon']).upper() if not pd.isna(row['estado_salon']) else "ACTIVO"
+        # Mapping: INACTIVO -> DEVUELTOS as per user request
+        if estado_raw == "INACTIVO":
+            estado_salon = "DEVUELTOS"
+        elif "OBRA" in estado_raw:
+            estado_salon = "OBRA"
+        else:
+            estado_salon = "ACTIVO"
+
         salon = {
             "id_salon": int(row['id_salon']),
             "year": 2024, # Defaulting to current year as per user context
             "nombre_salon": str(row['nombre_salon']),
-            "estado_salon": str(row['estado_salon']) if not pd.isna(row['estado_salon']) else "ACTIVO",
+            "estado_salon": estado_salon,
             "direccion_salon": str(row['direccion_salon']) if not pd.isna(row['direccion_salon']) else None,
             "cp_salon": str(row['cp_salon']) if not pd.isna(row['cp_salon']) else None,
             "municipio_salon": str(row['municipio_salon']) if not pd.isna(row['municipio_salon']) else None,
