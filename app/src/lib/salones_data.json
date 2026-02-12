@@ -1,0 +1,4832 @@
+[
+  {
+    "id_salon": 2,
+    "year": 2024,
+    "nombre_salon": "Acceso Oeste",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "AU. Acceso Oeste Km 31.5, Paso del Rey, Moreno",
+    "cp_salon": "B1744",
+    "municipio_salon": "Paso del Rey",
+    "lat_salon": -34.6300881,
+    "lon_salon": -58.7367376,
+    "pax_calculado": 159.0,
+    "pax_formal_pista": 140.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 616.0,
+    "cantidad_eventos_salon": 125,
+    "total_invitados_salon": 11643,
+    "costos_variables_salon": 708222108.16,
+    "costos_fijos_salon": 35735588.0,
+    "ventas_totales_salon": 2114228578.0,
+    "rentabilidad_salon": 65.1,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1406006469.8400002,
+      "rentIncidence": 0.2028,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 58012.32,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 224752.13,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 3.673847585
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 127,
+    "year": 2024,
+    "nombre_salon": "Acceso Oeste 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Colectora Sur Acceso Oeste 2850, Paso del Rey, Buenos Aires, B1744 Moreno",
+    "cp_salon": "B1744",
+    "municipio_salon": "ACN",
+    "lat_salon": -34.612914,
+    "lon_salon": -58.7697181,
+    "pax_calculado": 370.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 400.0,
+    "mt2_salon": 870.0,
+    "cantidad_eventos_salon": 72,
+    "total_invitados_salon": 7354,
+    "costos_variables_salon": 62370640.15,
+    "costos_fijos_salon": 18883743.0,
+    "ventas_totales_salon": 1109485319.0,
+    "rentabilidad_salon": 92.92,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1047114678.85,
+      "rentIncidence": 0.1362,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 21705.45,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 51037.14,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.125609392
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 107,
+    "year": 2024,
+    "nombre_salon": "Adrogue",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Adrogue Buenos Aires, Amenedo 785",
+    "cp_salon": "B1846",
+    "municipio_salon": "Adrogué",
+    "lat_salon": -34.7959349,
+    "lon_salon": -58.3984409,
+    "pax_calculado": 129.0,
+    "pax_formal_pista": 100.0,
+    "pax_informal_pista": 180.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 650.0,
+    "cantidad_eventos_salon": 141,
+    "total_invitados_salon": 12839,
+    "costos_variables_salon": 262697924.93,
+    "costos_fijos_salon": 19481495.0,
+    "ventas_totales_salon": 1841515532.0,
+    "rentabilidad_salon": 84.74,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1578817607.07,
+      "rentIncidence": 0.1269,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 29971.53,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 151019.34,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 1.924438573
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 48,
+    "year": 2024,
+    "nombre_salon": "Avellaneda 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Crisologo Larralde 1050, B1873 Crucecita, Provincia de Buenos Aires",
+    "cp_salon": "B1873",
+    "municipio_salon": "Crucecita",
+    "lat_salon": -34.6771759,
+    "lon_salon": -58.3692651,
+    "pax_calculado": 720.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 1500.0,
+    "pax_informal_auditorio": 900.0,
+    "mt2_salon": 1307.0,
+    "cantidad_eventos_salon": 71,
+    "total_invitados_salon": 7719,
+    "costos_variables_salon": 996110517.66,
+    "costos_fijos_salon": 33254461.0,
+    "ventas_totales_salon": 1714686879.0,
+    "rentabilidad_salon": 40.26,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 718576361.34,
+      "rentIncidence": 0.2327,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 25443.35,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 46186.75,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 0.676203022
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 49,
+    "year": 2024,
+    "nombre_salon": "Avellaneda 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Crisologo Larralde 1050, B1873 Crucecita, Provincia de Buenos Aires",
+    "cp_salon": "B1873",
+    "municipio_salon": "Crucecita",
+    "lat_salon": -34.6771759,
+    "lon_salon": -58.3692651,
+    "pax_calculado": 720.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 1500.0,
+    "pax_informal_auditorio": 900.0,
+    "mt2_salon": 1517.0,
+    "cantidad_eventos_salon": 53,
+    "total_invitados_salon": 5237,
+    "costos_variables_salon": 1089163892.42,
+    "costos_fijos_salon": 33254461.0,
+    "ventas_totales_salon": 1120769430.0,
+    "rentabilidad_salon": 0.29,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 31605537.579999924,
+      "rentIncidence": 0.3561,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 21921.2,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 46186.75,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 0.6144694349
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 96,
+    "year": 2024,
+    "nombre_salon": "Avellaneda 3",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gra Güemes 897, B1873 Crucecita, Provincia de Buenos Aires",
+    "cp_salon": "B1873",
+    "municipio_salon": "Crucecita",
+    "lat_salon": -34.6754885,
+    "lon_salon": -58.3671896,
+    "pax_calculado": 321.0,
+    "pax_formal_pista": 160.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 450.0,
+    "mt2_salon": 1052.0,
+    "cantidad_eventos_salon": 121,
+    "total_invitados_salon": 11494,
+    "costos_variables_salon": 177041519.08,
+    "costos_fijos_salon": 33254461.0,
+    "ventas_totales_salon": 1703645717.0,
+    "rentabilidad_salon": 87.95,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1526604197.92,
+      "rentIncidence": 0.2342,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 31610.7,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 103596.45,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 1.070499946
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 97,
+    "year": 2024,
+    "nombre_salon": "Avellaneda 4",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gra Güemes 897, B1873 Crucecita, Provincia de Buenos Aires",
+    "cp_salon": "B1873",
+    "municipio_salon": "Crucecita",
+    "lat_salon": -34.6754885,
+    "lon_salon": -58.3671896,
+    "pax_calculado": 207.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 773.0,
+    "cantidad_eventos_salon": 84,
+    "total_invitados_salon": 7663,
+    "costos_variables_salon": 124036541.18,
+    "costos_fijos_salon": 33254461.0,
+    "ventas_totales_salon": 1023178495.0,
+    "rentabilidad_salon": 85.11,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 899141953.8199999,
+      "rentIncidence": 0.3575,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 43020.0,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 160649.57,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 1.554896036
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 82,
+    "year": 2024,
+    "nombre_salon": "Beach",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 38,
+    "year": 2024,
+    "nombre_salon": "Bella Vista 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Gaspar Campos 1582, B1661 San Miguel",
+    "cp_salon": "B1661",
+    "municipio_salon": "San Miguel",
+    "lat_salon": -34.5658276,
+    "lon_salon": -58.7011588,
+    "pax_calculado": 368.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 800.0,
+    "mt2_salon": 570.0,
+    "cantidad_eventos_salon": 129,
+    "total_invitados_salon": 13088,
+    "costos_variables_salon": 1069116576.35,
+    "costos_fijos_salon": 25508567.0,
+    "ventas_totales_salon": 2550062356.0,
+    "rentabilidad_salon": 56.98,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1480945779.65,
+      "rentIncidence": 0.0,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 44751.87,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 85028.56,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.15551589
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 44,
+    "year": 2024,
+    "nombre_salon": "Benavidez 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Gral. Juan Domingo Perón 6940, Benavidez, Tigre",
+    "cp_salon": "B6940",
+    "municipio_salon": "Benavidez",
+    "lat_salon": -34.4130045,
+    "lon_salon": -58.7050018,
+    "pax_calculado": 362.0,
+    "pax_formal_pista": 220.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 500.0,
+    "mt2_salon": 1015.0,
+    "cantidad_eventos_salon": 112,
+    "total_invitados_salon": 10686,
+    "costos_variables_salon": 873053296.08,
+    "costos_fijos_salon": 29208567.0,
+    "ventas_totales_salon": 2165326138.0,
+    "rentabilidad_salon": 58.72,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1292272841.92,
+      "rentIncidence": 0.1374,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 28776.91,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 79371.11,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.8882501528
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 45,
+    "year": 2024,
+    "nombre_salon": "Benavidez 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Chilavert 601, Benavidez, Tigre",
+    "cp_salon": "B1621",
+    "municipio_salon": "Benavidez",
+    "lat_salon": -34.4130343,
+    "lon_salon": -58.7162762,
+    "pax_calculado": 350.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 500.0,
+    "mt2_salon": 1105.0,
+    "cantidad_eventos_salon": 107,
+    "total_invitados_salon": 10342,
+    "costos_variables_salon": 904771744.35,
+    "costos_fijos_salon": 23779952.0,
+    "ventas_totales_salon": 2266475695.0,
+    "rentabilidad_salon": 59.2,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1361703950.65,
+      "rentIncidence": 0.1318,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 21520.32,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 65690.48,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.126436566
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 108,
+    "year": 2024,
+    "nombre_salon": "Berazategui",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Avenida Rigolleu 1136, Berazategui",
+    "cp_salon": "B1884",
+    "municipio_salon": "Berazategui",
+    "lat_salon": -34.7809799,
+    "lon_salon": -58.2458758,
+    "pax_calculado": 0.0,
+    "pax_formal_pista": 0.0,
+    "pax_informal_pista": 0.0,
+    "pax_informal_auditorio": 0.0,
+    "mt2_salon": 1522.0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 26774694.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0.1418,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 17591.78,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 76499.13,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.087016297
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 109,
+    "year": 2024,
+    "nombre_salon": "Berazategui 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Avenida Rigolleu 2125, Berazategui",
+    "cp_salon": "B1884",
+    "municipio_salon": "Berazategui",
+    "lat_salon": -34.7764685,
+    "lon_salon": -58.2363769,
+    "pax_calculado": 182.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 856.0,
+    "cantidad_eventos_salon": 107,
+    "total_invitados_salon": 10194,
+    "costos_variables_salon": 186829875.21,
+    "costos_fijos_salon": 12083957.0,
+    "ventas_totales_salon": 1624463859.0,
+    "rentabilidad_salon": 87.78,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1437633983.79,
+      "rentIncidence": 0.0,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 28182.79,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 126203.15,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.912954799
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 89,
+    "year": 2024,
+    "nombre_salon": "Berisso",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "ruta prov 10 B1923, Berisso",
+    "cp_salon": "B1923",
+    "municipio_salon": "Berisso",
+    "lat_salon": -34.8954753,
+    "lon_salon": -57.9159366,
+    "pax_calculado": 210.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 360.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 815.0,
+    "cantidad_eventos_salon": 196,
+    "total_invitados_salon": 185,
+    "costos_variables_salon": 432776058.21,
+    "costos_fijos_salon": 22968973.0,
+    "ventas_totales_salon": 2611422775.0,
+    "rentabilidad_salon": 82.98,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2178646716.79,
+      "rentIncidence": 0.1697,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 11334.41,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 70165.4,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.9155383146
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 120,
+    "year": 2024,
+    "nombre_salon": "Buen Ayre",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Camino del Buen Ayre y Panamericana, Boulogne, San Isidro",
+    "cp_salon": "B1609",
+    "municipio_salon": "Boulogne",
+    "lat_salon": -34.4880813,
+    "lon_salon": -58.5908835,
+    "pax_calculado": 540.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 1000.0,
+    "pax_informal_auditorio": 600.0,
+    "mt2_salon": 1300.0,
+    "cantidad_eventos_salon": 66,
+    "total_invitados_salon": 9118,
+    "costos_variables_salon": 75996025.41,
+    "costos_fijos_salon": 14734735.0,
+    "ventas_totales_salon": 1724027537.0,
+    "rentabilidad_salon": 93.48,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1648031511.59,
+      "rentIncidence": 0.0677,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14360.41,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 71110.64,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.025988932
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 84,
+    "year": 2024,
+    "nombre_salon": "Caballito 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Acoyte 754, CABA",
+    "cp_salon": "C1405",
+    "municipio_salon": "Caballito",
+    "lat_salon": -34.609647,
+    "lon_salon": -58.439938,
+    "pax_calculado": 253.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 2674.0,
+    "cantidad_eventos_salon": 121,
+    "total_invitados_salon": 13115,
+    "costos_variables_salon": 1044149071.95,
+    "costos_fijos_salon": 38399743.0,
+    "ventas_totales_salon": 2559408899.0,
+    "rentabilidad_salon": 58.52,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1515259827.05,
+      "rentIncidence": 0.2005,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 16551.71,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 61358.36,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.6032562731
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 85,
+    "year": 2024,
+    "nombre_salon": "Caballito 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Acoyte 754, CABA",
+    "cp_salon": "C1405",
+    "municipio_salon": "Caballito",
+    "lat_salon": -34.609647,
+    "lon_salon": -58.439938,
+    "pax_calculado": 238.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 734.0,
+    "cantidad_eventos_salon": 132,
+    "total_invitados_salon": 11751,
+    "costos_variables_salon": 879858511.02,
+    "costos_fijos_salon": 12148956.0,
+    "ventas_totales_salon": 2177695628.0,
+    "rentabilidad_salon": 58.8,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1297837116.98,
+      "rentIncidence": 0.0888,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 51254.31,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 90150.85,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.280883194
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 125,
+    "year": 2024,
+    "nombre_salon": "Campana",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Ruta Panamericana 9 Km 80.5, B2804 Campana, Provincia de Buenos Aires",
+    "cp_salon": "B2804",
+    "municipio_salon": "Campana",
+    "lat_salon": -34.1570387,
+    "lon_salon": -59.0160207,
+    "pax_calculado": 442.0,
+    "pax_formal_pista": 220.0,
+    "pax_informal_pista": 800.0,
+    "pax_informal_auditorio": 700.0,
+    "mt2_salon": 445.0,
+    "cantidad_eventos_salon": 89,
+    "total_invitados_salon": 9643,
+    "costos_variables_salon": 41857874.2,
+    "costos_fijos_salon": 22808166.0,
+    "ventas_totales_salon": 1531237940.0,
+    "rentabilidad_salon": 96.34,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1489380065.8,
+      "rentIncidence": 0.1069,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 35416.41,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 95832.63,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.082304015
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 128,
+    "year": 2024,
+    "nombre_salon": "Canning",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Lorenza Zenavilla 443, Ezeiza, Buenos Aires",
+    "cp_salon": "B1804",
+    "municipio_salon": "Canning",
+    "lat_salon": -34.8562533,
+    "lon_salon": -58.5175497,
+    "pax_calculado": 238.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 644.0,
+    "cantidad_eventos_salon": 78,
+    "total_invitados_salon": 7485,
+    "costos_variables_salon": 26970189.02,
+    "costos_fijos_salon": 22808166.0,
+    "ventas_totales_salon": 1415629883.0,
+    "rentabilidad_salon": 90.66,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1388659693.98,
+      "rentIncidence": 0.1257,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 45794.12,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 35226.24,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.829092869
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 9,
+    "year": 2024,
+    "nombre_salon": "Champagnat Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Colectora Panamericana",
+    "cp_salon": "B1629",
+    "municipio_salon": "Pilar",
+    "lat_salon": -34.4498162,
+    "lon_salon": -58.9165601,
+    "pax_calculado": 195.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 340.0,
+    "cantidad_eventos_salon": 93,
+    "total_invitados_salon": 8627,
+    "costos_variables_salon": 459508286.23,
+    "costos_fijos_salon": 15570000.0,
+    "ventas_totales_salon": 1082288554.0,
+    "rentabilidad_salon": 56.63,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 622780267.77,
+      "rentIncidence": 0.0712,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 62973.7,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 445314.05,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 3.541040036
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 87,
+    "year": 2024,
+    "nombre_salon": "Costanera 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Rafael Obligado 6340/6920, CABA",
+    "cp_salon": "C1425",
+    "municipio_salon": "Recoleta",
+    "lat_salon": -34.5726702,
+    "lon_salon": -58.3937841,
+    "pax_calculado": 530.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 900.0,
+    "pax_informal_auditorio": 800.0,
+    "mt2_salon": 1683.0,
+    "cantidad_eventos_salon": 118,
+    "total_invitados_salon": 17851,
+    "costos_variables_salon": 1126409524.29,
+    "costos_fijos_salon": 105984743.0,
+    "ventas_totales_salon": 3607169306.0,
+    "rentabilidad_salon": 67.68,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2480759781.71,
+      "rentIncidence": 0.6738,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 7975.3,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 59589.83,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.674382192
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 88,
+    "year": 2024,
+    "nombre_salon": "Costanera 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Rafael Obligado 6880/6920, CABA",
+    "cp_salon": "C1425",
+    "municipio_salon": "Palermo",
+    "lat_salon": -34.56674,
+    "lon_salon": -58.4019208,
+    "pax_calculado": 530.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 900.0,
+    "pax_informal_auditorio": 800.0,
+    "mt2_salon": 1457.0,
+    "cantidad_eventos_salon": 144,
+    "total_invitados_salon": 1883,
+    "costos_variables_salon": 819147510.94,
+    "costos_fijos_salon": 11620016.0,
+    "ventas_totales_salon": 3662199427.0,
+    "rentabilidad_salon": 76.56,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2843051916.06,
+      "rentIncidence": 0.1288,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 16119.86,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 58396.49,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 0.5736563408
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 93,
+    "year": 2024,
+    "nombre_salon": "Dardo Rocha",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Dardo Rocha 1810, Martinez, San Isidro",
+    "cp_salon": "B1640",
+    "municipio_salon": "Martínez",
+    "lat_salon": -34.4909745,
+    "lon_salon": -58.5264752,
+    "pax_calculado": 293.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 350.0,
+    "mt2_salon": 1920.0,
+    "cantidad_eventos_salon": 130,
+    "total_invitados_salon": 12716,
+    "costos_variables_salon": 556226139.27,
+    "costos_fijos_salon": 30950140.0,
+    "ventas_totales_salon": 2439155693.0,
+    "rentabilidad_salon": 76.84,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1882929553.73,
+      "rentIncidence": 0.103,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 21169.73,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 73015.59,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 0.7350460394
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 58,
+    "year": 2024,
+    "nombre_salon": "Darwin 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Niceto Vega 5350, CABA (entrada Niceto Vega)",
+    "cp_salon": "C1414",
+    "municipio_salon": "Palermo",
+    "lat_salon": -34.5886454,
+    "lon_salon": -58.4367561,
+    "pax_calculado": 445.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 550.0,
+    "mt2_salon": 1828.0,
+    "cantidad_eventos_salon": 128,
+    "total_invitados_salon": 18953,
+    "costos_variables_salon": 1454079452.55,
+    "costos_fijos_salon": 38698265.0,
+    "ventas_totales_salon": 3736776692.0,
+    "rentabilidad_salon": 60.61,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2282697239.45,
+      "rentIncidence": 0.1268,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 10920.78,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 39359.53,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.6155394127
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 59,
+    "year": 2024,
+    "nombre_salon": "Darwin 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Niceto Vega 5350, CABA (entrada Darwin)",
+    "cp_salon": "C1414",
+    "municipio_salon": "Palermo",
+    "lat_salon": -34.5886454,
+    "lon_salon": -58.4367561,
+    "pax_calculado": 168.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 180.0,
+    "mt2_salon": 1056.0,
+    "cantidad_eventos_salon": 131,
+    "total_invitados_salon": 11871,
+    "costos_variables_salon": 851388394.28,
+    "costos_fijos_salon": 11532343.0,
+    "ventas_totales_salon": 2041014987.0,
+    "rentabilidad_salon": 57.42,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1189626592.72,
+      "rentIncidence": 0.0567,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 44529.84,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 42928.77,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.65288576
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 13,
+    "year": 2024,
+    "nombre_salon": "Del Viso",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Ing. Eduardo Madero 630, Del Viso, Pilar",
+    "cp_salon": "B1664",
+    "municipio_salon": "Del Viso",
+    "lat_salon": -34.4480483,
+    "lon_salon": -58.7946333,
+    "pax_calculado": 243.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 429.0,
+    "cantidad_eventos_salon": 80,
+    "total_invitados_salon": 7359,
+    "costos_variables_salon": 528264948.73,
+    "costos_fijos_salon": 19103303.0,
+    "ventas_totales_salon": 1120047993.0,
+    "rentabilidad_salon": 52.02,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 591783044.27,
+      "rentIncidence": 0.0613,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 15405.89,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 113710.14,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.292501707
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 53,
+    "year": 2024,
+    "nombre_salon": "DOT",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Vedia 3626, CABA, DOT BAIRES SHOPPING",
+    "cp_salon": "C1430",
+    "municipio_salon": "Saavedra",
+    "lat_salon": -34.5464856,
+    "lon_salon": -58.4878535,
+    "pax_calculado": 440.0,
+    "pax_formal_pista": 250.0,
+    "pax_informal_pista": 800.0,
+    "pax_informal_auditorio": 500.0,
+    "mt2_salon": 1240.0,
+    "cantidad_eventos_salon": 73,
+    "total_invitados_salon": 8441,
+    "costos_variables_salon": 234641472.87,
+    "costos_fijos_salon": 19103303.0,
+    "ventas_totales_salon": 1323835232.0,
+    "rentabilidad_salon": 79.76,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1089193759.13,
+      "rentIncidence": 0.1123,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 17480.87,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 43666.2,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.5128297786
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 14,
+    "year": 2024,
+    "nombre_salon": "Escobar",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Sarmiento (RP 25) N 1137, Escobar",
+    "cp_salon": "B1625",
+    "municipio_salon": "Belén de Escobar",
+    "lat_salon": -34.3526361,
+    "lon_salon": -58.7964808,
+    "pax_calculado": 195.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 607.0,
+    "cantidad_eventos_salon": 72,
+    "total_invitados_salon": 6734,
+    "costos_variables_salon": 545805915.95,
+    "costos_fijos_salon": 10610887.0,
+    "ventas_totales_salon": 1073660820.0,
+    "rentabilidad_salon": 48.9,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 527854904.04999995,
+      "rentIncidence": 0.1137,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 8409.53,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 96996.3,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 0.6309442346
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 104,
+    "year": 2024,
+    "nombre_salon": "Haedo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Pte Peron 1742, Haedo",
+    "cp_salon": "B1706",
+    "municipio_salon": "Morón",
+    "lat_salon": -34.6356508,
+    "lon_salon": -58.5889595,
+    "pax_calculado": 197.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 180.0,
+    "pax_informal_auditorio": 350.0,
+    "mt2_salon": 3185.0,
+    "cantidad_eventos_salon": 137,
+    "total_invitados_salon": 12979,
+    "costos_variables_salon": 255386089.37,
+    "costos_fijos_salon": 42678372.0,
+    "ventas_totales_salon": 2035897106.0,
+    "rentabilidad_salon": 86.11,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1780511016.63,
+      "rentIncidence": 0.3546,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 3808.59,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 41992.14,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.3027170256
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 105,
+    "year": 2024,
+    "nombre_salon": "Haedo 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Pte Peron 1742, Haedo",
+    "cp_salon": "C1037",
+    "municipio_salon": "San Nicolás",
+    "lat_salon": -34.6068781,
+    "lon_salon": -58.3913847,
+    "pax_calculado": 0.0,
+    "pax_formal_pista": 0.0,
+    "pax_informal_pista": 0.0,
+    "pax_informal_auditorio": 0.0,
+    "mt2_salon": 0.0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 8188467.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0.0915,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14130.35,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 73018.77,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.9197878987
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 102,
+    "year": 2024,
+    "nombre_salon": "Estancia",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 117,
+    "year": 2024,
+    "nombre_salon": "General Rodriguez",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 50,
+    "year": 2024,
+    "nombre_salon": "Hipodromo La Plata",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Calle 44 y Calle 115, La Plata",
+    "cp_salon": "B1902",
+    "municipio_salon": "La Plata",
+    "lat_salon": -34.9041377,
+    "lon_salon": -57.9480743,
+    "pax_calculado": 540.0,
+    "pax_formal_pista": 350.0,
+    "pax_informal_pista": 900.0,
+    "pax_informal_auditorio": 600.0,
+    "mt2_salon": 1018.0,
+    "cantidad_eventos_salon": 149,
+    "total_invitados_salon": 16624,
+    "costos_variables_salon": 965068992.54,
+    "costos_fijos_salon": 14384697.0,
+    "ventas_totales_salon": 3084758063.0,
+    "rentabilidad_salon": 68.43,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2119689070.46,
+      "rentIncidence": 0.0848,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 18372.42,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 34635.41,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.7817898787
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 5,
+    "year": 2024,
+    "nombre_salon": "House",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Sarmiento 4522, Jose C Paz",
+    "cp_salon": "B1665",
+    "municipio_salon": "José C. Paz",
+    "lat_salon": -34.5208003,
+    "lon_salon": -58.7427572,
+    "pax_calculado": 203.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 250.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 1800.0,
+    "cantidad_eventos_salon": 115,
+    "total_invitados_salon": 10419,
+    "costos_variables_salon": 519140287.8,
+    "costos_fijos_salon": 14384697.0,
+    "ventas_totales_salon": 1309676794.0,
+    "rentabilidad_salon": 59.98,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 790536506.2,
+      "rentIncidence": 0.0,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 4989.71,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 31658.83,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.4088451425
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 26,
+    "year": 2024,
+    "nombre_salon": "Hudson",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "AU Bs.As. - La Plata, Km 34.5, Hudson",
+    "cp_salon": "B1885",
+    "municipio_salon": "Platanos",
+    "lat_salon": -34.7748102,
+    "lon_salon": -58.1638347,
+    "pax_calculado": 332.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 1331.0,
+    "cantidad_eventos_salon": 77,
+    "total_invitados_salon": 7603,
+    "costos_variables_salon": 1163799164.44,
+    "costos_fijos_salon": 18703121.0,
+    "ventas_totales_salon": 2022051059.0,
+    "rentabilidad_salon": 41.67,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 858251894.56,
+      "rentIncidence": 0.0728,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 8448.83,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 53237.82,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.4368151555
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 94,
+    "year": 2024,
+    "nombre_salon": "Holiday Inn",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 98,
+    "year": 2024,
+    "nombre_salon": "Holiday Inn 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 111,
+    "year": 2024,
+    "nombre_salon": "Hudson 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "AU Bs.As. - La Plata, Km 41, Hudson",
+    "cp_salon": "B1885",
+    "municipio_salon": "Platanos",
+    "lat_salon": -34.7748102,
+    "lon_salon": -58.1638347,
+    "pax_calculado": 402.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 900.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 1288.0,
+    "cantidad_eventos_salon": 100,
+    "total_invitados_salon": 9874,
+    "costos_variables_salon": 314339247.85,
+    "costos_fijos_salon": 6426743.0,
+    "ventas_totales_salon": 2038058675.0,
+    "rentabilidad_salon": 83.81,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1723719427.15,
+      "rentIncidence": 0.0589,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 34134.85,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 82704.83,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.9863356299
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 4,
+    "year": 2024,
+    "nombre_salon": "Hurlingham",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Hurlingham, Pedro Diaz 1800",
+    "cp_salon": "B1686",
+    "municipio_salon": "William C. Morris",
+    "lat_salon": -34.6015691,
+    "lon_salon": -58.6521531,
+    "pax_calculado": 312.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 2092.0,
+    "cantidad_eventos_salon": 133,
+    "total_invitados_salon": 12463,
+    "costos_variables_salon": 869775022.12,
+    "costos_fijos_salon": 17674956.0,
+    "ventas_totales_salon": 2397481670.0,
+    "rentabilidad_salon": 63.02,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1527706647.88,
+      "rentIncidence": 0.1049,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 24949.17,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 71169.12,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.388011501
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 11,
+    "year": 2024,
+    "nombre_salon": "Ituzaingo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Jose Maria Paz 1628",
+    "cp_salon": "B1714",
+    "municipio_salon": "Gran Buenos Aires",
+    "lat_salon": -34.6392089,
+    "lon_salon": -58.6771547,
+    "pax_calculado": 172.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 220.0,
+    "pax_informal_auditorio": 160.0,
+    "mt2_salon": 974.0,
+    "cantidad_eventos_salon": 123,
+    "total_invitados_salon": 10985,
+    "costos_variables_salon": 779917225.76,
+    "costos_fijos_salon": 33247343.0,
+    "ventas_totales_salon": 1467008256.0,
+    "rentabilidad_salon": 46.04,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 687091030.24,
+      "rentIncidence": 0.1958,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 28646.07,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 84772.4,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 1.430259674
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 25,
+    "year": 2024,
+    "nombre_salon": "Ituzaingo 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Olivera 1444, Ituzaingo",
+    "cp_salon": "B1714",
+    "municipio_salon": "Ituzaingó",
+    "lat_salon": -34.6644271,
+    "lon_salon": -58.6730388,
+    "pax_calculado": 170.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 890.0,
+    "cantidad_eventos_salon": 148,
+    "total_invitados_salon": 14253,
+    "costos_variables_salon": 872715413.3,
+    "costos_fijos_salon": 22204765.0,
+    "ventas_totales_salon": 2502170152.0,
+    "rentabilidad_salon": 64.76,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1629454738.7,
+      "rentIncidence": 0.1111,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 15404.23,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 80645.69,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 1.009879064
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 6,
+    "year": 2024,
+    "nombre_salon": "Jose C Paz",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Pres. Hipolito Yrigoyen 399, Jose C Paz",
+    "cp_salon": "B1660",
+    "municipio_salon": "José C. Paz",
+    "lat_salon": -34.5121984,
+    "lon_salon": -58.7358657,
+    "pax_calculado": 215.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 509.0,
+    "cantidad_eventos_salon": 6,
+    "total_invitados_salon": 540,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 14580852.0,
+    "ventas_totales_salon": 61696249.0,
+    "rentabilidad_salon": 100.0,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 61696249.0,
+      "rentIncidence": 0.1193,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 57,
+    "year": 2024,
+    "nombre_salon": "La Plata",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Calle 60, N 1836, La Plata",
+    "cp_salon": "B1904",
+    "municipio_salon": "Los Hornos",
+    "lat_salon": -34.9447903,
+    "lon_salon": -57.9671573,
+    "pax_calculado": 546.0,
+    "pax_formal_pista": 360.0,
+    "pax_informal_pista": 1000.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 1193.0,
+    "cantidad_eventos_salon": 155,
+    "total_invitados_salon": 14898,
+    "costos_variables_salon": 877687057.32,
+    "costos_fijos_salon": 13709767.0,
+    "ventas_totales_salon": 2904942682.0,
+    "rentabilidad_salon": 69.27,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 2027255624.6799998,
+      "rentIncidence": 0.0657,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 19322.03,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 44695.46,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.8789895446
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 28,
+    "year": 2024,
+    "nombre_salon": "Liniers",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Larrazabal 557, Mataderos, CABA",
+    "cp_salon": "C1408",
+    "municipio_salon": "Liniers",
+    "lat_salon": -34.6449044,
+    "lon_salon": -58.5104786,
+    "pax_calculado": 212.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 1619.0,
+    "cantidad_eventos_salon": 125,
+    "total_invitados_salon": 11596,
+    "costos_variables_salon": 902976487.36,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 2280730409.0,
+    "rentabilidad_salon": 59.34,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1377753921.6399999,
+      "rentIncidence": 0.0,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 73531.86,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 131802.38,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.852126701
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 129,
+    "year": 2024,
+    "nombre_salon": "La Candelaria",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 126,
+    "year": 2024,
+    "nombre_salon": "Lomas Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gorriti 950, Lomas de Zamora, Buenos Aires",
+    "cp_salon": "B1832",
+    "municipio_salon": "Lomas de Zamora",
+    "lat_salon": -34.7605549,
+    "lon_salon": -58.4109135,
+    "pax_calculado": 165.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 380.0,
+    "cantidad_eventos_salon": 47,
+    "total_invitados_salon": 4455,
+    "costos_variables_salon": 32746256.86,
+    "costos_fijos_salon": 24403720.0,
+    "ventas_totales_salon": 659158356.0,
+    "rentabilidad_salon": 90.93,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 626412099.14,
+      "rentIncidence": 0.1008,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 20199.52,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 168574.2,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.287158219
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 133,
+    "year": 2024,
+    "nombre_salon": "La Plata 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 134,
+    "year": 2024,
+    "nombre_salon": "La Plata Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 80,
+    "year": 2024,
+    "nombre_salon": "Los Naranjos",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Ruta 88, Km 3.3, 7600 Mar del plata",
+    "cp_salon": "B7600",
+    "municipio_salon": "Mar del Plata",
+    "lat_salon": -38.0110486,
+    "lon_salon": -57.6338141,
+    "pax_calculado": 339.0,
+    "pax_formal_pista": 190.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 450.0,
+    "mt2_salon": 755.0,
+    "cantidad_eventos_salon": 105,
+    "total_invitados_salon": 10848,
+    "costos_variables_salon": 706573312.26,
+    "costos_fijos_salon": 27942105.0,
+    "ventas_totales_salon": 1957206224.0,
+    "rentabilidad_salon": 63.27,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1250632911.74,
+      "rentIncidence": 0.147,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 27794.6,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 61984.42,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.415996094
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 119,
+    "year": 2024,
+    "nombre_salon": "Lomas",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 8,
+    "year": 2024,
+    "nombre_salon": "Martinez",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Monseñor Larumbe 821",
+    "cp_salon": "B1640",
+    "municipio_salon": "Martínez",
+    "lat_salon": -34.4925458,
+    "lon_salon": -58.5112071,
+    "pax_calculado": 195.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 1377.0,
+    "cantidad_eventos_salon": 128,
+    "total_invitados_salon": 11757,
+    "costos_variables_salon": 658045607.1,
+    "costos_fijos_salon": 27814743.0,
+    "ventas_totales_salon": 1593533313.0,
+    "rentabilidad_salon": 58.45,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 935487705.9,
+      "rentIncidence": 0.2954,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 8937.85,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 58531.48,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.6956310461
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 20,
+    "year": 2024,
+    "nombre_salon": "Maschwitz",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Colectora Este Ramal Escobar 2555, Ingeniero Maschwitz, Buenos Aires",
+    "cp_salon": "B1623",
+    "municipio_salon": "Ingeniero Maschwitz",
+    "lat_salon": -34.3781123,
+    "lon_salon": -58.7523416,
+    "pax_calculado": 405.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 800.0,
+    "pax_informal_auditorio": 450.0,
+    "mt2_salon": 756.0,
+    "cantidad_eventos_salon": 113,
+    "total_invitados_salon": 12438,
+    "costos_variables_salon": 896013802.96,
+    "costos_fijos_salon": 21012718.0,
+    "ventas_totales_salon": 2706339282.0,
+    "rentabilidad_salon": 66.14,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1810325479.04,
+      "rentIncidence": 0.1288,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 59168.75,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 70272.02,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.279917176
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 47,
+    "year": 2024,
+    "nombre_salon": "Merlo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Pringles 780, Merlo",
+    "cp_salon": "B1722",
+    "municipio_salon": "Merlo",
+    "lat_salon": -34.6698855,
+    "lon_salon": -58.7378994,
+    "pax_calculado": 249.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 210.0,
+    "mt2_salon": 1277.0,
+    "cantidad_eventos_salon": 131,
+    "total_invitados_salon": 12296,
+    "costos_variables_salon": 716147354.15,
+    "costos_fijos_salon": 11413638.0,
+    "ventas_totales_salon": 1701275612.0,
+    "rentabilidad_salon": 57.24,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 985128257.85,
+      "rentIncidence": 0.0859,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14049.05,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 56873.27,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.9081191024
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 118,
+    "year": 2024,
+    "nombre_salon": "Merlo 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Moreno 2550, Merlo, Buenos Aires",
+    "cp_salon": "B1722",
+    "municipio_salon": "Merlo",
+    "lat_salon": -34.6611266,
+    "lon_salon": -58.7535712,
+    "pax_calculado": 176.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 180.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 481.0,
+    "cantidad_eventos_salon": 104,
+    "total_invitados_salon": 9825,
+    "costos_variables_salon": 45919493.67,
+    "costos_fijos_salon": 28460167.0,
+    "ventas_totales_salon": 1306198384.0,
+    "rentabilidad_salon": 95.79,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1260278890.33,
+      "rentIncidence": 0.1262,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14076.27,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 66382.4,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.9806724762
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 10,
+    "year": 2024,
+    "nombre_salon": "Moreno",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Francisco Piovano 3787, Moreno",
+    "cp_salon": "B1744",
+    "municipio_salon": "Moreno",
+    "lat_salon": -34.6462046,
+    "lon_salon": -58.8029366,
+    "pax_calculado": 220.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 220.0,
+    "mt2_salon": 1008.0,
+    "cantidad_eventos_salon": 130,
+    "total_invitados_salon": 11867,
+    "costos_variables_salon": 816064119.28,
+    "costos_fijos_salon": 14161443.0,
+    "ventas_totales_salon": 2187953522.0,
+    "rentabilidad_salon": 62.38,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1371889402.72,
+      "rentIncidence": 0.0999,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14642.27,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 89517.49,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.174256176
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 43,
+    "year": 2024,
+    "nombre_salon": "Moron",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Presidente Peron 4852, Moron",
+    "cp_salon": "B1708",
+    "municipio_salon": "Morón",
+    "lat_salon": -34.6333369,
+    "lon_salon": -58.6312473,
+    "pax_calculado": 265.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 830.0,
+    "cantidad_eventos_salon": 111,
+    "total_invitados_salon": 10318,
+    "costos_variables_salon": 667505274.68,
+    "costos_fijos_salon": 11683303.0,
+    "ventas_totales_salon": 1731634008.0,
+    "rentabilidad_salon": 60.84,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1064128733.32,
+      "rentIncidence": 0.0894,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 11449.96,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 64811.11,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.8791548944
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 56,
+    "year": 2024,
+    "nombre_salon": "Nuñez",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Libertador 7501, CABA",
+    "cp_salon": "C1429",
+    "municipio_salon": "Núñez",
+    "lat_salon": -34.5423362,
+    "lon_salon": -58.4597883,
+    "pax_calculado": 417.0,
+    "pax_formal_pista": 300.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 270.0,
+    "mt2_salon": 1345.0,
+    "cantidad_eventos_salon": 136,
+    "total_invitados_salon": 18669,
+    "costos_variables_salon": 1127190346.26,
+    "costos_fijos_salon": 19693848.0,
+    "ventas_totales_salon": 3068327889.0,
+    "rentabilidad_salon": 62.93,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1941137542.74,
+      "rentIncidence": 0.108,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 9143.16,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 32889.07,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.5148809088
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 12,
+    "year": 2024,
+    "nombre_salon": "Olivos",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Mariano Pelliza 310, Olivos",
+    "cp_salon": "B1636",
+    "municipio_salon": "Olivos",
+    "lat_salon": -34.5022955,
+    "lon_salon": -58.4778777,
+    "pax_calculado": 248.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 1500.0,
+    "cantidad_eventos_salon": 55,
+    "total_invitados_salon": 6169,
+    "costos_variables_salon": 500921147.88,
+    "costos_fijos_salon": 17174943.0,
+    "ventas_totales_salon": 1121489613.0,
+    "rentabilidad_salon": 55.33,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 620568465.12,
+      "rentIncidence": 0.119,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 16616.31,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 66532.26,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.9850070483
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 3,
+    "year": 2024,
+    "nombre_salon": "Olivos 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Mariano Pelliza 310, Olivos",
+    "cp_salon": "B1636",
+    "municipio_salon": "Olivos",
+    "lat_salon": -34.5022955,
+    "lon_salon": -58.4778777,
+    "pax_calculado": 287.0,
+    "pax_formal_pista": 100.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 170.0,
+    "mt2_salon": 1500.0,
+    "cantidad_eventos_salon": 60,
+    "total_invitados_salon": 538,
+    "costos_variables_salon": 533582947.96,
+    "costos_fijos_salon": 13714743.0,
+    "ventas_totales_salon": 1014220760.0,
+    "rentabilidad_salon": 47.39,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 480637812.04,
+      "rentIncidence": 0.0536,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 14112.17,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 65742.06,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.9038946246
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 75,
+    "year": 2024,
+    "nombre_salon": "Palacio Sans Souci",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Paz 705, Victoria",
+    "cp_salon": "B1644",
+    "municipio_salon": "Victoria",
+    "lat_salon": -34.445773,
+    "lon_salon": -58.5426716,
+    "pax_calculado": 253.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 16100.0,
+    "cantidad_eventos_salon": 98,
+    "total_invitados_salon": 11428,
+    "costos_variables_salon": 969916413.25,
+    "costos_fijos_salon": 16500000.0,
+    "ventas_totales_salon": 5158278007.0,
+    "rentabilidad_salon": 79.08,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 4188361593.75,
+      "rentIncidence": 0.1766,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 119645.38,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 432236.67,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 4.251850075
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 64,
+    "year": 2024,
+    "nombre_salon": "Palermo Hollywood",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Arevalo 2020, Palermo, CABA",
+    "cp_salon": "C1414",
+    "municipio_salon": "Palermo",
+    "lat_salon": -34.5782224,
+    "lon_salon": -58.4376112,
+    "pax_calculado": 300.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 993.0,
+    "cantidad_eventos_salon": 82,
+    "total_invitados_salon": 81,
+    "costos_variables_salon": 1071379819.6,
+    "costos_fijos_salon": 18867970.0,
+    "ventas_totales_salon": 1904499527.0,
+    "rentabilidad_salon": 40.61,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 833119707.4,
+      "rentIncidence": 0.2232,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 88842.39,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 246685.71,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 4.471638564
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 46,
+    "year": 2024,
+    "nombre_salon": "Palermo Soho",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Armenia 1353, CABA",
+    "cp_salon": "C1414",
+    "municipio_salon": "Palermo",
+    "lat_salon": -34.5922245,
+    "lon_salon": -58.4304388,
+    "pax_calculado": 348.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 1337.0,
+    "cantidad_eventos_salon": 100,
+    "total_invitados_salon": 10693,
+    "costos_variables_salon": 870502037.05,
+    "costos_fijos_salon": 109355878.0,
+    "ventas_totales_salon": 2091551955.0,
+    "rentabilidad_salon": 56.8,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1221049917.95,
+      "rentIncidence": 0.2544,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 39795.21,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 87252.13,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.833524766
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 91,
+    "year": 2024,
+    "nombre_salon": "Paseo Colon",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Paseo Colon 301, CABA",
+    "cp_salon": "C1063",
+    "municipio_salon": "Monserrat",
+    "lat_salon": -34.6112695,
+    "lon_salon": -58.3696563,
+    "pax_calculado": 308.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 914.0,
+    "cantidad_eventos_salon": 120,
+    "total_invitados_salon": 12584,
+    "costos_variables_salon": 552009264.53,
+    "costos_fijos_salon": 74005713.0,
+    "ventas_totales_salon": 1810963562.0,
+    "rentabilidad_salon": 68.53,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1258954297.47,
+      "rentIncidence": 0.4274,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 16042.13,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 76043.89,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.6821485243
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 24,
+    "year": 2024,
+    "nombre_salon": "Pilar",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Panamericana Km 52, B1629 Pilar",
+    "cp_salon": "B1629",
+    "municipio_salon": "Pilar",
+    "lat_salon": -34.4455425,
+    "lon_salon": -58.8862046,
+    "pax_calculado": 305.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 350.0,
+    "mt2_salon": 833.0,
+    "cantidad_eventos_salon": 89,
+    "total_invitados_salon": 8702,
+    "costos_variables_salon": 761999411.48,
+    "costos_fijos_salon": 30363742.0,
+    "ventas_totales_salon": 1694677937.0,
+    "rentabilidad_salon": 54.6,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 932678525.52,
+      "rentIncidence": 0.1742,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 76911.18,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 163909.07,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 3.509192016
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 67,
+    "year": 2024,
+    "nombre_salon": "Pilar boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Emilio Casella 125, Pilar",
+    "cp_salon": "B1631",
+    "municipio_salon": "Pilar",
+    "lat_salon": -34.407639,
+    "lon_salon": -58.8558502,
+    "pax_calculado": 258.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 763.0,
+    "cantidad_eventos_salon": 112,
+    "total_invitados_salon": 10202,
+    "costos_variables_salon": 737144416.28,
+    "costos_fijos_salon": 23421517.0,
+    "ventas_totales_salon": 1487082910.0,
+    "rentabilidad_salon": 49.25,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 749938493.72,
+      "rentIncidence": 0.1552,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 27574.97,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 81549.22,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.424233608
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 113,
+    "year": 2024,
+    "nombre_salon": "Pilar Hotel",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Jorge MANFREDI nro. 1455",
+    "cp_salon": "B1633",
+    "municipio_salon": "Fatima",
+    "lat_salon": -34.4328447,
+    "lon_salon": -58.9901722,
+    "pax_calculado": 270.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 1460.0,
+    "cantidad_eventos_salon": 85,
+    "total_invitados_salon": 8265,
+    "costos_variables_salon": 91058580.94,
+    "costos_fijos_salon": 49992265.0,
+    "ventas_totales_salon": 1357440298.0,
+    "rentabilidad_salon": 92.06,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1266381717.06,
+      "rentIncidence": 0.354,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 34429.82,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 72685.19,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 1.565885395
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 51,
+    "year": 2024,
+    "nombre_salon": "Playa Grande",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Patricio Peralta Ramos 5050, B7602 Mar del Plata, Provincia de Buenos Aires",
+    "cp_salon": "B7602",
+    "municipio_salon": "Mar del Plata",
+    "lat_salon": -38.0261389,
+    "lon_salon": -57.5303659,
+    "pax_calculado": 406.0,
+    "pax_formal_pista": 260.0,
+    "pax_informal_pista": 700.0,
+    "pax_informal_auditorio": 400.0,
+    "mt2_salon": 650.0,
+    "cantidad_eventos_salon": 140,
+    "total_invitados_salon": 16183,
+    "costos_variables_salon": 917214697.83,
+    "costos_fijos_salon": 21039700.0,
+    "ventas_totales_salon": 2854423369.0,
+    "rentabilidad_salon": 66.73,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1937208671.17,
+      "rentIncidence": 0.1698,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 40183.44,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 90165.3,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 2.051308215
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 23,
+    "year": 2024,
+    "nombre_salon": "Puerto Madero",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Olga Cossettini 1031, CABA",
+    "cp_salon": "C1107",
+    "municipio_salon": "Puerto Madero",
+    "lat_salon": -34.6098123,
+    "lon_salon": -58.3637716,
+    "pax_calculado": 197.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 570.0,
+    "cantidad_eventos_salon": 99,
+    "total_invitados_salon": 9228,
+    "costos_variables_salon": 807263350.83,
+    "costos_fijos_salon": 19625000.0,
+    "ventas_totales_salon": 1697707294.0,
+    "rentabilidad_salon": 49.86,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 890443943.17,
+      "rentIncidence": 0.1446,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 107730.49,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 311707.51,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 3.442149998
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 95,
+    "year": 2024,
+    "nombre_salon": "Puerto Madero Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Tristan A. Rodriguez 1353, CABA",
+    "cp_salon": "C1107",
+    "municipio_salon": "Puerto Madero",
+    "lat_salon": -34.6146794,
+    "lon_salon": -58.3580145,
+    "pax_calculado": 147.0,
+    "pax_formal_pista": 100.0,
+    "pax_informal_pista": 250.0,
+    "pax_informal_auditorio": 120.0,
+    "mt2_salon": 911.0,
+    "cantidad_eventos_salon": 112,
+    "total_invitados_salon": 10343,
+    "costos_variables_salon": 554841766.98,
+    "costos_fijos_salon": 36607110.0,
+    "ventas_totales_salon": 1848258752.0,
+    "rentabilidad_salon": 68.79,
+    "tier": 1,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1293416985.02,
+      "rentIncidence": 0.1539,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 43836.98,
+      "medianTier": 28527.03,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 150000.0,
+      "medianPaxTier": 100296.38,
+      "efficiencyScore": 1.51612488
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 99,
+    "year": 2024,
+    "nombre_salon": "Playa Grande 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 86,
+    "year": 2024,
+    "nombre_salon": "Quilmes Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "General Savio 3151, Quilmes, Bs As.",
+    "cp_salon": "B1879",
+    "municipio_salon": "Buenos Aires",
+    "lat_salon": -34.7327696,
+    "lon_salon": -58.2640226,
+    "pax_calculado": 144.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 120.0,
+    "mt2_salon": 941.0,
+    "cantidad_eventos_salon": 94,
+    "total_invitados_salon": 8705,
+    "costos_variables_salon": 390901394.2,
+    "costos_fijos_salon": 61406380.0,
+    "ventas_totales_salon": 1248733484.0,
+    "rentabilidad_salon": 68.02,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 857832089.8,
+      "rentIncidence": 0.434,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 20564.86,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 104252.4,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.48748414
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 63,
+    "year": 2024,
+    "nombre_salon": "Ramos Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Alvear 508, Ramos Mejia",
+    "cp_salon": "B1704",
+    "municipio_salon": "Ramos Mejía",
+    "lat_salon": -34.6461685,
+    "lon_salon": -58.5689948,
+    "pax_calculado": 160.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 100.0,
+    "mt2_salon": 503.0,
+    "cantidad_eventos_salon": 65,
+    "total_invitados_salon": 579,
+    "costos_variables_salon": 620555458.16,
+    "costos_fijos_salon": 22050000.0,
+    "ventas_totales_salon": 877180781.0,
+    "rentabilidad_salon": 28.2,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 256625322.84000003,
+      "rentIncidence": 0.1432,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 85985.73,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 80611.63,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 3.099298811
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 92,
+    "year": 2024,
+    "nombre_salon": "Ramos Boutique 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Saavedra 649, Ramos Mejia",
+    "cp_salon": "B1704",
+    "municipio_salon": "Ramos Mejía",
+    "lat_salon": -34.6485572,
+    "lon_salon": -58.5695288,
+    "pax_calculado": 180.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 240.0,
+    "pax_informal_auditorio": 180.0,
+    "mt2_salon": 730.0,
+    "cantidad_eventos_salon": 109,
+    "total_invitados_salon": 9906,
+    "costos_variables_salon": 547282802.23,
+    "costos_fijos_salon": 15012345.0,
+    "ventas_totales_salon": 1663782132.0,
+    "rentabilidad_salon": 66.43,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1116499329.77,
+      "rentIncidence": 0.1443,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 5123.95,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 73870.31,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.6589899555
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 7,
+    "year": 2024,
+    "nombre_salon": "Quinta",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 27,
+    "year": 2024,
+    "nombre_salon": "Ramos Mejia",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. de Mayo 1848, Ramos Mejía",
+    "cp_salon": "B1704",
+    "municipio_salon": "Ramos Mejía",
+    "lat_salon": -34.6595691,
+    "lon_salon": -58.5618369,
+    "pax_calculado": 232.0,
+    "pax_formal_pista": 170.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 270.0,
+    "cantidad_eventos_salon": 91,
+    "total_invitados_salon": 8658,
+    "costos_variables_salon": 700837083.22,
+    "costos_fijos_salon": 12897860.0,
+    "ventas_totales_salon": 1462283647.0,
+    "rentabilidad_salon": 51.46,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 761446563.78,
+      "rentIncidence": 0.1323,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 10566.98,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 50694.16,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.660980158
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 29,
+    "year": 2024,
+    "nombre_salon": "Ramos Mejia 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Saavedra 649, Ramos Mejía",
+    "cp_salon": "B1704",
+    "municipio_salon": "Ramos Mejía",
+    "lat_salon": -34.6486183,
+    "lon_salon": -58.5695585,
+    "pax_calculado": 162.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 250.0,
+    "pax_informal_auditorio": 150.0,
+    "mt2_salon": 150.0,
+    "cantidad_eventos_salon": 57,
+    "total_invitados_salon": 507,
+    "costos_variables_salon": 628613926.71,
+    "costos_fijos_salon": 13296655.0,
+    "ventas_totales_salon": 694137097.0,
+    "rentabilidad_salon": 8.16,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 65523170.28999996,
+      "rentIncidence": 0.0959,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 23759.69,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 72599.04,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 1.201994086
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 40,
+    "year": 2024,
+    "nombre_salon": "San Isidro",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av. Bernabe Marquez 700, San Isidro",
+    "cp_salon": "B1642",
+    "municipio_salon": "San Isidro",
+    "lat_salon": -34.4804081,
+    "lon_salon": -58.5204941,
+    "pax_calculado": 325.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 600.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 1113.0,
+    "cantidad_eventos_salon": 128,
+    "total_invitados_salon": 12934,
+    "costos_variables_salon": 949163835.51,
+    "costos_fijos_salon": 11761045.0,
+    "ventas_totales_salon": 2885750628.0,
+    "rentabilidad_salon": 66.89,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1936586792.49,
+      "rentIncidence": 0.0965,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 9184.76,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 68588.96,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.7763777717
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 65,
+    "year": 2024,
+    "nombre_salon": "San Justo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Monseñor Bufano 1546, Villa Luzuriaga",
+    "cp_salon": "B1753",
+    "municipio_salon": "Villa Luzuriaga",
+    "lat_salon": -34.6764448,
+    "lon_salon": -58.5878834,
+    "pax_calculado": 255.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 350.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 495.0,
+    "cantidad_eventos_salon": 147,
+    "total_invitados_salon": 14187,
+    "costos_variables_salon": 1103193380.84,
+    "costos_fijos_salon": 11761045.0,
+    "ventas_totales_salon": 2727903321.0,
+    "rentabilidad_salon": 59.56,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1624709940.16,
+      "rentIncidence": 0.2033,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 6965.32,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 66293.5,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.7371802947
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 122,
+    "year": 2024,
+    "nombre_salon": "Recoleta",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 112,
+    "year": 2024,
+    "nombre_salon": "San Justo 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Facundo 1546, Villa Luzuriaga, La Matanza, Buenos Aires",
+    "cp_salon": "B1753",
+    "municipio_salon": "Villa Luzuriaga",
+    "lat_salon": -34.6764448,
+    "lon_salon": -58.5878834,
+    "pax_calculado": 151.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 170.0,
+    "pax_informal_auditorio": 100.0,
+    "mt2_salon": 2100.0,
+    "cantidad_eventos_salon": 88,
+    "total_invitados_salon": 775,
+    "costos_variables_salon": 32181279.01,
+    "costos_fijos_salon": 22291412.0,
+    "ventas_totales_salon": 1150475493.0,
+    "rentabilidad_salon": 95.62,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1118294213.99,
+      "rentIncidence": 0.0927,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 11660.49,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 187417.22,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 1.809827349
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 30,
+    "year": 2024,
+    "nombre_salon": "San Martin 1",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gral. Lavalle 8101, Villa María Irene de los Remedios de Escalada",
+    "cp_salon": "B1657",
+    "municipio_salon": "Villa María Irene de los Remedios de Escalada",
+    "lat_salon": -34.5680727,
+    "lon_salon": -58.5909813,
+    "pax_calculado": 191.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 170.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 2427.0,
+    "cantidad_eventos_salon": 96,
+    "total_invitados_salon": 8745,
+    "costos_variables_salon": 690678095.48,
+    "costos_fijos_salon": 16904842.0,
+    "ventas_totales_salon": 1493102430.0,
+    "rentabilidad_salon": 53.74,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 802424334.52,
+      "rentIncidence": 0.0744,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 6468.49,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 46126.09,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.5082691076
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 32,
+    "year": 2024,
+    "nombre_salon": "San Martin 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gral. Lavalle 8101, Villa María Irene de los Remedios de Escalada",
+    "cp_salon": "B1657",
+    "municipio_salon": "Villa María Irene de los Remedios de Escalada",
+    "lat_salon": -34.5680727,
+    "lon_salon": -58.5909813,
+    "pax_calculado": 193.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 2427.0,
+    "cantidad_eventos_salon": 101,
+    "total_invitados_salon": 9505,
+    "costos_variables_salon": 594848026.26,
+    "costos_fijos_salon": 28300000.0,
+    "ventas_totales_salon": 1460488630.0,
+    "rentabilidad_salon": 59.27,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 865640603.74,
+      "rentIncidence": 0.2706,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 8722.86,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 45648.1,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.5717299036
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 33,
+    "year": 2024,
+    "nombre_salon": "San Martin 3",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gral. Lavalle 8101, Villa María Irene de los Remedios de Escalada",
+    "cp_salon": "B1657",
+    "municipio_salon": "Villa María Irene de los Remedios de Escalada",
+    "lat_salon": -34.5680727,
+    "lon_salon": -58.5909813,
+    "pax_calculado": 177.0,
+    "pax_formal_pista": 160.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 210.0,
+    "mt2_salon": 2427.0,
+    "cantidad_eventos_salon": 82,
+    "total_invitados_salon": 7241,
+    "costos_variables_salon": 532131150.11,
+    "costos_fijos_salon": 8810084.0,
+    "ventas_totales_salon": 987450233.0,
+    "rentabilidad_salon": 46.11,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 455319082.89,
+      "rentIncidence": 0.0708,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 11441.67,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 49774.49,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 0.6805608096
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 35,
+    "year": 2024,
+    "nombre_salon": "San Miguel",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Gaspar Campos 2800, Muñiz, San Miguel",
+    "cp_salon": "B1663",
+    "municipio_salon": "San Miguel",
+    "lat_salon": -34.5544768,
+    "lon_salon": -58.7173796,
+    "pax_calculado": 345.0,
+    "pax_formal_pista": 250.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 450.0,
+    "mt2_salon": 1362.0,
+    "cantidad_eventos_salon": 130,
+    "total_invitados_salon": 12045,
+    "costos_variables_salon": 947848605.01,
+    "costos_fijos_salon": 8810084.0,
+    "ventas_totales_salon": 2549987683.0,
+    "rentabilidad_salon": 62.83,
+    "tier": 4,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1602139077.99,
+      "rentIncidence": 0.0724,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 72521.07,
+      "medianTier": 16888.33,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 87235.49,
+      "medianPaxTier": 72808.9,
+      "efficiencyScore": 2.746148519
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 21,
+    "year": 2024,
+    "nombre_salon": "San Telmo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Peru 330, San Telmo, CABA",
+    "cp_salon": "C1067",
+    "municipio_salon": "Monserrat",
+    "lat_salon": -34.6118265,
+    "lon_salon": -58.3747174,
+    "pax_calculado": 175.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 130.0,
+    "mt2_salon": 1010.0,
+    "cantidad_eventos_salon": 114,
+    "total_invitados_salon": 10015,
+    "costos_variables_salon": 694960663.98,
+    "costos_fijos_salon": 8810084.0,
+    "ventas_totales_salon": 1602154122.0,
+    "rentabilidad_salon": 56.62,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 907193458.02,
+      "rentIncidence": 0.1071,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 54918.37,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 147495.04,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.671759024
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 76,
+    "year": 2024,
+    "nombre_salon": "San Telmo 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Moreno 550, San Telmo, CABA",
+    "cp_salon": "C1091",
+    "municipio_salon": "San Telmo",
+    "lat_salon": -34.6115255,
+    "lon_salon": -58.3738978,
+    "pax_calculado": 280.0,
+    "pax_formal_pista": 180.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 220.0,
+    "mt2_salon": 770.0,
+    "cantidad_eventos_salon": 84,
+    "total_invitados_salon": 848,
+    "costos_variables_salon": 491060683.77,
+    "costos_fijos_salon": 30096243.0,
+    "ventas_totales_salon": 1402370488.0,
+    "rentabilidad_salon": 64.98,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 911309804.23,
+      "rentIncidence": 0.1416,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 15528.76,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 85962.79,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 0.7329556687
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 62,
+    "year": 2024,
+    "nombre_salon": "San Telmo Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Mexico 334, CABA",
+    "cp_salon": "C1097",
+    "municipio_salon": "Monserrat",
+    "lat_salon": -34.6149179,
+    "lon_salon": -58.37115,
+    "pax_calculado": 188.0,
+    "pax_formal_pista": 120.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 260.0,
+    "mt2_salon": 415.0,
+    "cantidad_eventos_salon": 123,
+    "total_invitados_salon": 11498,
+    "costos_variables_salon": 618240871.76,
+    "costos_fijos_salon": 25811632.0,
+    "ventas_totales_salon": 1526807158.0,
+    "rentabilidad_salon": 59.51,
+    "tier": 3,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 908566286.24,
+      "rentIncidence": 0.1933,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 37748.74,
+      "medianTier": 34134.85,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 134530.07,
+      "medianPaxTier": 85028.56,
+      "efficiencyScore": 1.344023017
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 90,
+    "year": 2024,
+    "nombre_salon": "Temperley",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av 9 de Julio 802, Temperley",
+    "cp_salon": "B1834",
+    "municipio_salon": "Temperley",
+    "lat_salon": -34.7853078,
+    "lon_salon": -58.4061102,
+    "pax_calculado": 187.0,
+    "pax_formal_pista": 140.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 130.0,
+    "mt2_salon": 470.0,
+    "cantidad_eventos_salon": 122,
+    "total_invitados_salon": 11562,
+    "costos_variables_salon": 616866813.37,
+    "costos_fijos_salon": 24069582.0,
+    "ventas_totales_salon": 1932778830.0,
+    "rentabilidad_salon": 68.08,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1315912016.63,
+      "rentIncidence": 0.206,
+      "status": "normal",
+      "color": "text-red-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 43142.18,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🔴 REVISAR"
+    },
+    "efficiency": {
+      "rentPerPax": 115353.42,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 2.342062382
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 22,
+    "year": 2024,
+    "nombre_salon": "Vicente Lopez",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Av Hipolito Yrigoyen 803, Vicente Lopez",
+    "cp_salon": "B1638",
+    "municipio_salon": "Vicente López",
+    "lat_salon": -34.5172987,
+    "lon_salon": -58.4792662,
+    "pax_calculado": 194.0,
+    "pax_formal_pista": 190.0,
+    "pax_informal_pista": 200.0,
+    "pax_informal_auditorio": 200.0,
+    "mt2_salon": 1550.0,
+    "cantidad_eventos_salon": 96,
+    "total_invitados_salon": 9449,
+    "costos_variables_salon": 752652968.27,
+    "costos_fijos_salon": 25291653.0,
+    "ventas_totales_salon": 1622347152.0,
+    "rentabilidad_salon": 53.61,
+    "tier": 2,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 869694183.73,
+      "rentIncidence": 0.1988,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 8621.89,
+      "medianTier": 16616.31,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 82396.84,
+      "medianPaxTier": 68588.96,
+      "efficiencyScore": 0.8600972274
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 114,
+    "year": 2024,
+    "nombre_salon": "Villa de Mayo",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Suiza 1451, Villa de Mayo, Malvinas Argentinas",
+    "cp_salon": "B1614",
+    "municipio_salon": "Villa de Mayo",
+    "lat_salon": -34.5145588,
+    "lon_salon": -58.6821507,
+    "pax_calculado": 246.0,
+    "pax_formal_pista": 160.0,
+    "pax_informal_pista": 400.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 670.0,
+    "cantidad_eventos_salon": 94,
+    "total_invitados_salon": 9248,
+    "costos_variables_salon": 94170994.1,
+    "costos_fijos_salon": 21571089.0,
+    "ventas_totales_salon": 1386426844.0,
+    "rentabilidad_salon": 93.21,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1292255849.9,
+      "rentIncidence": 0.1339,
+      "status": "normal",
+      "color": "text-yellow-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 19173.62,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟡 ESTÁNDAR"
+    },
+    "efficiency": {
+      "rentPerPax": 45673.75,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.9987554332
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 115,
+    "year": 2024,
+    "nombre_salon": "Villa de Mayo Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "José Maria Márquez 2417, Malvinas Argentinas",
+    "cp_salon": "B1614",
+    "municipio_salon": "Villa de Mayo",
+    "lat_salon": -34.5148425,
+    "lon_salon": -58.6820472,
+    "pax_calculado": 199.0,
+    "pax_formal_pista": 140.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 250.0,
+    "mt2_salon": 500.0,
+    "cantidad_eventos_salon": 90,
+    "total_invitados_salon": 8107,
+    "costos_variables_salon": 63899504.14,
+    "costos_fijos_salon": 15984986.0,
+    "ventas_totales_salon": 1047227063.0,
+    "rentabilidad_salon": 93.9,
+    "tier": 5,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 983327558.86,
+      "rentIncidence": 0.1182,
+      "status": "normal",
+      "color": "text-green-500"
+    },
+    "benchmark": {
+      "rentPerMt2": 697.87,
+      "medianTier": 14642.27,
+      "deviation": 0,
+      "recommendation": "🟢 FAVORABLE"
+    },
+    "efficiency": {
+      "rentPerPax": 56461.02,
+      "medianPaxTier": 66382.4,
+      "efficiencyScore": 0.44910169
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 16,
+    "year": 2024,
+    "nombre_salon": "Bella Vista / Hotel (17)",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Corrientes 1682, San Miguel",
+    "cp_salon": "B1661",
+    "municipio_salon": "Bella Vista",
+    "lat_salon": -34.5568747,
+    "lon_salon": -58.6960298,
+    "pax_calculado": 300.0,
+    "pax_formal_pista": 200.0,
+    "pax_informal_pista": 500.0,
+    "pax_informal_auditorio": 300.0,
+    "mt2_salon": 1854.0,
+    "cantidad_eventos_salon": 150,
+    "total_invitados_salon": 14142,
+    "costos_variables_salon": 837459736.29,
+    "costos_fijos_salon": 11235742.0,
+    "ventas_totales_salon": 2524771759.0,
+    "rentabilidad_salon": 65.82,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 1687312022.71,
+      "rentIncidence": 0.0891,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 34,
+    "year": 2024,
+    "nombre_salon": "CABA Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "Bartolome Mitre 1265, CABA",
+    "cp_salon": "C1036",
+    "municipio_salon": "San Nicolas",
+    "lat_salon": -34.60711079,
+    "lon_salon": -58.38445487,
+    "pax_calculado": 198.0,
+    "pax_formal_pista": 150.0,
+    "pax_informal_pista": 300.0,
+    "pax_informal_auditorio": 180.0,
+    "mt2_salon": 586.0,
+    "cantidad_eventos_salon": 118,
+    "total_invitados_salon": 10458,
+    "costos_variables_salon": 792314056.2,
+    "costos_fijos_salon": 11235742.0,
+    "ventas_totales_salon": 1641196508.0,
+    "rentabilidad_salon": 50.98,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 848882451.8,
+      "rentIncidence": 0.1073,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 82,
+    "year": 2024,
+    "nombre_salon": "Beach",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 102,
+    "year": 2024,
+    "nombre_salon": "Estancia",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 117,
+    "year": 2024,
+    "nombre_salon": "General Rodriguez",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 94,
+    "year": 2024,
+    "nombre_salon": "Holiday Inn",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 98,
+    "year": 2024,
+    "nombre_salon": "Holiday Inn 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 129,
+    "year": 2024,
+    "nombre_salon": "La Candelaria",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 133,
+    "year": 2024,
+    "nombre_salon": "La Plata 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 134,
+    "year": 2024,
+    "nombre_salon": "La Plata Boutique",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 119,
+    "year": 2024,
+    "nombre_salon": "Lomas",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 99,
+    "year": 2024,
+    "nombre_salon": "Playa Grande 2",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 7,
+    "year": 2024,
+    "nombre_salon": "Quinta",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "INACTIVO",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  },
+  {
+    "id_salon": 122,
+    "year": 2024,
+    "nombre_salon": "Recoleta",
+    "estado_salon": "ACTIVO",
+    "direccion_salon": "OBRA",
+    "cp_salon": null,
+    "municipio_salon": null,
+    "lat_salon": null,
+    "lon_salon": null,
+    "pax_calculado": 0,
+    "pax_formal_pista": 0,
+    "pax_informal_pista": 0,
+    "pax_informal_auditorio": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "breakEvenPoint": 0,
+      "marginContribution": 0.0,
+      "rentIncidence": 0,
+      "status": "normal",
+      "color": "text-slate-400"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "medianTier": 0,
+      "deviation": 0,
+      "recommendation": "nan"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "efficiencyScore": 0
+    },
+    "contractAudit": {
+      "deviationPercent": 0,
+      "isAlert": false,
+      "suggestedAdjustment": 0
+    }
+  }
+]
