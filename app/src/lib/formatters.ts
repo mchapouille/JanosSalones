@@ -25,5 +25,7 @@ export function formatNumber(value: number): string {
 }
 
 export function formatMultiplier(value: number): string {
+    if (!isFinite(value) || isNaN(value)) return "Máximo";
+    if (value > 1000) return "> 1000x";
     return `${value.toFixed(1)}x`;
 }

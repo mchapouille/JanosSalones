@@ -193,7 +193,7 @@ export default function EfficiencyPage() {
                                             />
                                             <circle cx="70" cy="70" r="5" fill={getSemaphoreColor(selectedSalon.efficiency!.color)} />
                                             <text x="70" y="65" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">
-                                                {selectedSalon.efficiency!.globalIndex.toFixed(2)}
+                                                {(selectedSalon.efficiency?.globalIndex || 0).toFixed(2)}
                                             </text>
                                         </svg>
                                         <div className="text-center mt-2">
@@ -207,12 +207,12 @@ export default function EfficiencyPage() {
                                     <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
                                         <div className="flex justify-between items-end mb-2">
                                             <p className="text-xs text-slate-500 uppercase font-bold">Rentabilidad / PAX</p>
-                                            <p className="text-xl font-bold text-white">{selectedSalon.efficiency!.paxRatio.toFixed(2)}</p>
+                                            <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.paxRatio || 0).toFixed(2)}</p>
                                         </div>
                                         <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                                             <div
                                                 className="h-full bg-blue-500 rounded-full"
-                                                style={{ width: `${Math.min(100, (selectedSalon.efficiency!.paxRatio / 2) * 100)}%` }}
+                                                style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.paxRatio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
                                         <p className="text-[10px] text-slate-600 mt-2">Relación entre flujo de personas y costo operativo.</p>
@@ -221,12 +221,12 @@ export default function EfficiencyPage() {
                                     <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
                                         <div className="flex justify-between items-end mb-2">
                                             <p className="text-xs text-slate-500 uppercase font-bold">Productividad / m²</p>
-                                            <p className="text-xl font-bold text-white">{selectedSalon.efficiency!.mt2Ratio.toFixed(2)}</p>
+                                            <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.mt2Ratio || 0).toFixed(2)}</p>
                                         </div>
                                         <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                                             <div
                                                 className="h-full bg-emerald-500 rounded-full"
-                                                style={{ width: `${Math.min(100, (selectedSalon.efficiency!.mt2Ratio / 2) * 100)}%` }}
+                                                style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.mt2Ratio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
                                         <p className="text-[10px] text-slate-600 mt-2">Ventas generadas por cada metro cuadrado del activo.</p>
@@ -237,9 +237,9 @@ export default function EfficiencyPage() {
                             <div className="mt-8 p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-start gap-3">
                                 <Info size={16} className="text-blue-400 mt-1 flex-shrink-0" />
                                 <p className="text-xs text-blue-300/70 leading-relaxed">
-                                    El Índice Global de <strong>{selectedSalon.efficiency!.globalIndex.toFixed(2)}</strong> para {selectedSalon.nombre_salon}{" "}
+                                    El Índice Global de <strong>{(selectedSalon.efficiency?.globalIndex || 0).toFixed(2)}</strong> para {selectedSalon.nombre_salon}{" "}
                                     indica que el activo está operando a un{" "}
-                                    {selectedSalon.efficiency!.globalIndex > 1 ? "sobrecosto" : "nivel óptimo"}{" "}
+                                    {(selectedSalon.efficiency?.globalIndex || 0) > 1 ? "sobrecosto" : "nivel óptimo"}{" "}
                                     respecto al rendimiento promedio de su Tier ({selectedSalon.tier}).
                                 </p>
                             </div>

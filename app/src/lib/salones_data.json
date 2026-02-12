@@ -33,6 +33,8 @@
     },
     "efficiency": {
       "rentPerPax": 224752.13,
+      "paxRatio": 3.385718654342115,
+      "mt2Ratio": 11.536337712233477,
       "medianPaxTier": 66382.4,
       "globalIndex": 3.673847585,
       "color": "red"
@@ -84,6 +86,8 @@
     },
     "efficiency": {
       "rentPerPax": 51037.14,
+      "paxRatio": 0.7688354142061752,
+      "mt2Ratio": 4.316348689312859,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.125609392,
       "color": "yellow"
@@ -135,6 +139,8 @@
     },
     "efficiency": {
       "rentPerPax": 151019.34,
+      "paxRatio": 2.07418790834637,
+      "mt2Ratio": 3.3337519312416783,
       "medianPaxTier": 72808.9,
       "globalIndex": 1.924438573,
       "color": "red"
@@ -186,6 +192,8 @@
     },
     "efficiency": {
       "rentPerPax": 46186.75,
+      "paxRatio": 0.46050266220974273,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 0.676203022,
       "color": "green"
@@ -237,6 +245,8 @@
     },
     "efficiency": {
       "rentPerPax": 46186.75,
+      "paxRatio": 0.46050266220974273,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 0.6144694349,
       "color": "green"
@@ -288,6 +298,8 @@
     },
     "efficiency": {
       "rentPerPax": 103596.45,
+      "paxRatio": 1.0329031815505205,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 1.070499946,
       "color": "yellow"
@@ -339,6 +351,8 @@
     },
     "efficiency": {
       "rentPerPax": 160649.57,
+      "paxRatio": 1.6017484379795164,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 1.554896036,
       "color": "red"
@@ -390,6 +404,8 @@
     },
     "efficiency": {
       "rentPerPax": 85028.56,
+      "paxRatio": 1.0,
+      "mt2Ratio": 2.3588228410952494,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.15551589,
       "color": "yellow"
@@ -441,6 +457,8 @@
     },
     "efficiency": {
       "rentPerPax": 79371.11,
+      "paxRatio": 0.9334641207613066,
+      "mt2Ratio": 1.5167999148223816,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.8882501528,
       "color": "yellow"
@@ -492,6 +510,8 @@
     },
     "efficiency": {
       "rentPerPax": 65690.48,
+      "paxRatio": 0.9577413041399081,
+      "mt2Ratio": 0.8429021409866038,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.126436566,
       "color": "yellow"
@@ -543,6 +563,8 @@
     },
     "efficiency": {
       "rentPerPax": 76499.13,
+      "paxRatio": 1.1153271605226263,
+      "mt2Ratio": 0.6890301364368799,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.087016297,
       "color": "yellow"
@@ -594,6 +616,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -645,6 +669,8 @@
     },
     "efficiency": {
       "rentPerPax": 126203.15,
+      "paxRatio": 1.9011537696738896,
+      "mt2Ratio": 5.60443338782101,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.912954799,
       "color": "red"
@@ -696,6 +722,8 @@
     },
     "efficiency": {
       "rentPerPax": 70165.4,
+      "paxRatio": 1.056987996818434,
+      "mt2Ratio": 2.2539622881642427,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.9155383146,
       "color": "yellow"
@@ -747,6 +775,8 @@
     },
     "efficiency": {
       "rentPerPax": 71110.64,
+      "paxRatio": 1.0712273132637566,
+      "mt2Ratio": 2.8557130527814567,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.025988932,
       "color": "yellow"
@@ -798,6 +828,8 @@
     },
     "efficiency": {
       "rentPerPax": 61358.36,
+      "paxRatio": 0.7216205943038434,
+      "mt2Ratio": 0.8724227972414258,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.6032562731,
       "color": "green"
@@ -849,6 +881,8 @@
     },
     "efficiency": {
       "rentPerPax": 90150.85,
+      "paxRatio": 1.060241993984139,
+      "mt2Ratio": 2.701559446176811,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.280883194,
       "color": "red"
@@ -900,6 +934,8 @@
     },
     "efficiency": {
       "rentPerPax": 95832.63,
+      "paxRatio": 1.1270640123741953,
+      "mt2Ratio": 1.866760804801994,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.082304015,
       "color": "yellow"
@@ -951,6 +987,8 @@
     },
     "efficiency": {
       "rentPerPax": 35226.24,
+      "paxRatio": 0.5306563185422642,
+      "mt2Ratio": 9.106624826494533,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.829092869,
       "color": "red"
@@ -1002,6 +1040,8 @@
     },
     "efficiency": {
       "rentPerPax": 445314.05,
+      "paxRatio": 5.237229114546924,
+      "mt2Ratio": 3.319275863741111,
       "medianPaxTier": 85028.56,
       "globalIndex": 3.541040036,
       "color": "red"
@@ -1053,6 +1093,8 @@
     },
     "efficiency": {
       "rentPerPax": 59589.83,
+      "paxRatio": 0.8687962319300365,
+      "mt2Ratio": 0.312374418457089,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.674382192,
       "color": "green"
@@ -1104,6 +1146,8 @@
     },
     "efficiency": {
       "rentPerPax": 58396.49,
+      "paxRatio": 0.582239259283336,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 0.5736563408,
       "color": "green"
@@ -1155,6 +1199,8 @@
     },
     "efficiency": {
       "rentPerPax": 73015.59,
+      "paxRatio": 0.727998258760685,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 0.7350460394,
       "color": "green"
@@ -1206,6 +1252,8 @@
     },
     "efficiency": {
       "rentPerPax": 39359.53,
+      "paxRatio": 0.5738464324287756,
+      "mt2Ratio": 0.42774219171665123,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.6155394127,
       "color": "green"
@@ -1257,6 +1305,8 @@
     },
     "efficiency": {
       "rentPerPax": 42928.77,
+      "paxRatio": 0.6258845446847422,
+      "mt2Ratio": 1.7441328694829308,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.65288576,
       "color": "red"
@@ -1308,6 +1358,8 @@
     },
     "efficiency": {
       "rentPerPax": 113710.14,
+      "paxRatio": 1.6578490182676628,
+      "mt2Ratio": 0.6034137812450795,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.292501707,
       "color": "red"
@@ -1359,6 +1411,8 @@
     },
     "efficiency": {
       "rentPerPax": 43666.2,
+      "paxRatio": 0.5135474480574527,
+      "mt2Ratio": 0.9213978195373,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.5128297786,
       "color": "green"
@@ -1410,6 +1464,8 @@
     },
     "efficiency": {
       "rentPerPax": 96996.3,
+      "paxRatio": 0.9670967187449836,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 0.6309442346,
       "color": "green"
@@ -1461,6 +1517,8 @@
     },
     "efficiency": {
       "rentPerPax": 41992.14,
+      "paxRatio": 0.49385923976602686,
+      "mt2Ratio": 0.2007466745940886,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.3027170256,
       "color": "green"
@@ -1512,6 +1570,8 @@
     },
     "efficiency": {
       "rentPerPax": 73018.77,
+      "paxRatio": 1.0028824772795635,
+      "mt2Ratio": 1.5717276229014954,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.9197878987,
       "color": "yellow"
@@ -1563,6 +1623,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -1614,6 +1676,8 @@
     },
     "efficiency": {
       "rentPerPax": 34635.41,
+      "paxRatio": 0.47570297037862136,
+      "mt2Ratio": 2.043575708566871,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.7817898787,
       "color": "green"
@@ -1665,6 +1729,8 @@
     },
     "efficiency": {
       "rentPerPax": 31658.83,
+      "paxRatio": 0.4769160199088916,
+      "mt2Ratio": 0.9922543977918571,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.4088451425,
       "color": "green"
@@ -1716,6 +1782,8 @@
     },
     "efficiency": {
       "rentPerPax": 53237.82,
+      "paxRatio": 0.6261169188329192,
+      "mt2Ratio": 0.4453287244651626,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.4368151555,
       "color": "green"
@@ -1767,6 +1835,8 @@
     },
     "efficiency": {
       "rentPerPax": 82704.83,
+      "paxRatio": 0.9726711824826859,
+      "mt2Ratio": 1.799211158268027,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.9863356299,
       "color": "yellow"
@@ -1818,6 +1888,8 @@
     },
     "efficiency": {
       "rentPerPax": 71169.12,
+      "paxRatio": 1.072108269661838,
+      "mt2Ratio": 4.961395282242187,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.388011501,
       "color": "red"
@@ -1869,6 +1941,8 @@
     },
     "efficiency": {
       "rentPerPax": 84772.4,
+      "paxRatio": 1.1643137034071385,
+      "mt2Ratio": 3.186320190693779,
       "medianPaxTier": 72808.9,
       "globalIndex": 1.430259674,
       "color": "red"
@@ -1920,6 +1994,8 @@
     },
     "efficiency": {
       "rentPerPax": 80645.69,
+      "paxRatio": 1.107635055604466,
+      "mt2Ratio": 1.7134220879545021,
       "medianPaxTier": 72808.9,
       "globalIndex": 1.009879064,
       "color": "yellow"
@@ -1971,6 +2047,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0.0,
+      "mt2Ratio": 0.0,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.0,
       "color": "green"
@@ -2022,6 +2100,8 @@
     },
     "efficiency": {
       "rentPerPax": 44695.46,
+      "paxRatio": 0.6138735786421715,
+      "mt2Ratio": 2.149201419747662,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.8789895446,
       "color": "yellow"
@@ -2073,6 +2153,8 @@
     },
     "efficiency": {
       "rentPerPax": 131802.38,
+      "paxRatio": 1.5500954032386296,
+      "mt2Ratio": 3.875785099398486,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.852126701,
       "color": "red"
@@ -2124,6 +2206,8 @@
     },
     "efficiency": {
       "rentPerPax": 168574.2,
+      "paxRatio": 1.9825597422795354,
+      "mt2Ratio": 1.0646949312991907,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.287158219,
       "color": "red"
@@ -2175,6 +2259,8 @@
     },
     "efficiency": {
       "rentPerPax": 61984.42,
+      "paxRatio": 0.9337478006218516,
+      "mt2Ratio": 5.527237872514745,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.415996094,
       "color": "red"
@@ -2226,6 +2312,8 @@
     },
     "efficiency": {
       "rentPerPax": 58531.48,
+      "paxRatio": 0.8533659061166695,
+      "mt2Ratio": 0.3500753195499471,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.6956310461,
       "color": "green"
@@ -2277,6 +2365,8 @@
     },
     "efficiency": {
       "rentPerPax": 70272.02,
+      "paxRatio": 0.8264519592005323,
+      "mt2Ratio": 3.1187210496243964,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.279917176,
       "color": "red"
@@ -2328,6 +2418,8 @@
     },
     "efficiency": {
       "rentPerPax": 56873.27,
+      "paxRatio": 0.8567522415580033,
+      "mt2Ratio": 2.7937959615484043,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.9081191024,
       "color": "yellow"
@@ -2379,6 +2471,8 @@
     },
     "efficiency": {
       "rentPerPax": 66382.4,
+      "paxRatio": 1.0,
+      "mt2Ratio": 2.7992089343880875,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.9806724762,
       "color": "yellow"
@@ -2430,6 +2524,8 @@
     },
     "efficiency": {
       "rentPerPax": 89517.49,
+      "paxRatio": 1.3485124069030348,
+      "mt2Ratio": 2.911763770069959,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.174256176,
       "color": "yellow"
@@ -2481,6 +2577,8 @@
     },
     "efficiency": {
       "rentPerPax": 64811.11,
+      "paxRatio": 0.9763297199257636,
+      "mt2Ratio": 2.2769405766148436,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.8791548944,
       "color": "yellow"
@@ -2532,6 +2630,8 @@
     },
     "efficiency": {
       "rentPerPax": 32889.07,
+      "paxRatio": 0.47950967619278667,
+      "mt2Ratio": 0.35811684674684563,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.5148809088,
       "color": "green"
@@ -2583,6 +2683,8 @@
     },
     "efficiency": {
       "rentPerPax": 66532.26,
+      "paxRatio": 0.9700141247221126,
+      "mt2Ratio": 0.6508231882377732,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.9850070483,
       "color": "yellow"
@@ -2634,6 +2736,8 @@
     },
     "efficiency": {
       "rentPerPax": 65742.06,
+      "paxRatio": 0.9584933202078001,
+      "mt2Ratio": 0.5527417021199926,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.9038946246,
       "color": "yellow"
@@ -2685,6 +2789,8 @@
     },
     "efficiency": {
       "rentPerPax": 432236.67,
+      "paxRatio": 4.309593925523533,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 4.251850075,
       "color": "red"
@@ -2736,6 +2842,8 @@
     },
     "efficiency": {
       "rentPerPax": 246685.71,
+      "paxRatio": 3.5965804117747227,
+      "mt2Ratio": 3.4797549823314355,
       "medianPaxTier": 68588.96,
       "globalIndex": 4.471638564,
       "color": "red"
@@ -2787,6 +2895,8 @@
     },
     "efficiency": {
       "rentPerPax": 87252.13,
+      "paxRatio": 1.272101661841789,
+      "mt2Ratio": 1.5586881472957421,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.833524766,
       "color": "red"
@@ -2838,6 +2948,8 @@
     },
     "efficiency": {
       "rentPerPax": 76043.89,
+      "paxRatio": 0.8943335039426753,
+      "mt2Ratio": 0.8455633845874895,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.6821485243,
       "color": "green"
@@ -2889,6 +3001,8 @@
     },
     "efficiency": {
       "rentPerPax": 163909.07,
+      "paxRatio": 2.3897296299579405,
+      "mt2Ratio": 3.012436538481122,
       "medianPaxTier": 68588.96,
       "globalIndex": 3.509192016,
       "color": "red"
@@ -2940,6 +3054,8 @@
     },
     "efficiency": {
       "rentPerPax": 81549.22,
+      "paxRatio": 1.188955482048423,
+      "mt2Ratio": 1.0800490536684106,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.424233608,
       "color": "red"
@@ -2991,6 +3107,8 @@
     },
     "efficiency": {
       "rentPerPax": 72685.19,
+      "paxRatio": 1.059721418723946,
+      "mt2Ratio": 1.3485379860421867,
       "medianPaxTier": 68588.96,
       "globalIndex": 1.565885395,
       "color": "red"
@@ -3042,6 +3160,8 @@
     },
     "efficiency": {
       "rentPerPax": 90165.3,
+      "paxRatio": 1.358271168261467,
+      "mt2Ratio": 7.990884251470572,
       "medianPaxTier": 66382.4,
       "globalIndex": 2.051308215,
       "color": "red"
@@ -3093,6 +3213,8 @@
     },
     "efficiency": {
       "rentPerPax": 311707.51,
+      "paxRatio": 3.1078640126393395,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 3.442149998,
       "color": "red"
@@ -3144,6 +3266,8 @@
     },
     "efficiency": {
       "rentPerPax": 150000.0,
+      "paxRatio": 1.495567437229539,
+      "mt2Ratio": 0,
       "medianPaxTier": 100296.38,
       "globalIndex": 1.51612488,
       "color": "red"
@@ -3195,6 +3319,8 @@
     },
     "efficiency": {
       "rentPerPax": 104252.4,
+      "paxRatio": 1.5704825375400708,
+      "mt2Ratio": 4.089530809400516,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.48748414,
       "color": "red"
@@ -3246,6 +3372,8 @@
     },
     "efficiency": {
       "rentPerPax": 80611.63,
+      "paxRatio": 1.1071672556514385,
+      "mt2Ratio": 2.852161155374719,
       "medianPaxTier": 72808.9,
       "globalIndex": 3.099298811,
       "color": "red"
@@ -3297,6 +3425,8 @@
     },
     "efficiency": {
       "rentPerPax": 73870.31,
+      "paxRatio": 1.0145780254886423,
+      "mt2Ratio": 0.5699401468021752,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.6589899555,
       "color": "green"
@@ -3348,6 +3478,8 @@
     },
     "efficiency": {
       "rentPerPax": 50694.16,
+      "paxRatio": 0.696263231555483,
+      "mt2Ratio": 1.1753717605471656,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.660980158,
       "color": "green"
@@ -3399,6 +3531,8 @@
     },
     "efficiency": {
       "rentPerPax": 72599.04,
+      "paxRatio": 0.9971176600662831,
+      "mt2Ratio": 8.72125606067853,
       "medianPaxTier": 72808.9,
       "globalIndex": 1.201994086,
       "color": "yellow"
@@ -3450,6 +3584,8 @@
     },
     "efficiency": {
       "rentPerPax": 68588.96,
+      "paxRatio": 1.0,
+      "mt2Ratio": 0.35974622442640813,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.7763777717,
       "color": "green"
@@ -3501,6 +3637,8 @@
     },
     "efficiency": {
       "rentPerPax": 66293.5,
+      "paxRatio": 0.9986607896068839,
+      "mt2Ratio": 1.3851244665576914,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.7371802947,
       "color": "green"
@@ -3552,6 +3690,8 @@
     },
     "efficiency": {
       "rentPerPax": 187417.22,
+      "paxRatio": 2.8232968377160215,
+      "mt2Ratio": 2.318806600565558,
       "medianPaxTier": 66382.4,
       "globalIndex": 1.809827349,
       "color": "red"
@@ -3603,6 +3743,8 @@
     },
     "efficiency": {
       "rentPerPax": 46126.09,
+      "paxRatio": 0.6335226874736468,
+      "mt2Ratio": 0.7194941676223231,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.5082691076,
       "color": "green"
@@ -3654,6 +3796,8 @@
     },
     "efficiency": {
       "rentPerPax": 45648.1,
+      "paxRatio": 0.6269576933589163,
+      "mt2Ratio": 0.9702491454707447,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.5717299036,
       "color": "green"
@@ -3705,6 +3849,8 @@
     },
     "efficiency": {
       "rentPerPax": 49774.49,
+      "paxRatio": 0.6836319460945022,
+      "mt2Ratio": 1.2726640735100936,
       "medianPaxTier": 72808.9,
       "globalIndex": 0.6805608096,
       "color": "green"
@@ -3756,6 +3902,8 @@
     },
     "efficiency": {
       "rentPerPax": 87235.49,
+      "paxRatio": 1.198143221501767,
+      "mt2Ratio": 8.066563741264225,
       "medianPaxTier": 72808.9,
       "globalIndex": 2.746148519,
       "color": "red"
@@ -3807,6 +3955,8 @@
     },
     "efficiency": {
       "rentPerPax": 147495.04,
+      "paxRatio": 1.7346529213243176,
+      "mt2Ratio": 2.8946881002228535,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.671759024,
       "color": "red"
@@ -3858,6 +4008,8 @@
     },
     "efficiency": {
       "rentPerPax": 85962.79,
+      "paxRatio": 1.0109872494606518,
+      "mt2Ratio": 0.8185042051178256,
       "medianPaxTier": 85028.56,
       "globalIndex": 0.7329556687,
       "color": "green"
@@ -3909,6 +4061,8 @@
     },
     "efficiency": {
       "rentPerPax": 134530.07,
+      "paxRatio": 1.582175095050416,
+      "mt2Ratio": 1.9896954056794918,
       "medianPaxTier": 85028.56,
       "globalIndex": 1.344023017,
       "color": "red"
@@ -3960,6 +4114,8 @@
     },
     "efficiency": {
       "rentPerPax": 115353.42,
+      "paxRatio": 1.7377108992745067,
+      "mt2Ratio": 8.579259683494211,
       "medianPaxTier": 66382.4,
       "globalIndex": 2.342062382,
       "color": "red"
@@ -4011,6 +4167,8 @@
     },
     "efficiency": {
       "rentPerPax": 82396.84,
+      "paxRatio": 1.2013134475285816,
+      "mt2Ratio": 0.3376998827318083,
       "medianPaxTier": 68588.96,
       "globalIndex": 0.8600972274,
       "color": "yellow"
@@ -4062,6 +4220,8 @@
     },
     "efficiency": {
       "rentPerPax": 45673.75,
+      "paxRatio": 0.6880400527850756,
+      "mt2Ratio": 3.8128686369728713,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.9987554332,
       "color": "yellow"
@@ -4113,6 +4273,8 @@
     },
     "efficiency": {
       "rentPerPax": 56461.02,
+      "paxRatio": 0.8505420111354817,
+      "mt2Ratio": 0.13877852151467787,
       "medianPaxTier": 66382.4,
       "globalIndex": 0.44910169,
       "color": "green"
@@ -4164,6 +4326,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4215,6 +4379,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4266,6 +4432,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4317,6 +4485,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4368,6 +4538,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4419,6 +4591,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4470,6 +4644,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4521,6 +4697,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4572,6 +4750,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4623,6 +4803,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4674,6 +4856,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"
@@ -4725,6 +4909,8 @@
     },
     "efficiency": {
       "rentPerPax": 0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
       "medianPaxTier": 0,
       "globalIndex": 0,
       "color": "gray"

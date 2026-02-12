@@ -159,6 +159,8 @@ def ingest():
             },
             "efficiency": {
                 "rentPerPax": clean_numeric(row.get('precio_pax')),
+                "paxRatio": clean_numeric(row.get('precio_pax')) / clean_numeric(row.get('med_pax')) if clean_numeric(row.get('med_pax')) > 0 else 0,
+                "mt2Ratio": clean_numeric(row.get('precio_por_mt2')) / clean_numeric(row.get('mt2_mercado')) if clean_numeric(row.get('mt2_mercado')) > 0 else 0,
                 "medianPaxTier": clean_numeric(row.get('med_pax')),
                 "globalIndex": clean_numeric(row.get('semaforo_indice_global_desviacion_mediana')),
                 "color": map_tier_to_color(row.get('semaforo_indice_global'))
