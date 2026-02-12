@@ -2,6 +2,7 @@ import pandas as pd
 import json
 import os
 import re
+import math
 
 # Paths
 EXCEL_PATH = 'data/resultados_unificado.xlsx'
@@ -11,7 +12,8 @@ def clean_numeric(val):
     if pd.isna(val):
         return 0
     if isinstance(val, (int, float)):
-        return float(val)
+        res = float(val)
+        return res if math.isfinite(res) else 0
     # Handle strings like "$  -" or "$ 1.234,56"
     s = str(val).strip()
     if s == '-' or s.endswith('-'):
@@ -28,28 +30,28 @@ def clean_numeric(val):
             # Assume dot is thousand separator and comma is decimal
             s = s.replace('.', '').replace(',', '.')
         res = float(s)
-        import math
         return res if math.isfinite(res) else 0
     except:
         return 0
 
-def clean_tier(tier_str):
+def clean_tier_num(tier_str):
     if pd.isna(tier_str):
         return 0
-    # Extract number from "Tier 5", "tier_3", etc.
     match = re.search(r'(\d+)', str(tier_str))
     return int(match.group(1)) if match else 0
 
-def clean_color(situacion):
-    if pd.isna(situacion):
+def map_tier_to_color(tier_str):
+    if pd.isna(tier_str):
         return 'gray'
-    text = str(situacion).upper()
-    if 'REVISAR' in text or '🔴' in text:
-        return 'red'
-    if 'ESTÁNDAR' in text or '🟡' in text:
-        return 'yellow'
-    if 'ÓPTIMO' in text or '🟢' in text:
+    s = str(tier_str).lower()
+    if 'tier_1' in s or 'favorable' in s or 'óptimo' in s:
         return 'green'
+    if 'tier_2' in s or 'estándar' in s:
+        return 'yellow'
+    if 'tier_3' in s or 'revisar' in s:
+        return 'red'
+    if 'tier_4' in s or 'crítico' in s:
+        return 'critical'
     return 'gray'
 
 def ingest():
@@ -63,8 +65,7 @@ def ingest():
     
     for _, row in df.iterrows():
         # Map basic fields
-        estado_raw = str(row['estado_salon']).upper() if not pd.isna(row['estado_salon']) else "ACTIVO"
-        # Mapping: INACTIVO -> DEVUELTOS as per user request
+        estado_raw = str(row.get('estado_salon', 'ACTIVO')).upper()
         if estado_raw == "INACTIVO":
             estado_salon = "DEVUELTOS"
         elif "OBRA" in estado_raw:
@@ -72,58 +73,64 @@ def ingest():
         else:
             estado_salon = "ACTIVO"
 
+        # Year handling
+        year_raw = row.get('año')
+        year = int(year_raw) if not pd.isna(year_raw) else 2025
+
         salon = {
             "id_salon": int(row['id_salon']),
-            "year": 2024, # Defaulting to current year as per user context
+            "year": year,
             "nombre_salon": str(row['nombre_salon']),
             "estado_salon": estado_salon,
-            "direccion_salon": str(row['direccion_salon']) if not pd.isna(row['direccion_salon']) else None,
-            "cp_salon": str(row['cp_salon']) if not pd.isna(row['cp_salon']) else None,
-            "municipio_salon": str(row['municipio_salon']) if not pd.isna(row['municipio_salon']) else None,
-            "lat_salon": float(row['lat_salon']) if not pd.isna(row['lat_salon']) else None,
-            "lon_salon": float(row['lon_salon']) if not pd.isna(row['lon_salon']) else None,
-            "pax_calculado": clean_numeric(row['pax_calculado']),
-            "pax_formal_pista": clean_numeric(row['pax_formal_pista']),
-            "pax_informal_pista": clean_numeric(row['pax_informal_pista']),
-            "pax_informal_auditorio": clean_numeric(row['pax_informal_auditorio']),
-            "mt2_salon": clean_numeric(row['mt2_salon']),
-            "cantidad_eventos_salon": int(clean_numeric(row['cantidad_eventos_salon'])),
-            "total_invitados_salon": int(clean_numeric(row['total_invitados_salon'])),
-            "costos_variables_salon": clean_numeric(row['costos_variables_salon']),
-            "costos_fijos_salon": clean_numeric(row['costos_fijos_salon']),
-            "ventas_totales_salon": clean_numeric(row['ventas_totales_salon']),
-            "rentabilidad_salon": clean_numeric(row['rentabilidad_salon']),
-            "tier": clean_tier(row['TIER']),
+            "direccion_salon": str(row.get('direccion_salon')) if not pd.isna(row.get('direccion_salon')) else None,
+            "cp_salon": str(row.get('cp_salon')) if not pd.isna(row.get('cp_salon')) else None,
+            "municipio_salon": str(row.get('municipio_salon')) if not pd.isna(row.get('municipio_salon')) else None,
+            "lat_salon": float(row.get('lat_salon')) if not pd.isna(row.get('lat_salon')) else None,
+            "lon_salon": float(row.get('lon_salon')) if not pd.isna(row.get('lon_salon')) else None,
+            "pax_calculado": clean_numeric(row.get('pax_calculado')),
+            "mt2_salon": clean_numeric(row.get('mt2_salon')),
+            "cantidad_eventos_salon": int(clean_numeric(row.get('cantidad_eventos_salon'))),
+            "total_invitados_salon": int(clean_numeric(row.get('total_invitados_salon'))),
+            "costos_variables_salon": clean_numeric(row.get('costos_variables_salon')),
+            "costos_fijos_salon": clean_numeric(row.get('costos_fijos_salon')),
+            "ventas_totales_salon": clean_numeric(row.get('ventas_totales_salon')),
+            "rentabilidad_salon": clean_numeric(row.get('rentabilidad_salon')),
+            "tier": clean_tier_num(row.get('semaforo_tipo_salon')),
             
-            # Sub-results (Calculated in Python to match the interface)
+            # Sub-results
             "performance": {
-                "breakEvenPoint": 0, # Could be calculated if needed
-                "marginContribution": float(clean_numeric(row['ventas_totales_salon']) - clean_numeric(row['costos_variables_salon'])),
-                "rentIncidence": clean_numeric(row['incidencia_alquiler']),
-                "status": "normal", # Default
-                "color": clean_color(row['SITUACION'])
+                "rentIncidence": clean_numeric(row.get('incidencia_alquiler_sobre_facturacion_anual')) * 100,
+                "multiplier": clean_numeric(row.get('retorno_sobre_alquiler (x)')),
+                "marginContribution": clean_numeric(row.get('ventas_totales_salon')) - clean_numeric(row.get('costos_totales_salon')),
+                "color": map_tier_to_color(row.get('semaforo_incidencia_aliquiler')),
+                "classification": "normal"
             },
             "benchmark": {
-                "rentPerMt2": clean_numeric(row['PRECIO_MT2']),
-                "medianTier": clean_numeric(row['MED_MT2']),
-                "deviation": 0, # Calculated in UI mostly
-                "recommendation": str(row['SITUACION'])
+                "rentPerMt2": clean_numeric(row.get('precio_por_mt2')),
+                "marketCostPerMt2": clean_numeric(row.get('mt2_mercado')),
+                "deviation": clean_numeric(row.get('desvio_salon_vs_mercado')) * 100,
+                "color": "yellow" if clean_numeric(row.get('desvio_salon_vs_mercado')) > 0.5 else "green" # simple logic
             },
             "efficiency": {
-                "rentPerPax": clean_numeric(row['PRECIO_PAX']),
-                "medianPaxTier": clean_numeric(row['MED_PAX']),
-                "efficiencyScore": clean_numeric(row['INDICE_GLOBAL'])
+                "rentPerPax": clean_numeric(row.get('precio_pax')),
+                "medianPaxTier": clean_numeric(row.get('med_pax')),
+                "globalIndex": clean_numeric(row.get('semaforo_indice_global_desviacion_mediana')),
+                "color": map_tier_to_color(row.get('semaforo_indice_global'))
             },
             "contractAudit": {
+                "contractAmount": clean_numeric(row.get('precio_alquiler')),
+                "realPayment": clean_numeric(row.get('costos_fijos_salon')),
                 "deviationPercent": 0,
-                "isAlert": False,
-                "suggestedAdjustment": 0
+                "color": "green"
+            },
+            "extra": {
+                "meses_activos": clean_numeric(row.get('meses_activos')),
+                "ticket_evento": clean_numeric(row.get('venta_x_evento_promedio_anual')),
+                "ticket_persona": clean_numeric(row.get('venta_promedio_invitado_anual')),
+                "venta_mensual": clean_numeric(row.get('venta_mensual_promedio_meses_activo'))
             }
         }
         salones.append(salon)
-        
-    # Generate multi-year data for MVP demo if necessary, otherwise just use Excel
-    # For now, let's keep only what's in Excel
     
     print(f"Writing {len(salones)} records to {OUTPUT_JSON}...")
     with open(OUTPUT_JSON, 'w', encoding='utf-8') as f:
@@ -132,8 +139,13 @@ def ingest():
     print("Done!")
 
 if __name__ == "__main__":
-    # Ensure current dir is app
-    if os.path.exists('data/resultados_unificado.xlsx'):
+    if os.path.exists(EXCEL_PATH):
         ingest()
     else:
-        print("Error: data/resultados_unificado.xlsx not found. Run from app root.")
+        # Fallback to absolute path if relative fails
+        abs_path = os.path.join(os.getcwd(), 'app', EXCEL_PATH)
+        if os.path.exists(abs_path):
+             EXCEL_PATH = abs_path
+             ingest()
+        else:
+            print(f"Error: {EXCEL_PATH} not found.")

@@ -434,6 +434,15 @@ export default function DashboardPage() {
                                             { label: 'Monto Contrato', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.contractAmount) : '—' },
                                             { label: 'Pago Efectivo', value: selectedSalon.contractAudit ? formatARS(selectedSalon.contractAudit.realPayment) : '—' }
                                         ]
+                                    },
+                                    {
+                                        id: 'transaccional',
+                                        label: 'Transaccional',
+                                        rows: [
+                                            { label: 'Ticket Persona', value: selectedSalon.extra ? formatARS(selectedSalon.extra.ticket_persona) : '—' },
+                                            { label: 'Ticket Evento', value: selectedSalon.extra ? formatARS(selectedSalon.extra.ticket_evento) : '—' },
+                                            { label: 'Meses Activo', value: selectedSalon.extra ? `${selectedSalon.extra.meses_activos} meses` : '—' }
+                                        ]
                                     }
                                 ].map((group) => (
                                     <div key={group.id} className="flex flex-col bg-slate-900/40 rounded-xl border border-white/5 overflow-hidden">
