@@ -72,7 +72,7 @@ export default function HelpModal() {
                                 <HelpCircle className="text-blue-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-xl font-bold text-white leading-none">Guía de Uso Serendip.IA</h2>
+                                <h2 className="text-xl font-bold text-white leading-none">Guía de Uso</h2>
                                 <p className="text-slate-500 text-xs mt-1.5 uppercase tracking-widest font-bold">Manual para Toma de Decisiones</p>
                             </div>
                         </div>

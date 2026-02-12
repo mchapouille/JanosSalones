@@ -1,27 +1,36 @@
-export function formatARS(value: number): string {
+export function formatARS(value: any): string {
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    if (num === null || num === undefined || isNaN(num)) return "S/D";
     return new Intl.NumberFormat("es-AR", {
         style: "currency",
         currency: "ARS",
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
-    }).format(value);
+        useGrouping: true,
+    }).format(num);
 }
 
-export function formatUSD(value: number): string {
+export function formatUSD(value: any): string {
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    if (num === null || num === undefined || isNaN(num)) return "S/D";
     return new Intl.NumberFormat("es-AR", {
         style: "currency",
         currency: "USD",
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
-    }).format(value);
+        useGrouping: true,
+    }).format(num);
 }
 
 export function formatPercentage(value: number, decimals: number = 1): string {
+    if (isNaN(value)) return "0%";
     return `${value.toFixed(decimals)}%`;
 }
 
-export function formatNumber(value: number): string {
-    return new Intl.NumberFormat("es-AR").format(value);
+export function formatNumber(value: any): string {
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    if (num === null || num === undefined || isNaN(num)) return "0";
+    return new Intl.NumberFormat("es-AR", { useGrouping: true }).format(num);
 }
 
 export function formatMultiplier(value: number): string {

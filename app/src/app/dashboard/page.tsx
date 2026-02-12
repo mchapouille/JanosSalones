@@ -56,18 +56,26 @@ export default function DashboardPage() {
         return list;
     }, [salones, selectedTier, selectedEstado, selectedMunicipio, selectedYear]);
 
-    // Sync selected salon with filter/year changes
+    // Sync selected salon with year changes but keep independent of state/tier filters
     useEffect(() => {
-        if (filtered.length > 0) {
-            const currentId = selectedSalon?.id_salon;
-            const updated = filtered.find(s => s.id_salon === currentId) || filtered[0];
+        const currentId = selectedSalon?.id_salon;
+        // Search in the full salones list (year-filtered) instead of just filtered list
+        // This makes the detailed view independent of global status filters
+        const updated = salones.find(s => s.id_salon === currentId);
+
+        if (updated) {
             if (updated !== selectedSalon) {
                 setSelectedSalon(updated);
             }
-        } else if (selectedSalon !== null) {
+        } else if (filtered.length > 0) {
+            // Default to first filtered if nothing is selected or previous not found (e.g. year change)
+            setSelectedSalon(filtered[0]);
+        } else {
             setSelectedSalon(null);
         }
-    }, [filtered, selectedSalon]);
+    }, [salones, filtered, selectedSalon]);
+    // Note: We keep filtered in dependencies to handle the initial load or empty results,
+    // but the 'find' logic ensures independent persistence.
 
     const activeSalones = filtered.filter((s) => s.estado_salon === "ACTIVO");
     const obraSalones = filtered.filter((s) => s.estado_salon === "OBRA");
@@ -187,7 +195,7 @@ export default function DashboardPage() {
                             return (
                                 <div
                                     key={kpi.label}
-                                    className="p-6 px-7 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all group/kpi"
+                                    className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all group/kpi"
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div
@@ -198,7 +206,10 @@ export default function DashboardPage() {
                                         </div>
                                         <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">{kpi.sub}</span>
                                     </div>
-                                    <p className="text-xl lg:text-2xl font-bold text-white truncate">{kpi.value}</p>
+                                    <p className={`font-bold text-white transition-all leading-tight ${kpi.value.length > 12 ? "text-xl md:text-2xl" : "text-2xl"
+                                        }`}>
+                                        {kpi.value}
+                                    </p>
                                     <p className="text-xs text-slate-500 uppercase font-bold mt-1 tracking-tight">{kpi.label}</p>
                                 </div>
                             );

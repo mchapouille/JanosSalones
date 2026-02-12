@@ -82,11 +82,11 @@ export function calcBenchmark(
     mt2: number,
     tier: number
 ): BenchmarkResult | null {
-    if (!BENCHMARK_DATA[tier] || mt2 === 0) return null;
+    if (isNaN(costosFijos) || isNaN(mt2) || mt2 <= 0 || !BENCHMARK_DATA[tier]) return null;
 
     const costPerMt2 = costosFijos / mt2;
     const marketCostPerMt2 = BENCHMARK_DATA[tier].promedioMercado;
-    const deviation = ((costPerMt2 - marketCostPerMt2) / marketCostPerMt2) * 100;
+    const deviation = marketCostPerMt2 > 0 ? ((costPerMt2 - marketCostPerMt2) / marketCostPerMt2) * 100 : 0;
 
     let color: BenchmarkResult["color"];
     if (deviation <= 0) {
