@@ -388,8 +388,11 @@ export default function DashboardPage() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="mb-6 flex items-end border-b border-white/5 pb-4">
+                        {/* Salon Details Section - NOW OUTSIDE the flex-row */}
+                        <div className="mt-6 pt-6 border-t border-white/5">
+                            <div className="mb-6 flex items-end">
                                 <div>
                                     <h4 className="text-xl font-bold text-white tracking-tight">{selectedSalon.nombre_salon}</h4>
                                     <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mt-1">
@@ -398,7 +401,7 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {[
                                     {
                                         id: 'performance',

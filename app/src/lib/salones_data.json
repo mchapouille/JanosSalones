@@ -26,7 +26,7 @@
       "marginContribution": 1406006469.8400002,
       "rentIncidence": 0.2028,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 58012.32,
@@ -72,7 +72,7 @@
       "marginContribution": 1047114678.85,
       "rentIncidence": 0.1362,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 21705.45,
@@ -118,7 +118,7 @@
       "marginContribution": 1578817607.07,
       "rentIncidence": 0.1269,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 29971.53,
@@ -164,7 +164,7 @@
       "marginContribution": 718576361.34,
       "rentIncidence": 0.2327,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 25443.35,
@@ -210,7 +210,7 @@
       "marginContribution": 31605537.579999924,
       "rentIncidence": 0.3561,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 21921.2,
@@ -256,7 +256,7 @@
       "marginContribution": 1526604197.92,
       "rentIncidence": 0.2342,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 31610.7,
@@ -302,7 +302,7 @@
       "marginContribution": 899141953.8199999,
       "rentIncidence": 0.3575,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 43020.0,
@@ -348,7 +348,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -394,7 +394,7 @@
       "marginContribution": 1480945779.65,
       "rentIncidence": 0.0,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 44751.87,
@@ -440,7 +440,7 @@
       "marginContribution": 1292272841.92,
       "rentIncidence": 0.1374,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 28776.91,
@@ -486,7 +486,7 @@
       "marginContribution": 1361703950.65,
       "rentIncidence": 0.1318,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 21520.32,
@@ -532,7 +532,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0.1418,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 17591.78,
@@ -578,7 +578,7 @@
       "marginContribution": 1437633983.79,
       "rentIncidence": 0.0,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 28182.79,
@@ -624,7 +624,7 @@
       "marginContribution": 2178646716.79,
       "rentIncidence": 0.1697,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 11334.41,
@@ -670,7 +670,7 @@
       "marginContribution": 1648031511.59,
       "rentIncidence": 0.0677,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14360.41,
@@ -716,7 +716,7 @@
       "marginContribution": 1515259827.05,
       "rentIncidence": 0.2005,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 16551.71,
@@ -762,7 +762,7 @@
       "marginContribution": 1297837116.98,
       "rentIncidence": 0.0888,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 51254.31,
@@ -808,7 +808,7 @@
       "marginContribution": 1489380065.8,
       "rentIncidence": 0.1069,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 35416.41,
@@ -854,7 +854,7 @@
       "marginContribution": 1388659693.98,
       "rentIncidence": 0.1257,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 45794.12,
@@ -900,7 +900,7 @@
       "marginContribution": 622780267.77,
       "rentIncidence": 0.0712,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 62973.7,
@@ -946,7 +946,7 @@
       "marginContribution": 2480759781.71,
       "rentIncidence": 0.6738,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 7975.3,
@@ -992,7 +992,7 @@
       "marginContribution": 2843051916.06,
       "rentIncidence": 0.1288,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 16119.86,
@@ -1038,7 +1038,7 @@
       "marginContribution": 1882929553.73,
       "rentIncidence": 0.103,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 21169.73,
@@ -1084,7 +1084,7 @@
       "marginContribution": 2282697239.45,
       "rentIncidence": 0.1268,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 10920.78,
@@ -1130,7 +1130,7 @@
       "marginContribution": 1189626592.72,
       "rentIncidence": 0.0567,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 44529.84,
@@ -1176,7 +1176,7 @@
       "marginContribution": 591783044.27,
       "rentIncidence": 0.0613,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 15405.89,
@@ -1222,7 +1222,7 @@
       "marginContribution": 1089193759.13,
       "rentIncidence": 0.1123,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 17480.87,
@@ -1268,7 +1268,7 @@
       "marginContribution": 527854904.04999995,
       "rentIncidence": 0.1137,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 8409.53,
@@ -1314,7 +1314,7 @@
       "marginContribution": 1780511016.63,
       "rentIncidence": 0.3546,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 3808.59,
@@ -1360,7 +1360,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0.0915,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14130.35,
@@ -1406,7 +1406,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -1452,7 +1452,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -1498,7 +1498,7 @@
       "marginContribution": 2119689070.46,
       "rentIncidence": 0.0848,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 18372.42,
@@ -1544,7 +1544,7 @@
       "marginContribution": 790536506.2,
       "rentIncidence": 0.0,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 4989.71,
@@ -1590,7 +1590,7 @@
       "marginContribution": 858251894.56,
       "rentIncidence": 0.0728,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 8448.83,
@@ -1636,7 +1636,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -1682,7 +1682,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -1728,7 +1728,7 @@
       "marginContribution": 1723719427.15,
       "rentIncidence": 0.0589,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 34134.85,
@@ -1774,7 +1774,7 @@
       "marginContribution": 1527706647.88,
       "rentIncidence": 0.1049,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 24949.17,
@@ -1820,7 +1820,7 @@
       "marginContribution": 687091030.24,
       "rentIncidence": 0.1958,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 28646.07,
@@ -1866,7 +1866,7 @@
       "marginContribution": 1629454738.7,
       "rentIncidence": 0.1111,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 15404.23,
@@ -1912,7 +1912,7 @@
       "marginContribution": 61696249.0,
       "rentIncidence": 0.1193,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -1958,7 +1958,7 @@
       "marginContribution": 2027255624.6799998,
       "rentIncidence": 0.0657,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 19322.03,
@@ -2004,7 +2004,7 @@
       "marginContribution": 1377753921.6399999,
       "rentIncidence": 0.0,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 73531.86,
@@ -2050,7 +2050,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -2096,7 +2096,7 @@
       "marginContribution": 626412099.14,
       "rentIncidence": 0.1008,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 20199.52,
@@ -2142,7 +2142,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -2188,7 +2188,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -2234,7 +2234,7 @@
       "marginContribution": 1250632911.74,
       "rentIncidence": 0.147,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 27794.6,
@@ -2280,7 +2280,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -2326,7 +2326,7 @@
       "marginContribution": 935487705.9,
       "rentIncidence": 0.2954,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 8937.85,
@@ -2372,7 +2372,7 @@
       "marginContribution": 1810325479.04,
       "rentIncidence": 0.1288,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 59168.75,
@@ -2418,7 +2418,7 @@
       "marginContribution": 985128257.85,
       "rentIncidence": 0.0859,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14049.05,
@@ -2464,7 +2464,7 @@
       "marginContribution": 1260278890.33,
       "rentIncidence": 0.1262,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14076.27,
@@ -2510,7 +2510,7 @@
       "marginContribution": 1371889402.72,
       "rentIncidence": 0.0999,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14642.27,
@@ -2556,7 +2556,7 @@
       "marginContribution": 1064128733.32,
       "rentIncidence": 0.0894,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 11449.96,
@@ -2602,7 +2602,7 @@
       "marginContribution": 1941137542.74,
       "rentIncidence": 0.108,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 9143.16,
@@ -2648,7 +2648,7 @@
       "marginContribution": 620568465.12,
       "rentIncidence": 0.119,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 16616.31,
@@ -2694,7 +2694,7 @@
       "marginContribution": 480637812.04,
       "rentIncidence": 0.0536,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 14112.17,
@@ -2740,7 +2740,7 @@
       "marginContribution": 4188361593.75,
       "rentIncidence": 0.1766,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 119645.38,
@@ -2786,7 +2786,7 @@
       "marginContribution": 833119707.4,
       "rentIncidence": 0.2232,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 88842.39,
@@ -2832,7 +2832,7 @@
       "marginContribution": 1221049917.95,
       "rentIncidence": 0.2544,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 39795.21,
@@ -2878,7 +2878,7 @@
       "marginContribution": 1258954297.47,
       "rentIncidence": 0.4274,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 16042.13,
@@ -2924,7 +2924,7 @@
       "marginContribution": 932678525.52,
       "rentIncidence": 0.1742,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 76911.18,
@@ -2970,7 +2970,7 @@
       "marginContribution": 749938493.72,
       "rentIncidence": 0.1552,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 27574.97,
@@ -3016,7 +3016,7 @@
       "marginContribution": 1266381717.06,
       "rentIncidence": 0.354,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 34429.82,
@@ -3062,7 +3062,7 @@
       "marginContribution": 1937208671.17,
       "rentIncidence": 0.1698,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 40183.44,
@@ -3108,7 +3108,7 @@
       "marginContribution": 890443943.17,
       "rentIncidence": 0.1446,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 107730.49,
@@ -3154,7 +3154,7 @@
       "marginContribution": 1293416985.02,
       "rentIncidence": 0.1539,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 43836.98,
@@ -3200,7 +3200,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -3246,7 +3246,7 @@
       "marginContribution": 857832089.8,
       "rentIncidence": 0.434,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 20564.86,
@@ -3292,7 +3292,7 @@
       "marginContribution": 256625322.84000003,
       "rentIncidence": 0.1432,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 85985.73,
@@ -3338,7 +3338,7 @@
       "marginContribution": 1116499329.77,
       "rentIncidence": 0.1443,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 5123.95,
@@ -3384,7 +3384,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -3430,7 +3430,7 @@
       "marginContribution": 761446563.78,
       "rentIncidence": 0.1323,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 10566.98,
@@ -3476,7 +3476,7 @@
       "marginContribution": 65523170.28999996,
       "rentIncidence": 0.0959,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 23759.69,
@@ -3522,7 +3522,7 @@
       "marginContribution": 1936586792.49,
       "rentIncidence": 0.0965,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 9184.76,
@@ -3568,7 +3568,7 @@
       "marginContribution": 1624709940.16,
       "rentIncidence": 0.2033,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 6965.32,
@@ -3614,7 +3614,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -3660,7 +3660,7 @@
       "marginContribution": 1118294213.99,
       "rentIncidence": 0.0927,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 11660.49,
@@ -3706,7 +3706,7 @@
       "marginContribution": 802424334.52,
       "rentIncidence": 0.0744,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 6468.49,
@@ -3752,7 +3752,7 @@
       "marginContribution": 865640603.74,
       "rentIncidence": 0.2706,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 8722.86,
@@ -3798,7 +3798,7 @@
       "marginContribution": 455319082.89,
       "rentIncidence": 0.0708,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 11441.67,
@@ -3844,7 +3844,7 @@
       "marginContribution": 1602139077.99,
       "rentIncidence": 0.0724,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 72521.07,
@@ -3890,7 +3890,7 @@
       "marginContribution": 907193458.02,
       "rentIncidence": 0.1071,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 54918.37,
@@ -3936,7 +3936,7 @@
       "marginContribution": 911309804.23,
       "rentIncidence": 0.1416,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 15528.76,
@@ -3982,7 +3982,7 @@
       "marginContribution": 908566286.24,
       "rentIncidence": 0.1933,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 37748.74,
@@ -4028,7 +4028,7 @@
       "marginContribution": 1315912016.63,
       "rentIncidence": 0.206,
       "status": "normal",
-      "color": "text-red-500"
+      "color": "red"
     },
     "benchmark": {
       "rentPerMt2": 43142.18,
@@ -4074,7 +4074,7 @@
       "marginContribution": 869694183.73,
       "rentIncidence": 0.1988,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 8621.89,
@@ -4120,7 +4120,7 @@
       "marginContribution": 1292255849.9,
       "rentIncidence": 0.1339,
       "status": "normal",
-      "color": "text-yellow-500"
+      "color": "yellow"
     },
     "benchmark": {
       "rentPerMt2": 19173.62,
@@ -4166,7 +4166,7 @@
       "marginContribution": 983327558.86,
       "rentIncidence": 0.1182,
       "status": "normal",
-      "color": "text-green-500"
+      "color": "green"
     },
     "benchmark": {
       "rentPerMt2": 697.87,
@@ -4212,7 +4212,7 @@
       "marginContribution": 1687312022.71,
       "rentIncidence": 0.0891,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4258,7 +4258,7 @@
       "marginContribution": 848882451.8,
       "rentIncidence": 0.1073,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4304,7 +4304,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4350,7 +4350,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4396,7 +4396,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4442,7 +4442,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4488,7 +4488,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4534,7 +4534,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4580,7 +4580,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4626,7 +4626,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4672,7 +4672,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4718,7 +4718,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4764,7 +4764,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,
@@ -4810,7 +4810,7 @@
       "marginContribution": 0.0,
       "rentIncidence": 0,
       "status": "normal",
-      "color": "text-slate-400"
+      "color": "gray"
     },
     "benchmark": {
       "rentPerMt2": 0,

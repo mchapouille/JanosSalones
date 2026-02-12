@@ -27,7 +27,9 @@ def clean_numeric(val):
         elif ',' in s and '.' in s:
             # Assume dot is thousand separator and comma is decimal
             s = s.replace('.', '').replace(',', '.')
-        return float(s)
+        res = float(s)
+        import math
+        return res if math.isfinite(res) else 0
     except:
         return 0
 
@@ -40,15 +42,15 @@ def clean_tier(tier_str):
 
 def clean_color(situacion):
     if pd.isna(situacion):
-        return 'text-slate-400'
+        return 'gray'
     text = str(situacion).upper()
     if 'REVISAR' in text or '🔴' in text:
-        return 'text-red-500'
+        return 'red'
     if 'ESTÁNDAR' in text or '🟡' in text:
-        return 'text-yellow-500'
+        return 'yellow'
     if 'ÓPTIMO' in text or '🟢' in text:
-        return 'text-green-500'
-    return 'text-slate-400'
+        return 'green'
+    return 'gray'
 
 def ingest():
     print(f"Reading {EXCEL_PATH}...")
