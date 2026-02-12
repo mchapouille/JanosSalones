@@ -449,11 +449,8 @@ export default function DashboardPage() {
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </div>
                 </motion.div>
-    )
-}
-        </div >
+            )}
+        </div>
     );
 }
