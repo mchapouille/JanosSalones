@@ -238,7 +238,7 @@
     "efficiency": {
       "rentPerPax": 46186.75,
       "medianPaxTier": 100296.38,
-      "globalIndex": 0.6144694348999999,
+      "globalIndex": 0.6144694349,
       "color": "green"
     },
     "contractAudit": {
@@ -4131,117 +4131,66 @@
     }
   },
   {
+    "id_salon": 7,
+    "year": 2025,
+    "nombre_salon": "Quinta",
+    "estado_salon": "DEVUELTOS",
+    "direccion_salon": "Ruta 8 km 42200",
+    "cp_salon": "B1669",
+    "municipio_salon": "Del Viso",
+    "lat_salon": -34.4692568,
+    "lon_salon": -58.7977026,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
     "id_salon": 82,
     "year": 2025,
     "nombre_salon": "Beach",
     "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 102,
-    "year": 2025,
-    "nombre_salon": "Estancia",
-    "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 117,
-    "year": 2025,
-    "nombre_salon": "General Rodriguez",
-    "estado_salon": "OBRA",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "Av de los Trabajadores 4700",
+    "cp_salon": "B7600",
+    "municipio_salon": "Núñez",
+    "lat_salon": -34.5270668,
+    "lon_salon": -58.4571677,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
@@ -4288,11 +4237,11 @@
     "year": 2025,
     "nombre_salon": "Holiday Inn",
     "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "Martin Miguel de Guemes, RN A002 numero 4718 Km 20, Ezeiza",
+    "cp_salon": "B1778",
+    "municipio_salon": "Buenos Aires",
+    "lat_salon": -34.7337908,
+    "lon_salon": -58.5199157,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
@@ -4339,215 +4288,11 @@
     "year": 2025,
     "nombre_salon": "Holiday Inn 2",
     "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 129,
-    "year": 2025,
-    "nombre_salon": "La Candelaria",
-    "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 133,
-    "year": 2025,
-    "nombre_salon": "La Plata 2",
-    "estado_salon": "OBRA",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 134,
-    "year": 2025,
-    "nombre_salon": "La Plata Boutique",
-    "estado_salon": "OBRA",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
-    "cantidad_eventos_salon": 0,
-    "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
-    "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "color": "gray",
-      "classification": "normal"
-    },
-    "benchmark": {
-      "rentPerMt2": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "green"
-    },
-    "efficiency": {
-      "rentPerPax": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
-      "color": "gray"
-    },
-    "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
-      "deviationPercent": 0,
-      "color": "green"
-    },
-    "extra": {
-      "meses_activos": 0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
-    }
-  },
-  {
-    "id_salon": 119,
-    "year": 2025,
-    "nombre_salon": "Lomas",
-    "estado_salon": "OBRA",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "Martin Miguel de Guemes, RN A002 numero 4718 Km 20, Ezeiza",
+    "cp_salon": "B1778",
+    "municipio_salon": "Buenos Aires",
+    "lat_salon": -34.7337908,
+    "lon_salon": -58.5199157,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
@@ -4594,11 +4339,11 @@
     "year": 2025,
     "nombre_salon": "Playa Grande 2",
     "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "sin datos",
+    "cp_salon": "sin datos",
+    "municipio_salon": "sin datos",
+    "lat_salon": -38.416097,
+    "lon_salon": -63.61667199999999,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
@@ -4641,15 +4386,117 @@
     }
   },
   {
-    "id_salon": 7,
+    "id_salon": 102,
     "year": 2025,
-    "nombre_salon": "Quinta",
+    "nombre_salon": "Estancia",
     "estado_salon": "DEVUELTOS",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "Ruta 1001, km 5, Rafael Castillo",
+    "cp_salon": "B1755",
+    "municipio_salon": "Rafael Castillo",
+    "lat_salon": -34.7215238,
+    "lon_salon": -58.6436412,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
+    "id_salon": 117,
+    "year": 2025,
+    "nombre_salon": "General Rodriguez",
+    "estado_salon": "OBRA",
+    "direccion_salon": "Av Gaona Km 51.500, Gral Rodriguez, Buenos Aires",
+    "cp_salon": "C1748",
+    "municipio_salon": "General Rodríguez",
+    "lat_salon": -34.594363,
+    "lon_salon": -58.940487,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
+    "id_salon": 119,
+    "year": 2025,
+    "nombre_salon": "Lomas",
+    "estado_salon": "OBRA",
+    "direccion_salon": "Alsina 1757, Lomas de Zamora, Buenos Aires",
+    "cp_salon": "B1828",
+    "municipio_salon": "Lomas de Zamora",
+    "lat_salon": -34.7571014,
+    "lon_salon": -58.3958724,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
@@ -4696,11 +4543,164 @@
     "year": 2025,
     "nombre_salon": "Recoleta",
     "estado_salon": "OBRA",
-    "direccion_salon": null,
-    "cp_salon": null,
-    "municipio_salon": null,
-    "lat_salon": null,
-    "lon_salon": null,
+    "direccion_salon": "Av. Pueyrredon 2501, CABA",
+    "cp_salon": "C1119",
+    "municipio_salon": "ACI",
+    "lat_salon": -34.5860662,
+    "lon_salon": -58.3923,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
+    "id_salon": 129,
+    "year": 2025,
+    "nombre_salon": "La Candelaria",
+    "estado_salon": "DEVUELTOS",
+    "direccion_salon": "Ruta Nacional 205, Km 114.5, Lobos",
+    "cp_salon": "B7240",
+    "municipio_salon": "Lobos",
+    "lat_salon": -35.2495308,
+    "lon_salon": -59.2241341,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
+    "id_salon": 133,
+    "year": 2025,
+    "nombre_salon": "La Plata 2",
+    "estado_salon": "OBRA",
+    "direccion_salon": "Av 72 730, La Plata",
+    "cp_salon": "B1914",
+    "municipio_salon": "La Plata",
+    "lat_salon": -34.9204885,
+    "lon_salon": -57.9151289,
+    "pax_calculado": 0,
+    "mt2_salon": 0,
+    "cantidad_eventos_salon": 0,
+    "total_invitados_salon": 0,
+    "costos_variables_salon": 0,
+    "costos_fijos_salon": 0,
+    "ventas_totales_salon": 0,
+    "rentabilidad_salon": 0,
+    "tier": 0,
+    "performance": {
+      "rentIncidence": 0,
+      "multiplier": 0,
+      "marginContribution": 0,
+      "color": "gray",
+      "classification": "normal"
+    },
+    "benchmark": {
+      "rentPerMt2": 0,
+      "marketCostPerMt2": 0,
+      "deviation": 0,
+      "color": "green"
+    },
+    "efficiency": {
+      "rentPerPax": 0,
+      "medianPaxTier": 0,
+      "globalIndex": 0,
+      "color": "gray"
+    },
+    "contractAudit": {
+      "contractAmount": 0,
+      "realPayment": 0,
+      "deviationPercent": 0,
+      "color": "green"
+    },
+    "extra": {
+      "meses_activos": 0,
+      "ticket_evento": 0,
+      "ticket_persona": 0,
+      "venta_mensual": 0
+    }
+  },
+  {
+    "id_salon": 134,
+    "year": 2025,
+    "nombre_salon": "La Plata Boutique",
+    "estado_salon": "OBRA",
+    "direccion_salon": "Av 72 730, La Plata",
+    "cp_salon": "B1904",
+    "municipio_salon": "La Plata",
+    "lat_salon": -34.9207701,
+    "lon_salon": -57.9351125,
     "pax_calculado": 0,
     "mt2_salon": 0,
     "cantidad_eventos_salon": 0,
