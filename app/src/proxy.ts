@@ -5,6 +5,19 @@ export const proxy = auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
+    // Canonical redirect to hide Vercel usernames (martinmchs) in the address bar
+    const host = req.headers.get("host");
+    const PRODUCTION_DOMAIN = "janossalones.vercel.app";
+
+    if (
+        process.env.NODE_ENV === "production" &&
+        host &&
+        host !== PRODUCTION_DOMAIN &&
+        !host.includes("localhost")
+    ) {
+        return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}${nextUrl.pathname}${nextUrl.search}`);
+    }
+
     const isAuthPage = nextUrl.pathname === "/login";
     const isDashboardPage = nextUrl.pathname.startsWith("/dashboard");
 
