@@ -1,20 +1,18 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
-export const proxy = auth((req) => {
+const proxyHandler = auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
-    // Canonical redirect to hide Vercel usernames (martinmchs) in the address bar
+    // Canonical redirect to hide Vercel usernames in the address bar
     const host = req.headers.get("host");
     const PRODUCTION_DOMAIN = "janossalones.vercel.app";
 
-    if (
-        process.env.NODE_ENV === "production" &&
-        host &&
-        host !== PRODUCTION_DOMAIN &&
-        !host.includes("localhost")
-    ) {
+    // Detect Vercel environment more reliably
+    const isVercelPreview = host && host.includes("vercel.app") && host !== PRODUCTION_DOMAIN;
+
+    if (isVercelPreview && !host.includes("localhost")) {
         return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}${nextUrl.pathname}${nextUrl.search}`);
     }
 
@@ -46,3 +44,6 @@ export const proxy = auth((req) => {
 export const config = {
     matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
+
+export const proxy = proxyHandler;
+export default proxyHandler;
