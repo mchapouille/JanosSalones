@@ -173,11 +173,11 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
                             {
-                                label: "Red de Salones",
+                                label: selectedEstado ? (selectedEstado === "ACTIVO" ? "Salones Activos" : selectedEstado === "OBRA" ? "Salones en Obra" : "Salones Devueltos") : "Red de Salones",
                                 value: filtered.length.toString(),
                                 icon: Building2,
                                 color: "#2563eb",
-                                sub: `${activeSalones.length} Act | ${obraSalones.length} Obra | ${devueltosSalones.length} Dev`
+                                sub: selectedEstado ? "Filtrado por estado" : "Total de la red"
                             },
                             { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "periodo analizado" },
                             { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
