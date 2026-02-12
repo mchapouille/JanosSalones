@@ -92,9 +92,9 @@ export default function PerformancePage() {
     const groupedSalones = useMemo(() => {
         const filtered = chartData.filter(s => s.isFiltered);
         return {
-            efficient: filtered.filter(s => s.incidencia < 12).sort((a, b) => a.incidencia - b.incidencia),
-            aligned: filtered.filter(s => s.incidencia >= 12 && s.incidencia <= 18).sort((a, b) => a.incidencia - b.incidencia),
-            critical: filtered.filter(s => s.incidencia > 18).sort((a, b) => b.incidencia - a.incidencia),
+            efficient: filtered.filter(s => s.incidencia < 15).sort((a, b) => a.incidencia - b.incidencia),
+            aligned: filtered.filter(s => s.incidencia >= 15 && s.incidencia <= 25).sort((a, b) => a.incidencia - b.incidencia),
+            critical: filtered.filter(s => s.incidencia > 25).sort((a, b) => b.incidencia - a.incidencia),
         };
     }, [chartData]);
 
@@ -292,21 +292,21 @@ export default function PerformancePage() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1" />
                                 <div>
                                     <p className="text-[11px] font-bold text-green-400">Eficiencia Máxima</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &lt; 12%. Operación altamente rentable.</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &lt; 15%. Operación altamente rentable.</p>
                                 </div>
                             </div>
                             <div className="flex gap-3 pt-4 border-t border-white/5">
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1" />
                                 <div>
                                     <p className="text-[11px] font-bold text-blue-400">Alineación</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Rango 12-18%. Estructura de costos equilibrada.</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Rango 15-25%. Estructura de costos equilibrada.</p>
                                 </div>
                             </div>
                             <div className="flex gap-3 pt-4 border-t border-white/5">
                                 <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1" />
                                 <div>
                                     <p className="text-[11px] font-bold text-red-400">Riesgo Operativo</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &gt; 18%. Requiere revisión urgente.</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &gt; 25%. Requiere revisión de rentabilidad.</p>
                                 </div>
                             </div>
                         </div>
@@ -513,7 +513,7 @@ export default function PerformancePage() {
                                     <p className="text-lg font-bold text-white">{formatARS(simulation.newCostosFijos)}</p>
                                 </div>
                                 <div className="glass-card-light p-3">
-                                    <p className="text-xs text-slate-500">Nueva Incidencia</p>
+                                    <p className="text-xs text-slate-500">Incidencia Resultante</p>
                                     <p className="text-lg font-bold" style={{ color: simulation.newIncidence > 25 ? "#ef4444" : simulation.newIncidence > 15 ? "#eab308" : "#22c55e" }}>
                                         {formatPercentage(simulation.newIncidence)}
                                     </p>

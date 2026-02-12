@@ -136,13 +136,13 @@ export default function BenchmarkingPage() {
                                 className="w-full" style={{ maxWidth: `${20 + (5 - tier) * 15 + 20}%` }}>
                                 <div className="py-3 px-5 rounded-xl" style={{ background: `${colors[tier - 1]}15`, border: `1px solid ${colors[tier - 1]}30` }}>
                                     <div className="flex items-center justify-between">
-                                        <div className="text-left">
-                                            <p className="text-sm font-bold text-white">Tier {tier} — {def?.name}</p>
-                                            <p className="text-[11px] text-slate-500">{def?.examples.join(", ")}</p>
+                                        <div className="flex flex-col items-center justify-center text-center">
+                                            <p className="text-sm font-bold text-white uppercase tracking-tight">Tier {tier} — {def?.name}</p>
+                                            <p className="text-[10px] text-slate-500 font-medium">{def?.examples.join(", ")}</p>
                                         </div>
-                                        <div className="text-right">
-                                            <p className="text-sm font-bold" style={{ color: colors[tier - 1] }}>{salonesInTier.length} sal.</p>
-                                            {benchmark && <p className="text-[11px]" style={{ color: benchmark.desvio <= 0 ? "#22c55e" : "#ef4444" }}>{benchmark.desvio > 0 ? "+" : ""}{formatPercentage(benchmark.desvio)}</p>}
+                                        <div className="flex items-center justify-center gap-4 mt-2 pt-2 border-t border-white/5 w-full">
+                                            <p className="text-[11px] font-bold" style={{ color: colors[tier - 1] }}>{salonesInTier.length} salones</p>
+                                            {benchmark && <p className="text-[11px] font-black" style={{ color: benchmark.desvio <= 0 ? "#22c55e" : "#ef4444" }}>{benchmark.desvio > 0 ? "+" : ""}{formatPercentage(benchmark.desvio)}</p>}
                                         </div>
                                     </div>
                                 </div>
@@ -170,29 +170,29 @@ export default function BenchmarkingPage() {
             </div>
 
             {/* Table */}
-            <div className="glass-card p-6">
+            <div className="glass-card p-6 overflow-x-auto">
                 <h2 className="text-lg font-semibold text-white mb-4">Comparativa por Tier</h2>
-                <table className="w-full text-sm">
+                <table className="w-full text-sm min-w-[600px]">
                     <thead>
-                        <tr className="border-b border-slate-700/50">
-                            <th className="text-left py-3 px-3 text-slate-400">Segmento</th>
-                            <th className="text-right py-3 px-3 text-slate-400">Real /m²</th>
-                            <th className="text-right py-3 px-3 text-slate-400">Mercado /m²</th>
-                            <th className="text-right py-3 px-3 text-slate-400">Desvío</th>
-                            <th className="text-center py-3 px-3 text-slate-400">Estado</th>
+                        <tr className="border-b border-white/5">
+                            <th className="text-left py-4 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider">Segmento</th>
+                            <th className="text-right py-4 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider">Real /m²</th>
+                            <th className="text-right py-4 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider">Mercado /m²</th>
+                            <th className="text-center py-4 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider">Desvío</th>
+                            <th className="text-center py-4 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tierComparison.map((t) => (
-                            <tr key={t.tier} className="border-b border-slate-800/30">
-                                <td className="py-3 px-3 text-white font-medium">{t.tier}</td>
-                                <td className="py-3 px-3 text-right text-white">{formatARS(t.promedioReal)}</td>
-                                <td className="py-3 px-3 text-right text-blue-400">{formatARS(t.promedioMercado)}</td>
-                                <td className="py-3 px-3 text-right font-medium" style={{ color: t.desvio <= 0 ? "#22c55e" : "#ef4444" }}>
+                            <tr key={t.tier} className="border-b border-white/5 last:border-0 group hover:bg-white/5 transition-colors">
+                                <td className="py-4 px-4 text-white font-bold">{t.tier}</td>
+                                <td className="py-4 px-4 text-right text-slate-100 font-medium">{formatARS(t.promedioReal)}</td>
+                                <td className="py-4 px-4 text-right text-blue-400 font-medium">{formatARS(t.promedioMercado)}</td>
+                                <td className="py-4 px-4 text-center font-bold" style={{ color: t.desvio <= 0 ? "#22c55e" : "#ef4444" }}>
                                     {t.desvio > 0 ? "+" : ""}{formatPercentage(t.desvio)}
                                 </td>
-                                <td className="py-3 px-3 text-center">
-                                    <span className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: t.estado === "Eficiente" ? "#22c55e15" : "#ef444415", color: t.estado === "Eficiente" ? "#22c55e" : "#ef4444" }}>
+                                <td className="py-4 px-4 text-center">
+                                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider" style={{ background: t.estado === "Eficiente" ? "#22c55e15" : "#ef444415", color: t.estado === "Eficiente" ? "#22c55e" : "#ef4444", border: `1px solid ${t.estado === "Eficiente" ? "#22c55e30" : "#ef444430"}` }}>
                                         {t.estado}
                                     </span>
                                 </td>

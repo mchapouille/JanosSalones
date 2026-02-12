@@ -9,11 +9,11 @@ export const USD_ARS_RATE = 1470;
 // ---- TIER DEFINITIONS ----
 // Based on the audit report segmentation
 export const TIER_DEFINITIONS: Record<number, { name: string; description: string; examples: string[] }> = {
-    1: { name: "Exclusivos / Shopping", description: "Salones de alto perfil y locales en Shoppings", examples: ["Sans Souci", "Costanera", "Alto Avellaneda", "DOT"] },
-    2: { name: "Premium", description: "Ubicaciones de alta demanda en CABA y Corredor Norte", examples: ["Palermo", "Belgrano", "Pilar"] },
-    3: { name: "Media-Alta", description: "Polos de crecimiento con valores en ascenso", examples: ["Canning", "Hudson", "Caballito"] },
-    4: { name: "Media", description: "Zonas consolidadas con precios estandarizados", examples: ["Ramos Mejía", "San Martín", "La Plata"] },
-    5: { name: "Base", description: "Unidades operativas con menores costos fijos", examples: ["Villa Luzuriaga", "Merlo"] },
+    1: { name: "Locales / Shopping", description: "Salones de bajo costo o locales en Shoppings", examples: ["Avellaneda", "Shopping"] },
+    2: { name: "Premium / Estates", description: "Ubicaciones exclusivas y de alta gama", examples: ["Palacio Sans Souci", "Dardo Rocha"] },
+    3: { name: "Media-Alta", description: "Polos de crecimiento con valores competitivos", examples: ["Canning", "Hudson", "Caballito"] },
+    4: { name: "Media", description: "Zonas consolidadas con precios estandarizados", examples: ["Ramos Mejía", "San Martín"] },
+    5: { name: "Base / Operativa", description: "Unidades operativas con menores costos fijos", examples: ["Villa Luzuriaga", "Merlo"] },
 };
 
 // ---- BENCHMARKING DATA (from audit report) ----

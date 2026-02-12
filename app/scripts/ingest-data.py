@@ -164,9 +164,9 @@ def ingest():
                 "color": map_tier_to_color(row.get('semaforo_indice_global'))
             },
             "contractAudit": {
-                "contractAmount": clean_numeric(row.get('precio_alquiler')),
+                "contractAmount": clean_numeric(row.get('alquiler_pactado_usd')) * 1470 if clean_numeric(row.get('alquiler_pactado_usd')) > 0 else clean_numeric(row.get('precio_alquiler')),
                 "realPayment": clean_numeric(row.get('costos_fijos_salon')),
-                "deviationPercent": 0,
+                "deviationPercent": 0, # Will be recalculated in frontend but good to have context
                 "color": "green"
             },
             "extra": {

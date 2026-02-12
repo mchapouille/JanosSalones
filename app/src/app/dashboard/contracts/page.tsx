@@ -52,6 +52,7 @@ export default function ContractsPage() {
                 tier: s.tier,
                 contratoUSD: contractUSD,
                 pagoRealARS: s.costos_fijos_salon || 0,
+                rentIncidence: s.performance?.rentIncidence || 0,
                 ...result
             };
         }).filter(a => a.contratoUSD > 0), [salones, conversionRate]
@@ -80,7 +81,7 @@ export default function ContractsPage() {
                 <div>
                     <h1 className="text-2xl font-bold text-white">Auditoría de Contratos</h1>
                     <p className="text-slate-400 text-sm mt-1">
-                        Cruce: &quot;Excel de Alquileres&quot; (USD) vs &quot;Alquileres Salones&quot; (ARS real)
+                        Auditoría: Monto Pactado (USD) vs Pago Real Ejecutado (ARS)
                     </p>
                 </div>
 
@@ -110,7 +111,9 @@ export default function ContractsPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Contratos Analizados</p>
                     <p className="text-3xl font-bold text-white">{audits.length}</p>
-                    <p className="text-xs text-slate-500 mt-1">vigentes a Feb 2026</p>
+                    <p className="text-xs text-slate-500 mt-1">
+                        {selectedYear === 2025 ? "al 31 de Dic 2025" : selectedYear === 2024 ? "al 31 de Dic 2024" : "analizados al día de hoy"}
+                    </p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Total Acumulado</p>
@@ -158,9 +161,11 @@ export default function ContractsPage() {
                                                 <div className="flex items-center gap-2 mt-0.5">
                                                     <span className="text-[10px] text-slate-500">Tier {a.tier}</span>
                                                     <span className="text-[10px] text-slate-600">•</span>
-                                                    <span className={`text-[10px] font-bold ${a.deviation > 0 ? "text-red-400" : "text-green-400"}`}>
-                                                        {a.deviationPercent > 0 ? "+" : ""}{formatPercentage(a.deviationPercent)}
+                                                    <span className={`text-[10px] font-bold ${a.deviationPercent > 0 ? "text-red-400" : "text-green-400"}`}>
+                                                        Desvío: {a.deviationPercent > 0 ? "+" : ""}{formatPercentage(a.deviationPercent)}
                                                     </span>
+                                                    <span className="text-[10px] text-slate-600">•</span>
+                                                    <span className="text-[10px] text-slate-400">Inc: {formatPercentage(a.rentIncidence)}</span>
                                                 </div>
                                             </div>
                                             <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
@@ -236,17 +241,17 @@ export default function ContractsPage() {
                             </div>
 
                             <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center justify-center text-center">
-                                <p className="text-xs text-slate-500 uppercase font-bold mb-2">Porcentaje de Desvío</p>
+                                <p className="text-xs text-slate-500 uppercase font-bold mb-2">Desvío del Contrato</p>
                                 <div className="flex items-baseline gap-2">
                                     <span className={`text-5xl font-black ${selectedAudit.deviationPercent > 15 ? "text-red-500" : selectedAudit.deviationPercent > 5 ? "text-yellow-500" : "text-green-500"}`}>
-                                        {selectedAudit.deviationPercent > 0 ? "+" : ""}{selectedAudit.deviationPercent.toFixed(1)}%
+                                        {selectedAudit.deviation > 0 ? "+" : ""}{selectedAudit.deviationPercent.toFixed(1)}%
                                     </span>
                                 </div>
                                 <p className="text-xs text-slate-400 mt-4 max-w-sm leading-relaxed">
                                     {selectedAudit.deviationPercent > 15
-                                        ? "El desvío supera el umbral crítico. Se recomienda auditar los comprobantes de pago de los últimos 3 meses."
+                                        ? `El desvío supera el umbral crítico. El salón tiene una incidencia real de alquiler del ${formatPercentage(selectedAudit.rentIncidence)}.`
                                         : selectedAudit.deviationPercent > 5
-                                            ? "El desvío es moderado. Podría deberse a ajustes por inflación o tasas municipales no contempladas en el USD."
+                                            ? `El desvío es moderado (${formatPercentage(selectedAudit.deviationPercent)}). La incidencia sobre ventas es del ${formatPercentage(selectedAudit.rentIncidence)}.`
                                             : "El pago real está alineado con el contrato pactado según la tasa de conversión actual."}
                                 </p>
                             </div>
