@@ -112,7 +112,7 @@ export default function ContractsPage() {
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Contratos Analizados</p>
                     <p className="text-3xl font-bold text-white">{audits.length}</p>
                     <p className="text-xs text-slate-500 mt-1">
-                        {selectedYear === 2025 ? "al 31 de Dic 2025" : selectedYear === 2024 ? "al 31 de Dic 2024" : "analizados al día de hoy"}
+                        De {salones.length} activos {salones.length > audits.length && <span className="text-red-400 font-bold ml-1">({salones.length - audits.length} s/info)</span>}
                     </p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">

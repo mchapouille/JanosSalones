@@ -168,24 +168,30 @@ export default function PerformancePage() {
                 </div>
             </div>
 
-            {/* Alert Cards */}
-            {alertSalones.length > 0 && (
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3"
-                >
-                    <AlertTriangle size={20} className="text-red-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                        <p className="text-sm font-semibold text-red-400">
-                            {alertSalones.length} salón(es) con incidencia de alquiler superior al 25%
-                        </p>
-                        <p className="text-xs text-red-400/70 mt-1">
-                            {alertSalones.map((s) => s.nombre_salon).join(", ")}
-                        </p>
-                    </div>
+            {/* KPI Summary Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
+                    <p className="text-3xl font-bold text-white">{chartData.length}</p>
+                    <p className="text-xs text-slate-500 mt-1">
+                        De {salones.length} activos {salones.length > chartData.length && <span className="text-red-400 font-bold ml-1">({salones.length - chartData.length} s/info)</span>}
+                    </p>
                 </motion.div>
-            )}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Incidencia Promedio</p>
+                    <p className="text-3xl font-bold text-blue-400">
+                        {formatPercentage(chartData.reduce((acc, s) => acc + s.incidencia, 0) / (chartData.length || 1))}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-1">promedio mensual red</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Margen Promedio</p>
+                    <p className="text-3xl font-bold text-emerald-400">
+                        {formatARS(salones.reduce((acc, s) => acc + (s.performance?.marginContribution || 0), 0) / (chartData.length || 1))}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-1">contribución mensual</p>
+                </motion.div>
+            </div>
 
             {/* Revenue vs Rent Scatter Chart */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-4">

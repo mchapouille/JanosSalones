@@ -177,7 +177,7 @@ export default function DashboardPage() {
                                 value: filtered.length.toString(),
                                 icon: Building2,
                                 color: "#2563eb",
-                                sub: selectedEstado ? "Filtrado por estado" : "Total de la red"
+                                sub: selectedEstado ? `Filtrado por ${selectedEstado}` : `${salones.filter(s => s.estado_salon === "ACTIVO").length} activos en red`
                             },
                             { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "periodo analizado" },
                             { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                             return (
                                 <div
                                     key={kpi.label}
-                                    className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all group/kpi"
+                                    className="p-6 px-7 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all group/kpi"
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div
@@ -198,7 +198,7 @@ export default function DashboardPage() {
                                         </div>
                                         <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">{kpi.sub}</span>
                                     </div>
-                                    <p className="text-2xl font-bold text-white">{kpi.value}</p>
+                                    <p className="text-xl lg:text-2xl font-bold text-white truncate">{kpi.value}</p>
                                     <p className="text-xs text-slate-500 uppercase font-bold mt-1 tracking-tight">{kpi.label}</p>
                                 </div>
                             );

@@ -92,7 +92,9 @@ export default function EfficiencyPage() {
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
                         <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
                         <p className="text-3xl font-bold text-white">{globalKPIs.total}</p>
-                        <p className="text-xs text-slate-500 mt-1">en el período {selectedYear || "total"}</p>
+                        <p className="text-xs text-slate-500 mt-1">
+                            De {salones.length} activos {salones.length > globalKPIs.total && <span className="text-red-400 font-bold ml-1">({salones.length - globalKPIs.total} s/info)</span>}
+                        </p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
                         <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Eficiencia Promedio</p>

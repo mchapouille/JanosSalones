@@ -114,11 +114,29 @@ export default function BenchmarkingPage() {
                 </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
-                <Info size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                <div className="text-sm text-blue-300/80">
-                    <p>Tasa USD→ARS: <strong className="text-blue-300">$1.470</strong>. Tier 1 excluido. Tier 2: locales comerciales {">"}100m².</p>
-                </div>
+            {/* KPI Summary Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
+                    <p className="text-3xl font-bold text-white">{salonBenchmarks.length}</p>
+                    <p className="text-xs text-slate-500 mt-1">
+                        De {salones.length} activos totales {salones.length > salonBenchmarks.length && <span className="text-red-400 font-bold ml-1">({salones.length - salonBenchmarks.length} s/info o Tier 1)</span>}
+                    </p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Promedio Real $/m²</p>
+                    <p className="text-3xl font-bold text-blue-400">
+                        {formatARS(salonBenchmarks.reduce((acc, s) => acc + s.costPerMt2, 0) / (salonBenchmarks.length || 1))}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-1">valor medio red</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Promedio</p>
+                    <p className="text-3xl font-bold" style={{ color: salonBenchmarks.reduce((acc, s) => acc + s.deviation, 0) > 0 ? "#ef4444" : "#22c55e" }}>
+                        {formatPercentage(salonBenchmarks.reduce((acc, s) => acc + s.deviation, 0) / (salonBenchmarks.length || 1))}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-1">vs mercado zonal</p>
+                </motion.div>
             </div>
 
             {/* Tier Pyramid */}

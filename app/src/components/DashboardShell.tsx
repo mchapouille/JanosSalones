@@ -18,7 +18,9 @@ import {
     ChevronRight,
     Menu,
     DollarSign,
+    HelpCircle,
 } from "lucide-react";
+import HelpModal from "./HelpModal";
 
 const menuItems = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, description: "Mapa & KPIs" },
@@ -34,7 +36,7 @@ export default function DashboardShell({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-    const { conversionRate, setConversionRate } = useDashboard();
+    const { conversionRate, setConversionRate, setIsHelpOpen } = useDashboard();
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -145,6 +147,15 @@ export default function DashboardShell({
                             </div>
                         </div>
 
+                        {/* Help Button */}
+                        <button
+                            onClick={() => setIsHelpOpen(true)}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+                        >
+                            <HelpCircle size={14} className="text-slate-400 group-hover:text-blue-400" />
+                            <span className="text-xs font-bold text-slate-400 group-hover:text-white">Ayuda</span>
+                        </button>
+
                         <div className="flex items-center gap-3">
                             <span className="text-sm text-slate-400">Admin</span>
                             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold">
@@ -157,6 +168,7 @@ export default function DashboardShell({
                 {/* Page content */}
                 <main className="flex-1 p-6 overflow-y-auto">{children}</main>
             </div>
+            <HelpModal />
         </div>
     );
 }

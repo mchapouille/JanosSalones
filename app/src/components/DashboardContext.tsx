@@ -8,6 +8,8 @@ interface DashboardContextType {
     availableYears: number[];
     conversionRate: number;
     setConversionRate: (rate: number) => void;
+    isHelpOpen: boolean;
+    setIsHelpOpen: (open: boolean) => void;
 }
 
 const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -15,7 +17,8 @@ const DashboardContext = createContext<DashboardContextType | undefined>(undefin
 export function DashboardProvider({ children }: { children: ReactNode }) {
     const availableYears = [2024, 2025, 2026];
     const [selectedYear, setSelectedYear] = useState<number | null>(null);
-    const [conversionRate, setConversionRate] = useState<number>(1470); // Default value as requested
+    const [conversionRate, setConversionRate] = useState<number>(1470);
+    const [isHelpOpen, setIsHelpOpen] = useState(false);
 
     return (
         <DashboardContext.Provider value={{
@@ -23,7 +26,9 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
             setSelectedYear,
             availableYears,
             conversionRate,
-            setConversionRate
+            setConversionRate,
+            isHelpOpen,
+            setIsHelpOpen
         }}>
             {children}
         </DashboardContext.Provider>
