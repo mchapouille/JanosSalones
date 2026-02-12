@@ -3,10 +3,39 @@ import json
 import os
 import re
 import math
+import requests
 
 # Paths
 EXCEL_PATH = 'data/resultados_unificado.xlsx'
 OUTPUT_JSON = 'src/lib/salones_data.json'
+
+def load_maps_key():
+    # Try looking in .env.local first
+    env_path = '.env.local'
+    if not os.path.exists(env_path):
+        env_path = os.path.join('app', env_path)
+    
+    if os.path.exists(env_path):
+        with open(env_path, 'r') as f:
+            for line in f:
+                if 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY' in line:
+                    return line.split('=')[1].strip().strip('"')
+    return os.environ.get('GOOGLE_MAPS_API_KEY')
+
+MAPS_API_KEY = load_maps_key()
+
+def geocode(address):
+    if not MAPS_API_KEY:
+        return None, None
+    try:
+        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={MAPS_API_KEY}"
+        r = requests.get(url).json()
+        if r['status'] == 'OK':
+            loc = r['results'][0]['geometry']['location']
+            return loc['lat'], loc['lng']
+    except:
+        pass
+    return None, None
 
 def clean_numeric(val):
     if pd.isna(val):
@@ -77,6 +106,23 @@ def ingest():
         year_raw = row.get('año')
         year = int(year_raw) if not pd.isna(year_raw) else 2025
 
+        # Coordinate handling with geocoding fallback
+        lat = float(row.get('lat_salon')) if not pd.isna(row.get('lat_salon')) else None
+        lon = float(row.get('lon_salon')) if not pd.isna(row.get('lon_salon')) else None
+        
+        # If missing coords, try to geocode
+        if (lat is None or lon is None or lat == 0) and MAPS_API_KEY:
+            addr_part = str(row.get('direccion_salon', '')) if not pd.isna(row.get('direccion_salon')) else ''
+            muni_part = str(row.get('municipio_salon', '')) if not pd.isna(row.get('municipio_salon')) else ''
+            
+            if addr_part or muni_part:
+                address = f"{addr_part}, {muni_part}, Argentina".strip(', ')
+                print(f"Geocoding: {address}...")
+                g_lat, g_lon = geocode(address)
+                if g_lat and g_lon:
+                    lat, lon = g_lat, g_lon
+                    print(f"  Success: {lat}, {lon}")
+
         salon = {
             "id_salon": int(row['id_salon']),
             "year": year,
@@ -85,8 +131,8 @@ def ingest():
             "direccion_salon": str(row.get('direccion_salon')) if not pd.isna(row.get('direccion_salon')) else None,
             "cp_salon": str(row.get('cp_salon')) if not pd.isna(row.get('cp_salon')) else None,
             "municipio_salon": str(row.get('municipio_salon')) if not pd.isna(row.get('municipio_salon')) else None,
-            "lat_salon": float(row.get('lat_salon')) if not pd.isna(row.get('lat_salon')) else None,
-            "lon_salon": float(row.get('lon_salon')) if not pd.isna(row.get('lon_salon')) else None,
+            "lat_salon": lat,
+            "lon_salon": lon,
             "pax_calculado": clean_numeric(row.get('pax_calculado')),
             "mt2_salon": clean_numeric(row.get('mt2_salon')),
             "cantidad_eventos_salon": int(clean_numeric(row.get('cantidad_eventos_salon'))),

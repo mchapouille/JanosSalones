@@ -70,6 +70,9 @@ export default function DashboardPage() {
     }, [filtered, selectedSalon]);
 
     const activeSalones = filtered.filter((s) => s.estado_salon === "ACTIVO");
+    const obraSalones = filtered.filter((s) => s.estado_salon === "OBRA");
+    const devueltosSalones = filtered.filter((s) => s.estado_salon === "DEVUELTOS");
+
     const totalRevenue = activeSalones.reduce((s, x) => s + (x.ventas_totales_salon || 0), 0);
     const totalEvents = activeSalones.reduce((s, x) => s + (x.cantidad_eventos_salon || 0), 0);
     const avgIncidence = activeSalones.length > 0
@@ -169,8 +172,14 @@ export default function DashboardPage() {
                     {/* KPI Cards (Now below filters within the same container) */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
-                            { label: "Salones Activos", value: activeSalones.length.toString(), icon: Building2, color: "#2563eb", sub: `de ${filtered.length} en red` },
-                            { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "período analizado" },
+                            {
+                                label: "Red de Salones",
+                                value: filtered.length.toString(),
+                                icon: Building2,
+                                color: "#2563eb",
+                                sub: `${activeSalones.length} Act | ${obraSalones.length} Obra | ${devueltosSalones.length} Dev`
+                            },
+                            { label: "Facturación Total", value: formatARS(totalRevenue), icon: DollarSign, color: "#22c55e", sub: "periodo analizado" },
                             { label: "Eventos Totales", value: formatNumber(totalEvents), icon: Users, color: "#8b5cf6", sub: "acumulado" },
                             { label: "Incidencia Promedio", value: formatPercentage(avgIncidence), icon: TrendingUp, color: avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e", sub: avgIncidence > 25 ? "⚠ Alerta" : "normal" },
                         ].map((kpi, idx) => {
@@ -231,7 +240,14 @@ export default function DashboardPage() {
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
-                                    <span className={`text-xs ${selectedSalon?.id_salon === salon.id_salon ? "text-white font-medium" : "text-slate-400"}`}>{salon.nombre_salon}</span>
+                                    <div className="flex flex-col">
+                                        <span className={`text-xs ${selectedSalon?.id_salon === salon.id_salon ? "text-white font-medium" : "text-slate-400"}`}>{salon.nombre_salon}</span>
+                                        {salon.estado_salon !== "ACTIVO" && (
+                                            <span className={`text-[8px] font-bold uppercase ${salon.estado_salon === "OBRA" ? "text-amber-500" : "text-slate-500"}`}>
+                                                {salon.estado_salon}
+                                            </span>
+                                        )}
+                                    </div>
                                     <div className="flex gap-1">
                                         {[salon.performance?.color, salon.efficiency?.color].map((c, i) => (
                                             c && <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getSemaphoreColor(c) }} />

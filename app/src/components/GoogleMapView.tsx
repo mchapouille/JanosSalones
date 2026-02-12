@@ -47,20 +47,26 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                     {salones.map((salon) => {
                         if (!salon.lat_salon || !salon.lon_salon) return null;
 
-                        const effColor = salon.efficiency ? getSemaphoreColor(salon.efficiency.color) : "#6b7280";
+                        const getMarkerColor = () => {
+                            if (salon.estado_salon === "OBRA") return "#f59e0b"; // Amber/Orange
+                            if (salon.estado_salon === "DEVUELTOS") return "#94a3b8"; // Slate/Gray
+                            return salon.efficiency ? getSemaphoreColor(salon.efficiency.color) : "#3b82f6";
+                        };
+
+                        const markerColor = getMarkerColor();
                         const isSelected = selectedSalon?.id_salon === salon.id_salon;
 
                         return (
                             <AdvancedMarker
-                                key={salon.id_salon}
+                                key={`${salon.id_salon}-${salon.year}`}
                                 position={{ lat: salon.lat_salon, lng: salon.lon_salon }}
                                 onClick={() => onSelectSalon(salon)}
-                                title={salon.nombre_salon}
+                                title={`${salon.nombre_salon}${salon.estado_salon !== "ACTIVO" ? ` (${salon.estado_salon})` : ""}`}
                             >
                                 <Pin
-                                    background={effColor}
+                                    background={markerColor}
                                     glyphColor={"#000"}
-                                    borderColor={isSelected ? "#fff" : effColor}
+                                    borderColor={isSelected ? "#fff" : markerColor}
                                     scale={isSelected ? 1.4 : 1.0}
                                 />
                             </AdvancedMarker>
