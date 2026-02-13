@@ -30,7 +30,7 @@ export const BENCHMARK_DATA: Record<number, { promedioReal: number; promedioMerc
 export interface PerformanceResult {
     rentIncidence: number;       // (costos_fijos / ventas_totales) * 100
     multiplier: number;          // ventas_totales / costos_fijos
-    marginContribution: number;  // ventas - costos_fijos - costos_variables
+    marginContribution: number;  // (ventas - costos_totales) / ventas_totales (as decimal 0-1)
     score: number;
     color: "green" | "yellow" | "red" | "critical";
     classification: "alta_eficiencia" | "normal" | "riesgo" | "riesgo_critico";
@@ -41,24 +41,33 @@ export function calcPerformance(
     ventasTotales: number,
     costosVariables: number
 ): PerformanceResult {
-    if (ventasTotales === 0) {
-        return { rentIncidence: 100, multiplier: 0, marginContribution: -costosFijos, score: 0, color: "critical", classification: "riesgo_critico" };
+    if (ventasTotales <= 0) {
+        return {
+            rentIncidence: 1, // 100%
+            multiplier: 0,
+            marginContribution: 0,
+            score: 0,
+            color: "critical",
+            classification: "riesgo_critico"
+        };
     }
 
-    const rentIncidence = (costosFijos / ventasTotales) * 100;
+    const rentIncidence = (costosFijos / ventasTotales);
     const multiplier = ventasTotales / costosFijos;
-    const marginContribution = ventasTotales - costosFijos - costosVariables;
+    // We want the margin contribution as a percentage of sales (e.g., 0.15 for 15%)
+    const marginContribution = (ventasTotales - costosFijos - costosVariables) / ventasTotales;
 
     let color: PerformanceResult["color"];
     let classification: PerformanceResult["classification"];
 
-    if (rentIncidence < 15) {
+    // Business Logic for coloring and classification (ranges are 0-1)
+    if (rentIncidence < 0.15) {
         color = "green";
         classification = "alta_eficiencia";
-    } else if (rentIncidence <= 25) {
+    } else if (rentIncidence <= 0.25) {
         color = "yellow";
         classification = "normal";
-    } else if (rentIncidence <= 35) {
+    } else if (rentIncidence <= 0.35) {
         color = "red";
         classification = "riesgo";
     } else {
@@ -66,11 +75,27 @@ export function calcPerformance(
         classification = "riesgo_critico";
     }
 
+    // Heuristic Score based on rent incidence (inverse relationship)
+    // 0-15% -> 80-100 pts
+    // 15-25% -> 50-80 pts
+    // 25-35% -> 20-50 pts
+    // >35% -> 0-20 pts
+    let score = 0;
+    if (rentIncidence < 0.15) {
+        score = 100 - (rentIncidence / 0.15) * 20;
+    } else if (rentIncidence <= 0.25) {
+        score = 80 - ((rentIncidence - 0.15) / 0.10) * 30;
+    } else if (rentIncidence <= 0.35) {
+        score = 50 - ((rentIncidence - 0.25) / 0.10) * 30;
+    } else {
+        score = Math.max(0, 20 - ((rentIncidence - 0.35) / 0.15) * 20);
+    }
+
     return {
         rentIncidence,
         multiplier,
         marginContribution,
-        score: 100 - (rentIncidence > 100 ? 100 : rentIncidence), // Simple heuristic score if not provided
+        score: Math.round(score * 100) / 100,
         color,
         classification
     };
@@ -210,7 +235,7 @@ export function simulateRentReduction(
     reductionPercent: number
 ): { newCostosFijos: number; newIncidence: number; newMargin: number; marginImprovement: number } {
     const newCostosFijos = costosFijos * (1 - reductionPercent / 100);
-    const newIncidence = ventasTotales > 0 ? (newCostosFijos / ventasTotales) * 100 : 0;
+    const newIncidence = ventasTotales > 0 ? (newCostosFijos / ventasTotales) : 0;
     const originalMargin = ventasTotales - costosFijos - costosVariables;
     const newMargin = ventasTotales - newCostosFijos - costosVariables;
     const marginImprovement = newMargin - originalMargin;

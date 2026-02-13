@@ -25,10 +25,9 @@ export default function PerformancePage() {
     const salonesResource = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
 
     const salones = useMemo(() => {
-        if (selectedYear !== null) return salonesResource;
-
-        // Aggregate by id_salon
+        // Aggregate by id_salon to handle "All Years" view or multiple records
         const aggregatedMap = new Map<number, any>();
+
         salonesResource.forEach(s => {
             if (!aggregatedMap.has(s.id_salon)) {
                 aggregatedMap.set(s.id_salon, { ...s, count: 1 });
@@ -37,16 +36,36 @@ export default function PerformancePage() {
                 existing.ventas_totales_salon = (existing.ventas_totales_salon || 0) + (s.ventas_totales_salon || 0);
                 existing.costos_fijos_salon = (existing.costos_fijos_salon || 0) + (s.costos_fijos_salon || 0);
                 existing.costos_variables_salon = (existing.costos_variables_salon || 0) + (s.costos_variables_salon || 0);
+                // Also sum pre-calculated metrics to promediate them
+                existing.performance = {
+                    ...existing.performance,
+                    score: (existing.performance?.score || 0) + (s.performance?.score || 0),
+                    rentIncidence: (existing.performance?.rentIncidence || 0) + (s.performance?.rentIncidence || 0),
+                    marginContribution: (existing.performance?.marginContribution || 0) + (s.performance?.marginContribution || 0),
+                };
                 existing.count += 1;
             }
         });
 
         return Array.from(aggregatedMap.values()).map(s => {
-            const avgVentas = s.ventas_totales_salon / s.count;
-            const avgFijos = s.costos_fijos_salon / s.count;
-            const avgVariables = s.costos_variables_salon / s.count;
+            const count = s.count || 1;
+            const avgVentas = s.ventas_totales_salon / count;
+            const avgFijos = s.costos_fijos_salon / count;
+            const avgVariables = s.costos_variables_salon / count;
 
-            // Recalculate performance with averages
+            // If we have only 1 record (specific year), use its performance data but fix scaling
+            if (count === 1) {
+                return {
+                    ...s,
+                    performance: {
+                        ...s.performance,
+                        // Ensure it's correctly calculated
+                        ...calcPerformance(s.costos_fijos_salon, s.ventas_totales_salon, s.costos_variables_salon)
+                    }
+                };
+            }
+
+            // For aggregated view (All Years), recalculate weighted performance
             const perf = calcPerformance(avgFijos, avgVentas, avgVariables);
 
             return {
@@ -533,10 +552,10 @@ export default function PerformancePage() {
                                 </div>
                                 <div className="glass-card-light p-3">
                                     <p className="text-xs text-slate-500">Incidencia Resultante</p>
-                                    <p className="text-lg font-bold" style={{ color: simulation.newIncidence > 25 ? "#ef4444" : simulation.newIncidence > 15 ? "#eab308" : "#22c55e" }}>
+                                    <p className="text-lg font-bold" style={{ color: simulation.newIncidence > 0.25 ? "#ef4444" : simulation.newIncidence > 0.15 ? "#eab308" : "#22c55e" }}>
                                         {rentReduction === 0 && simSalon?.performance
                                             ? formatPercentage(simSalon.performance.rentIncidence * 100)
-                                            : formatPercentage(simulation.newIncidence)}
+                                            : formatPercentage(simulation.newIncidence * 100)}
                                     </p>
                                 </div>
                                 <div className="glass-card-light p-3">
@@ -552,6 +571,6 @@ export default function PerformancePage() {
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
