@@ -18,6 +18,7 @@ export interface SalonIntegral {
     total_invitados_salon: number | null;
     costos_variables_salon: number | null;
     costos_fijos_salon: number | null;
+    costos_totales_salon: number | null;
     ventas_totales_salon: number | null;
     rentabilidad_salon: number | null;
     // Computed fields

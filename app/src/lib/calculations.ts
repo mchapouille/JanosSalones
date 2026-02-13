@@ -31,6 +31,7 @@ export interface PerformanceResult {
     rentIncidence: number;       // (costos_fijos / ventas_totales) * 100
     multiplier: number;          // ventas_totales / costos_fijos
     marginContribution: number;  // ventas - costos_fijos - costos_variables
+    score: number;
     color: "green" | "yellow" | "red" | "critical";
     classification: "alta_eficiencia" | "normal" | "riesgo" | "riesgo_critico";
 }
@@ -41,7 +42,7 @@ export function calcPerformance(
     costosVariables: number
 ): PerformanceResult {
     if (ventasTotales === 0) {
-        return { rentIncidence: 100, multiplier: 0, marginContribution: -costosFijos, color: "critical", classification: "riesgo_critico" };
+        return { rentIncidence: 100, multiplier: 0, marginContribution: -costosFijos, score: 0, color: "critical", classification: "riesgo_critico" };
     }
 
     const rentIncidence = (costosFijos / ventasTotales) * 100;
@@ -65,13 +66,22 @@ export function calcPerformance(
         classification = "riesgo_critico";
     }
 
-    return { rentIncidence, multiplier, marginContribution, color, classification };
+    return {
+        rentIncidence,
+        multiplier,
+        marginContribution,
+        score: 100 - (rentIncidence > 100 ? 100 : rentIncidence), // Simple heuristic score if not provided
+        color,
+        classification
+    };
 }
 
 // ---- SEMAPHORE 2: BENCHMARKING ----
 
 export interface BenchmarkResult {
-    costPerMt2: number;
+    rentPerMt2: number;
+    marketMt2: number;
+    marketDeviation: number;
     marketCostPerMt2: number;
     deviation: number;  // percentage
     color: "green" | "yellow" | "red";
@@ -97,7 +107,14 @@ export function calcBenchmark(
         color = "red";
     }
 
-    return { costPerMt2, marketCostPerMt2, deviation, color };
+    return {
+        rentPerMt2: costPerMt2,
+        marketMt2: marketCostPerMt2,
+        marketDeviation: deviation,
+        marketCostPerMt2,
+        deviation,
+        color
+    };
 }
 
 // ---- SEMAPHORE 3: ASSET EFFICIENCY (Global Index) ----
@@ -106,6 +123,7 @@ export interface EfficiencyResult {
     paxRatio: number;
     mt2Ratio: number;
     globalIndex: number;
+    medianDeviation: number;
     color: "green" | "yellow" | "red";
 }
 
@@ -143,7 +161,13 @@ export function calcEfficiency(
         color = "red";
     }
 
-    return { paxRatio, mt2Ratio, globalIndex, color };
+    return {
+        paxRatio,
+        mt2Ratio,
+        globalIndex,
+        medianDeviation: (globalIndex - 1) * 100, // Heuristic deviation from median
+        color
+    };
 }
 
 // ---- SEMAPHORE 4: CONTRACT AUDIT ----
@@ -206,21 +230,19 @@ export interface StrategicWeights {
     performance: number;
     benchmarking: number;
     efficiency: number;
-    audit: number;
 }
 
 export const DEFAULT_WEIGHTS: StrategicWeights = {
-    performance: 40,
-    benchmarking: 25,
-    efficiency: 20,
-    audit: 15
+    performance: 50,
+    benchmarking: 30,
+    efficiency: 20
 };
 
 export function calcGlobalStatus(
     performance?: PerformanceResult,
     benchmark?: BenchmarkResult | null,
     efficiency?: EfficiencyResult | null,
-    audit?: ContractAuditResult,
+    // audit dependency removed
     weights: StrategicWeights = DEFAULT_WEIGHTS
 ): GlobalStatusResult {
     const getColorScore = (color?: string) => {
@@ -236,18 +258,16 @@ export function calcGlobalStatus(
     const scores = {
         performance: getColorScore(performance?.color),
         benchmarking: getColorScore(benchmark?.color),
-        efficiency: getColorScore(efficiency?.color),
-        audit: getColorScore(audit?.color)
+        efficiency: getColorScore(efficiency?.color)
     };
 
-    const totalWeight = weights.performance + weights.benchmarking + weights.efficiency + weights.audit;
+    const totalWeight = weights.performance + weights.benchmarking + weights.efficiency;
     if (totalWeight === 0) return { color: "yellow", label: "Sin Ponderación", description: "Asigne pesos para calcular el estatus." };
 
     const weightedScore = (
         (scores.performance * weights.performance) +
         (scores.benchmarking * weights.benchmarking) +
-        (scores.efficiency * weights.efficiency) +
-        (scores.audit * weights.audit)
+        (scores.efficiency * weights.efficiency)
     ) / totalWeight;
 
     // Determine Global Status based on Weighted Score
@@ -286,6 +306,23 @@ export function getSemaphoreColor(color: string): string {
         case "critical": return "#991b1b";
         default: return "#6b7280";
     }
+}
+
+/**
+ * Shared color logic for Rent Incidence %
+ * Green: < 15%
+ * Yellow: 15% - 20%
+ * Red: > 20%
+ * @param incidence Value between 0 and 1 (decimal) or 0 and 100 (percentage)
+ */
+export function get_color_from_incidence(incidence: number): string {
+    // Determine if we are dealing with decimal or percentage
+    // If it's a small decimal (e.g. 0.15), we treat it as percentage (15%)
+    const value = incidence <= 1 ? incidence * 100 : incidence;
+
+    if (value < 15) return "#22c55e"; // Green
+    if (value <= 20) return "#eab308"; // Yellow
+    return "#ef4444"; // Red
 }
 
 // ---- TIER ASSIGNMENT (based on municipio) ----

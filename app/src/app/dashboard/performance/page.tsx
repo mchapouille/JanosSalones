@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, AlertTriangle, Award, Sliders, Search, X } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
-import { getSemaphoreColor, simulateRentReduction, calcPerformance } from "@/lib/calculations";
+import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 import {
@@ -58,45 +58,55 @@ export default function PerformancePage() {
             };
         });
     }, [salonesResource, selectedYear]);
-    const [rentReduction, setRentReduction] = useState(0);
-    const [selectedSalon, setSelectedSalon] = useState<number | null>(null);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
 
     // Update selected salon if it's not in the filtered list
     useEffect(() => {
-        if (salones.length > 0 && (!selectedSalon || !salones.find(s => s.id_salon === selectedSalon))) {
-            setSelectedSalon(salones[0].id_salon);
+        if (selectedSalonId && !salones.find(s => s.id_salon === selectedSalonId)) {
+            setSelectedSalonId(null);
         }
-    }, [salones, selectedSalon]);
+    }, [salones, selectedSalonId]);
 
-    // Data for ScatterChart: Facturación (X) vs Alquiler (Y)
+    // Data for ScatterChart: Margen Total (X) vs Score Rentabilidad (Y)
     const chartData = useMemo(() => {
-        return salones
-            .filter((s) => s.performance)
-            .map((s) => {
-                const isFiltered = searchTerm === "" || s.nombre_salon.toLowerCase().includes(searchTerm.toLowerCase());
-                return {
-                    id: s.id_salon,
-                    name: s.nombre_salon,
-                    x: s.ventas_totales_salon || 0,
-                    y: s.costos_fijos_salon || 0,
-                    z: 1,
-                    incidencia: s.performance?.rentIncidence || 0,
-                    color: getSemaphoreColor(s.performance?.color || "gray"),
-                    isFiltered
-                };
-            });
-    }, [salones, searchTerm]);
+        if (!selectedSalonId) {
+            // Default View: Show ONE aggregate point
+            const totalMargin = salones.reduce((acc, s) => acc + ((s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0)), 0);
+            return [{
+                id: 'total',
+                name: 'Total Red',
+                x: totalMargin,
+                y: 100, // Fixed 100 per instruction
+                z: 1,
+                color: '#3b82f6',
+                isFiltered: true
+            }];
+        }
 
-    // Categorization by situation (also filtered by search)
+        // Selected View: Show ONLY the selected salon
+        const s = salones.find(x => x.id_salon === selectedSalonId);
+        if (!s) return [];
+
+        return [{
+            id: s.id_salon,
+            name: s.nombre_salon,
+            x: (s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0),
+            y: s.performance?.score || 0,
+            z: 1,
+            color: getSemaphoreColor(s.performance?.color || "gray"),
+            isFiltered: true
+        }];
+    }, [salones, selectedSalonId]);
+
     const groupedSalones = useMemo(() => {
-        const filtered = chartData.filter(s => s.isFiltered);
+        // Here we use salones list directly to have access to full performance object
+        const baseList = salones.filter(s => s.performance);
         return {
-            efficient: filtered.filter(s => s.incidencia < 15).sort((a, b) => a.incidencia - b.incidencia),
-            aligned: filtered.filter(s => s.incidencia >= 15 && s.incidencia <= 25).sort((a, b) => a.incidencia - b.incidencia),
-            critical: filtered.filter(s => s.incidencia > 25).sort((a, b) => b.incidencia - a.incidencia),
+            efficient: baseList.filter(s => (s.performance?.score || 0) >= 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
+            aligned: baseList.filter(s => (s.performance?.score || 0) >= 40 && (s.performance?.score || 0) < 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
+            critical: baseList.filter(s => (s.performance?.score || 0) < 40).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
         };
-    }, [chartData]);
+    }, [salones]);
 
     // Top 5 rankings
     const top5Margin = useMemo(
@@ -113,10 +123,12 @@ export default function PerformancePage() {
     );
 
     // What-If for selected salon
-    const simSalon = salones.find((s) => s.id_salon === selectedSalon);
+    const simSalon = salones.find((s) => s.id_salon === selectedSalonId);
+    const [rentReduction, setRentReduction] = useState(0);
+
     const simulation = simSalon
         ? simulateRentReduction(
-            simSalon.costos_fijos_salon || 0,
+            simSalon.costos_fijos_salon || 0, // Using fixed costs as base as requested in v3
             simSalon.ventas_totales_salon || 0,
             simSalon.costos_variables_salon || 0,
             rentReduction
@@ -131,28 +143,29 @@ export default function PerformancePage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-white">Performance</h1>
-                    <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad Mensualizada</p>
+                    <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad</p>
                 </div>
 
-                <div className="flex items-center gap-3">
-                    {/* Search Bar */}
-                    <div className="relative group">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors" size={16} />
-                        <input
-                            type="text"
-                            placeholder="Buscar salón..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="bg-slate-900/80 border border-white/10 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 w-[200px] md:w-[300px] transition-all"
-                        />
-                        {searchTerm && (
-                            <button
-                                onClick={() => setSearchTerm("")}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
-                            >
-                                <X size={14} />
-                            </button>
-                        )}
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="relative">
+                        <select
+                            value={selectedSalonId ?? ""}
+                            onChange={(e) => setSelectedSalonId(e.target.value ? parseInt(e.target.value) : null)}
+                            className="bg-slate-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500/50 min-w-[200px] transition-all appearance-none cursor-pointer"
+                        >
+                            <option value="">Buscar Salón...</option>
+                            {salones
+                                .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
+                                .map(s => (
+                                    <option key={s.id_salon} value={s.id_salon}>
+                                        {s.nombre_salon} ({s.id_salon})
+                                    </option>
+                                ))
+                            }
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                            <Search size={14} />
+                        </div>
                     </div>
 
                     <select
@@ -172,24 +185,32 @@ export default function PerformancePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
-                    <p className="text-3xl font-bold text-white">{chartData.length}</p>
+                    <p className="text-3xl font-bold text-white">
+                        {!selectedSalonId
+                            ? [...new Set(getSalonesData(selectedYear).filter(s => s.estado_salon === "ACTIVO").map(s => s.id_salon))].length
+                            : 1}
+                    </p>
                     <p className="text-xs text-slate-500 mt-1">
-                        De {salones.length} activos {salones.length > chartData.length && <span className="text-red-400 font-bold ml-1">({salones.length - chartData.length} s/info)</span>}
+                        De {salones.length} activos
                     </p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Incidencia Promedio</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Score Rentabilidad</p>
                     <p className="text-3xl font-bold text-blue-400">
-                        {formatPercentage(chartData.reduce((acc, s) => acc + s.incidencia, 0) / (chartData.length || 1))}
+                        {(!selectedSalonId ? 100 : (salones.find(s => s.id_salon === selectedSalonId)?.performance?.score || 0)).toFixed(0)}
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">promedio mensual red</p>
+                    <p className="text-xs text-slate-500 mt-1">índice de salud financiera</p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Margen Promedio</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Margen Total</p>
                     <p className="text-3xl font-bold text-emerald-400">
-                        {formatARS(salones.reduce((acc, s) => acc + (s.performance?.marginContribution || 0), 0) / (chartData.length || 1))}
+                        {formatARS(
+                            !selectedSalonId
+                                ? salones.reduce((acc, s) => acc + ((s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0)), 0)
+                                : ((salones.find(s => s.id_salon === selectedSalonId)?.ventas_totales_salon || 0) - (salones.find(s => s.id_salon === selectedSalonId)?.costos_totales_salon || 0))
+                        )}
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">contribución mensual</p>
+                    <p className="text-xs text-slate-500 mt-1">contribución acumulada</p>
                 </motion.div>
             </div>
 
@@ -199,10 +220,10 @@ export default function PerformancePage() {
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-lg font-semibold text-white flex items-center gap-2">
                             <TrendingUp size={18} className="text-blue-400" />
-                            Matriz de Performance: Facturación vs Alquiler
+                            Matriz de Performance: Margen vs Score
                         </h2>
                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest bg-slate-900/50 px-3 py-1 rounded-full border border-white/5">
-                            Referencia Benchmark: 15% Incidencia
+                            Referencia: Score Rentabilidad (0-100)
                         </div>
                     </div>
 
@@ -215,20 +236,20 @@ export default function PerformancePage() {
                             <XAxis
                                 type="number"
                                 dataKey="x"
-                                name="Facturación"
+                                name="Margen Total"
                                 stroke="#475569"
                                 tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                tickFormatter={(v) => `$${(v / 1000000).toFixed(0)}M`}
-                                label={{ value: 'Facturación Mensual ($)', position: 'bottom', offset: 20, fill: '#64748b', fontSize: 12 }}
+                                tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
+                                label={{ value: 'Margen Total ($)', position: 'bottom', offset: 20, fill: '#64748b', fontSize: 12 }}
                             />
                             <YAxis
                                 type="number"
                                 dataKey="y"
-                                name="Alquiler"
+                                name="Score"
+                                domain={[0, 100]}
                                 stroke="#475569"
                                 tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
-                                label={{ value: 'Alquiler ($)', angle: -90, position: 'left', offset: 0, fill: '#64748b', fontSize: 12 }}
+                                label={{ value: 'Score Rentabilidad', angle: -90, position: 'left', offset: 0, fill: '#64748b', fontSize: 12 }}
                             />
                             <ZAxis type="number" dataKey="z" range={[100, 100]} />
                             <Tooltip
@@ -241,17 +262,13 @@ export default function PerformancePage() {
                                                 <p className="text-sm font-bold text-white mb-3 border-b border-white/5 pb-2">{data.name}</p>
                                                 <div className="space-y-2">
                                                     <div className="flex justify-between gap-4">
-                                                        <span className="text-[10px] text-slate-500 uppercase">Facturación:</span>
-                                                        <span className="text-[10px] font-bold text-blue-400">{formatARS(data.x)}</span>
-                                                    </div>
-                                                    <div className="flex justify-between gap-4">
-                                                        <span className="text-[10px] text-slate-500 uppercase">Alquiler:</span>
-                                                        <span className="text-[10px] font-bold text-slate-300">{formatARS(data.y)}</span>
+                                                        <span className="text-[10px] text-slate-500 uppercase">Margen Total:</span>
+                                                        <span className="text-[10px] font-bold text-emerald-400">{formatARS(data.x)}</span>
                                                     </div>
                                                     <div className="flex justify-between gap-4 pt-1 border-t border-white/5">
-                                                        <span className="text-[10px] text-slate-500 uppercase">Incidencia:</span>
-                                                        <span className={`text-[10px] font-bold ${data.incidencia > 18 ? "text-red-400" : data.incidencia < 12 ? "text-green-400" : "text-yellow-400"}`}>
-                                                            {data.incidencia.toFixed(1)}%
+                                                        <span className="text-[10px] text-slate-500 uppercase">Score:</span>
+                                                        <span className={`text-[10px] font-bold ${data.y < 40 ? "text-red-400" : data.y > 60 ? "text-green-400" : "text-blue-400"}`}>
+                                                            {data.y.toFixed(0)} pts
                                                         </span>
                                                     </div>
                                                 </div>
@@ -261,14 +278,10 @@ export default function PerformancePage() {
                                     return null;
                                 }}
                             />
-                            {/* 15% Benchmark Line */}
-                            <ReferenceLine
-                                segment={[{ x: 0, y: 0 }, { x: 120000000, y: 18000000 }]}
-                                stroke="#3b82f6"
-                                strokeWidth={1}
-                                strokeDasharray="5 5"
-                                label={{ position: 'top', value: 'Límite 15%', fill: '#3b82f6', fontSize: 10, offset: 10 }}
-                            />
+                            {/* Reference Lines for Score Quadrants */}
+                            <ReferenceLine y={5} stroke="#ef4444" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Nula', fill: '#ef4444', fontSize: 9 }} />
+                            <ReferenceLine y={40} stroke="#f97316" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Baja', fill: '#f97316', fontSize: 9 }} />
+                            <ReferenceLine y={60} stroke="#3b82f6" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Estándar', fill: '#3b82f6', fontSize: 9 }} />
                             <Scatter name="Salones" data={chartData}>
                                 {chartData.map((entry, index) => (
                                     <Cell
@@ -279,7 +292,7 @@ export default function PerformancePage() {
                                         fillOpacity={entry.isFiltered ? 0.4 : 0.05}
                                         strokeOpacity={entry.isFiltered ? 1 : 0.1}
                                         className={`cursor-pointer transition-all ${entry.isFiltered ? "hover:fill-opacity-80" : "pointer-events-none"}`}
-                                        onClick={() => entry.isFiltered && setSelectedSalon(entry.id)}
+                                        onClick={() => entry.isFiltered && setSelectedSalonId(entry.id as number)}
                                     />
                                 ))}
                             </Scatter>
@@ -293,26 +306,33 @@ export default function PerformancePage() {
                             <Sliders size={14} className="text-blue-400" />
                             Guía de Cuadrantes
                         </h3>
-                        <div className="space-y-5">
+                        <div className="space-y-4">
                             <div className="flex gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-green-400">Eficiencia Máxima</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &lt; 15%. Operación altamente rentable.</p>
+                                    <p className="text-[11px] font-bold text-green-400">Muy Rentable (60-100)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Salones con alta contribución y score optimizado.</p>
                                 </div>
                             </div>
                             <div className="flex gap-3 pt-4 border-t border-white/5">
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-blue-400">Alineación</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Rango 15-25%. Estructura de costos equilibrada.</p>
+                                    <p className="text-[11px] font-bold text-blue-400">Estándar (40-60)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Performance alineada con el promedio de la red.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 pt-4 border-t border-white/5">
+                                <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1" />
+                                <div>
+                                    <p className="text-[11px] font-bold text-orange-400">Baja Rentabilidad (5-40)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Requiere revisión de costos o impulsos comerciales.</p>
                                 </div>
                             </div>
                             <div className="flex gap-3 pt-4 border-t border-white/5">
                                 <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-red-400">Riesgo Operativo</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed">Incidencia &gt; 25%. Requiere revisión de rentabilidad.</p>
+                                    <p className="text-[11px] font-bold text-red-400">Nula Rentabilidad (&lt; 5)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Situación crítica. Revisión inmediata de contrato.</p>
                                 </div>
                             </div>
                         </div>
@@ -341,11 +361,11 @@ export default function PerformancePage() {
                     </div>
                     <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
                         {groupedSalones.efficient.map(s => (
-                            <div key={s.id} onClick={() => setSelectedSalon(s.id)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalon === s.id ? "bg-green-500/10 border-green-500/30" : "bg-slate-900/60 border-white/5 hover:border-green-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.name}</span>
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-green-500/10 border-green-500/30" : "bg-slate-900/60 border-white/5 hover:border-green-500/20"}`}>
+                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
                                 <div className="text-right">
-                                    <p className="text-[10px] font-black text-green-400">{s.incidencia.toFixed(1)}%</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Incidencia</p>
+                                    <p className="text-[10px] font-black text-green-400">{s.performance?.score.toFixed(0)} pts</p>
+                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Score</p>
                                 </div>
                             </div>
                         ))}
@@ -365,11 +385,11 @@ export default function PerformancePage() {
                     </div>
                     <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
                         {groupedSalones.aligned.map(s => (
-                            <div key={s.id} onClick={() => setSelectedSalon(s.id)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalon === s.id ? "bg-blue-500/10 border-blue-500/30" : "bg-slate-900/60 border-white/5 hover:border-blue-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.name}</span>
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-blue-500/10 border-blue-500/30" : "bg-slate-900/60 border-white/5 hover:border-blue-500/20"}`}>
+                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
                                 <div className="text-right">
-                                    <p className="text-[10px] font-black text-blue-400">{s.incidencia.toFixed(1)}%</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Equilibrio</p>
+                                    <p className="text-[10px] font-black text-blue-400">{s.performance?.score.toFixed(0)} pts</p>
+                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Estandar</p>
                                 </div>
                             </div>
                         ))}
@@ -389,11 +409,11 @@ export default function PerformancePage() {
                     </div>
                     <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
                         {groupedSalones.critical.map(s => (
-                            <div key={s.id} onClick={() => setSelectedSalon(s.id)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalon === s.id ? "bg-red-500/10 border-red-500/30" : "bg-slate-900/60 border-white/5 hover:border-red-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.name}</span>
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-red-500/10 border-red-500/30" : "bg-slate-900/60 border-white/5 hover:border-red-500/20"}`}>
+                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
                                 <div className="text-right">
-                                    <p className="text-[10px] font-black text-red-400">{s.incidencia.toFixed(1)}%</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Sobrecosto</p>
+                                    <p className="text-[10px] font-black text-red-400">{s.performance?.score.toFixed(0)} pts</p>
+                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Análisis</p>
                                 </div>
                             </div>
                         ))}
@@ -407,7 +427,7 @@ export default function PerformancePage() {
                 <div className="glass-card p-5">
                     <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                         <Award size={16} className="text-green-400" />
-                        Top 5 Aporte al Margen
+                        Top 5 Participación Margen
                     </h3>
                     <div className="space-y-2">
                         {top5Margin.map((s, i) => (
@@ -417,7 +437,7 @@ export default function PerformancePage() {
                                     {s.nombre_salon}
                                 </span>
                                 <span className="text-green-400 font-medium">
-                                    {formatARS(s.performance?.marginContribution || 0)}
+                                    {formatPercentage((s.performance?.marginContribution || 0) * 100)}
                                 </span>
                             </div>
                         ))}
@@ -428,7 +448,7 @@ export default function PerformancePage() {
                 <div className="glass-card p-5">
                     <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                         <TrendingUp size={16} className="text-blue-400" />
-                        Top 5 Retorno por $1
+                        Top 5 Retorno Alquiler
                     </h3>
                     <div className="space-y-2">
                         {top5Return.map((s, i) => (
@@ -449,7 +469,7 @@ export default function PerformancePage() {
                 <div className="glass-card p-5">
                     <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                         <AlertTriangle size={16} className="text-red-400" />
-                        Top 5 Mayor Incidencia
+                        Top 5 Incidencia Alquiler
                     </h3>
                     <div className="space-y-2">
                         {top5Risk.map((s, i) => (
@@ -458,8 +478,8 @@ export default function PerformancePage() {
                                     <span className="text-slate-600 mr-2">{i + 1}.</span>
                                     {s.nombre_salon}
                                 </span>
-                                <span style={{ color: getSemaphoreColor(s.performance?.color || "gray") }} className="font-medium">
-                                    {formatPercentage(s.performance?.rentIncidence || 0)}
+                                <span style={{ color: get_color_from_incidence(s.performance?.rentIncidence || 0) }} className="font-medium text-red-400">
+                                    {formatPercentage((s.performance?.rentIncidence || 0) * 100)}
                                 </span>
                             </div>
                         ))}
@@ -478,18 +498,11 @@ export default function PerformancePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                         <div>
-                            <label className="text-sm text-slate-400 mb-2 block">Seleccionar Salón</label>
-                            <select
-                                value={selectedSalon ?? ""}
-                                onChange={(e) => setSelectedSalon(parseInt(e.target.value))}
-                                className="w-full bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-blue-500/50"
-                            >
-                                {salones
-                                    .filter(s => searchTerm === "" || s.nombre_salon.toLowerCase().includes(searchTerm.toLowerCase()))
-                                    .map((s) => (
-                                        <option key={s.id_salon} value={s.id_salon}>{s.nombre_salon}</option>
-                                    ))}
-                            </select>
+                            <label className="text-sm text-slate-400 mb-2 block">Salón Seleccionado</label>
+                            <div className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2.5 text-sm text-white flex items-center justify-between">
+                                <span className="font-bold">{simSalon?.nombre_salon || 'Ningún salón seleccionado'}</span>
+                                <div className={`w-2 h-2 rounded-full ${simSalon ? 'bg-green-500' : 'bg-slate-600'}`} />
+                            </div>
                         </div>
 
                         <div>
@@ -521,7 +534,9 @@ export default function PerformancePage() {
                                 <div className="glass-card-light p-3">
                                     <p className="text-xs text-slate-500">Incidencia Resultante</p>
                                     <p className="text-lg font-bold" style={{ color: simulation.newIncidence > 25 ? "#ef4444" : simulation.newIncidence > 15 ? "#eab308" : "#22c55e" }}>
-                                        {formatPercentage(simulation.newIncidence)}
+                                        {rentReduction === 0 && simSalon?.performance
+                                            ? formatPercentage(simSalon.performance.rentIncidence * 100)
+                                            : formatPercentage(simulation.newIncidence)}
                                     </p>
                                 </div>
                                 <div className="glass-card-light p-3">

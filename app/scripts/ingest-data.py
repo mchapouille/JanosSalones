@@ -83,6 +83,37 @@ def map_tier_to_color(tier_str):
         return 'critical'
     return 'gray'
 
+def get_color_from_value(val, metric_type):
+    # If it's a string, try standard mapping
+    if isinstance(val, str):
+        return map_tier_to_color(val)
+    
+    # If numeric, apply heuristics based on typical business logic
+    if isinstance(val, (int, float)):
+        if metric_type == 'performance':
+            # Assuming this is Rent Incidence % (e.g. 30.5 means 30.5%)
+            # < 30% is good (green), 30-50% is warning (yellow), > 50% is critical (red)
+            if val < 30: return 'green'
+            if val < 50: return 'yellow'
+            return 'red'
+        
+        if metric_type == 'benchmark':
+            # Assuming this is Deviation ratio or similar (0.2 = 20%)
+            # Low deviation is good.
+            if val < 0.20: return 'green'
+            if val < 0.50: return 'yellow'
+            return 'red'
+
+    # Handle specific string values for semaforo_indice_global
+    if isinstance(val, str):
+        val_lower = val.lower().strip()
+        if val_lower == 'favorable': return 'green'
+        if val_lower == 'estándar': return 'yellow'
+        if val_lower == 'revisar': return 'red'
+        return map_tier_to_color(val)
+            
+    return 'gray'
+
 def ingest():
     print(f"Reading {EXCEL_PATH}...")
     df = pd.read_excel(EXCEL_PATH)
@@ -139,34 +170,39 @@ def ingest():
             "total_invitados_salon": int(clean_numeric(row.get('total_invitados_salon'))),
             "costos_variables_salon": clean_numeric(row.get('costos_variables_salon')),
             "costos_fijos_salon": clean_numeric(row.get('costos_fijos_salon')),
+            "costos_totales_salon": clean_numeric(row.get('costos_totales_salon')),
             "ventas_totales_salon": clean_numeric(row.get('ventas_totales_salon')),
             "rentabilidad_salon": clean_numeric(row.get('rentabilidad_salon')),
-            "tier": clean_tier_num(row.get('semaforo_tipo_salon')),
+            "tier": clean_tier_num(row.get('tier', row.get('semaforo_tipo_salon'))),
             
             # Sub-results
             "performance": {
-                "rentIncidence": clean_numeric(row.get('incidencia_alquiler_sobre_facturacion_anual')) * 100,
-                "multiplier": clean_numeric(row.get('retorno_sobre_alquiler (x)')),
-                "marginContribution": clean_numeric(row.get('ventas_totales_salon')) - clean_numeric(row.get('costos_totales_salon')),
-                "color": map_tier_to_color(row.get('semaforo_incidencia_aliquiler')),
+                "rentIncidence": clean_numeric(row.get('incidencia_alquiler_sobre_facturacion_anual')) / 100.0 if clean_numeric(row.get('incidencia_alquiler_sobre_facturacion_anual')) else 0,
+                "multiplier": clean_numeric(row.get('retorno_sobre_alquiler')),
+                "marginContribution": clean_numeric(row.get('participacion_margen')),
+                "score": clean_numeric(row.get('semaforo_performance')),
+                "color": get_color_from_value(row.get('semaforo_performance'), 'performance'),
                 "classification": "normal"
             },
             "benchmark": {
                 "rentPerMt2": clean_numeric(row.get('precio_por_mt2')),
+                "marketMt2": clean_numeric(row.get('mt2_mercado')),
+                "marketDeviation": clean_numeric(row.get('semaforo_benchmarking')),
                 "marketCostPerMt2": clean_numeric(row.get('mt2_mercado')),
                 "deviation": clean_numeric(row.get('desvio_salon_vs_mercado')) * 100,
-                "color": "yellow" if clean_numeric(row.get('desvio_salon_vs_mercado')) > 0.5 else "green" # simple logic
+                "color": get_color_from_value(row.get('semaforo_benchmarking'), 'benchmark')
             },
             "efficiency": {
                 "rentPerPax": clean_numeric(row.get('precio_pax')),
                 "paxRatio": clean_numeric(row.get('precio_pax')) / clean_numeric(row.get('med_pax')) if clean_numeric(row.get('med_pax')) > 0 else 0,
                 "mt2Ratio": clean_numeric(row.get('precio_por_mt2')) / clean_numeric(row.get('mt2_mercado')) if clean_numeric(row.get('mt2_mercado')) > 0 else 0,
                 "medianPaxTier": clean_numeric(row.get('med_pax')),
-                "globalIndex": clean_numeric(row.get('semaforo_indice_global_desviacion_mediana')),
+                "globalIndex": clean_numeric(row.get('indice_global_desviacion_mediana')),
+                "medianDeviation": clean_numeric(row.get('semaforo_eficiencia')),
                 "color": map_tier_to_color(row.get('semaforo_indice_global'))
             },
             "contractAudit": {
-                "contractAmount": clean_numeric(row.get('alquiler_pactado_usd')) * 1470 if clean_numeric(row.get('alquiler_pactado_usd')) > 0 else clean_numeric(row.get('precio_alquiler')),
+                "contractAmount": clean_numeric(row.get('precio_alquiler')),
                 "realPayment": clean_numeric(row.get('costos_fijos_salon')),
                 "deviationPercent": 0, # Will be recalculated in frontend but good to have context
                 "color": "green"
