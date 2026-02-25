@@ -60,3 +60,21 @@ jobs:
             git push
             echo "Data pushed successfully"
           fi
+
+      - name: Notify Vercel to revalidate data cache
+        if: always()
+        run: |
+          VERCEL_URL="${{ secrets.VERCEL_APP_URL }}"
+          SECRET="${{ secrets.REVALIDATE_SECRET }}"
+          if [ -z "$VERCEL_URL" ] || [ -z "$SECRET" ]; then
+            echo "VERCEL_APP_URL or REVALIDATE_SECRET not set — skipping revalidation"
+            exit 0
+          fi
+          echo "Calling revalidation webhook..."
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            "${VERCEL_URL}/api/revalidate?secret=${SECRET}")
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "Cache revalidated successfully (HTTP 200)"
+          else
+            echo "WARNING: Revalidation returned HTTP ${HTTP_STATUS} — data will refresh on next TTL"
+          fi

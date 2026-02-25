@@ -10,11 +10,11 @@ import { useDashboard } from "@/components/DashboardContext";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis, ReferenceLine, Cell } from "recharts";
 
 export default function BenchmarkingPage() {
-    const { } = useDashboard();
+    const { salones: allSalones } = useDashboard();
     const [searchTerm, setSearchTerm] = useState("");
 
     // Benchmarking works mainly on active salons
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
     const tierComparison = Object.entries(BENCHMARK_DATA).map(([tier, data]) => ({
         tier: `Tier ${tier}`, promedioReal: data.promedioReal,

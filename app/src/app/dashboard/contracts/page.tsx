@@ -9,10 +9,10 @@ import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 
 export default function ContractsPage() {
-    const { conversionRate } = useDashboard();
+    const { conversionRate, salones: allSalones } = useDashboard();
 
     // Contracts works mainly on active salons
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
     const audits = useMemo(() =>
         salones.map((s) => {

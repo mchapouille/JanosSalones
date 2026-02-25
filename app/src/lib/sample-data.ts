@@ -45,25 +45,26 @@ export interface SalonIntegral {
     extra?: any;
 }
 
-export function getSalonesData(): SalonIntegral[] {
-
-    // Map the JSON data to the SalonIntegral interface gracefully
-    const SAMPLE_SALONES: SalonIntegral[] = (rawSalonesData as any[]).map((row) => {
-        return {
-            ...row,
-            retorno_sobre_alquiler: row.retorno_sobre_alquiler ?? row.performance?.multiplier ?? 0,
-            incidencia_alquiler_sobre_facturacion_anual: row.incidencia_alquiler_sobre_facturacion_anual ?? row.performance?.rentIncidence ?? 0,
-            participacion_margen: row.participacion_margen ?? row.performance?.marginContribution ?? 0,
-            ip_score: row.ip_score ?? row.performance?.score ?? 0,
-            categoria_ip: row.categoria_ip ?? row.performance?.color ?? "gray",
-            indice_global_desviacion_mediana: row.indice_global_desviacion_mediana ?? row.efficiency?.globalIndex ?? 0,
-            semaforo_indice_global: row.semaforo_indice_global ?? (row.efficiency?.color === 'red' || row.efficiency?.color === 'yellow' ? 'REVISAR' : 'ESTANDAR'),
-            venta_mensual_promedio_meses_activo: row.venta_mensual_promedio_meses_activo ?? row.extra?.venta_mensual ?? (row.ventas_totales_salon / 12),
-            margen_individual: row.margen_individual ?? (row.ventas_totales_salon - (row.costos_variables_salon || 0) - ((row.costos_fijos_salon || 0) * 12)),
-            ticket_evento_promedio: row.ticket_evento_promedio ?? row.extra?.ticket_evento ?? 0,
-            ticket_persona_promedio: row.ticket_persona_promedio ?? row.extra?.ticket_persona ?? 0
-        } as SalonIntegral;
-    });
-
-    return SAMPLE_SALONES;
+/** Shared raw→SalonIntegral mapping (used by static getSalonesData and runtime /api/salones) */
+export function mapRawToSalon(row: any): SalonIntegral {
+    return {
+        ...row,
+        retorno_sobre_alquiler: row.retorno_sobre_alquiler ?? row.performance?.multiplier ?? 0,
+        incidencia_alquiler_sobre_facturacion_anual: row.incidencia_alquiler_sobre_facturacion_anual ?? row.performance?.rentIncidence ?? 0,
+        participacion_margen: row.participacion_margen ?? row.performance?.marginContribution ?? 0,
+        ip_score: row.ip_score ?? row.performance?.score ?? 0,
+        categoria_ip: row.categoria_ip ?? row.performance?.color ?? "gray",
+        indice_global_desviacion_mediana: row.indice_global_desviacion_mediana ?? row.efficiency?.globalIndex ?? 0,
+        semaforo_indice_global: row.semaforo_indice_global ?? (row.efficiency?.color === 'red' || row.efficiency?.color === 'yellow' ? 'REVISAR' : 'ESTANDAR'),
+        venta_mensual_promedio_meses_activo: row.venta_mensual_promedio_meses_activo ?? row.extra?.venta_mensual ?? (row.ventas_totales_salon / 12),
+        margen_individual: row.margen_individual ?? (row.ventas_totales_salon - (row.costos_variables_salon || 0) - ((row.costos_fijos_salon || 0) * 12)),
+        ticket_evento_promedio: row.ticket_evento_promedio ?? row.extra?.ticket_evento ?? 0,
+        ticket_persona_promedio: row.ticket_persona_promedio ?? row.extra?.ticket_persona ?? 0,
+    } as SalonIntegral;
 }
+
+/** Static build-time data (used locally and as fallback) */
+export function getSalonesData(): SalonIntegral[] {
+    return (rawSalonesData as any[]).map(mapRawToSalon);
+}
+

@@ -27,10 +27,11 @@ function interpolateScore(val: number, x0: number, x1: number, y0: number, y1: n
 }
 
 export default function PerformancePage() {
-    const { } = useDashboard();
+    const { salones: allSalones } = useDashboard();
 
     // Performance works mainly on active salons
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
+
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
     const [ipWeights, setIpWeights] = useState({ margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 });
 

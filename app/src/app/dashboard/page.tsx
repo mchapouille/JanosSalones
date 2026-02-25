@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { getSemaphoreColor, TIER_DEFINITIONS, get_color_from_incidence } from "@/lib/calculations";
 import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
-import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
+import { type SalonIntegral } from "@/lib/sample-data";
 import GoogleMapView from "@/components/GoogleMapView";
 import { useDashboard } from "@/components/DashboardContext";
 
@@ -48,9 +48,8 @@ function SemaforoIcon({ color, size = 20 }: { color: string; size?: number }) {
 }
 
 export default function DashboardPage() {
-    const { } = useDashboard();
+    const { salones } = useDashboard();
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
-    const salones = useMemo(() => getSalonesData(), []);
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
 
     // Predictive search state

@@ -9,10 +9,8 @@ import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 
 export default function EfficiencyPage() {
-    const { } = useDashboard();
-
-    // Efficiency Analysis works mainly on active salons
-    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const { salones: allSalones } = useDashboard();
+    const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
     const [tierFilter, setTierFilter] = useState<number | null>(null);
 
     const salonesWithEfficiency = useMemo(() => salones.filter((s) => s.efficiency), [salones]);
