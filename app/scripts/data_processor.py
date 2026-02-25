@@ -218,34 +218,52 @@ def procesar_datos_dashboard(ruta_archivo):
 
     # --- MÓDULO 3: EFICIENCIA ---
     idx_ef = (df_procesables['pax_calculado'].gt(0) & df_procesables['mt2_salon'].gt(0) & df_procesables['costos_fijos_salon'].gt(0))
-    
-    df_procesables.loc[idx_ef, 'precio_pax'] = df_procesables.loc[idx_ef, 'costos_fijos_salon'] / df_procesables.loc[idx_ef, 'pax_calculado']
-    
-    # Medians per tier
-    # Si calculamos medianas per tier:
+
+    # precio_pax = costos_fijos_salon / pax_calculado
+    df_procesables.loc[idx_ef, 'precio_pax'] = (
+        df_procesables.loc[idx_ef, 'costos_fijos_salon'] / df_procesables.loc[idx_ef, 'pax_calculado']
+    )
+
+    # precio_mt2 (for efficiency) = costos_fijos_salon / mt2_salon — applies to ALL tiers
+    df_procesables.loc[idx_ef, 'precio_mt2_ef'] = (
+        df_procesables.loc[idx_ef, 'costos_fijos_salon'] / df_procesables.loc[idx_ef, 'mt2_salon']
+    )
+
+    # Medians per tier (within efficiency-eligible salons)
     med_pax = df_procesables.loc[idx_ef].groupby('tier_salon')['precio_pax'].transform('median')
-    med_mt2 = df_procesables.loc[idx_ef].groupby('tier_salon')['precio_mt2'].transform('median')
-    
+    med_mt2 = df_procesables.loc[idx_ef].groupby('tier_salon')['precio_mt2_ef'].transform('median')
+
     df_procesables.loc[idx_ef, 'med_pax'] = med_pax
     df_procesables.loc[idx_ef, 'med_mt2'] = med_mt2
-    
+
     # Avoid div by 0
     valid_pax = med_pax > 0
     valid_mt2 = med_mt2 > 0
     idx_ef_valid = idx_ef & valid_pax & valid_mt2
 
     if idx_ef_valid.any():
-        df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] = ((df_procesables.loc[idx_ef_valid, 'precio_pax'] / df_procesables.loc[idx_ef_valid, 'med_pax']) + (df_procesables.loc[idx_ef_valid, 'precio_mt2'] / df_procesables.loc[idx_ef_valid, 'med_mt2'])) / 2
-        df_procesables.loc[idx_ef_valid, 'semaforo_eficiencia'] = np.where(df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] > 1.25, "REVISAR",
-                                                            np.where(df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] < 0.85, "FAVORABLE", "ESTANDAR"))
+        # desvio_indice_pax = precio_pax / med_pax  (1.0 = at tier median)
+        desvio_pax = df_procesables.loc[idx_ef_valid, 'precio_pax'] / df_procesables.loc[idx_ef_valid, 'med_pax']
+        # desvio_indice_mt2 = precio_mt2_ef / med_mt2  (1.0 = at tier median)
+        desvio_mt2 = df_procesables.loc[idx_ef_valid, 'precio_mt2_ef'] / df_procesables.loc[idx_ef_valid, 'med_mt2']
+
+        df_procesables.loc[idx_ef_valid, 'desvio_indice_pax'] = desvio_pax
+        df_procesables.loc[idx_ef_valid, 'desvio_indice_mt2'] = desvio_mt2
+        df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] = (desvio_pax + desvio_mt2) / 2
+        df_procesables.loc[idx_ef_valid, 'semaforo_eficiencia'] = np.where(
+            df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] > 1.25, "REVISAR",
+            np.where(df_procesables.loc[idx_ef_valid, 'indice_global_desviacion_mediana'] < 0.85, "FAVORABLE", "ESTANDAR")
+        )
+
 
     # 3. Unificar Base Completa
     df_unificado = pd.concat([df_procesables, df_excluidos], ignore_index=True)
     
     cols_calc_num = ['venta_x_evento_promedio_anual', 'venta_promedio_invitado_anual', 'venta_mensual_promedio_meses_activo', 
                      'retorno_sobre_alquiler', 'incidencia_alquiler_sobre_facturacion_anual', 'margen_individual', 
-                     'participacion_margen', 'costos_totales_salon', 'rentabilidad_salon', 'ip_score', 'precio_mt2', 
-                     'semaforo_benchmarking', 'precio_pax', 'med_pax', 'med_mt2', 'indice_global_desviacion_mediana']
+                     'participacion_margen', 'costos_totales_salon', 'rentabilidad_salon', 'ip_score', 'precio_mt2',
+                     'semaforo_benchmarking', 'precio_pax', 'precio_mt2_ef', 'med_pax', 'med_mt2',
+                     'desvio_indice_pax', 'desvio_indice_mt2', 'indice_global_desviacion_mediana']
     cols_calc_texto = ['semaforo_performance', 'semaforo_eficiencia']
     
     for col in cols_calc_num:
@@ -331,8 +349,8 @@ def procesar_datos_dashboard(ruta_archivo):
             },
             "efficiency": {
                 "rentPerPax": safe_float(row['precio_pax']),
-                "paxRatio": safe_float(row['precio_pax']) / safe_float(row['med_pax']) if safe_float(row['med_pax']) > 0 else 0,
-                "mt2Ratio": safe_float(row['precio_mt2']) / safe_float(row['med_mt2']) if safe_float(row['med_mt2']) > 0 else 0,
+                "paxRatio": safe_float(row['desvio_indice_pax']),
+                "mt2Ratio": safe_float(row['desvio_indice_mt2']),
                 "medianPaxTier": safe_float(row['med_pax']),
                 "globalIndex": eff_index,
                 "medianDeviation": (eff_index - 1) * 100 if eff_index > 0 else 0,

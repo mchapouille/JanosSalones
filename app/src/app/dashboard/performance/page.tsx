@@ -291,9 +291,9 @@ export default function PerformancePage() {
                                 }}
                             />
                             {/* Reference Lines for Score Quadrants */}
-                            <ReferenceLine y={5} stroke="#ef4444" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Muy Baja', fill: '#ef4444', fontSize: 9 }} />
-                            <ReferenceLine y={40} stroke="#f97316" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Media', fill: '#f97316', fontSize: 9 }} />
-                            <ReferenceLine y={60} stroke="#22c55e" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Alta', fill: '#22c55e', fontSize: 9 }} />
+                            <ReferenceLine y={5} stroke="#f97316" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Baja', fill: '#f97316', fontSize: 9 }} />
+                            <ReferenceLine y={40} stroke="#facc15" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Media', fill: '#facc15', fontSize: 9 }} />
+                            <ReferenceLine y={60} stroke="#22c55e" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Alta', fill: '#22c55e', fontSize: 9 }} />
                             <Scatter name="Salones" data={chartData}>
                                 {chartData.map((entry, index) => (
                                     <Cell
@@ -519,60 +519,94 @@ export default function PerformancePage() {
             {/* Score Rentabilidad Panel */}
             {selectedSalonId && dynamicScore && (() => {
                 const hex = getSemaphoreColor(dynamicScore.color);
+                const totalWeight = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado;
+                const weights = [
+                    { id: 'margen', label: 'Margen', shortLabel: 'MAR', value: ipWeights.margen, color: '#10b981' },
+                    { id: 'incidencia', label: 'Incidencia', shortLabel: 'INC', value: ipWeights.incidencia, color: '#8b5cf6' },
+                    { id: 'ticketEvento', label: 'Tk. Evento', shortLabel: 'EVT', value: ipWeights.ticketEvento, color: '#3b82f6' },
+                    { id: 'ticketInvitado', label: 'Tk. Invitado', shortLabel: 'INV', value: ipWeights.ticketInvitado, color: '#06b6d4' },
+                ] as const;
                 return (
-                    <div className="relative overflow-hidden glass-card p-6">
-                        <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at 30% 50%, ${hex}, transparent 70%)` }} />
-                        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
-                            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${hex}20` }}>
-                                <BrainCircuit size={18} style={{ color: hex }} />
+                    <div className="relative overflow-hidden glass-card">
+                        {/* Background gradient */}
+                        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(circle at 15% 60%, ${hex}18, transparent 55%)` }} />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 px-6 pt-5 pb-4 border-b border-white/5">
+                            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${hex}20` }}>
+                                <BrainCircuit size={15} style={{ color: hex }} />
                             </div>
-                            <h3 className="text-lg font-bold text-white">Score Rentabilidad</h3>
+                            <h3 className="text-sm font-bold text-white">Score Rentabilidad</h3>
+                            <span className="ml-auto text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border" style={{ color: hex, borderColor: `${hex}40`, background: `${hex}12` }}>
+                                {dynamicScore.label}
+                            </span>
                         </div>
-                        <div className="flex flex-col md:flex-row items-center gap-8">
-                            {/* Score Circle */}
-                            <div className="flex flex-col items-center">
+
+                        {/* Body: 2-col grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-6 p-6">
+                            {/* Score circle */}
+                            <div className="flex flex-col items-center justify-center gap-2">
                                 <div
-                                    className="w-32 h-32 rounded-full flex flex-col items-center justify-center relative shadow-2xl"
-                                    style={{ background: `${hex}12`, border: `4px solid ${hex}40` }}
+                                    className="w-24 h-24 rounded-full flex flex-col items-center justify-center relative shadow-xl flex-shrink-0"
+                                    style={{ background: `${hex}10`, border: `3px solid ${hex}50` }}
                                 >
-                                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.08 }} />
-                                    <span className="text-4xl font-black text-white relative z-10">{dynamicScore.score.toFixed(0)}</span>
-                                    <span className="text-[10px] font-bold relative z-10" style={{ color: hex }}>PTS</span>
+                                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.06 }} />
+                                    <span className="text-3xl font-black text-white relative z-10 leading-none">{dynamicScore.score.toFixed(0)}</span>
+                                    <span className="text-[9px] font-bold tracking-widest relative z-10 mt-0.5" style={{ color: hex }}>/ 100</span>
                                 </div>
-                                <span className="mt-3 text-sm font-black uppercase" style={{ color: hex }}>{dynamicScore.label}</span>
+                                {/* Mini weight total indicator */}
+                                <div className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${totalWeight === 100 ? 'text-green-400 border-green-500/30 bg-green-500/8' : 'text-yellow-400 border-yellow-500/30 bg-yellow-500/8'}`}>
+                                    Σ {totalWeight} / 100
+                                </div>
                             </div>
 
-                            {/* Dynamic Weights */}
-                            <div className="flex-1 w-full">
-                                <h4 className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                                    <Sliders size={13} /> Ponderación Dinámica
-                                </h4>
-                                <div className="space-y-4">
-                                    {([
-                                        { id: 'margen', label: 'Margen Individual', value: ipWeights.margen, color: '#10b981' },
-                                        { id: 'incidencia', label: 'Incidencia Alquiler', value: ipWeights.incidencia, color: '#8b5cf6' },
-                                        { id: 'ticketEvento', label: 'Ticket Evento', value: ipWeights.ticketEvento, color: '#3b82f6' },
-                                        { id: 'ticketInvitado', label: 'Ticket Invitado', value: ipWeights.ticketInvitado, color: '#06b6d4' },
-                                    ] as const).map((w) => (
-                                        <div key={w.id} className="space-y-1.5">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wide">{w.label}</span>
-                                                <span className="text-xs font-mono font-bold" style={{ color: w.color }}>{w.value} pts</span>
+                            {/* Weight controls — compact 2×2 grid */}
+                            <div className="space-y-1">
+                                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                                    <Sliders size={10} /> Ponderación Dinámica
+                                </p>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {weights.map((w) => {
+                                        const pct = Math.round((w.value / Math.max(totalWeight, 1)) * 100);
+                                        return (
+                                            <div
+                                                key={w.id}
+                                                className="rounded-xl border p-3 flex flex-col gap-2"
+                                                style={{ borderColor: `${w.color}25`, background: `${w.color}08` }}
+                                            >
+                                                {/* Label + badge */}
+                                                <div className="flex items-center justify-between gap-1">
+                                                    <span className="text-[10px] font-bold text-slate-400">{w.label}</span>
+                                                    <span className="text-[10px] font-black tabular-nums" style={{ color: w.color }}>
+                                                        {w.value}
+                                                    </span>
+                                                </div>
+                                                {/* Compact slider */}
+                                                <input
+                                                    type="range"
+                                                    min="0" max="100" step="5"
+                                                    value={w.value}
+                                                    onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
+                                                    className="w-full h-1.5 rounded-full cursor-pointer"
+                                                    style={{ accentColor: w.color }}
+                                                />
+                                                {/* Contribution bar */}
+                                                <div className="w-full h-1 rounded-full bg-slate-800 overflow-hidden">
+                                                    <div
+                                                        className="h-full rounded-full transition-all duration-300"
+                                                        style={{ width: `${pct}%`, background: w.color }}
+                                                    />
+                                                </div>
                                             </div>
-                                            <input
-                                                type="range" min="0" max="100" step="5" value={w.value}
-                                                onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
-                                                className="w-full h-2 rounded-lg cursor-pointer"
-                                                style={{ accentColor: w.color }}
-                                            />
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
                     </div>
                 );
             })()}
+
 
             {/* What-If Simulator */}
             <div className="glass-card p-6">

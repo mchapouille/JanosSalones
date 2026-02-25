@@ -175,7 +175,7 @@ export default function EfficiencyPage() {
                                 <div className="space-y-4">
                                     <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
                                         <div className="flex justify-between items-end mb-2">
-                                            <p className="text-xs text-slate-500 uppercase font-bold">Rentabilidad / PAX</p>
+                                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío Índice PAX</p>
                                             <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.paxRatio || 0).toFixed(2)}</p>
                                         </div>
                                         <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
@@ -184,12 +184,12 @@ export default function EfficiencyPage() {
                                                 style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.paxRatio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
-                                        <p className="text-[10px] text-slate-600 mt-2">Relación entre flujo de personas y costo operativo.</p>
+                                        <p className="text-[10px] text-slate-600 mt-2">precio_pax / mediana_pax del tier. 1.0 = alineado con la mediana.</p>
                                     </div>
 
                                     <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
                                         <div className="flex justify-between items-end mb-2">
-                                            <p className="text-xs text-slate-500 uppercase font-bold">Productividad / m²</p>
+                                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío Índice MT2</p>
                                             <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.mt2Ratio || 0).toFixed(2)}</p>
                                         </div>
                                         <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
@@ -198,7 +198,7 @@ export default function EfficiencyPage() {
                                                 style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.mt2Ratio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
-                                        <p className="text-[10px] text-slate-600 mt-2">Ventas generadas por cada metro cuadrado del activo.</p>
+                                        <p className="text-[10px] text-slate-600 mt-2">precio_mt2 / mediana_mt2 del tier. 1.0 = alineado con la mediana.</p>
                                     </div>
                                 </div>
                             </div>
