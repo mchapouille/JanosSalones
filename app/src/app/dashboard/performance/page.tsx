@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, AlertTriangle, Award, Sliders, Search, X } from "lucide-react";
+import { TrendingUp, AlertTriangle, Award, Sliders, Search, X, BrainCircuit } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
@@ -20,12 +20,19 @@ import {
     Cell,
 } from "recharts";
 
+function interpolateScore(val: number, x0: number, x1: number, y0: number, y1: number) {
+    if (val <= x0) return y0;
+    if (val >= x1) return y1;
+    return y0 + ((val - x0) / (x1 - x0)) * (y1 - y0);
+}
+
 export default function PerformancePage() {
     const { } = useDashboard();
 
     // Performance works mainly on active salons
     const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
+    const [ipWeights, setIpWeights] = useState({ margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 });
 
     // Update selected salon if it's not in the filtered list
     useEffect(() => {
@@ -33,6 +40,25 @@ export default function PerformancePage() {
             setSelectedSalonId(null);
         }
     }, [salones, selectedSalonId]);
+
+    // Compute dynamic IP score for selected salon
+    const dynamicScore = useMemo(() => {
+        const s = salones.find(x => x.id_salon === selectedSalonId);
+        if (!s) return null;
+        const incPct = (s.incidencia_alquiler_sobre_facturacion_anual || 0) * 100;
+        const maxMargen = Math.max(...salones.map(x => x.margen_individual || 0));
+        const pts_inc = Math.max(0, Math.min(100, interpolateScore(incPct, 5, 30, 100, 0)));
+        const pts_mar = Math.max(0, Math.min(100, interpolateScore(s.margen_individual || 0, 0, maxMargen || 1, 0, 100)));
+        const pts_eve = Math.max(0, Math.min(100, interpolateScore(s.ticket_evento_promedio || 0, 10000000, 40000000, 0, 100)));
+        const pts_inv = Math.max(0, Math.min(100, interpolateScore(s.ticket_persona_promedio || 0, 150000, 500000, 0, 100)));
+        const total = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado || 100;
+        let score = (pts_mar * ipWeights.margen + pts_inc * ipWeights.incidencia + pts_eve * ipWeights.ticketEvento + pts_inv * ipWeights.ticketInvitado) / total;
+        if ((s.margen_individual || 0) < 0) score = 0;
+        const label = score >= 60 ? "Desempeño Alto" : score >= 40 ? "Desempeño Medio" : score >= 5 ? "Desempeño Bajo" : "Riesgo Crítico";
+        const color = score >= 60 ? "green" : score >= 40 ? "yellow" : score >= 5 ? "red" : "critical";
+        const categoria = score >= 60 ? "alta" : score >= 40 ? "media" : score >= 5 ? "baja" : "muy_baja";
+        return { score, label, color, categoria };
+    }, [selectedSalonId, salones, ipWeights]);
 
     // Data for ScatterChart: Margen Total (X) vs Score Rentabilidad (Y)
     const chartData = useMemo(() => {
@@ -443,6 +469,64 @@ export default function PerformancePage() {
                 </div>
             </div>
 
+
+            {/* Score Rentabilidad Panel */}
+            {selectedSalonId && dynamicScore && (() => {
+                const hex = getSemaphoreColor(dynamicScore.color);
+                return (
+                    <div className="relative overflow-hidden glass-card p-6">
+                        <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at 30% 50%, ${hex}, transparent 70%)` }} />
+                        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${hex}20` }}>
+                                <BrainCircuit size={18} style={{ color: hex }} />
+                            </div>
+                            <h3 className="text-lg font-bold text-white">Score Rentabilidad</h3>
+                        </div>
+                        <div className="flex flex-col md:flex-row items-center gap-8">
+                            {/* Score Circle */}
+                            <div className="flex flex-col items-center">
+                                <div
+                                    className="w-32 h-32 rounded-full flex flex-col items-center justify-center relative shadow-2xl"
+                                    style={{ background: `${hex}12`, border: `4px solid ${hex}40` }}
+                                >
+                                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.08 }} />
+                                    <span className="text-4xl font-black text-white relative z-10">{dynamicScore.score.toFixed(0)}</span>
+                                    <span className="text-[10px] font-bold relative z-10" style={{ color: hex }}>PTS</span>
+                                </div>
+                                <span className="mt-3 text-sm font-black uppercase" style={{ color: hex }}>{dynamicScore.label}</span>
+                            </div>
+
+                            {/* Dynamic Weights */}
+                            <div className="flex-1 w-full">
+                                <h4 className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                                    <Sliders size={13} /> Ponderación Dinámica
+                                </h4>
+                                <div className="space-y-4">
+                                    {([
+                                        { id: 'margen', label: 'Margen Individual', value: ipWeights.margen, color: '#10b981' },
+                                        { id: 'incidencia', label: 'Incidencia Alquiler', value: ipWeights.incidencia, color: '#8b5cf6' },
+                                        { id: 'ticketEvento', label: 'Ticket Evento', value: ipWeights.ticketEvento, color: '#3b82f6' },
+                                        { id: 'ticketInvitado', label: 'Ticket Invitado', value: ipWeights.ticketInvitado, color: '#06b6d4' },
+                                    ] as const).map((w) => (
+                                        <div key={w.id} className="space-y-1.5">
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wide">{w.label}</span>
+                                                <span className="text-xs font-mono font-bold" style={{ color: w.color }}>{w.value} pts</span>
+                                            </div>
+                                            <input
+                                                type="range" min="0" max="100" step="5" value={w.value}
+                                                onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
+                                                className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full transition-all"
+                                                style={{ accentColor: w.color }}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
 
             {/* What-If Simulator */}
             <div className="glass-card p-6">

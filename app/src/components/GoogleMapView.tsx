@@ -1,6 +1,6 @@
 "use client";
 
-import { Map, AdvancedMarker, Pin, APIProvider } from "@vis.gl/react-google-maps";
+import { Map, AdvancedMarker, APIProvider } from "@vis.gl/react-google-maps";
 import { type SalonIntegral } from "@/lib/sample-data";
 import { getSemaphoreColor } from "@/lib/calculations";
 
@@ -36,7 +36,7 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
         <div className="w-full h-full rounded-xl overflow-hidden border border-slate-700/30">
             <APIProvider apiKey={apiKey}>
                 <Map
-                    mapId={"bf51a910020faedc"} // Need a Map ID for Advanced markers
+                    mapId={"bf51a910020faedc"}
                     defaultCenter={defaultCenter}
                     defaultZoom={11}
                     gestureHandling={'greedy'}
@@ -47,13 +47,12 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                     {salones.map((salon) => {
                         if (!salon.lat_salon || !salon.lon_salon) return null;
 
-                        const getMarkerColor = () => {
-                            if (salon.estado_salon === "OBRA") return "#f59e0b"; // Amber/Orange
-                            if (salon.estado_salon === "DEVUELTOS") return "#94a3b8"; // Slate/Gray
-                            return salon.efficiency ? getSemaphoreColor(salon.efficiency.color) : "#3b82f6";
-                        };
+                        // Color based on: OBRA = amber, DEVUELTOS = gray, ACTIVO = rentabilidad semaphore
+                        const markerColor =
+                            salon.estado_salon === "OBRA" ? "#f59e0b" :
+                                salon.estado_salon === "DEVUELTOS" ? "#94a3b8" :
+                                    salon.performance ? getSemaphoreColor(salon.performance.color) : "#3b82f6";
 
-                        const markerColor = getMarkerColor();
                         const isSelected = selectedSalon?.id_salon === salon.id_salon;
 
                         return (
@@ -61,14 +60,53 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                                 key={`${salon.id_salon}-${salon.year}`}
                                 position={{ lat: salon.lat_salon, lng: salon.lon_salon }}
                                 onClick={() => onSelectSalon(salon)}
-                                title={`${salon.nombre_salon}${salon.estado_salon !== "ACTIVO" ? ` (${salon.estado_salon})` : ""}`}
+                                title={salon.nombre_salon}
                             >
-                                <Pin
-                                    background={markerColor}
-                                    glyphColor={"#000"}
-                                    borderColor={isSelected ? "#fff" : markerColor}
-                                    scale={isSelected ? 1.4 : 1.0}
-                                />
+                                {/* Custom marker with pin + name label */}
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                        gap: "2px",
+                                        cursor: "pointer",
+                                        transform: isSelected ? "scale(1.25)" : "scale(1)",
+                                        transition: "transform 0.15s ease",
+                                    }}
+                                >
+                                    {/* Pin dot */}
+                                    <div
+                                        style={{
+                                            width: isSelected ? 18 : 14,
+                                            height: isSelected ? 18 : 14,
+                                            borderRadius: "50%",
+                                            background: markerColor,
+                                            border: isSelected ? "2.5px solid #fff" : `2px solid ${markerColor}`,
+                                            boxShadow: `0 0 ${isSelected ? 10 : 6}px ${markerColor}80`,
+                                            transition: "all 0.15s ease",
+                                        }}
+                                    />
+                                    {/* Salon name label */}
+                                    <div
+                                        style={{
+                                            background: "rgba(15,23,42,0.88)",
+                                            color: isSelected ? "#fff" : "#94a3b8",
+                                            fontSize: "9px",
+                                            fontWeight: isSelected ? 700 : 500,
+                                            padding: "1px 5px",
+                                            borderRadius: "4px",
+                                            whiteSpace: "nowrap",
+                                            border: isSelected ? `1px solid ${markerColor}60` : "1px solid rgba(255,255,255,0.08)",
+                                            maxWidth: "120px",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            backdropFilter: "blur(4px)",
+                                            letterSpacing: "0.02em",
+                                        }}
+                                    >
+                                        {salon.nombre_salon}
+                                    </div>
+                                </div>
                             </AdvancedMarker>
                         );
                     })}

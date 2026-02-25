@@ -19,14 +19,19 @@ def clean_numeric(val):
     if s == '-' or s.endswith('-'):
         return 0
     # Basic cleanup for currency/formatting
+    s = s.replace('$', '').strip()
+    # If the string contains both commas and dots, typically the dot is the decimal separator
+    # E.g. $1,234.56 or $1,234,567.89
+    if ',' in s and '.' in s:
+        s = s.replace(',', '')
+    elif ',' in s and '.' not in s:
+        # E.g. $1234,56 -> $1234.56
+        s = s.replace(',', '.')
+    
     s = ''.join(c for c in s if c.isdigit() or c in '.,-')
     if not s or s == '-':
         return 0
     try:
-        if ',' in s and '.' not in s:
-            s = s.replace(',', '.')
-        elif ',' in s and '.' in s:
-            s = s.replace('.', '').replace(',', '.')
         res = float(s)
         return res if math.isfinite(res) else 0
     except:
@@ -131,16 +136,28 @@ def procesar_datos_dashboard(ruta_archivo):
     df_procesables['meses_activos'] = df_procesables['meses_activos'].replace(0, 1)
     
     # --- MÓDULO 1: RENTABILIDAD ---
-    req_rent = ['ventas_totales_salon', 'cantidad_eventos_salon', 'total_invitados_salon',
-                'meses_activos', 'costos_fijos_salon', 'costos_variables_salon']
-    idx_v = df_procesables[req_rent].gt(0).all(axis=1) & df_procesables[req_rent].notna().all(axis=1)
-    
-    df_procesables.loc[idx_v, 'venta_x_evento_promedio_anual'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] / df_procesables.loc[idx_v, 'cantidad_eventos_salon']
-    df_procesables.loc[idx_v, 'venta_promedio_invitado_anual'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] / df_procesables.loc[idx_v, 'total_invitados_salon']
+    # Only require ventas > 0 and meses_activos > 0; protect individual divisions below
+    idx_v = (df_procesables['ventas_totales_salon'] > 0) & df_procesables['ventas_totales_salon'].notna() & (df_procesables['meses_activos'] > 0)
+
+    # Safe divisors: replace 0 with NaN to avoid division by zero, result stays NaN → later filled to 0
+    eventos_safe = df_procesables.loc[idx_v, 'cantidad_eventos_salon'].replace(0, np.nan)
+    invitados_safe = df_procesables.loc[idx_v, 'total_invitados_salon'].replace(0, np.nan)
+    fijos_safe = df_procesables.loc[idx_v, 'costos_fijos_salon'].replace(0, np.nan)
+
+    df_procesables.loc[idx_v, 'venta_x_evento_promedio_anual'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] / eventos_safe
+    df_procesables.loc[idx_v, 'venta_promedio_invitado_anual'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] / invitados_safe
     df_procesables.loc[idx_v, 'venta_mensual_promedio_meses_activo'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] / df_procesables.loc[idx_v, 'meses_activos']
-    df_procesables.loc[idx_v, 'retorno_sobre_alquiler'] = df_procesables.loc[idx_v, 'venta_mensual_promedio_meses_activo'] / df_procesables.loc[idx_v, 'costos_fijos_salon']
-    df_procesables.loc[idx_v, 'incidencia_alquiler_sobre_facturacion_anual'] = (df_procesables.loc[idx_v, 'costos_fijos_salon'] / df_procesables.loc[idx_v, 'venta_mensual_promedio_meses_activo']) * 100
-    df_procesables.loc[idx_v, 'margen_individual'] = df_procesables.loc[idx_v, 'ventas_totales_salon'] - df_procesables.loc[idx_v, 'costos_variables_salon'] - (df_procesables.loc[idx_v, 'costos_fijos_salon'] * 12)
+    
+    # Retorno e incidencia solo cuando hay costos fijos
+    venta_mensual_v = df_procesables.loc[idx_v, 'venta_mensual_promedio_meses_activo']
+    df_procesables.loc[idx_v, 'retorno_sobre_alquiler'] = venta_mensual_v / fijos_safe
+    df_procesables.loc[idx_v, 'incidencia_alquiler_sobre_facturacion_anual'] = (df_procesables.loc[idx_v, 'costos_fijos_salon'] / venta_mensual_v.replace(0, np.nan)) * 100
+
+    df_procesables.loc[idx_v, 'margen_individual'] = (
+        df_procesables.loc[idx_v, 'ventas_totales_salon']
+        - df_procesables.loc[idx_v, 'costos_variables_salon']
+        - (df_procesables.loc[idx_v, 'costos_fijos_salon'] * 12)
+    )
     
     margen_total_empresa = df_procesables.loc[idx_v, 'margen_individual'].sum()
     if margen_total_empresa > 0:
@@ -148,8 +165,14 @@ def procesar_datos_dashboard(ruta_archivo):
     else:
         df_procesables.loc[idx_v, 'participacion_margen'] = 0
         
-    df_procesables.loc[idx_v, 'costos_totales_salon'] = df_procesables.loc[idx_v, 'costos_variables_salon'] + (df_procesables.loc[idx_v, 'costos_fijos_salon'] * df_procesables.loc[idx_v, 'meses_activos'])
-    df_procesables.loc[idx_v, 'rentabilidad_salon'] = (df_procesables.loc[idx_v, 'ventas_totales_salon'] - df_procesables.loc[idx_v, 'costos_totales_salon']) / df_procesables.loc[idx_v, 'ventas_totales_salon']
+    df_procesables.loc[idx_v, 'costos_totales_salon'] = (
+        df_procesables.loc[idx_v, 'costos_variables_salon']
+        + (df_procesables.loc[idx_v, 'costos_fijos_salon'] * df_procesables.loc[idx_v, 'meses_activos'])
+    )
+    df_procesables.loc[idx_v, 'rentabilidad_salon'] = (
+        (df_procesables.loc[idx_v, 'ventas_totales_salon'] - df_procesables.loc[idx_v, 'costos_totales_salon'])
+        / df_procesables.loc[idx_v, 'ventas_totales_salon']
+    )
 
     # Scores y Semáforo Performance
     mar_meta = np.percentile(df_procesables.loc[idx_v, 'margen_individual'].dropna(), 95) if df_procesables.loc[idx_v, 'margen_individual'].notna().any() else 0
