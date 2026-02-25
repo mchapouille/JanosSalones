@@ -19,6 +19,10 @@ import {
     Menu,
     DollarSign,
     HelpCircle,
+    CheckCircle2,
+    AlertCircle,
+    RefreshCw,
+    Clock,
 } from "lucide-react";
 import HelpModal from "./HelpModal";
 
@@ -30,6 +34,9 @@ const menuItems = [
     { href: "/dashboard/contracts", label: "Contratos", icon: FileCheck, description: "Auditoría Desvíos" },
 ];
 
+type RefreshStatus = 'idle' | 'loading' | 'success' | 'async' | 'error';
+
+
 export default function DashboardShell({
     children,
 }: {
@@ -39,6 +46,37 @@ export default function DashboardShell({
     const { conversionRate, setConversionRate, setIsHelpOpen } = useDashboard();
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [refreshStatus, setRefreshStatus] = useState<RefreshStatus>('idle');
+    const [refreshMsg, setRefreshMsg] = useState('');
+
+    const handleRefresh = async () => {
+        if (refreshStatus === 'loading') return;
+        setRefreshStatus('loading');
+        setRefreshMsg('');
+        try {
+            const res = await fetch('/api/refresh-data', { method: 'POST' });
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+                setRefreshStatus('error');
+                setRefreshMsg(data.message || 'Error al refrescar');
+            } else if (data.async) {
+                // Production: workflow dispatched, Vercel will redeploy in ~2 min
+                setRefreshStatus('async');
+                setRefreshMsg('Procesando datos… Vercel actualizará en ~2 minutos');
+            } else {
+                // Local: done, reload page to pick up new JSON
+                setRefreshStatus('success');
+                setRefreshMsg('Datos actualizados');
+                setTimeout(() => window.location.reload(), 800);
+            }
+        } catch {
+            setRefreshStatus('error');
+            setRefreshMsg('Error de conexión');
+        }
+        // Auto-reset toast after 6s
+        setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
+    };
+
 
     return (
         <div className="min-h-screen flex">
@@ -147,34 +185,48 @@ export default function DashboardShell({
                             </div>
                         </div>
 
-                        {/* Refresh Data Button */}
-                        <button
-                            onClick={async () => {
-                                const btn = document.getElementById('refresh-btn-icon');
-                                if (btn) btn.classList.add('animate-spin');
-                                try {
-                                    const res = await fetch('/api/refresh-data', { method: 'POST' });
-                                    if (res.ok) {
-                                        // Force a router refresh to pick up new data
-                                        window.location.reload();
-                                    } else {
-                                        console.error('Failed to refresh data');
-                                    }
-                                } catch (error) {
-                                    console.error('Error:', error);
-                                } finally {
-                                    if (btn) btn.classList.remove('animate-spin');
-                                }
-                            }}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-colors group"
-                            title="Refrescar Datos del Excel"
-                        >
-                            <svg id="refresh-btn-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 group-hover:text-white">
-                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                <path d="M3 3v5h5" />
-                            </svg>
-                            <span className="hidden sm:inline text-xs font-bold text-blue-400 group-hover:text-white">Refrescar</span>
-                        </button>
+                        {/* Refresh Data Button + Toast */}
+                        <div className="relative">
+                            <button
+                                onClick={handleRefresh}
+                                disabled={refreshStatus === 'loading'}
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors group ${refreshStatus === 'loading'
+                                        ? 'bg-blue-500/20 border-blue-500/30 cursor-wait'
+                                        : 'bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/20'
+                                    }`}
+                                title="Refrescar Datos del Excel"
+                            >
+                                <RefreshCw
+                                    size={14}
+                                    className={`text-blue-400 group-hover:text-white ${refreshStatus === 'loading' ? 'animate-spin' : ''}`}
+                                />
+                                <span className="hidden sm:inline text-xs font-bold text-blue-400 group-hover:text-white">
+                                    Refrescar
+                                </span>
+                            </button>
+
+                            {/* Toast notification */}
+                            <AnimatePresence>
+                                {refreshStatus !== 'idle' && refreshStatus !== 'loading' && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                                        className={`absolute right-0 top-10 z-50 flex items-start gap-2 px-4 py-3 rounded-xl shadow-2xl border min-w-[260px] max-w-[340px] backdrop-blur-xl ${refreshStatus === 'success'
+                                                ? 'bg-green-950/90 border-green-500/30 text-green-300'
+                                                : refreshStatus === 'async'
+                                                    ? 'bg-blue-950/90 border-blue-500/30 text-blue-300'
+                                                    : 'bg-red-950/90 border-red-500/30 text-red-300'
+                                            }`}
+                                    >
+                                        {refreshStatus === 'success' && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-400" />}
+                                        {refreshStatus === 'async' && <Clock size={16} className="flex-shrink-0 mt-0.5 text-blue-400" />}
+                                        {refreshStatus === 'error' && <AlertCircle size={16} className="flex-shrink-0 mt-0.5 text-red-400" />}
+                                        <p className="text-xs font-medium leading-snug">{refreshMsg}</p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
 
                         {/* Help Button */}
                         <button
@@ -200,4 +252,5 @@ export default function DashboardShell({
             <HelpModal />
         </div>
     );
+
 }

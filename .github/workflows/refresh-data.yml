@@ -1,0 +1,73 @@
+name: Refresh Dashboard Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      triggered_by:
+        description: 'Who triggered this refresh'
+        required: false
+        default: 'manual'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pandas openpyxl numpy
+
+      - name: Download Excel from Google Drive
+        run: |
+          FILE_ID="${{ secrets.GDRIVE_FILE_ID }}"
+          OUTPUT="app/data/resultados_unificado.xlsx"
+          echo "Downloading Excel file from Google Drive..."
+          # Try direct download first (works for smaller files)
+          curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}" \
+            -o "${OUTPUT}" \
+            --cookie-jar /tmp/cookies.txt \
+            --cookie /tmp/cookies.txt
+          # Handle large file confirmation page from Google
+          CONFIRM=$(grep -o 'confirm=[^&]*' /tmp/cookies.txt | head -1 | cut -d= -f2 || echo "")
+          if [ -n "$CONFIRM" ]; then
+            echo "Large file detected, using confirmation token..."
+            curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}&confirm=${CONFIRM}" \
+              -o "${OUTPUT}" \
+              --cookie /tmp/cookies.txt
+          fi
+          # Verify download
+          if [ ! -f "$OUTPUT" ] || [ ! -s "$OUTPUT" ]; then
+            echo "ERROR: Excel file download failed or is empty"
+            exit 1
+          fi
+          echo "Excel downloaded successfully ($(du -h $OUTPUT | cut -f1))"
+
+      - name: Run data processor
+        working-directory: app
+        run: |
+          python scripts/data_processor.py
+
+      - name: Commit updated JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add app/src/lib/salones_data.json
+          if git diff --staged --quiet; then
+            echo "No changes detected in salones_data.json — data is up to date"
+          else
+            TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+            git commit -m "data: auto-refresh salones_data.json [${TIMESTAMP}]"
+            git push
+            echo "Data pushed successfully"
+          fi
