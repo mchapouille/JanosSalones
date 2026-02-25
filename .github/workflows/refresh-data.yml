@@ -28,30 +28,19 @@ jobs:
       - name: Install dependencies
         run: pip install pandas openpyxl numpy
 
-      - name: Download Excel from Google Drive
+      - name: Download Excel from Google Sheets
         run: |
           FILE_ID="${{ secrets.GDRIVE_FILE_ID }}"
           OUTPUT="app/data/resultados_unificado.xlsx"
-          echo "Downloading Excel file from Google Drive..."
-          # Try direct download first (works for smaller files)
-          curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}" \
-            -o "${OUTPUT}" \
-            --cookie-jar /tmp/cookies.txt \
-            --cookie /tmp/cookies.txt
-          # Handle large file confirmation page from Google
-          CONFIRM=$(grep -o 'confirm=[^&]*' /tmp/cookies.txt | head -1 | cut -d= -f2 || echo "")
-          if [ -n "$CONFIRM" ]; then
-            echo "Large file detected, using confirmation token..."
-            curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}&confirm=${CONFIRM}" \
-              -o "${OUTPUT}" \
-              --cookie /tmp/cookies.txt
-          fi
+          echo "Downloading Excel from Google Sheets (ID: ${FILE_ID})..."
+          curl -L "https://docs.google.com/spreadsheets/d/${FILE_ID}/export?format=xlsx" \
+            -o "${OUTPUT}"
           # Verify download
           if [ ! -f "$OUTPUT" ] || [ ! -s "$OUTPUT" ]; then
-            echo "ERROR: Excel file download failed or is empty"
+            echo "ERROR: Excel download failed or is empty"
             exit 1
           fi
-          echo "Excel downloaded successfully ($(du -h $OUTPUT | cut -f1))"
+          echo "Downloaded successfully ($(du -h $OUTPUT | cut -f1))"
 
       - name: Run data processor
         working-directory: app

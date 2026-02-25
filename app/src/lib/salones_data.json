@@ -38,10 +38,10 @@
     "efficiency": {
       "rentPerPax": 224752.12578616352,
       "paxRatio": 3.291918468654021,
-      "mt2Ratio": 2.6263622512921696,
+      "mt2Ratio": 3.431068811725525,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 2.9591403599730954,
-      "medianDeviation": 195.91403599730955,
+      "globalIndex": 3.3614936401897726,
+      "medianDeviation": 236.14936401897725,
       "color": "red"
     },
     "contractAudit": {
@@ -96,11 +96,11 @@
     "efficiency": {
       "rentPerPax": 51037.14324324324,
       "paxRatio": 0.7475351516346656,
-      "mt2Ratio": 0.9826599046922235,
+      "mt2Ratio": 1.283742846160636,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.8650975281634445,
-      "medianDeviation": -13.490247183655546,
-      "color": "green"
+      "globalIndex": 1.0156389988976509,
+      "medianDeviation": 1.5638998897650858,
+      "color": "yellow"
     },
     "contractAudit": {
       "contractAmount": 18883743.0,
@@ -154,10 +154,10 @@
     "efficiency": {
       "rentPerPax": 151019.34108527133,
       "paxRatio": 2.074187828943396,
-      "mt2Ratio": 1.6383699025379577,
+      "mt2Ratio": 1.7746893612912682,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 1.8562788657406768,
-      "medianDeviation": 85.62788657406767,
+      "globalIndex": 1.9244385951173322,
+      "medianDeviation": 92.44385951173322,
       "color": "red"
     },
     "contractAudit": {
@@ -212,10 +212,10 @@
     "efficiency": {
       "rentPerPax": 46186.751388888886,
       "paxRatio": 0.4605026950812253,
-      "mt2Ratio": 0.9785229276676652,
+      "mt2Ratio": 0.8919033488766426,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 0.7195128113744453,
-      "medianDeviation": -28.048718862555468,
+      "globalIndex": 0.6762030219789339,
+      "medianDeviation": -32.37969780210661,
       "color": "green"
     },
     "contractAudit": {
@@ -270,10 +270,10 @@
     "efficiency": {
       "rentPerPax": 46186.751388888886,
       "paxRatio": 0.4605026950812253,
-      "mt2Ratio": 0.8430649086760966,
+      "mt2Ratio": 0.7684361746748661,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 0.651783801878661,
-      "medianDeviation": -34.821619812133896,
+      "globalIndex": 0.6144694348780457,
+      "medianDeviation": -38.553056512195425,
       "color": "green"
     },
     "contractAudit": {
@@ -328,10 +328,10 @@
     "efficiency": {
       "rentPerPax": 103596.45171339564,
       "paxRatio": 1.032903241303683,
-      "mt2Ratio": 1.2157124205909111,
+      "mt2Ratio": 1.1080966511233574,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 1.1243078309472971,
-      "medianDeviation": 12.430783094729714,
+      "globalIndex": 1.0704999462135203,
+      "medianDeviation": 7.049994621352029,
       "color": "yellow"
     },
     "contractAudit": {
@@ -386,10 +386,10 @@
     "efficiency": {
       "rentPerPax": 160649.5700483092,
       "paxRatio": 1.6017485046303492,
-      "mt2Ratio": 1.6545012502737884,
+      "mt2Ratio": 1.5080435665999634,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 1.628124877452069,
-      "medianDeviation": 62.812487745206894,
+      "globalIndex": 1.5548960356151564,
+      "medianDeviation": 55.48960356151564,
       "color": "red"
     },
     "contractAudit": {
@@ -416,7 +416,7 @@
     "lat_salon": -34.5568747,
     "lon_salon": -58.6960298,
     "pax_calculado": 300.0,
-    "mt2_salon": 1854.0,
+    "mt2_salon": 570.0,
     "cantidad_eventos_salon": 150,
     "total_invitados_salon": 14142,
     "costos_variables_salon": 837459736.29,
@@ -434,21 +434,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 17922.58198489752,
+      "rentPerMt2": 58295.55614035088,
       "marketMt2": 9946.9,
-      "marketDeviation": 0.801825893986822,
+      "marketDeviation": 4.86067580254661,
       "marketCostPerMt2": 9946.9,
-      "deviation": 80.1825893986822,
+      "deviation": 486.06758025466104,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 110761.55666666667,
       "paxRatio": 1.2884825281413972,
-      "mt2Ratio": 0.6994098603517583,
+      "mt2Ratio": 1.7078017837606376,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.9939461942465777,
-      "medianDeviation": -0.6053805753422292,
-      "color": "green"
+      "globalIndex": 1.4981421559510175,
+      "medianDeviation": 49.81421559510175,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 33228467.0,
@@ -474,7 +474,7 @@
     "lat_salon": -34.5658276,
     "lon_salon": -58.7011588,
     "pax_calculado": 368.0,
-    "mt2_salon": 570.0,
+    "mt2_salon": 1015.0,
     "cantidad_eventos_salon": 129,
     "total_invitados_salon": 13088,
     "costos_variables_salon": 1069116576.35,
@@ -492,21 +492,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 51243.1,
+      "rentPerMt2": 28776.91330049261,
       "marketMt2": 9946.9,
-      "marketDeviation": 4.151665342971177,
+      "marketDeviation": 1.8930534438360305,
       "marketCostPerMt2": 9946.9,
-      "deviation": 415.1665342971177,
+      "deviation": 189.30534438360306,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 79371.10597826086,
       "paxRatio": 0.9233193029240409,
-      "mt2Ratio": 1.9997079352289606,
+      "mt2Ratio": 0.8430361955444019,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.4615136190765008,
-      "medianDeviation": 46.15136190765008,
-      "color": "red"
+      "globalIndex": 0.8831777492342214,
+      "medianDeviation": -11.682225076577858,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 29208567.0,
@@ -532,7 +532,7 @@
     "lat_salon": -34.4130045,
     "lon_salon": -58.7050018,
     "pax_calculado": 362.0,
-    "mt2_salon": 1015.0,
+    "mt2_salon": 1105.0,
     "cantidad_eventos_salon": 112,
     "total_invitados_salon": 10686,
     "costos_variables_salon": 873053296.08,
@@ -550,20 +550,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 23428.524137931036,
+      "rentPerMt2": 21520.3185520362,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.30662274296572745,
+      "marketDeviation": -0.3630969086970257,
       "marketCostPerMt2": 33789.0,
-      "deviation": -30.662274296572743,
+      "deviation": -36.30969086970257,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 65690.47513812155,
       "paxRatio": 0.9577412285295328,
-      "mt2Ratio": 1.2950912985914096,
+      "mt2Ratio": 1.2951318983134514,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.126416263560471,
-      "medianDeviation": 12.641626356047109,
+      "globalIndex": 1.1264365634214921,
+      "medianDeviation": 12.643656342149212,
       "color": "yellow"
     },
     "contractAudit": {
@@ -590,7 +590,7 @@
     "lat_salon": -34.4130343,
     "lon_salon": -58.7162762,
     "pax_calculado": 350.0,
-    "mt2_salon": 1105.0,
+    "mt2_salon": 1522.0,
     "cantidad_eventos_salon": 107,
     "total_invitados_salon": 10342,
     "costos_variables_salon": 904771744.35,
@@ -608,20 +608,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 24230.492307692308,
+      "rentPerMt2": 17591.783180026283,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.28288814976198445,
+      "marketDeviation": -0.47936360413074425,
       "marketCostPerMt2": 33789.0,
-      "deviation": -28.288814976198445,
+      "deviation": -47.936360413074425,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 76499.12571428572,
       "paxRatio": 1.1153270925348686,
-      "mt2Ratio": 1.339422814835899,
+      "mt2Ratio": 1.058705496834309,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.2273749536853837,
-      "medianDeviation": 22.737495368538376,
+      "globalIndex": 1.087016294684589,
+      "medianDeviation": 8.701629468458894,
       "color": "yellow"
     },
     "contractAudit": {
@@ -648,7 +648,7 @@
     "lat_salon": -34.7809799,
     "lon_salon": -58.2458758,
     "pax_calculado": 0.0,
-    "mt2_salon": 1522.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
     "costos_variables_salon": 0.0,
@@ -666,12 +666,12 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 7939.524967148489,
+      "rentPerMt2": 0.0,
       "marketMt2": 5290.7,
-      "marketDeviation": 0.5006568066888104,
+      "marketDeviation": 0.0,
       "marketCostPerMt2": 5290.7,
-      "deviation": 50.06568066888104,
-      "color": "red"
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 0.0,
@@ -706,7 +706,7 @@
     "lat_salon": -34.7764685,
     "lon_salon": -58.2363769,
     "pax_calculado": 182.0,
-    "mt2_salon": 856.0,
+    "mt2_salon": 815.0,
     "cantidad_eventos_salon": 107,
     "total_invitados_salon": 10194,
     "costos_variables_salon": 186829875.21,
@@ -724,20 +724,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 26832.91238317757,
+      "rentPerMt2": 28182.788957055214,
       "marketMt2": 5290.7,
-      "marketDeviation": 4.0717130782651765,
+      "marketDeviation": 4.326854472386493,
       "marketCostPerMt2": 5290.7,
-      "deviation": 407.17130782651765,
+      "deviation": 432.68544723864926,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 126203.14835164836,
       "paxRatio": 1.8484829605409274,
-      "mt2Ratio": 1.2147928299389166,
+      "mt2Ratio": 1.6668371692186714,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.531637895239922,
-      "medianDeviation": 53.16378952399221,
+      "globalIndex": 1.7576600648797993,
+      "medianDeviation": 75.76600648797994,
       "color": "red"
     },
     "contractAudit": {
@@ -764,7 +764,7 @@
     "lat_salon": -34.8954753,
     "lon_salon": -57.9159366,
     "pax_calculado": 210.0,
-    "mt2_salon": 815.0,
+    "mt2_salon": 1300.0,
     "cantidad_eventos_salon": 196,
     "total_invitados_salon": 18500,
     "costos_variables_salon": 432776058.21,
@@ -782,20 +782,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 18079.42944785276,
+      "rentPerMt2": 11334.411538461538,
       "marketMt2": 5290.7,
-      "marketDeviation": 2.41720933862301,
+      "marketDeviation": 1.1423273930598103,
       "marketCostPerMt2": 5290.7,
-      "deviation": 241.72093386230097,
+      "deviation": 114.23273930598103,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 70165.40476190476,
       "paxRatio": 1.0277045922851906,
-      "mt2Ratio": 0.818500837665583,
+      "mt2Ratio": 0.6703601432887691,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.9231027149753868,
-      "medianDeviation": -7.689728502461324,
+      "globalIndex": 0.8490323677869799,
+      "medianDeviation": -15.096763221302012,
       "color": "green"
     },
     "contractAudit": {
@@ -822,7 +822,7 @@
     "lat_salon": -34.4880813,
     "lon_salon": -58.5908835,
     "pax_calculado": 540.0,
-    "mt2_salon": 1300.0,
+    "mt2_salon": 2674.0,
     "cantidad_eventos_salon": 66,
     "total_invitados_salon": 9118,
     "costos_variables_salon": 75996025.41,
@@ -840,21 +840,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 29538.263846153844,
+      "rentPerMt2": 14360.412490650711,
       "marketMt2": 5290.7,
-      "marketDeviation": 4.583054009139404,
+      "marketDeviation": 1.7142745743759262,
       "marketCostPerMt2": 5290.7,
-      "deviation": 458.3054009139404,
+      "deviation": 171.42745743759264,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 71110.63518518518,
       "paxRatio": 1.041549273293863,
-      "mt2Ratio": 1.3372708342925816,
+      "mt2Ratio": 0.849329331500972,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.1894100537932224,
-      "medianDeviation": 18.94100537932224,
-      "color": "yellow"
+      "globalIndex": 0.9454393023974175,
+      "medianDeviation": -5.456069760258253,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 38399743.0,
@@ -880,7 +880,7 @@
     "lat_salon": -34.60711079,
     "lon_salon": -58.38445487,
     "pax_calculado": 198.0,
-    "mt2_salon": 586.0,
+    "mt2_salon": 734.0,
     "cantidad_eventos_salon": 118,
     "total_invitados_salon": 10458,
     "costos_variables_salon": 792314056.2,
@@ -898,20 +898,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 21755.8976109215,
+      "rentPerMt2": 17369.149863760216,
       "marketMt2": 9946.9,
-      "marketDeviation": 1.1872038133409908,
+      "marketDeviation": 0.7461872406237338,
       "marketCostPerMt2": 9946.9,
-      "deviation": 118.72038133409907,
+      "deviation": 74.61872406237337,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 64388.666666666664,
       "paxRatio": 0.749029487369854,
-      "mt2Ratio": 0.8490009599456027,
+      "mt2Ratio": 0.508839216634618,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.7990152236577284,
-      "medianDeviation": -20.098477634227162,
+      "globalIndex": 0.6289343520022359,
+      "medianDeviation": -37.10656479977641,
       "color": "green"
     },
     "contractAudit": {
@@ -938,7 +938,7 @@
     "lat_salon": -34.609647,
     "lon_salon": -58.439938,
     "pax_calculado": 253.0,
-    "mt2_salon": 2674.0,
+    "mt2_salon": 445.0,
     "cantidad_eventos_salon": 121,
     "total_invitados_salon": 13115,
     "costos_variables_salon": 1044149071.95,
@@ -956,21 +956,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8529.605646970831,
+      "rentPerMt2": 51254.30449438202,
       "marketMt2": 9946.9,
-      "marketDeviation": -0.14248603615489938,
+      "marketDeviation": 4.152791773756851,
       "marketCostPerMt2": 9946.9,
-      "deviation": -14.248603615489937,
-      "color": "green"
+      "deviation": 415.2791773756851,
+      "color": "red"
     },
     "efficiency": {
       "rentPerPax": 90150.85177865613,
       "paxRatio": 1.0487194375882272,
-      "mt2Ratio": 0.3328588648349012,
+      "mt2Ratio": 1.501524274512044,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.6907891512115641,
-      "medianDeviation": -30.921084878843587,
-      "color": "green"
+      "globalIndex": 1.2751218560501356,
+      "medianDeviation": 27.512185605013563,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 22808165.5,
@@ -996,7 +996,7 @@
     "lat_salon": -34.609647,
     "lon_salon": -58.439938,
     "pax_calculado": 238.0,
-    "mt2_salon": 734.0,
+    "mt2_salon": 644.0,
     "cantidad_eventos_salon": 132,
     "total_invitados_salon": 11751,
     "costos_variables_salon": 879858511.02,
@@ -1014,20 +1014,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 31073.794959128067,
+      "rentPerMt2": 35416.40605590062,
       "marketMt2": 9946.9,
-      "marketDeviation": 2.1239677647435955,
+      "marketDeviation": 2.5605471107481343,
       "marketCostPerMt2": 9946.9,
-      "deviation": 212.39677647435954,
+      "deviation": 256.05471107481344,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 95832.6281512605,
       "paxRatio": 1.1148152004614347,
-      "mt2Ratio": 1.212622077068836,
+      "mt2Ratio": 1.0375439474500925,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.1637186387651353,
-      "medianDeviation": 16.371863876513526,
+      "globalIndex": 1.0761795739557636,
+      "medianDeviation": 7.617957395576358,
       "color": "yellow"
     },
     "contractAudit": {
@@ -1054,7 +1054,7 @@
     "lat_salon": -34.1570387,
     "lon_salon": -59.0160207,
     "pax_calculado": 442.0,
-    "mt2_salon": 445.0,
+    "mt2_salon": 340.0,
     "cantidad_eventos_salon": 89,
     "total_invitados_salon": 9643,
     "costos_variables_salon": 41857874.2,
@@ -1072,21 +1072,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 34988.76404494382,
+      "rentPerMt2": 45794.117647058825,
       "marketMt2": 5290.7,
-      "marketDeviation": 5.613257989480375,
+      "marketDeviation": 7.655587662702256,
       "marketCostPerMt2": 5290.7,
-      "deviation": 561.3257989480375,
+      "deviation": 765.5587662702256,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 35226.244343891405,
       "paxRatio": 0.5159547387209378,
-      "mt2Ratio": 1.5840285647438526,
+      "mt2Ratio": 2.7084380308138996,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.049991651732395,
-      "medianDeviation": 4.999165173239506,
-      "color": "yellow"
+      "globalIndex": 1.6121963847674188,
+      "medianDeviation": 61.21963847674188,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 15570000.0,
@@ -1112,7 +1112,7 @@
     "lat_salon": -34.8562533,
     "lon_salon": -58.5175497,
     "pax_calculado": 238.0,
-    "mt2_salon": 644.0,
+    "mt2_salon": 1683.0,
     "cantidad_eventos_salon": 78,
     "total_invitados_salon": 7485,
     "costos_variables_salon": 26970189.02,
@@ -1130,20 +1130,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 164572.58229813664,
+      "rentPerMt2": 62973.703505644684,
       "marketMt2": 9946.9,
-      "marketDeviation": 15.545112778668393,
+      "marketDeviation": 5.330987896293789,
       "marketCostPerMt2": 9946.9,
-      "deviation": 1554.5112778668392,
+      "deviation": 533.0987896293789,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 445314.0462184874,
       "paxRatio": 5.180311521038315,
-      "mt2Ratio": 6.422271461771537,
+      "mt2Ratio": 1.844850796483133,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 5.8012914914049265,
-      "medianDeviation": 480.12914914049264,
+      "globalIndex": 3.512581158760724,
+      "medianDeviation": 251.2581158760724,
       "color": "red"
     },
     "contractAudit": {
@@ -1170,7 +1170,7 @@
     "lat_salon": -34.4498162,
     "lon_salon": -58.9165601,
     "pax_calculado": 195.0,
-    "mt2_salon": 340.0,
+    "mt2_salon": 1457.0,
     "cantidad_eventos_salon": 93,
     "total_invitados_salon": 8627,
     "costos_variables_salon": 459508286.23,
@@ -1188,21 +1188,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 34176.517911764706,
+      "rentPerMt2": 7975.302738503775,
       "marketMt2": 33789.0,
-      "marketDeviation": 0.011468759411782112,
+      "marketDeviation": -0.7639674823610118,
       "marketCostPerMt2": 33789.0,
-      "deviation": 1.1468759411782112,
-      "color": "yellow"
+      "deviation": -76.39674823610117,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 59589.826102564104,
       "paxRatio": 0.8687961708197649,
-      "mt2Ratio": 1.88922318380353,
+      "mt2Ratio": 0.47996821935359085,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.3790096773116476,
-      "medianDeviation": 37.900967731164755,
-      "color": "red"
+      "globalIndex": 0.6743821950866778,
+      "medianDeviation": -32.561780491332215,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 11620016.09,
@@ -1228,7 +1228,7 @@
     "lat_salon": -34.5726702,
     "lon_salon": -58.3937841,
     "pax_calculado": 530.0,
-    "mt2_salon": 1683.0,
+    "mt2_salon": 1920.0,
     "cantidad_eventos_salon": 118,
     "total_invitados_salon": 17851,
     "costos_variables_salon": 1126409524.29,
@@ -1256,10 +1256,10 @@
     "efficiency": {
       "rentPerPax": 58396.49056603773,
       "paxRatio": 0.5822392889796326,
-      "mt2Ratio": 0.707253625575274,
+      "mt2Ratio": 0.5650733925696186,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 0.6447464572774533,
-      "medianDeviation": -35.525354272254674,
+      "globalIndex": 0.5736563407746256,
+      "medianDeviation": -42.63436592253744,
       "color": "green"
     },
     "contractAudit": {
@@ -1286,7 +1286,7 @@
     "lat_salon": -34.56674,
     "lon_salon": -58.4019208,
     "pax_calculado": 530.0,
-    "mt2_salon": 1457.0,
+    "mt2_salon": 1828.0,
     "cantidad_eventos_salon": 144,
     "total_invitados_salon": 1883,
     "costos_variables_salon": 819147510.94,
@@ -1314,10 +1314,10 @@
     "efficiency": {
       "rentPerPax": 73015.59433962264,
       "paxRatio": 0.7279983321027111,
-      "mt2Ratio": 1.0214770723323345,
+      "mt2Ratio": 0.7420937467499982,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 0.8747377022175229,
-      "medianDeviation": -12.52622977824771,
+      "globalIndex": 0.7350460394263547,
+      "medianDeviation": -26.49539605736453,
       "color": "green"
     },
     "contractAudit": {
@@ -1344,7 +1344,7 @@
     "lat_salon": -34.4909745,
     "lon_salon": -58.5264752,
     "pax_calculado": 293.0,
-    "mt2_salon": 1920.0,
+    "mt2_salon": 1056.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 12716,
     "costos_variables_salon": 556226139.27,
@@ -1362,20 +1362,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 6006.428645833334,
+      "rentPerMt2": 10920.779356060606,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.8222371586660353,
+      "marketDeviation": -0.6767948339382459,
       "marketCostPerMt2": 33789.0,
-      "deviation": -82.22371586660353,
+      "deviation": -67.6794833938246,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 39359.53242320819,
       "paxRatio": 0.5738464649264726,
-      "mt2Ratio": 0.33202575753522834,
+      "mt2Ratio": 0.6572323576101929,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.4529361112308505,
-      "medianDeviation": -54.70638887691494,
+      "globalIndex": 0.6155394112683328,
+      "medianDeviation": -38.44605887316672,
       "color": "green"
     },
     "contractAudit": {
@@ -1402,7 +1402,7 @@
     "lat_salon": -34.5886454,
     "lon_salon": -58.4367561,
     "pax_calculado": 445.0,
-    "mt2_salon": 1828.0,
+    "mt2_salon": 429.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 18953,
     "costos_variables_salon": 1454079452.55,
@@ -1420,21 +1420,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10450.384573304158,
+      "rentPerMt2": 44529.843822843824,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6907163700226654,
+      "marketDeviation": 0.3178798965001576,
       "marketCostPerMt2": 33789.0,
-      "deviation": -69.07163700226654,
-      "color": "green"
+      "deviation": 31.787989650015756,
+      "color": "yellow"
     },
     "efficiency": {
       "rentPerPax": 42928.770786516856,
       "paxRatio": 0.6258845530633357,
-      "mt2Ratio": 0.5776805251641138,
+      "mt2Ratio": 2.6798869646111467,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.6017825391137248,
-      "medianDeviation": -39.82174608862752,
-      "color": "green"
+      "globalIndex": 1.6528857588372412,
+      "medianDeviation": 65.28857588372412,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 19103303.0,
@@ -1460,7 +1460,7 @@
     "lat_salon": -34.5886454,
     "lon_salon": -58.4367561,
     "pax_calculado": 168.0,
-    "mt2_salon": 1056.0,
+    "mt2_salon": 1240.0,
     "cantidad_eventos_salon": 131,
     "total_invitados_salon": 11871,
     "costos_variables_salon": 851388394.28,
@@ -1478,20 +1478,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 18090.249053030304,
+      "rentPerMt2": 15405.889516129033,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.46461129204681095,
+      "marketDeviation": -0.5440560680656712,
       "marketCostPerMt2": 33789.0,
-      "deviation": -46.46112920468109,
+      "deviation": -54.40560680656712,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 113710.13690476191,
       "paxRatio": 1.6578489649594308,
-      "mt2Ratio": 1.0,
+      "mt2Ratio": 0.9271544417888564,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.3289244824797155,
-      "medianDeviation": 32.89244824797155,
+      "globalIndex": 1.2925017033741435,
+      "medianDeviation": 29.25017033741435,
       "color": "red"
     },
     "contractAudit": {
@@ -1518,7 +1518,7 @@
     "lat_salon": -34.4480483,
     "lon_salon": -58.7946333,
     "pax_calculado": 243.0,
-    "mt2_salon": 429.0,
+    "mt2_salon": 607.0,
     "cantidad_eventos_salon": 80,
     "total_invitados_salon": 7359,
     "costos_variables_salon": 528264948.73,
@@ -1536,20 +1536,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 24734.00289044289,
+      "rentPerMt2": 17480.86859967051,
       "marketMt2": 9946.9,
-      "marketDeviation": 1.4866041571185888,
+      "marketDeviation": 0.757418753548393,
       "marketCostPerMt2": 9946.9,
-      "deviation": 148.6604157118589,
+      "deviation": 75.74187535483931,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 43666.202633744855,
       "paxRatio": 0.5079663094044823,
-      "mt2Ratio": 0.9652183776936738,
+      "mt2Ratio": 0.5121120811392079,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.736592343549078,
-      "medianDeviation": -26.3407656450922,
+      "globalIndex": 0.510039195271845,
+      "medianDeviation": -48.99608047281549,
       "color": "green"
     },
     "contractAudit": {
@@ -1576,7 +1576,7 @@
     "lat_salon": -34.5464856,
     "lon_salon": -58.4878535,
     "pax_calculado": 440.0,
-    "mt2_salon": 1240.0,
+    "mt2_salon": 5075.0,
     "cantidad_eventos_salon": 73,
     "total_invitados_salon": 8441,
     "costos_variables_salon": 234641472.87,
@@ -1604,11 +1604,11 @@
     "efficiency": {
       "rentPerPax": 96996.3,
       "paxRatio": 0.967096758696317,
-      "mt2Ratio": 1.3236794909772465,
+      "mt2Ratio": 0.2947917105443233,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 1.1453881248367817,
-      "medianDeviation": 14.538812483678164,
-      "color": "yellow"
+      "globalIndex": 0.6309442346203201,
+      "medianDeviation": -36.90557653796799,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 42678372.0,
@@ -1634,7 +1634,7 @@
     "lat_salon": -34.3526361,
     "lon_salon": -58.7964808,
     "pax_calculado": 195.0,
-    "mt2_salon": 607.0,
+    "mt2_salon": 2150.0,
     "cantidad_eventos_salon": 72,
     "total_invitados_salon": 6734,
     "costos_variables_salon": 545805915.95,
@@ -1652,20 +1652,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 13490.060955518946,
+      "rentPerMt2": 3808.5893023255812,
       "marketMt2": 9946.9,
-      "marketDeviation": 0.3562075576831924,
+      "marketDeviation": -0.6171079127843266,
       "marketCostPerMt2": 9946.9,
-      "deviation": 35.62075576831924,
-      "color": "yellow"
+      "deviation": -61.710791278432666,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 41992.13846153846,
       "paxRatio": 0.4884920215577806,
-      "mt2Ratio": 0.5264354018291948,
+      "mt2Ratio": 0.11157481006723201,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.5074637116934877,
-      "medianDeviation": -49.25362883065123,
+      "globalIndex": 0.3000334158125063,
+      "medianDeviation": -69.99665841874936,
       "color": "green"
     },
     "contractAudit": {
@@ -1692,7 +1692,7 @@
     "lat_salon": -34.6356508,
     "lon_salon": -58.5889595,
     "pax_calculado": 197.0,
-    "mt2_salon": 3185.0,
+    "mt2_salon": 1018.0,
     "cantidad_eventos_salon": 137,
     "total_invitados_salon": 12979,
     "costos_variables_salon": 255386089.37,
@@ -1710,20 +1710,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 4516.388383045526,
+      "rentPerMt2": 14130.35068762279,
       "marketMt2": 6722.69,
-      "marketDeviation": -0.3281873203962214,
+      "marketDeviation": 1.1018893757741008,
       "marketCostPerMt2": 6722.69,
-      "deviation": -32.81873203962214,
-      "color": "green"
+      "deviation": 110.18893757741009,
+      "color": "red"
     },
     "efficiency": {
       "rentPerPax": 73018.76649746193,
       "paxRatio": 1.002882383574818,
-      "mt2Ratio": 0.24688478049143617,
+      "mt2Ratio": 0.8366934351709301,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.6248835820331271,
-      "medianDeviation": -37.511641796687286,
+      "globalIndex": 0.919787909372874,
+      "medianDeviation": -8.021209062712597,
       "color": "green"
     },
     "contractAudit": {
@@ -1836,10 +1836,10 @@
     "efficiency": {
       "rentPerPax": 34635.40925925926,
       "paxRatio": 0.4757029385756963,
-      "mt2Ratio": 1.0043135960083365,
+      "mt2Ratio": 1.0878768289598009,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.7400082672920164,
-      "medianDeviation": -25.99917327079836,
+      "globalIndex": 0.7817898837677486,
+      "medianDeviation": -21.82101162322514,
       "color": "green"
     },
     "contractAudit": {
@@ -1866,7 +1866,7 @@
     "lat_salon": -34.5208003,
     "lon_salon": -58.7427572,
     "pax_calculado": 203.0,
-    "mt2_salon": 1800.0,
+    "mt2_salon": 1288.0,
     "cantidad_eventos_salon": 115,
     "total_invitados_salon": 10419,
     "costos_variables_salon": 519140287.8,
@@ -1884,20 +1884,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 3570.4127777777776,
+      "rentPerMt2": 4989.707298136646,
       "marketMt2": 5290.7,
-      "marketDeviation": -0.3251530463307733,
+      "marketDeviation": -0.05689090325729174,
       "marketCostPerMt2": 5290.7,
-      "deviation": -32.51530463307733,
+      "deviation": -5.6890903257291745,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 31658.83251231527,
       "paxRatio": 0.46370326900699343,
-      "mt2Ratio": 0.16164148641151369,
+      "mt2Ratio": 0.2951102391154147,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.31267237770925355,
-      "medianDeviation": -68.73276222907465,
+      "globalIndex": 0.37940675406120405,
+      "medianDeviation": -62.059324593879595,
       "color": "green"
     },
     "contractAudit": {
@@ -1924,7 +1924,7 @@
     "lat_salon": -34.7748102,
     "lon_salon": -58.1638347,
     "pax_calculado": 332.0,
-    "mt2_salon": 1331.0,
+    "mt2_salon": 2092.0,
     "cantidad_eventos_salon": 77,
     "total_invitados_salon": 7603,
     "costos_variables_salon": 1163799164.44,
@@ -1942,20 +1942,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 13279.456048084146,
+      "rentPerMt2": 8448.831739961759,
       "marketMt2": 9946.9,
-      "marketDeviation": 0.33503463874012474,
+      "marketDeviation": -0.15060654676715768,
       "marketCostPerMt2": 9946.9,
-      "deviation": 33.503463874012475,
-      "color": "yellow"
+      "deviation": -15.060654676715767,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 53237.819277108436,
       "paxRatio": 0.6193123502348467,
-      "mt2Ratio": 0.5182167674258209,
+      "mt2Ratio": 0.2475133761733307,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.5687645588303338,
-      "medianDeviation": -43.12354411696661,
+      "globalIndex": 0.43341286320408867,
+      "medianDeviation": -56.65871367959113,
       "color": "green"
     },
     "contractAudit": {
@@ -1982,7 +1982,7 @@
     "lat_salon": -34.7748102,
     "lon_salon": -58.1638347,
     "pax_calculado": 402.0,
-    "mt2_salon": 1288.0,
+    "mt2_salon": 974.0,
     "cantidad_eventos_salon": 100,
     "total_invitados_salon": 9874,
     "costos_variables_salon": 314339247.85,
@@ -2000,20 +2000,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 25813.15450310559,
+      "rentPerMt2": 34134.84907597536,
       "marketMt2": 9946.9,
-      "marketDeviation": 1.5950954069213112,
+      "marketDeviation": 2.4317072732183256,
       "marketCostPerMt2": 9946.9,
-      "deviation": 159.5095406921311,
+      "deviation": 243.17072732183254,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 82704.83333333333,
       "paxRatio": 0.9621003527744408,
-      "mt2Ratio": 1.0073311312772144,
+      "mt2Ratio": 1.0,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.9847157420258277,
-      "medianDeviation": -1.5284257974172322,
+      "globalIndex": 0.9810501763872204,
+      "medianDeviation": -1.8949823612779637,
       "color": "green"
     },
     "contractAudit": {
@@ -2040,7 +2040,7 @@
     "lat_salon": -34.6015691,
     "lon_salon": -58.6521531,
     "pax_calculado": 312.0,
-    "mt2_salon": 2092.0,
+    "mt2_salon": 890.0,
     "cantidad_eventos_salon": 133,
     "total_invitados_salon": 12463,
     "costos_variables_salon": 869775022.12,
@@ -2058,21 +2058,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10614.13240917782,
+      "rentPerMt2": 24949.174157303372,
       "marketMt2": 5290.7,
-      "marketDeviation": 1.0061867823119475,
+      "marketDeviation": 3.7156660096590945,
       "marketCostPerMt2": 5290.7,
-      "deviation": 100.61867823119475,
+      "deviation": 371.56660096590946,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 71169.1185897436,
       "paxRatio": 1.0424058729763006,
-      "mt2Ratio": 0.4805282319922584,
+      "mt2Ratio": 1.4755889096026669,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.7614670524842795,
-      "medianDeviation": -23.85329475157205,
-      "color": "green"
+      "globalIndex": 1.2589973912894838,
+      "medianDeviation": 25.899739128948383,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 22204765.0,
@@ -2098,7 +2098,7 @@
     "lat_salon": -34.6392089,
     "lon_salon": -58.6771547,
     "pax_calculado": 172.0,
-    "mt2_salon": 974.0,
+    "mt2_salon": 509.0,
     "cantidad_eventos_salon": 123,
     "total_invitados_salon": 10985,
     "costos_variables_salon": 779917225.76,
@@ -2116,21 +2116,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14970.073921971252,
+      "rentPerMt2": 28646.074656188604,
       "marketMt2": 6722.69,
-      "marketDeviation": 1.226798189708473,
+      "marketDeviation": 3.26110301920639,
       "marketCostPerMt2": 6722.69,
-      "deviation": 122.6798189708473,
+      "deviation": 326.110301920639,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 84772.3953488372,
       "paxRatio": 1.1643135865865903,
-      "mt2Ratio": 0.8183271899380382,
+      "mt2Ratio": 1.6962057869691556,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.9913203882623143,
-      "medianDeviation": -0.8679611737685722,
-      "color": "green"
+      "globalIndex": 1.430259686777873,
+      "medianDeviation": 43.0259686777873,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 14580852.0,
@@ -2184,11 +2184,11 @@
     "efficiency": {
       "rentPerPax": 80645.68823529412,
       "paxRatio": 1.1076349810052553,
-      "mt2Ratio": 0.8420601280623098,
+      "mt2Ratio": 0.9121231710401991,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.9748475545337825,
-      "medianDeviation": -2.5152445466217532,
-      "color": "green"
+      "globalIndex": 1.0098790760227272,
+      "medianDeviation": 0.9879076022727196,
+      "color": "yellow"
     },
     "contractAudit": {
       "contractAmount": 13709767.0,
@@ -2214,7 +2214,7 @@
     "lat_salon": -34.5121984,
     "lon_salon": -58.7358657,
     "pax_calculado": 215.0,
-    "mt2_salon": 509.0,
+    "mt2_salon": 1193.0,
     "cantidad_eventos_salon": 6,
     "total_invitados_salon": 540,
     "costos_variables_salon": 0.0,
@@ -2272,7 +2272,7 @@
     "lat_salon": -34.9447903,
     "lon_salon": -57.9671573,
     "pax_calculado": 546.0,
-    "mt2_salon": 1193.0,
+    "mt2_salon": 1263.0,
     "cantidad_eventos_salon": 155,
     "total_invitados_salon": 14898,
     "costos_variables_salon": 877687057.32,
@@ -2290,20 +2290,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 20455.758365465215,
+      "rentPerMt2": 19322.02670625495,
       "marketMt2": 6722.69,
-      "marketDeviation": 2.042793638478826,
+      "marketDeviation": 1.874151077359651,
       "marketCostPerMt2": 6722.69,
-      "deviation": 204.2793638478826,
+      "deviation": 187.4151077359651,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 44695.45738095238,
       "paxRatio": 0.6138735147591717,
-      "mt2Ratio": 1.1181977689966154,
+      "mt2Ratio": 1.1441055679871937,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.8660356418778936,
-      "medianDeviation": -13.396435812210639,
+      "globalIndex": 0.8789895413731827,
+      "medianDeviation": -12.101045862681726,
       "color": "green"
     },
     "contractAudit": {
@@ -2330,7 +2330,7 @@
     "lat_salon": -34.6449044,
     "lon_salon": -58.5104786,
     "pax_calculado": 212.0,
-    "mt2_salon": 1619.0,
+    "mt2_salon": 380.0,
     "cantidad_eventos_salon": 125,
     "total_invitados_salon": 11596,
     "costos_variables_salon": 902976487.36,
@@ -2348,21 +2348,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 17258.866584311305,
+      "rentPerMt2": 73531.8552631579,
       "marketMt2": 9946.9,
-      "marketDeviation": 0.7351000396416276,
+      "marketDeviation": 6.392439379420512,
       "marketCostPerMt2": 9946.9,
-      "deviation": 73.51000396416276,
+      "deviation": 639.2439379420513,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 131802.3820754717,
       "paxRatio": 1.533249184847999,
-      "mt2Ratio": 0.6735090668149519,
+      "mt2Ratio": 2.15415791350051,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.1033791258314753,
-      "medianDeviation": 10.337912583147535,
-      "color": "yellow"
+      "globalIndex": 1.8437035491742546,
+      "medianDeviation": 84.37035491742546,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 27942105.0,
@@ -2388,7 +2388,7 @@
     "lat_salon": -34.7605549,
     "lon_salon": -58.4109135,
     "pax_calculado": 165.0,
-    "mt2_salon": 380.0,
+    "mt2_salon": 1377.0,
     "cantidad_eventos_salon": 47,
     "total_invitados_salon": 4455,
     "costos_variables_salon": 32746256.86,
@@ -2406,20 +2406,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 73196.69210526315,
+      "rentPerMt2": 20199.522875816994,
       "marketMt2": 9946.9,
-      "marketDeviation": 6.35874414191991,
+      "marketDeviation": 1.0307354930497938,
       "marketCostPerMt2": 9946.9,
-      "deviation": 635.874414191991,
+      "deviation": 103.07354930497938,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 168574.2,
       "paxRatio": 1.9610135315187442,
-      "mt2Ratio": 2.856423714322626,
+      "mt2Ratio": 0.5917566188987117,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 2.408718622920685,
-      "medianDeviation": 140.87186229206853,
+      "globalIndex": 1.276385075208728,
+      "medianDeviation": 27.6385075208728,
       "color": "red"
     },
     "contractAudit": {
@@ -2446,7 +2446,7 @@
     "lat_salon": -38.0110486,
     "lon_salon": -57.6338141,
     "pax_calculado": 339.0,
-    "mt2_salon": 755.0,
+    "mt2_salon": 756.0,
     "cantidad_eventos_salon": 105,
     "total_invitados_salon": 10848,
     "costos_variables_salon": 706573312.26,
@@ -2464,21 +2464,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 27831.414569536424,
+      "rentPerMt2": 27794.600529100528,
       "marketMt2": 5290.7,
-      "marketDeviation": 4.260440881081222,
+      "marketDeviation": 4.253482625947517,
       "marketCostPerMt2": 5290.7,
-      "deviation": 426.0440881081222,
+      "deviation": 425.3482625947517,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 61984.418879056044,
       "paxRatio": 0.9078786354656735,
-      "mt2Ratio": 1.2599975128799872,
+      "mt2Ratio": 1.6438782313590647,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.0839380741728304,
-      "medianDeviation": 8.393807417283039,
-      "color": "yellow"
+      "globalIndex": 1.2758784334123692,
+      "medianDeviation": 27.58784334123692,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 21012718.0,
@@ -2504,7 +2504,7 @@
     "lat_salon": -34.4925458,
     "lon_salon": -58.5112071,
     "pax_calculado": 195.0,
-    "mt2_salon": 1377.0,
+    "mt2_salon": 1277.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 11757,
     "costos_variables_salon": 658045607.1,
@@ -2522,20 +2522,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8288.771241830065,
+      "rentPerMt2": 8937.852779953015,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.7546902470676828,
+      "marketDeviation": -0.7354803995397019,
       "marketCostPerMt2": 33789.0,
-      "deviation": -75.46902470676828,
+      "deviation": -73.54803995397019,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 58531.47692307692,
       "paxRatio": 0.8533658570452943,
-      "mt2Ratio": 0.45819000156007306,
+      "mt2Ratio": 0.5378962309389905,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.6557779293026837,
-      "medianDeviation": -34.42220706973163,
+      "globalIndex": 0.6956310439921425,
+      "medianDeviation": -30.436895600785753,
       "color": "green"
     },
     "contractAudit": {
@@ -2562,7 +2562,7 @@
     "lat_salon": -34.3781123,
     "lon_salon": -58.7523416,
     "pax_calculado": 405.0,
-    "mt2_salon": 756.0,
+    "mt2_salon": 481.0,
     "cantidad_eventos_salon": 113,
     "total_invitados_salon": 12438,
     "costos_variables_salon": 896013802.96,
@@ -2580,21 +2580,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 37645.723544973545,
+      "rentPerMt2": 59168.74636174636,
       "marketMt2": 9946.9,
-      "marketDeviation": 2.7846689466038206,
+      "marketDeviation": 4.948460963892908,
       "marketCostPerMt2": 9946.9,
-      "deviation": 278.4668946603821,
+      "deviation": 494.8460963892908,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 70272.01728395061,
       "paxRatio": 0.8174701513099052,
-      "mt2Ratio": 1.469084659209129,
+      "mt2Ratio": 1.7333823925821967,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.143277405259517,
-      "medianDeviation": 14.327740525951693,
-      "color": "yellow"
+      "globalIndex": 1.275426271946051,
+      "medianDeviation": 27.542627194605096,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 28460167.0,
@@ -2620,7 +2620,7 @@
     "lat_salon": -34.6698855,
     "lon_salon": -58.7378994,
     "pax_calculado": 249.0,
-    "mt2_salon": 1277.0,
+    "mt2_salon": 1008.0,
     "cantidad_eventos_salon": 131,
     "total_invitados_salon": 12296,
     "costos_variables_salon": 716147354.15,
@@ -2638,20 +2638,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11089.61863743148,
+      "rentPerMt2": 14049.050595238095,
       "marketMt2": 5290.7,
-      "marketDeviation": 1.0960588650710645,
+      "marketDeviation": 1.6554237804521321,
       "marketCostPerMt2": 5290.7,
-      "deviation": 109.60588650710645,
+      "deviation": 165.5423780452132,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 56873.26506024096,
       "paxRatio": 0.8330161548843008,
-      "mt2Ratio": 0.5020546787889681,
+      "mt2Ratio": 0.8309142065414459,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.6675354168366345,
-      "medianDeviation": -33.24645831633654,
+      "globalIndex": 0.8319651807128734,
+      "medianDeviation": -16.80348192871266,
       "color": "green"
     },
     "contractAudit": {
@@ -2678,7 +2678,7 @@
     "lat_salon": -34.6611266,
     "lon_salon": -58.7535712,
     "pax_calculado": 176.0,
-    "mt2_salon": 481.0,
+    "mt2_salon": 830.0,
     "cantidad_eventos_salon": 104,
     "total_invitados_salon": 9825,
     "costos_variables_salon": 45919493.67,
@@ -2696,21 +2696,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 24289.611226611225,
+      "rentPerMt2": 14076.268674698795,
       "marketMt2": 5290.7,
-      "marketDeviation": 3.591001422611606,
+      "marketDeviation": 1.6605682943086542,
       "marketCostPerMt2": 5290.7,
-      "deviation": 359.1001422611606,
+      "deviation": 166.0568294308654,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 66382.40340909091,
       "paxRatio": 0.9722954077148094,
-      "mt2Ratio": 1.0996512468989366,
+      "mt2Ratio": 0.832523987127355,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.035973327306873,
-      "medianDeviation": 3.597332730687297,
-      "color": "yellow"
+      "globalIndex": 0.9024096974210822,
+      "medianDeviation": -9.759030257891776,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 11683303.0,
@@ -2736,7 +2736,7 @@
     "lat_salon": -34.6462046,
     "lon_salon": -58.8029366,
     "pax_calculado": 220.0,
-    "mt2_salon": 1008.0,
+    "mt2_salon": 1345.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 11867,
     "costos_variables_salon": 816064119.28,
@@ -2754,20 +2754,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 19537.54761904762,
+      "rentPerMt2": 14642.266171003717,
       "marketMt2": 5290.7,
-      "marketDeviation": 2.692809575112484,
+      "marketDeviation": 1.767547993838947,
       "marketCostPerMt2": 5290.7,
-      "deviation": 269.2809575112484,
+      "deviation": 176.7547993838947,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 89517.4909090909,
       "paxRatio": 1.311152366458936,
-      "mt2Ratio": 0.8845134819241188,
+      "mt2Ratio": 0.8659992285579792,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.0978329241915274,
-      "medianDeviation": 9.783292419152744,
+      "globalIndex": 1.0885757975084576,
+      "medianDeviation": 8.857579750845757,
       "color": "yellow"
     },
     "contractAudit": {
@@ -2794,7 +2794,7 @@
     "lat_salon": -34.6333369,
     "lon_salon": -58.6312473,
     "pax_calculado": 265.0,
-    "mt2_salon": 830.0,
+    "mt2_salon": 1500.0,
     "cantidad_eventos_salon": 111,
     "total_invitados_salon": 10318,
     "costos_variables_salon": 667505274.68,
@@ -2812,20 +2812,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 20692.702409638554,
+      "rentPerMt2": 11449.962,
       "marketMt2": 5290.7,
-      "marketDeviation": 2.911146428570615,
+      "marketDeviation": 1.1641676904757405,
       "marketCostPerMt2": 5290.7,
-      "deviation": 291.1146428570615,
+      "deviation": 116.41676904757405,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 64811.10566037736,
       "paxRatio": 0.9492807907867098,
-      "mt2Ratio": 0.9368102187464407,
+      "mt2Ratio": 0.6771942364122769,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.9430455047665752,
-      "medianDeviation": -5.695449523342477,
+      "globalIndex": 0.8132375135994934,
+      "medianDeviation": -18.676248640050662,
       "color": "green"
     },
     "contractAudit": {
@@ -2852,7 +2852,7 @@
     "lat_salon": -34.5423362,
     "lon_salon": -58.4597883,
     "pax_calculado": 417.0,
-    "mt2_salon": 1345.0,
+    "mt2_salon": 1500.0,
     "cantidad_eventos_salon": 136,
     "total_invitados_salon": 18669,
     "costos_variables_salon": 1127190346.26,
@@ -2870,20 +2870,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10196.834944237919,
+      "rentPerMt2": 9143.162,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6982202804392578,
+      "marketDeviation": -0.7294041847938678,
       "marketCostPerMt2": 33789.0,
-      "deviation": -69.82202804392578,
+      "deviation": -72.94041847938678,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 32889.07194244604,
       "paxRatio": 0.4795097021466786,
-      "mt2Ratio": 0.5636647076746488,
+      "mt2Ratio": 0.5502521130909092,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.5215872049106637,
-      "medianDeviation": -47.84127950893363,
+      "globalIndex": 0.5148809076187939,
+      "medianDeviation": -48.51190923812061,
       "color": "green"
     },
     "contractAudit": {
@@ -2910,7 +2910,7 @@
     "lat_salon": -34.5022955,
     "lon_salon": -58.4778777,
     "pax_calculado": 248.0,
-    "mt2_salon": 1500.0,
+    "mt2_salon": 993.0,
     "cantidad_eventos_salon": 55,
     "total_invitados_salon": 6169,
     "costos_variables_salon": 500921147.88,
@@ -2928,20 +2928,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11000.0,
+      "rentPerMt2": 16616.31419939577,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6744502648791026,
+      "marketDeviation": -0.508233028518282,
       "marketCostPerMt2": 33789.0,
-      "deviation": -67.44502648791027,
+      "deviation": -50.8233028518282,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 66532.25806451614,
       "paxRatio": 0.9700140917168547,
-      "mt2Ratio": 0.6080623858607069,
+      "mt2Ratio": 1.0,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.7890382387887809,
-      "medianDeviation": -21.096176121121914,
+      "globalIndex": 0.9850070458584274,
+      "medianDeviation": -1.4992954141572645,
       "color": "green"
     },
     "contractAudit": {
@@ -2968,7 +2968,7 @@
     "lat_salon": -34.5022955,
     "lon_salon": -58.4778777,
     "pax_calculado": 287.0,
-    "mt2_salon": 1500.0,
+    "mt2_salon": 1337.0,
     "cantidad_eventos_salon": 60,
     "total_invitados_salon": 5380,
     "costos_variables_salon": 533582947.96,
@@ -2986,20 +2986,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 12578.646666666667,
+      "rentPerMt2": 14112.169035153329,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6277295372261189,
+      "marketDeviation": -0.5823442826022277,
       "marketCostPerMt2": 33789.0,
-      "deviation": -62.77295372261189,
+      "deviation": -58.23442826022277,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 65742.05574912892,
       "paxRatio": 0.9584932535019605,
-      "mt2Ratio": 0.6953274457301966,
+      "mt2Ratio": 0.8492959910246822,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.8269103496160786,
-      "medianDeviation": -17.308965038392145,
+      "globalIndex": 0.9038946222633213,
+      "medianDeviation": -9.610537773667872,
       "color": "green"
     },
     "contractAudit": {
@@ -3026,7 +3026,7 @@
     "lat_salon": -34.445773,
     "lon_salon": -58.5426716,
     "pax_calculado": 253.0,
-    "mt2_salon": 16100.0,
+    "mt2_salon": 914.0,
     "cantidad_eventos_salon": 98,
     "total_invitados_salon": 11428,
     "costos_variables_salon": 969916413.25,
@@ -3054,10 +3054,10 @@
     "efficiency": {
       "rentPerPax": 432236.6719367589,
       "paxRatio": 4.309594122865747,
-      "mt2Ratio": 0.2612239164147703,
+      "mt2Ratio": 4.194106026931992,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 2.2854090196402583,
-      "medianDeviation": 128.54090196402584,
+      "globalIndex": 4.2518500748988695,
+      "medianDeviation": 325.18500748988697,
       "color": "red"
     },
     "contractAudit": {
@@ -3084,7 +3084,7 @@
     "lat_salon": -34.5782224,
     "lon_salon": -58.4376112,
     "pax_calculado": 300.0,
-    "mt2_salon": 993.0,
+    "mt2_salon": 833.0,
     "cantidad_eventos_salon": 82,
     "total_invitados_salon": 8100,
     "costos_variables_salon": 1071379819.6,
@@ -3102,20 +3102,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 74527.40483383686,
+      "rentPerMt2": 88842.3925570228,
       "marketMt2": 33789.0,
-      "marketDeviation": 1.2056706275366793,
+      "marketDeviation": 1.6293288513132322,
       "marketCostPerMt2": 33789.0,
-      "deviation": 120.56706275366793,
+      "deviation": 162.93288513132322,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 246685.71,
       "paxRatio": 3.5965803940269088,
-      "mt2Ratio": 4.119755599569966,
+      "mt2Ratio": 5.346696715704463,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 3.8581679967984375,
-      "medianDeviation": 285.81679967984377,
+      "globalIndex": 4.471638554865686,
+      "medianDeviation": 347.16385548656865,
       "color": "red"
     },
     "contractAudit": {
@@ -3142,7 +3142,7 @@
     "lat_salon": -34.5922245,
     "lon_salon": -58.4304388,
     "pax_calculado": 348.0,
-    "mt2_salon": 1337.0,
+    "mt2_salon": 763.0,
     "cantidad_eventos_salon": 100,
     "total_invitados_salon": 10693,
     "costos_variables_salon": 870502037.05,
@@ -3160,20 +3160,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 22710.353029169783,
+      "rentPerMt2": 39795.20576671035,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.3278773260774281,
+      "marketDeviation": 0.17775624513037824,
       "marketCostPerMt2": 33789.0,
-      "deviation": -32.78773260774281,
-      "color": "green"
+      "deviation": 17.775624513037826,
+      "color": "yellow"
     },
     "efficiency": {
       "rentPerPax": 87252.13218390805,
       "paxRatio": 1.272101687404949,
-      "mt2Ratio": 1.2553919496959918,
+      "mt2Ratio": 2.394947837960205,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.2637468185504703,
-      "medianDeviation": 26.374681855047033,
+      "globalIndex": 1.833524762682577,
+      "medianDeviation": 83.3524762682577,
       "color": "red"
     },
     "contractAudit": {
@@ -3200,7 +3200,7 @@
     "lat_salon": -34.6112695,
     "lon_salon": -58.3696563,
     "pax_calculado": 308.0,
-    "mt2_salon": 914.0,
+    "mt2_salon": 1460.0,
     "cantidad_eventos_salon": 120,
     "total_invitados_salon": 12584,
     "costos_variables_salon": 552009264.53,
@@ -3218,20 +3218,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 25625.292122538292,
+      "rentPerMt2": 16042.13493150685,
       "marketMt2": 9946.9,
-      "marketDeviation": 1.5762088814141384,
+      "marketDeviation": 0.612777340830495,
       "marketCostPerMt2": 9946.9,
-      "deviation": 157.62088814141384,
+      "deviation": 61.277734083049495,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 76043.88636363637,
       "paxRatio": 0.884613957226934,
-      "mt2Ratio": 1.0,
+      "mt2Ratio": 0.4699635523743257,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 0.942306978613467,
-      "medianDeviation": -5.769302138653298,
+      "globalIndex": 0.6772887548006299,
+      "medianDeviation": -32.27112451993701,
       "color": "green"
     },
     "contractAudit": {
@@ -3258,7 +3258,7 @@
     "lat_salon": -34.4455425,
     "lon_salon": -58.8862046,
     "pax_calculado": 305.0,
-    "mt2_salon": 833.0,
+    "mt2_salon": 650.0,
     "cantidad_eventos_salon": 89,
     "total_invitados_salon": 8702,
     "costos_variables_salon": 761999411.48,
@@ -3276,20 +3276,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 60014.723889555826,
+      "rentPerMt2": 76911.17692307693,
       "marketMt2": 33789.0,
-      "marketDeviation": 0.776161587781699,
+      "marketDeviation": 1.2762193886494695,
       "marketCostPerMt2": 33789.0,
-      "deviation": 77.6161587781699,
+      "deviation": 127.62193886494696,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 163909.0655737705,
       "paxRatio": 2.3897295536328143,
-      "mt2Ratio": 3.31751783591408,
+      "mt2Ratio": 4.628654465734266,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 2.853623694773447,
-      "medianDeviation": 185.3623694773447,
+      "globalIndex": 3.5091920096835403,
+      "medianDeviation": 250.91920096835403,
       "color": "red"
     },
     "contractAudit": {
@@ -3344,10 +3344,10 @@
     "efficiency": {
       "rentPerPax": 81549.22480620156,
       "paxRatio": 1.1889555462538846,
-      "mt2Ratio": 1.5243000333365322,
+      "mt2Ratio": 1.659511664482307,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.3566277897952084,
-      "medianDeviation": 35.66277897952084,
+      "globalIndex": 1.4242336053680957,
+      "medianDeviation": 42.423360536809575,
       "color": "red"
     },
     "contractAudit": {
@@ -3374,7 +3374,7 @@
     "lat_salon": -34.4328447,
     "lon_salon": -58.9901722,
     "pax_calculado": 270.0,
-    "mt2_salon": 1460.0,
+    "mt2_salon": 570.0,
     "cantidad_eventos_salon": 85,
     "total_invitados_salon": 8265,
     "costos_variables_salon": 91058580.94,
@@ -3392,21 +3392,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 13441.780821917808,
+      "rentPerMt2": 34429.82456140351,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6021847103519545,
+      "marketDeviation": 0.018965478747625303,
       "marketCostPerMt2": 33789.0,
-      "deviation": -60.218471035195456,
-      "color": "green"
+      "deviation": 1.8965478747625304,
+      "color": "yellow"
     },
     "efficiency": {
       "rentPerPax": 72685.18518518518,
       "paxRatio": 1.0597213432965054,
-      "mt2Ratio": 0.7430401197083669,
+      "mt2Ratio": 2.0720494417862843,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.9013807315024361,
-      "medianDeviation": -9.861926849756387,
-      "color": "green"
+      "globalIndex": 1.5658853925413947,
+      "medianDeviation": 56.58853925413947,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 19625000.0,
@@ -3432,7 +3432,7 @@
     "lat_salon": -38.0261389,
     "lon_salon": -57.5303659,
     "pax_calculado": 406.0,
-    "mt2_salon": 650.0,
+    "mt2_salon": 911.0,
     "cantidad_eventos_salon": 140,
     "total_invitados_salon": 16183,
     "costos_variables_salon": 917214697.83,
@@ -3450,20 +3450,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 56318.63076923077,
+      "rentPerMt2": 40183.43578485181,
       "marketMt2": 5290.7,
-      "marketDeviation": 9.644835422388487,
+      "marketDeviation": 6.595107601045574,
       "marketCostPerMt2": 5290.7,
-      "deviation": 964.4835422388487,
+      "deviation": 659.5107601045573,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 90165.29556650246,
       "paxRatio": 1.3206406865731677,
-      "mt2Ratio": 2.549684800272768,
+      "mt2Ratio": 2.376600997692786,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.935162743422968,
-      "medianDeviation": 93.5162743422968,
+      "globalIndex": 1.8486208421329768,
+      "medianDeviation": 84.86208421329768,
       "color": "red"
     },
     "contractAudit": {
@@ -3518,10 +3518,10 @@
     "efficiency": {
       "rentPerPax": 311707.51274111675,
       "paxRatio": 3.107864168357194,
-      "mt2Ratio": 4.1431944932261375,
+      "mt2Ratio": 3.7764358290138067,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 3.625529330791666,
-      "medianDeviation": 262.55293307916656,
+      "globalIndex": 3.4421499986855,
+      "medianDeviation": 244.21499986855002,
       "color": "red"
     },
     "contractAudit": {
@@ -3548,7 +3548,7 @@
     "lat_salon": -34.6146794,
     "lon_salon": -58.3580145,
     "pax_calculado": 147.0,
-    "mt2_salon": 911.0,
+    "mt2_salon": 503.0,
     "cantidad_eventos_salon": 112,
     "total_invitados_salon": 10343,
     "costos_variables_salon": 554841766.98,
@@ -3576,11 +3576,11 @@
     "efficiency": {
       "rentPerPax": 142857.14285714287,
       "paxRatio": 1.4243499990593411,
-      "mt2Ratio": 0.8865384953808934,
+      "mt2Ratio": 1.463506915100676,
       "medianPaxTier": 100296.37585669782,
-      "globalIndex": 1.1554442472201172,
-      "medianDeviation": 15.544424722011719,
-      "color": "yellow"
+      "globalIndex": 1.4439284570800086,
+      "medianDeviation": 44.39284570800086,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 21000000.0,
@@ -3606,7 +3606,7 @@
     "lat_salon": -34.7327696,
     "lon_salon": -58.2640226,
     "pax_calculado": 144.0,
-    "mt2_salon": 941.0,
+    "mt2_salon": 730.0,
     "cantidad_eventos_salon": 94,
     "total_invitados_salon": 8705,
     "costos_variables_salon": 390901394.2,
@@ -3624,21 +3624,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 15953.607863974496,
+      "rentPerMt2": 20564.85616438356,
       "marketMt2": 5290.7,
-      "marketDeviation": 2.0154058752101793,
+      "marketDeviation": 2.886982093935313,
       "marketCostPerMt2": 5290.7,
-      "deviation": 201.54058752101793,
+      "deviation": 288.69820939353133,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 104252.39583333333,
       "paxRatio": 1.5269728196996095,
-      "mt2Ratio": 0.7222595955317729,
+      "mt2Ratio": 1.2162836930959273,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.1246162076156911,
-      "medianDeviation": 12.461620761569115,
-      "color": "yellow"
+      "globalIndex": 1.3716282563977684,
+      "medianDeviation": 37.16282563977684,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 15012345.0,
@@ -3664,7 +3664,7 @@
     "lat_salon": -34.6461685,
     "lon_salon": -58.5689948,
     "pax_calculado": 160.0,
-    "mt2_salon": 503.0,
+    "mt2_salon": 150.0,
     "cantidad_eventos_salon": 65,
     "total_invitados_salon": 5790,
     "costos_variables_salon": 620555458.16,
@@ -3682,20 +3682,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 25641.86878727634,
+      "rentPerMt2": 85985.73333333334,
       "marketMt2": 6722.69,
-      "marketDeviation": 2.8142274576510804,
+      "marketDeviation": 11.790376074656624,
       "marketCostPerMt2": 6722.69,
-      "deviation": 281.42274576510806,
+      "deviation": 1179.0376074656624,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 80611.625,
       "paxRatio": 1.1071671366380784,
-      "mt2Ratio": 1.4016923723172003,
+      "mt2Ratio": 5.091430509320333,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 1.2544297544776395,
-      "medianDeviation": 25.44297544776395,
+      "globalIndex": 3.099298822979206,
+      "medianDeviation": 209.92988229792059,
       "color": "red"
     },
     "contractAudit": {
@@ -3722,7 +3722,7 @@
     "lat_salon": -34.6485572,
     "lon_salon": -58.5695288,
     "pax_calculado": 180.0,
-    "mt2_salon": 730.0,
+    "mt2_salon": 2595.0,
     "cantidad_eventos_salon": 109,
     "total_invitados_salon": 9906,
     "costos_variables_salon": 547282802.23,
@@ -3740,21 +3740,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 18214.595890410958,
+      "rentPerMt2": 5123.95183044316,
       "marketMt2": 6722.69,
-      "marketDeviation": 1.709420766153275,
+      "marketDeviation": -0.23781227002239272,
       "marketCostPerMt2": 6722.69,
-      "deviation": 170.9420766153275,
-      "color": "red"
+      "deviation": -23.781227002239273,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 73870.30555555556,
       "paxRatio": 1.014577918315434,
-      "mt2Ratio": 0.9956864039916637,
+      "mt2Ratio": 0.303402014107062,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 1.0051321611535489,
-      "medianDeviation": 0.5132161153548864,
-      "color": "yellow"
+      "globalIndex": 0.658989966211248,
+      "medianDeviation": -34.101003378875205,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 13296655.0,
@@ -3780,7 +3780,7 @@
     "lat_salon": -34.6595691,
     "lon_salon": -58.5618369,
     "pax_calculado": 232.0,
-    "mt2_salon": 270.0,
+    "mt2_salon": 1113.0,
     "cantidad_eventos_salon": 91,
     "total_invitados_salon": 8658,
     "costos_variables_salon": 700837083.22,
@@ -3798,21 +3798,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 43559.42407407407,
+      "rentPerMt2": 10566.97619047619,
       "marketMt2": 6722.69,
-      "marketDeviation": 5.479463440092295,
+      "marketDeviation": 0.5718374922056783,
       "marketCostPerMt2": 6722.69,
-      "deviation": 547.9463440092295,
+      "deviation": 57.183749220567826,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 50694.15732758621,
       "paxRatio": 0.6962631631934463,
-      "mt2Ratio": 2.381141287855614,
+      "mt2Ratio": 0.6256971113904014,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 1.5387022255245302,
-      "medianDeviation": 53.870222552453015,
-      "color": "red"
+      "globalIndex": 0.6609801372919238,
+      "medianDeviation": -33.90198627080762,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 11761044.5,
@@ -3838,7 +3838,7 @@
     "lat_salon": -34.6486183,
     "lon_salon": -58.5695585,
     "pax_calculado": 162.0,
-    "mt2_salon": 150.0,
+    "mt2_salon": 495.0,
     "cantidad_eventos_salon": 57,
     "total_invitados_salon": 5070,
     "costos_variables_salon": 628613926.71,
@@ -3856,21 +3856,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 78406.96333333333,
+      "rentPerMt2": 23759.685858585857,
       "marketMt2": 6722.69,
-      "marketDeviation": 10.663034192166132,
+      "marketDeviation": 2.5342527855048886,
       "marketCostPerMt2": 6722.69,
-      "deviation": 1066.303419216613,
+      "deviation": 253.42527855048885,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 72599.04012345678,
       "paxRatio": 0.9971176164251822,
-      "mt2Ratio": 4.286054318140105,
+      "mt2Ratio": 1.406870474702054,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 2.641585967282644,
-      "medianDeviation": 164.15859672826437,
-      "color": "red"
+      "globalIndex": 1.201994045563618,
+      "medianDeviation": 20.1994045563618,
+      "color": "yellow"
     },
     "contractAudit": {
       "contractAmount": 11761044.5,
@@ -3896,7 +3896,7 @@
     "lat_salon": -34.4804081,
     "lon_salon": -58.5204941,
     "pax_calculado": 325.0,
-    "mt2_salon": 1113.0,
+    "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 12934,
     "costos_variables_salon": 949163835.51,
@@ -3914,21 +3914,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 20028.22292003594,
+      "rentPerMt2": 9184.75983106716,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.40725612122181953,
+      "marketDeviation": -0.7281730790770026,
       "marketCostPerMt2": 33789.0,
-      "deviation": -40.72561212218196,
+      "deviation": -72.81730790770025,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 68588.96033846153,
       "paxRatio": 1.0,
-      "mt2Ratio": 1.1071280921188316,
+      "mt2Ratio": 0.552755546196951,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 1.0535640460594158,
-      "medianDeviation": 5.356404605941578,
-      "color": "yellow"
+      "globalIndex": 0.7763777730984756,
+      "medianDeviation": -22.362222690152443,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 22291412.11,
@@ -3954,7 +3954,7 @@
     "lat_salon": -34.6764448,
     "lon_salon": -58.5878834,
     "pax_calculado": 255.0,
-    "mt2_salon": 495.0,
+    "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 147,
     "total_invitados_salon": 14187,
     "costos_variables_salon": 1103193380.84,
@@ -3972,21 +3972,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 34151.195959595956,
+      "rentPerMt2": 6965.324268644417,
       "marketMt2": 5290.7,
-      "marketDeviation": 5.454948486891329,
+      "marketDeviation": 0.31652225010762614,
       "marketCostPerMt2": 5290.7,
-      "deviation": 545.4948486891329,
-      "color": "red"
+      "deviation": 31.652225010762614,
+      "color": "yellow"
     },
     "efficiency": {
       "rentPerPax": 66293.49803921569,
       "paxRatio": 0.9709932210145455,
-      "mt2Ratio": 1.546109769715694,
+      "mt2Ratio": 0.41195572958832155,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.2585514953651198,
-      "medianDeviation": 25.85514953651198,
-      "color": "red"
+      "globalIndex": 0.6914744753014336,
+      "medianDeviation": -30.852552469856644,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 16904842.0,
@@ -4012,7 +4012,7 @@
     "lat_salon": -34.6764448,
     "lon_salon": -58.5878834,
     "pax_calculado": 151.0,
-    "mt2_salon": 2100.0,
+    "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 88,
     "total_invitados_salon": 7750,
     "costos_variables_salon": 32181279.01,
@@ -4030,20 +4030,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 13476.190476190477,
+      "rentPerMt2": 11660.486196950967,
       "marketMt2": 5290.7,
-      "marketDeviation": 1.5471469703801912,
+      "marketDeviation": 1.2039590596614753,
       "marketCostPerMt2": 5290.7,
-      "deviation": 154.71469703801912,
+      "deviation": 120.39590596614754,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 187417.21854304636,
       "paxRatio": 2.745078387612756,
-      "mt2Ratio": 0.6101007349329207,
+      "mt2Ratio": 0.6896454369315903,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.6775895612728384,
-      "medianDeviation": 67.75895612728384,
+      "globalIndex": 1.7173619122721733,
+      "medianDeviation": 71.73619122721733,
       "color": "red"
     },
     "contractAudit": {
@@ -4070,7 +4070,7 @@
     "lat_salon": -34.5680727,
     "lon_salon": -58.5909813,
     "pax_calculado": 191.0,
-    "mt2_salon": 2427.0,
+    "mt2_salon": 1362.0,
     "cantidad_eventos_salon": 96,
     "total_invitados_salon": 8745,
     "costos_variables_salon": 690678095.48,
@@ -4088,20 +4088,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 3630.0303543469304,
+      "rentPerMt2": 6468.490212922174,
       "marketMt2": 6722.69,
-      "marketDeviation": -0.46003305903634845,
+      "marketDeviation": -0.037812213128647305,
       "marketCostPerMt2": 6722.69,
-      "deviation": -46.003305903634846,
+      "deviation": -3.7812213128647305,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 46126.092513089,
       "paxRatio": 0.6335226931850073,
-      "mt2Ratio": 0.19843272349528543,
+      "mt2Ratio": 0.38301549736908214,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.41597770834014636,
-      "medianDeviation": -58.40222916598536,
+      "globalIndex": 0.5082690952770448,
+      "medianDeviation": -49.17309047229552,
       "color": "green"
     },
     "contractAudit": {
@@ -4128,7 +4128,7 @@
     "lat_salon": -34.5680727,
     "lon_salon": -58.5909813,
     "pax_calculado": 193.0,
-    "mt2_salon": 2427.0,
+    "mt2_salon": 1010.0,
     "cantidad_eventos_salon": 101,
     "total_invitados_salon": 9505,
     "costos_variables_salon": 594848026.26,
@@ -4146,20 +4146,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 3630.0303543469304,
+      "rentPerMt2": 8722.855118811882,
       "marketMt2": 6722.69,
-      "marketDeviation": -0.46003305903634845,
+      "marketDeviation": 0.2975245205136459,
       "marketCostPerMt2": 6722.69,
-      "deviation": -46.003305903634846,
-      "color": "green"
+      "deviation": 29.752452051364592,
+      "color": "yellow"
     },
     "efficiency": {
       "rentPerPax": 45648.101917098444,
       "paxRatio": 0.6269576911830901,
-      "mt2Ratio": 0.19843272349528543,
+      "mt2Ratio": 0.5165020865511781,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.41269520733918774,
-      "medianDeviation": -58.730479266081225,
+      "globalIndex": 0.571729888867134,
+      "medianDeviation": -42.827011113286595,
       "color": "green"
     },
     "contractAudit": {
@@ -4186,7 +4186,7 @@
     "lat_salon": -34.5680727,
     "lon_salon": -58.5909813,
     "pax_calculado": 177.0,
-    "mt2_salon": 2427.0,
+    "mt2_salon": 770.0,
     "cantidad_eventos_salon": 82,
     "total_invitados_salon": 7241,
     "costos_variables_salon": 532131150.11,
@@ -4204,20 +4204,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 3630.0303543469304,
+      "rentPerMt2": 11441.667103896103,
       "marketMt2": 6722.69,
-      "marketDeviation": -0.46003305903634845,
+      "marketDeviation": 0.7019477476867301,
       "marketCostPerMt2": 6722.69,
-      "deviation": -46.003305903634846,
-      "color": "green"
+      "deviation": 70.19477476867301,
+      "color": "red"
     },
     "efficiency": {
       "rentPerPax": 49774.484011299435,
       "paxRatio": 0.6836318327589627,
-      "mt2Ratio": 0.19843272349528543,
+      "mt2Ratio": 0.6774897498918049,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 0.44103227812712403,
-      "medianDeviation": -55.89677218728759,
+      "globalIndex": 0.6805607913253837,
+      "medianDeviation": -31.943920867461628,
       "color": "green"
     },
     "contractAudit": {
@@ -4244,7 +4244,7 @@
     "lat_salon": -34.5544768,
     "lon_salon": -58.7173796,
     "pax_calculado": 345.0,
-    "mt2_salon": 1362.0,
+    "mt2_salon": 415.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 12045,
     "costos_variables_salon": 947848605.01,
@@ -4262,21 +4262,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 22097.09471365639,
+      "rentPerMt2": 72521.06746987952,
       "marketMt2": 6722.69,
-      "marketDeviation": 2.28694238670181,
+      "marketDeviation": 9.787507302862325,
       "marketCostPerMt2": 6722.69,
-      "deviation": 228.694238670181,
+      "deviation": 978.7507302862325,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 87235.48695652174,
       "paxRatio": 1.198143125223944,
-      "mt2Ratio": 1.2079201156302637,
+      "mt2Ratio": 4.294153938924243,
       "medianPaxTier": 72808.90331045935,
-      "globalIndex": 1.2030316204271039,
-      "medianDeviation": 20.303162042710387,
-      "color": "yellow"
+      "globalIndex": 2.7461485320740935,
+      "medianDeviation": 174.61485320740934,
+      "color": "red"
     },
     "contractAudit": {
       "contractAmount": 30096243.0,
@@ -4302,7 +4302,7 @@
     "lat_salon": -34.6118265,
     "lon_salon": -58.3747174,
     "pax_calculado": 175.0,
-    "mt2_salon": 1010.0,
+    "mt2_salon": 470.0,
     "cantidad_eventos_salon": 114,
     "total_invitados_salon": 10015,
     "costos_variables_salon": 694960663.98,
@@ -4320,20 +4320,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 25556.071287128714,
+      "rentPerMt2": 54918.36595744681,
       "marketMt2": 9946.9,
-      "marketDeviation": 1.5692498453919026,
+      "marketDeviation": 4.521153923076215,
       "marketCostPerMt2": 9946.9,
-      "deviation": 156.92498453919026,
+      "deviation": 452.11539230762156,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 147495.04,
       "paxRatio": 1.7158009308179925,
-      "mt2Ratio": 0.9972987299001873,
+      "mt2Ratio": 1.6088650585568052,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.35654983035909,
-      "medianDeviation": 35.65498303590899,
+      "globalIndex": 1.6623329946873988,
+      "medianDeviation": 66.23329946873989,
       "color": "red"
     },
     "contractAudit": {
@@ -4360,7 +4360,7 @@
     "lat_salon": -34.6115255,
     "lon_salon": -58.3738978,
     "pax_calculado": 280.0,
-    "mt2_salon": 770.0,
+    "mt2_salon": 1550.0,
     "cantidad_eventos_salon": 84,
     "total_invitados_salon": 9460,
     "costos_variables_salon": 491060683.77,
@@ -4378,21 +4378,21 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 31259.1974025974,
+      "rentPerMt2": 15528.762580645162,
       "marketMt2": 9946.9,
-      "marketDeviation": 2.142606983341283,
+      "marketDeviation": 0.5611660497888953,
       "marketCostPerMt2": 9946.9,
-      "deviation": 214.26069833412828,
+      "deviation": 56.11660497888953,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 85962.79285714286,
       "paxRatio": 1.0,
-      "mt2Ratio": 1.2198572118951145,
+      "mt2Ratio": 0.4549240146362489,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.1099286059475573,
-      "medianDeviation": 10.992860594755726,
-      "color": "yellow"
+      "globalIndex": 0.7274620073181244,
+      "medianDeviation": -27.253799268187564,
+      "color": "green"
     },
     "contractAudit": {
       "contractAmount": 24069582.0,
@@ -4418,7 +4418,7 @@
     "lat_salon": -34.6149179,
     "lon_salon": -58.37115,
     "pax_calculado": 188.0,
-    "mt2_salon": 415.0,
+    "mt2_salon": 670.0,
     "cantidad_eventos_salon": 123,
     "total_invitados_salon": 11498,
     "costos_variables_salon": 618240871.76,
@@ -4436,20 +4436,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 60943.7421686747,
+      "rentPerMt2": 37748.73582089552,
       "marketMt2": 9946.9,
-      "marketDeviation": 5.126908098872483,
+      "marketDeviation": 2.7950251657195224,
       "marketCostPerMt2": 9946.9,
-      "deviation": 512.6908098872483,
+      "deviation": 279.50251657195224,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 134530.06914893616,
       "paxRatio": 1.5649802045462244,
-      "mt2Ratio": 2.3782652653185816,
+      "mt2Ratio": 1.1058708868721399,
       "medianPaxTier": 85962.79285714286,
-      "globalIndex": 1.971622734932403,
-      "medianDeviation": 97.16227349324029,
+      "globalIndex": 1.3354255457091821,
+      "medianDeviation": 33.54255457091821,
       "color": "red"
     },
     "contractAudit": {
@@ -4476,7 +4476,7 @@
     "lat_salon": -34.7853078,
     "lon_salon": -58.4061102,
     "pax_calculado": 187.0,
-    "mt2_salon": 470.0,
+    "mt2_salon": 500.0,
     "cantidad_eventos_salon": 122,
     "total_invitados_salon": 11562,
     "costos_variables_salon": 616866813.37,
@@ -4494,20 +4494,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 45895.93404255319,
+      "rentPerMt2": 43142.178,
       "marketMt2": 5290.7,
-      "marketDeviation": 7.6748320718531,
+      "marketDeviation": 7.1543421475419136,
       "marketCostPerMt2": 5290.7,
-      "deviation": 767.48320718531,
+      "deviation": 715.4342147541913,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 115353.41711229946,
       "paxRatio": 1.6895681982364013,
-      "mt2Ratio": 2.0778233388186775,
+      "mt2Ratio": 2.5515922487666365,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 1.8836957685275393,
-      "medianDeviation": 88.36957685275392,
+      "globalIndex": 2.120580223501519,
+      "medianDeviation": 112.0580223501519,
       "color": "red"
     },
     "contractAudit": {
@@ -4534,7 +4534,7 @@
     "lat_salon": -34.5172987,
     "lon_salon": -58.4792662,
     "pax_calculado": 194.0,
-    "mt2_salon": 1550.0,
+    "mt2_salon": 1854.0,
     "cantidad_eventos_salon": 96,
     "total_invitados_salon": 9449,
     "costos_variables_salon": 752652968.27,
@@ -4552,20 +4552,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10312.894193548387,
+      "rentPerMt2": 8621.891046386192,
       "marketMt2": 33789.0,
-      "marketDeviation": -0.6947854569964075,
+      "marketDeviation": -0.7448314230552491,
       "marketCostPerMt2": 33789.0,
-      "deviation": -69.47854569964075,
+      "deviation": -74.48314230552491,
       "color": "green"
     },
     "efficiency": {
       "rentPerPax": 82396.8350515464,
       "paxRatio": 1.201313369454035,
-      "mt2Ratio": 0.5700802771325512,
+      "mt2Ratio": 0.51888107933706,
       "medianPaxTier": 68588.96033846153,
-      "globalIndex": 0.8856968232932931,
-      "medianDeviation": -11.430317670670686,
+      "globalIndex": 0.8600972243955475,
+      "medianDeviation": -13.990277560445252,
       "color": "green"
     },
     "contractAudit": {
@@ -4592,7 +4592,7 @@
     "lat_salon": -34.5145588,
     "lon_salon": -58.6821507,
     "pax_calculado": 246.0,
-    "mt2_salon": 670.0,
+    "mt2_salon": 586.0,
     "cantidad_eventos_salon": 94,
     "total_invitados_salon": 9248,
     "costos_variables_salon": 94170994.1,
@@ -4610,20 +4610,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 16769.764179104477,
+      "rentPerMt2": 19173.621160409555,
       "marketMt2": 5290.7,
-      "marketDeviation": 2.1696683197127937,
+      "marketDeviation": 2.6240235054736716,
       "marketCostPerMt2": 5290.7,
-      "deviation": 216.96683197127936,
+      "deviation": 262.4023505473672,
       "color": "red"
     },
     "efficiency": {
       "rentPerPax": 45673.74796747968,
       "paxRatio": 0.668978119521091,
-      "mt2Ratio": 0.7592090263490869,
+      "mt2Ratio": 1.1340007714420208,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.714093572935089,
-      "medianDeviation": -28.5906427064911,
+      "globalIndex": 0.9014894454815559,
+      "medianDeviation": -9.851055451844415,
       "color": "green"
     },
     "contractAudit": {
@@ -4650,7 +4650,7 @@
     "lat_salon": -34.5148425,
     "lon_salon": -58.6820472,
     "pax_calculado": 199.0,
-    "mt2_salon": 500.0,
+    "mt2_salon": 16100.0,
     "cantidad_eventos_salon": 90,
     "total_invitados_salon": 8107,
     "costos_variables_salon": 63899504.14,
@@ -4668,20 +4668,20 @@
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 22471.484,
+      "rentPerMt2": 697.8721739130435,
       "marketMt2": 5290.7,
-      "marketDeviation": 3.2473555484151437,
+      "marketDeviation": -0.8680945481858652,
       "marketCostPerMt2": 5290.7,
-      "deviation": 324.7355548415144,
-      "color": "red"
+      "deviation": -86.80945481858652,
+      "color": "green"
     },
     "efficiency": {
       "rentPerPax": 56461.01507537688,
       "paxRatio": 0.826977976895419,
-      "mt2Ratio": 1.0173400953077765,
+      "mt2Ratio": 0.04127481068726859,
       "medianPaxTier": 68273.90408549784,
-      "globalIndex": 0.9221590361015977,
-      "medianDeviation": -7.784096389840234,
+      "globalIndex": 0.43412639379134377,
+      "medianDeviation": -56.587360620865624,
       "color": "green"
     },
     "contractAudit": {
