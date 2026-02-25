@@ -83,7 +83,23 @@ def assign_tier(municipio, nombre_salon):
 
 def procesar_datos_dashboard(ruta_archivo):
     print(f"Reading {ruta_archivo}...")
-    df = pd.read_excel(ruta_archivo)
+    xf = pd.ExcelFile(ruta_archivo)
+    
+    # Auto-detect which sheet has the salon data
+    target_sheet = 0
+    for i, sheet_name in enumerate(xf.sheet_names):
+        try:
+            test = pd.read_excel(ruta_archivo, sheet_name=i, nrows=2)
+            test.columns = [str(c).strip().lower().replace(' ', '_') for c in test.columns]
+            if 'nombre_salon' in test.columns or 'id_salon' in test.columns:
+                target_sheet = i
+                print(f"  Found data on sheet [{i}]: '{sheet_name}'")
+                break
+        except Exception:
+            pass
+    
+    df = pd.read_excel(ruta_archivo, sheet_name=target_sheet)
+
     
     # Normalize column names
     df.columns = [str(c).strip().lower().replace(' ', '_') for c in df.columns]
