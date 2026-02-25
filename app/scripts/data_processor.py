@@ -115,8 +115,16 @@ def procesar_datos_dashboard(ruta_archivo):
                 df[col] = 0
         df[col] = df[col].apply(clean_numeric)
 
-    # Convert tier
-    df['tier_salon'] = df.apply(lambda row: str(assign_tier(row.get('municipio_salon'), row.get('nombre_salon'))), axis=1)
+    # Use tier_salon from Excel if available, otherwise calculate with assign_tier()
+    if 'tier_salon' in df.columns:
+        df['tier_salon'] = df.apply(
+            lambda row: str(assign_tier(row.get('municipio_salon'), row.get('nombre_salon')))
+            if pd.isna(row.get('tier_salon')) or str(row.get('tier_salon')).strip() == ''
+            else str(row.get('tier_salon')),
+            axis=1
+        )
+    else:
+        df['tier_salon'] = df.apply(lambda row: str(assign_tier(row.get('municipio_salon'), row.get('nombre_salon'))), axis=1)
 
     # Handle missing id_salon
     if 'id_salon' not in df.columns:
@@ -173,6 +181,7 @@ def procesar_datos_dashboard(ruta_archivo):
         (df_procesables.loc[idx_v, 'ventas_totales_salon'] - df_procesables.loc[idx_v, 'costos_totales_salon'])
         / df_procesables.loc[idx_v, 'ventas_totales_salon']
     )
+
 
     # Scores y Semáforo Performance
     mar_meta = np.percentile(df_procesables.loc[idx_v, 'margen_individual'].dropna(), 95) if df_procesables.loc[idx_v, 'margen_individual'].notna().any() else 0

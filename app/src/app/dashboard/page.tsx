@@ -393,7 +393,7 @@ export default function DashboardPage() {
                                         <div className="flex flex-col space-y-8 w-full">
                                             <div>
                                                 <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Rentabilidad (%)</p>
-                                                <p className="text-2xl font-bold text-emerald-400">
+                                                <p className={`text-2xl font-bold ${(selectedSalon.rentabilidad_salon || 0) < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                                                     {formatPercentage((selectedSalon.rentabilidad_salon || 0) * 100, 2)}
                                                 </p>
                                             </div>
