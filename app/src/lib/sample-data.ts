@@ -1,6 +1,6 @@
 // Data service for Dashboard - Connects to processed Excel data
-import { assignTier, getSemaphoreColor, type PerformanceResult, type BenchmarkResult, type EfficiencyResult, type ContractAuditResult } from "./calculations";
-import rawSalonesData from "./salones_data.json";
+import { assignTier, getSemaphoreColor, type PerformanceResult } from "./calculations";
+import rawSalonesData from './salones_data.json';
 
 export interface SalonIntegral {
     id_salon: number;
@@ -21,33 +21,49 @@ export interface SalonIntegral {
     costos_totales_salon: number | null;
     ventas_totales_salon: number | null;
     rentabilidad_salon: number | null;
-    // Computed fields
+
+    // Direct from backend UI mapping
+    retorno_sobre_alquiler: number | null;
+    incidencia_alquiler_sobre_facturacion_anual: number | null;
+    participacion_margen: number | null;
+    ip_score: number | null;
+    categoria_ip: string | null;
+    indice_global_desviacion_mediana: number | null;
+    semaforo_indice_global: string | null;
+    venta_mensual_promedio_meses_activo: number | null;
+    margen_individual: number | null;
+    ticket_evento_promedio: number | null;
+    ticket_persona_promedio: number | null;
+
     tier: number;
-    performance: PerformanceResult | null;
-    benchmark: BenchmarkResult | null;
-    efficiency: EfficiencyResult | null;
-    contractAudit: ContractAuditResult | null;
-    extra?: {
-        meses_activos: number;
-        ticket_evento: number;
-        ticket_persona: number;
-        venta_mensual: number;
-    }
+
+    // Legacy or calculated objects
+    performance?: any;
+    efficiency?: any;
+    benchmark?: any;
+    contractAudit?: any;
+    extra?: any;
 }
 
-// Map the JSON data to the SalonIntegral interface
-export const SAMPLE_SALONES: SalonIntegral[] = (rawSalonesData as any[]).map((row) => {
-    // We trust the JSON calculations from ingest-data.py (which come from Excel)
-    return {
-        ...row,
-        // Ensure tier is at least 1 for display logic
-        tier: row.tier || assignTier(row.municipio_salon, row.nombre_salon) || 5,
-    } as SalonIntegral;
-});
+export function getSalonesData(): SalonIntegral[] {
 
-export function getSalonesData(year?: number | null): SalonIntegral[] {
-    if (year !== undefined && year !== null) {
-        return SAMPLE_SALONES.filter(s => s.year === year);
-    }
+    // Map the JSON data to the SalonIntegral interface gracefully
+    const SAMPLE_SALONES: SalonIntegral[] = (rawSalonesData as any[]).map((row) => {
+        return {
+            ...row,
+            retorno_sobre_alquiler: row.retorno_sobre_alquiler ?? row.performance?.multiplier ?? 0,
+            incidencia_alquiler_sobre_facturacion_anual: row.incidencia_alquiler_sobre_facturacion_anual ?? row.performance?.rentIncidence ?? 0,
+            participacion_margen: row.participacion_margen ?? row.performance?.marginContribution ?? 0,
+            ip_score: row.ip_score ?? row.performance?.score ?? 0,
+            categoria_ip: row.categoria_ip ?? row.performance?.color ?? "gray",
+            indice_global_desviacion_mediana: row.indice_global_desviacion_mediana ?? row.efficiency?.globalIndex ?? 0,
+            semaforo_indice_global: row.semaforo_indice_global ?? (row.efficiency?.color === 'red' || row.efficiency?.color === 'yellow' ? 'REVISAR' : 'ESTANDAR'),
+            venta_mensual_promedio_meses_activo: row.venta_mensual_promedio_meses_activo ?? row.extra?.venta_mensual ?? (row.ventas_totales_salon / 12),
+            margen_individual: row.margen_individual ?? (row.ventas_totales_salon - (row.costos_variables_salon || 0) - ((row.costos_fijos_salon || 0) * 12)),
+            ticket_evento_promedio: row.ticket_evento_promedio ?? row.extra?.ticket_evento ?? 0,
+            ticket_persona_promedio: row.ticket_persona_promedio ?? row.extra?.ticket_persona ?? 0
+        } as SalonIntegral;
+    });
+
     return SAMPLE_SALONES;
 }

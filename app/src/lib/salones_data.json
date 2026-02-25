@@ -13,48 +13,48 @@
     "mt2_salon": 616.0,
     "cantidad_eventos_salon": 125,
     "total_invitados_salon": 11643,
-    "costos_variables_salon": 708222108.16,
-    "costos_fijos_salon": 35735588.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1137049164.1599998,
-    "ventas_totales_salon": 2114228578.0,
-    "rentabilidad_salon": 0.4621919427,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.2028290888,
-      "multiplier": 0,
-      "marginContribution": 0.013,
-      "score": 35.87,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 58012.32,
-      "marketMt2": 5028.66,
-      "marketDeviation": 1.0536,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 224752.13,
-      "paxRatio": 3.385718654342115,
-      "mt2Ratio": 11.536337712233477,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 3.673847585,
-      "medianDeviation": 3.673847585,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 35735588.0,
-      "realPayment": 35735588.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16913829.0,
-      "ticket_persona": 181588.0,
-      "venta_mensual": 176185714.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -71,48 +71,48 @@
     "mt2_salon": 870.0,
     "cantidad_eventos_salon": 72,
     "total_invitados_salon": 7354,
-    "costos_variables_salon": 62370640.15,
-    "costos_fijos_salon": 18883743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 213440584.15,
-    "ventas_totales_salon": 1109485319.0,
-    "rentabilidad_salon": 0.8076219843,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1361621839,
-      "multiplier": 0,
-      "marginContribution": 0.0109,
-      "score": 38.69,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 21705.45,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.3316,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 51037.14,
-      "paxRatio": 0.7688354142061752,
-      "mt2Ratio": 4.316348689312859,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.125609392,
-      "medianDeviation": 1.125609392,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 18883743.0,
-      "realPayment": 18883743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 8.0,
-      "ticket_evento": 15409518.0,
-      "ticket_persona": 150868.0,
-      "venta_mensual": 138685664.9
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -129,48 +129,48 @@
     "mt2_salon": 650.0,
     "cantidad_eventos_salon": 141,
     "total_invitados_salon": 12839,
-    "costos_variables_salon": 262697924.93,
-    "costos_fijos_salon": 19481495.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 496475864.93,
-    "ventas_totales_salon": 1841515532.0,
-    "rentabilidad_salon": 0.7303982202,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1269486659,
-      "multiplier": 0,
-      "marginContribution": 0.0179,
-      "score": 49.0,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 29971.53,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.2334,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 151019.34,
-      "paxRatio": 2.07418790834637,
-      "mt2Ratio": 3.3337519312416783,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 1.924438573,
-      "medianDeviation": 1.924438573,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 19481495.0,
-      "realPayment": 19481495.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13060394.0,
-      "ticket_persona": 143431.0,
-      "venta_mensual": 153459627.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -187,48 +187,48 @@
     "mt2_salon": 1307.0,
     "cantidad_eventos_salon": 71,
     "total_invitados_salon": 7719,
-    "costos_variables_salon": 996110517.66,
-    "costos_fijos_salon": 33254461.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1395164049.6599998,
-    "ventas_totales_salon": 1714686879.0,
-    "rentabilidad_salon": 0.1863447101,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.232726766,
-      "multiplier": 0,
-      "marginContribution": 0.0043,
-      "score": 24.58,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 46186.75,
-      "paxRatio": 0.46050266220974273,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 0.676203022,
-      "medianDeviation": 0.676203022,
-      "color": "green"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 33254461.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 24150519.0,
-      "ticket_persona": 222138.0,
-      "venta_mensual": 142890573.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -245,48 +245,48 @@
     "mt2_salon": 1517.0,
     "cantidad_eventos_salon": 53,
     "total_invitados_salon": 5237,
-    "costos_variables_salon": 1089163892.42,
-    "costos_fijos_salon": 33254461.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1488217424.42,
-    "ventas_totales_salon": 1120769430.0,
-    "rentabilidad_salon": -0.3278533341,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.35605319110000005,
-      "multiplier": 0,
-      "marginContribution": -0.0049,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 46186.75,
-      "paxRatio": 0.46050266220974273,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 0.6144694349,
-      "medianDeviation": 0.6144694349,
-      "color": "green"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 33254461.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 21146593.0,
-      "ticket_persona": 214010.0,
-      "venta_mensual": 93397452.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -303,48 +303,48 @@
     "mt2_salon": 1052.0,
     "cantidad_eventos_salon": 121,
     "total_invitados_salon": 11494,
-    "costos_variables_salon": 177041519.08,
-    "costos_fijos_salon": 33254461.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 576095051.08,
-    "ventas_totales_salon": 1703645717.0,
-    "rentabilidad_salon": 0.6618457433,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.23423504550000002,
-      "multiplier": 0,
-      "marginContribution": 0.015,
-      "score": 32.32,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 103596.45,
-      "paxRatio": 1.0329031815505205,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 1.070499946,
-      "medianDeviation": 1.070499946,
-      "color": "yellow"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 33254461.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14079717.0,
-      "ticket_persona": 148220.0,
-      "venta_mensual": 141970476.4
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -361,48 +361,48 @@
     "mt2_salon": 773.0,
     "cantidad_eventos_salon": 84,
     "total_invitados_salon": 7663,
-    "costos_variables_salon": 124036541.18,
-    "costos_fijos_salon": 33254461.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 489835612.18,
-    "ventas_totales_salon": 1023178495.0,
-    "rentabilidad_salon": 0.521260841,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.35751246999999997,
-      "multiplier": 0,
-      "marginContribution": 0.0067,
-      "score": 11.02,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 160649.57,
-      "paxRatio": 1.6017484379795164,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 1.554896036,
-      "medianDeviation": 1.554896036,
-      "color": "red"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 33254461.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 11.0,
-      "ticket_evento": 12180696.0,
-      "ticket_persona": 133522.0,
-      "venta_mensual": 93016226.82
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -419,48 +419,48 @@
     "mt2_salon": 1854.0,
     "cantidad_eventos_salon": 150,
     "total_invitados_salon": 14142,
-    "costos_variables_salon": 837459736.29,
-    "costos_fijos_salon": 25508567.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 961052898.29,
-    "ventas_totales_salon": 2524771759.0,
-    "rentabilidad_salon": 0.6193505829,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0.0184,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 44751.87,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.1359,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 85028.56,
-      "paxRatio": 1.0,
-      "mt2Ratio": 2.3588228410952494,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.15551589,
-      "medianDeviation": 1.15551589,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 25508567.0,
-      "realPayment": 25508567.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 11.0,
-      "ticket_evento": 16831812.0,
-      "ticket_persona": 178530.0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -477,48 +477,48 @@
     "mt2_salon": 570.0,
     "cantidad_eventos_salon": 129,
     "total_invitados_salon": 13088,
-    "costos_variables_salon": 1069116576.35,
-    "costos_fijos_salon": 29208567.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1069116576.35,
-    "ventas_totales_salon": 2550062356.0,
-    "rentabilidad_salon": 0.5807488496,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.13744871890000002,
-      "multiplier": 0,
-      "marginContribution": 0.0151,
-      "score": 48.76,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 28776.91,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.0517,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 79371.11,
-      "paxRatio": 0.9334641207613066,
-      "mt2Ratio": 1.5167999148223816,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.8882501528,
-      "medianDeviation": 0.8882501528,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 29208567.0,
-      "realPayment": 29208567.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 19767925.0,
-      "ticket_persona": 194840.0,
-      "venta_mensual": 212505196.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -535,48 +535,48 @@
     "mt2_salon": 1015.0,
     "cantidad_eventos_salon": 112,
     "total_invitados_salon": 10686,
-    "costos_variables_salon": 873053296.08,
-    "costos_fijos_salon": 23779952.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1223556100.08,
-    "ventas_totales_salon": 2165326138.0,
-    "rentabilidad_salon": 0.4349321894,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.13178588619999998,
-      "multiplier": 0,
-      "marginContribution": 0.0134,
-      "score": 47.1,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 21520.32,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0157,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 65690.48,
-      "paxRatio": 0.9577413041399081,
-      "mt2Ratio": 0.8429021409866038,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.126436566,
-      "medianDeviation": 1.126436566,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 23779952.0,
-      "realPayment": 23779952.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 19333269.0,
-      "ticket_persona": 202632.0,
-      "venta_mensual": 180443844.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -593,48 +593,48 @@
     "mt2_salon": 1105.0,
     "cantidad_eventos_salon": 107,
     "total_invitados_salon": 10342,
-    "costos_variables_salon": 904771744.35,
-    "costos_fijos_salon": 26774694.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1190131168.35,
-    "ventas_totales_salon": 2266475695.0,
-    "rentabilidad_salon": 0.4748978906,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.14176032360000002,
-      "multiplier": 0,
-      "marginContribution": 0.0139,
-      "score": 48.2,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 17591.78,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0311,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 76499.13,
-      "paxRatio": 1.1153271605226263,
-      "mt2Ratio": 0.6890301364368799,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.087016297,
-      "medianDeviation": 1.087016297,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 26774694.0,
-      "realPayment": 26774694.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 21182016.0,
-      "ticket_persona": 219153.0,
-      "venta_mensual": 188872974.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -652,47 +652,47 @@
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
     "costos_variables_salon": 0.0,
-    "costos_fijos_salon": 12083957.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 145007484.0,
     "ventas_totales_salon": 0.0,
     "rentabilidad_salon": 0.0,
-    "tier": 0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": -0.0019,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 12083957.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
-      "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "meses_activos": 1.0,
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -709,48 +709,48 @@
     "mt2_salon": 856.0,
     "cantidad_eventos_salon": 107,
     "total_invitados_salon": 10194,
-    "costos_variables_salon": 186829875.21,
-    "costos_fijos_salon": 22968973.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 186829875.21,
-    "ventas_totales_salon": 1624463859.0,
-    "rentabilidad_salon": 0.8849898235,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1696730121,
-      "multiplier": 0,
-      "marginContribution": 0.0155,
-      "score": 41.7,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 28182.79,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.4604,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 126203.15,
-      "paxRatio": 1.9011537696738896,
-      "mt2Ratio": 5.60443338782101,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.912954799,
-      "medianDeviation": 1.912954799,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 22968973.0,
-      "realPayment": 22968973.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15181905.0,
-      "ticket_persona": 159355.0,
-      "venta_mensual": 135371988.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -767,48 +767,48 @@
     "mt2_salon": 815.0,
     "cantidad_eventos_salon": 196,
     "total_invitados_salon": 18500,
-    "costos_variables_salon": 432776058.21,
-    "costos_fijos_salon": 14734735.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 708403734.21,
-    "ventas_totales_salon": 2611422775.0,
-    "rentabilidad_salon": 0.7287288213,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.06770899821000001,
-      "multiplier": 0,
-      "marginContribution": 0.0267,
-      "score": 69.28,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11334.41,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1254,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 70165.4,
-      "paxRatio": 1.056987996818434,
-      "mt2Ratio": 2.2539622881642427,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.9155383146,
-      "medianDeviation": 0.9155383146,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 14734735.0,
-      "realPayment": 14734735.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13323586.0,
-      "ticket_persona": 141158.0,
-      "venta_mensual": 217618564.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -825,48 +825,48 @@
     "mt2_salon": 1300.0,
     "cantidad_eventos_salon": 66,
     "total_invitados_salon": 9118,
-    "costos_variables_salon": 75996025.41,
-    "costos_fijos_salon": 38399743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 252812845.41,
-    "ventas_totales_salon": 1724027537.0,
-    "rentabilidad_salon": 0.8533591605,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.2004594936,
-      "multiplier": 0,
-      "marginContribution": 0.0158,
-      "score": 45.25,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14360.41,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1856,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 71110.64,
-      "paxRatio": 1.0712273132637566,
-      "mt2Ratio": 2.8557130527814567,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.025988932,
-      "medianDeviation": 1.025988932,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 38399743.0,
-      "realPayment": 38399743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 26121629.0,
-      "ticket_persona": 189080.0,
-      "venta_mensual": 191558615.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -883,48 +883,48 @@
     "mt2_salon": 586.0,
     "cantidad_eventos_salon": 118,
     "total_invitados_salon": 10458,
-    "costos_variables_salon": 792314056.2,
-    "costos_fijos_salon": 12748956.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 904671476.2,
-    "ventas_totales_salon": 1641196508.0,
-    "rentabilidad_salon": 0.4487732141,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.0932170348,
-      "multiplier": 0,
-      "marginContribution": 0.0094,
-      "score": 40.88,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 16551.71,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0128,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 61358.36,
-      "paxRatio": 0.7216205943038434,
-      "mt2Ratio": 0.8724227972414258,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.6032562731,
-      "medianDeviation": 0.6032562731,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 12148956.0,
-      "realPayment": 12748956.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 10.0,
-      "ticket_evento": 13908445.0,
-      "ticket_persona": 156932.0,
-      "venta_mensual": 136766375.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -941,48 +941,48 @@
     "mt2_salon": 2674.0,
     "cantidad_eventos_salon": 121,
     "total_invitados_salon": 13115,
-    "costos_variables_salon": 1044149071.95,
-    "costos_fijos_salon": 22808166.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1389746758.95,
-    "ventas_totales_salon": 2559408899.0,
-    "rentabilidad_salon": 0.4570047953,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.10693797,
-      "multiplier": 0,
-      "marginContribution": 0.0165,
-      "score": 55.33,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 51254.31,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.1702,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 90150.85,
-      "paxRatio": 1.060241993984139,
-      "mt2Ratio": 2.701559446176811,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.280883194,
-      "medianDeviation": 1.280883194,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 22808166.0,
-      "realPayment": 22808166.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 9.0,
-      "ticket_evento": 21152140.0,
-      "ticket_persona": 195151.0,
-      "venta_mensual": 213284074.9
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -999,48 +999,48 @@
     "mt2_salon": 734.0,
     "cantidad_eventos_salon": 132,
     "total_invitados_salon": 11751,
-    "costos_variables_salon": 879858511.02,
-    "costos_fijos_salon": 22808166.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1025645983.02,
-    "ventas_totales_salon": 2177695628.0,
-    "rentabilidad_salon": 0.5290223437,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1256823904,
-      "multiplier": 0,
-      "marginContribution": 0.0136,
-      "score": 46.01,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 35416.41,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.0867,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 95832.63,
-      "paxRatio": 1.1270640123741953,
-      "mt2Ratio": 1.866760804801994,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.082304015,
-      "medianDeviation": 1.082304015,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 22808166.0,
-      "realPayment": 22808166.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16497694.0,
-      "ticket_persona": 185320.0,
-      "venta_mensual": 181474635.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1057,48 +1057,48 @@
     "mt2_salon": 445.0,
     "cantidad_eventos_salon": 89,
     "total_invitados_salon": 9643,
-    "costos_variables_salon": 41857874.2,
-    "costos_fijos_salon": 15570000.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 315555866.2,
-    "ventas_totales_salon": 1531237940.0,
-    "rentabilidad_salon": 0.7939210766,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.07117770345,
-      "multiplier": 0,
-      "marginContribution": 0.0174,
-      "score": 57.3,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 45794.12,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.8107,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 35226.24,
-      "paxRatio": 0.5306563185422642,
-      "mt2Ratio": 9.106624826494533,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.829092869,
-      "medianDeviation": 1.829092869,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 15570000.0,
-      "realPayment": 15570000.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 17204921.0,
-      "ticket_persona": 158793.0,
-      "venta_mensual": 218748277.1
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1115,48 +1115,48 @@
     "mt2_salon": 644.0,
     "cantidad_eventos_salon": 78,
     "total_invitados_salon": 7485,
-    "costos_variables_salon": 26970189.02,
-    "costos_fijos_salon": 105984743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 300668181.02,
-    "ventas_totales_salon": 1415629883.0,
-    "rentabilidad_salon": 0.7876081986,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.6738079624,
-      "multiplier": 0,
-      "marginContribution": 0.0016,
-      "score": 8.07,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 62973.7,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.2319,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 445314.05,
-      "paxRatio": 5.237229114546924,
-      "mt2Ratio": 3.319275863741111,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 3.541040036,
-      "medianDeviation": 3.541040036,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 105984743.0,
-      "realPayment": 105984743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18149101.0,
-      "ticket_persona": 189129.0,
-      "venta_mensual": 157292209.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1173,48 +1173,48 @@
     "mt2_salon": 340.0,
     "cantidad_eventos_salon": 93,
     "total_invitados_salon": 8627,
-    "costos_variables_salon": 459508286.23,
-    "costos_fijos_salon": 11620016.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 568498286.23,
-    "ventas_totales_salon": 1082288554.0,
-    "rentabilidad_salon": 0.4747257706,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.12883827650000002,
-      "multiplier": 0,
-      "marginContribution": 0.0064,
-      "score": 30.95,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 7975.3,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0688,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 59589.83,
-      "paxRatio": 0.8687962319300365,
-      "mt2Ratio": 0.312374418457089,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.674382192,
-      "medianDeviation": 0.674382192,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11620016.0,
-      "realPayment": 11620016.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 7.0,
-      "ticket_evento": 11637511.0,
-      "ticket_persona": 125454.0,
-      "venta_mensual": 90190712.83
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1231,48 +1231,48 @@
     "mt2_salon": 1683.0,
     "cantidad_eventos_salon": 118,
     "total_invitados_salon": 17851,
-    "costos_variables_salon": 1126409524.29,
-    "costos_fijos_salon": 30950140.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 2080272211.29,
-    "ventas_totales_salon": 3607169306.0,
-    "rentabilidad_salon": 0.4232951007,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.102962087,
-      "multiplier": 0,
-      "marginContribution": 0.0281,
-      "score": 76.16,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 58396.49,
-      "paxRatio": 0.582239259283336,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 0.5736563408,
-      "medianDeviation": 0.5736563408,
-      "color": "green"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 30950140.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 9.0,
-      "ticket_evento": 30569231.0,
-      "ticket_persona": 202071.0,
-      "venta_mensual": 300597442.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1289,48 +1289,48 @@
     "mt2_salon": 1457.0,
     "cantidad_eventos_salon": 144,
     "total_invitados_salon": 1883,
-    "costos_variables_salon": 819147510.94,
-    "costos_fijos_salon": 38698265.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 958587702.94,
-    "ventas_totales_salon": 3662199427.0,
-    "rentabilidad_salon": 0.7382480878,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1268033566,
-      "multiplier": 0,
-      "marginContribution": 0.0317,
-      "score": 70.41,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 73015.59,
-      "paxRatio": 0.727998258760685,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 0.7350460394,
-      "medianDeviation": 0.7350460394,
-      "color": "green"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 38698265.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 25431940.0,
-      "ticket_persona": 194487.0,
-      "venta_mensual": 305183285.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1347,48 +1347,48 @@
     "mt2_salon": 1920.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 12716,
-    "costos_variables_salon": 556226139.27,
-    "costos_fijos_salon": 11532343.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 927627819.27,
-    "ventas_totales_salon": 2439155693.0,
-    "rentabilidad_salon": 0.6196930676,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.056736073219999995,
-      "multiplier": 0,
-      "marginContribution": 0.0232,
-      "score": 70.0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10920.78,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0572,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 39359.53,
-      "paxRatio": 0.5738464324287756,
-      "mt2Ratio": 0.42774219171665123,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.6155394127,
-      "medianDeviation": 0.6155394127,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11532343.0,
-      "realPayment": 11532343.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18762736.0,
-      "ticket_persona": 191818.0,
-      "venta_mensual": 203262974.4
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1405,48 +1405,48 @@
     "mt2_salon": 1828.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 18953,
-    "costos_variables_salon": 1454079452.55,
-    "costos_fijos_salon": 19103303.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1918458632.55,
-    "ventas_totales_salon": 3736776692.0,
-    "rentabilidad_salon": 0.4866006747,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.061346891960000004,
-      "multiplier": 0,
-      "marginContribution": 0.0274,
-      "score": 80.26,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 44529.84,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.0744,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 42928.77,
-      "paxRatio": 0.6258845446847422,
-      "mt2Ratio": 1.7441328694829308,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.65288576,
-      "medianDeviation": 1.65288576,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 19103303.0,
-      "realPayment": 19103303.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 29193568.0,
-      "ticket_persona": 197160.0,
-      "venta_mensual": 311398057.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1463,48 +1463,48 @@
     "mt2_salon": 1056.0,
     "cantidad_eventos_salon": 131,
     "total_invitados_salon": 11871,
-    "costos_variables_salon": 851388394.28,
-    "costos_fijos_salon": 19103303.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 989776510.28,
-    "ventas_totales_salon": 2041014987.0,
-    "rentabilidad_salon": 0.5150567161,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.11231648829999999,
-      "multiplier": 0,
-      "marginContribution": 0.0128,
-      "score": 45.32,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 15405.89,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0397,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 113710.14,
-      "paxRatio": 1.6578490182676628,
-      "mt2Ratio": 0.6034137812450795,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.292501707,
-      "medianDeviation": 1.292501707,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 19103303.0,
-      "realPayment": 19103303.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15580267.0,
-      "ticket_persona": 171933.0,
-      "venta_mensual": 170084582.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1521,48 +1521,48 @@
     "mt2_salon": 429.0,
     "cantidad_eventos_salon": 80,
     "total_invitados_salon": 7359,
-    "costos_variables_salon": 528264948.73,
-    "costos_fijos_salon": 10610887.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 757504584.73,
-    "ventas_totales_salon": 1120047993.0,
-    "rentabilidad_salon": 0.3236856015,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1136832036,
-      "multiplier": 0,
-      "marginContribution": 0.0062,
-      "score": 33.67,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 17480.87,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0079,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 43666.2,
-      "paxRatio": 0.5135474480574527,
-      "mt2Ratio": 0.9213978195373,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.5128297786,
-      "medianDeviation": 0.5128297786,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 10610887.0,
-      "realPayment": 10610887.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14000600.0,
-      "ticket_persona": 152201.0,
-      "venta_mensual": 93337332.75
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1579,48 +1579,48 @@
     "mt2_salon": 1240.0,
     "cantidad_eventos_salon": 73,
     "total_invitados_salon": 8441,
-    "costos_variables_salon": 234641472.87,
-    "costos_fijos_salon": 42678372.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 463881108.87,
-    "ventas_totales_salon": 1323835232.0,
-    "rentabilidad_salon": 0.6495930176,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.3546227511,
-      "multiplier": 0,
-      "marginContribution": 0.0077,
-      "score": 15.82,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 96996.3,
-      "paxRatio": 0.9670967187449836,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 0.6309442346,
-      "medianDeviation": 0.6309442346,
-      "color": "green"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 42678372.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18134729.0,
-      "ticket_persona": 156834.0,
-      "venta_mensual": 120348657.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1637,48 +1637,48 @@
     "mt2_salon": 607.0,
     "cantidad_eventos_salon": 72,
     "total_invitados_salon": 6734,
-    "costos_variables_salon": 545805915.95,
-    "costos_fijos_salon": 8188467.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 673136559.95,
-    "ventas_totales_salon": 1073660820.0,
-    "rentabilidad_salon": 0.3730454279,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.09152015438,
-      "multiplier": 0,
-      "marginContribution": 0.0057,
-      "score": 36.41,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 3808.59,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0799,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 41992.14,
-      "paxRatio": 0.49385923976602686,
-      "mt2Ratio": 0.2007466745940886,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.3027170256,
-      "medianDeviation": 0.3027170256,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 8188467.0,
-      "realPayment": 8188467.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14911956.0,
-      "ticket_persona": 159439.0,
-      "venta_mensual": 89471735.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1695,48 +1695,48 @@
     "mt2_salon": 3185.0,
     "cantidad_eventos_salon": 137,
     "total_invitados_salon": 12979,
-    "costos_variables_salon": 255386089.37,
-    "costos_fijos_salon": 14384697.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 724848181.37,
-    "ventas_totales_salon": 2035897106.0,
-    "rentabilidad_salon": 0.6439662008,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.084786389,
-      "multiplier": 0,
-      "marginContribution": 0.0214,
-      "score": 60.47,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14130.35,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.0572,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 73018.77,
-      "paxRatio": 1.0028824772795635,
-      "mt2Ratio": 1.5717276229014954,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.9197878987,
-      "medianDeviation": 0.9197878987,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 14384697.0,
-      "realPayment": 14384697.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 11.0,
-      "ticket_evento": 14860563.0,
-      "ticket_persona": 156861.0,
-      "venta_mensual": 169658092.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1758,43 +1758,43 @@
     "costos_totales_salon": 0.0,
     "ventas_totales_salon": 0.0,
     "rentabilidad_salon": 0.0,
-    "tier": 0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": -0.0023,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
+      "contractAmount": 0.0,
       "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1811,48 +1811,48 @@
     "mt2_salon": 1018.0,
     "cantidad_eventos_salon": 149,
     "total_invitados_salon": 16624,
-    "costos_variables_salon": 965068992.54,
-    "costos_fijos_salon": 18703121.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1137685356.54,
-    "ventas_totales_salon": 3084758063.0,
-    "rentabilidad_salon": 0.6311913825,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.07275690586,
-      "multiplier": 0,
-      "marginContribution": 0.0252,
-      "score": 71.77,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 18372.42,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.1044,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 34635.41,
-      "paxRatio": 0.47570297037862136,
-      "mt2Ratio": 2.043575708566871,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.7817898787,
-      "medianDeviation": 0.7817898787,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 18703121.0,
-      "realPayment": 18703121.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 20703074.0,
-      "ticket_persona": 185561.0,
-      "venta_mensual": 257063171.9
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1869,48 +1869,48 @@
     "mt2_salon": 1800.0,
     "cantidad_eventos_salon": 115,
     "total_invitados_salon": 10419,
-    "costos_variables_salon": 519140287.8,
-    "costos_fijos_salon": 6426743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 519140287.8,
-    "ventas_totales_salon": 1309676794.0,
-    "rentabilidad_salon": 0.6036119063,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.05888545659,
-      "multiplier": 0,
-      "marginContribution": 0.0095,
-      "score": 43.79,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 4989.71,
-      "marketMt2": 5028.66,
-      "marketDeviation": -0.0008,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 31658.83,
-      "paxRatio": 0.4769160199088916,
-      "mt2Ratio": 0.9922543977918571,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.4088451425,
-      "medianDeviation": 0.4088451425,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 6426743.0,
-      "realPayment": 6426743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
-      "meses_activos": 0.0,
-      "ticket_evento": 11388494.0,
-      "ticket_persona": 125701.0,
-      "venta_mensual": 109139732.8
+      "meses_activos": 1.0,
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1927,48 +1927,48 @@
     "mt2_salon": 1331.0,
     "cantidad_eventos_salon": 77,
     "total_invitados_salon": 7603,
-    "costos_variables_salon": 1163799164.44,
-    "costos_fijos_salon": 17674956.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1388236616.44,
-    "ventas_totales_salon": 2022051059.0,
-    "rentabilidad_salon": 0.3134512552,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.10489323260000001,
-      "multiplier": 0,
-      "marginContribution": 0.0086,
-      "score": 49.34,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8448.83,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0555,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 53237.82,
-      "paxRatio": 0.6261169188329192,
-      "mt2Ratio": 0.4453287244651626,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.4368151555,
-      "medianDeviation": 0.4368151555,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 17674956.0,
-      "realPayment": 17674956.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 26260403.0,
-      "ticket_persona": 265954.0,
-      "venta_mensual": 168504254.9
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -1985,48 +1985,48 @@
     "mt2_salon": 1288.0,
     "cantidad_eventos_salon": 100,
     "total_invitados_salon": 9874,
-    "costos_variables_salon": 314339247.85,
-    "costos_fijos_salon": 33247343.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 391460163.85,
-    "ventas_totales_salon": 2038058675.0,
-    "rentabilidad_salon": 0.8079249785,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.19575889589999998,
-      "multiplier": 0,
-      "marginContribution": 0.0176,
-      "score": 46.42,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 34134.85,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.0799,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 82704.83,
-      "paxRatio": 0.9726711824826859,
-      "mt2Ratio": 1.799211158268027,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.9863356299,
-      "medianDeviation": 0.9863356299,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 33247343.0,
-      "realPayment": 33247343.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 20380587.0,
-      "ticket_persona": 206407.0,
-      "venta_mensual": 169838222.9
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2043,48 +2043,48 @@
     "mt2_salon": 2092.0,
     "cantidad_eventos_salon": 133,
     "total_invitados_salon": 12463,
-    "costos_variables_salon": 869775022.12,
-    "costos_fijos_salon": 22204765.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1081874494.12,
-    "ventas_totales_salon": 2397481670.0,
-    "rentabilidad_salon": 0.5487454575,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1111404451,
-      "multiplier": 0,
-      "marginContribution": 0.0168,
-      "score": 53.53,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 24949.17,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.3961,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 71169.12,
-      "paxRatio": 1.072108269661838,
-      "mt2Ratio": 4.961395282242187,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.388011501,
-      "medianDeviation": 1.388011501,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 22204765.0,
-      "realPayment": 22204765.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18026178.0,
-      "ticket_persona": 192368.0,
-      "venta_mensual": 199790139.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2101,48 +2101,48 @@
     "mt2_salon": 974.0,
     "cantidad_eventos_salon": 123,
     "total_invitados_salon": 10985,
-    "costos_variables_salon": 779917225.76,
-    "costos_fijos_salon": 14580852.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1178885341.76,
-    "ventas_totales_salon": 1467008256.0,
-    "rentabilidad_salon": 0.1964016992,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1192701018,
-      "multiplier": 0,
-      "marginContribution": 0.0068,
-      "score": 32.82,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 28646.07,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.2186,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 84772.4,
-      "paxRatio": 1.1643137034071385,
-      "mt2Ratio": 3.186320190693779,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 1.430259674,
-      "medianDeviation": 1.430259674,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 14580852.0,
-      "realPayment": 14580852.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 11926896.0,
-      "ticket_persona": 133546.0,
-      "venta_mensual": 122250688.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2159,48 +2159,48 @@
     "mt2_salon": 890.0,
     "cantidad_eventos_salon": 148,
     "total_invitados_salon": 14253,
-    "costos_variables_salon": 872715413.3,
-    "costos_fijos_salon": 13709767.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1139172593.3,
-    "ventas_totales_salon": 2502170152.0,
-    "rentabilidad_salon": 0.544726168,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.06574980677,
-      "multiplier": 0,
-      "marginContribution": 0.0195,
-      "score": 61.74,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 15404.23,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.0713,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 80645.69,
-      "paxRatio": 1.107635055604466,
-      "mt2Ratio": 1.7134220879545021,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 1.009879064,
-      "medianDeviation": 1.009879064,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 13709767.0,
-      "realPayment": 13709767.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16906555.0,
-      "ticket_persona": 175554.0,
-      "venta_mensual": 208514179.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2220,33 +2220,33 @@
     "costos_variables_salon": 0.0,
     "costos_fijos_salon": 0.0,
     "costos_totales_salon": 174970224.0,
-    "ventas_totales_salon": 61696249.0,
-    "rentabilidad_salon": -1.835994519,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0.0008,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
       "rentPerMt2": 0.0,
-      "marketMt2": 5028.66,
-      "marketDeviation": -0.1,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
-      "paxRatio": 0.0,
-      "mt2Ratio": 0.0,
-      "medianPaxTier": 66382.4,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
       "globalIndex": 0.0,
-      "medianDeviation": 0.0,
-      "color": "green"
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
       "contractAmount": 0.0,
@@ -2256,9 +2256,9 @@
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 10282708.0,
-      "ticket_persona": 114252.0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2275,48 +2275,48 @@
     "mt2_salon": 1193.0,
     "cantidad_eventos_salon": 155,
     "total_invitados_salon": 14898,
-    "costos_variables_salon": 877687057.32,
-    "costos_fijos_salon": 24403720.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1042204261.32,
-    "ventas_totales_salon": 2904942682.0,
-    "rentabilidad_salon": 0.641230697,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.10080909399999999,
-      "multiplier": 0,
-      "marginContribution": 0.0231,
-      "score": 64.64,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 19322.03,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.1149,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 44695.46,
-      "paxRatio": 0.6138735786421715,
-      "mt2Ratio": 2.149201419747662,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.8789895446,
-      "medianDeviation": 0.8789895446,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 24403720.0,
-      "realPayment": 24403720.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18741566.0,
-      "ticket_persona": 194989.0,
-      "venta_mensual": 242078556.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2333,48 +2333,48 @@
     "mt2_salon": 1619.0,
     "cantidad_eventos_salon": 125,
     "total_invitados_salon": 11596,
-    "costos_variables_salon": 902976487.36,
-    "costos_fijos_salon": 27942105.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1238281747.3600001,
-    "ventas_totales_salon": 2280730409.0,
-    "rentabilidad_salon": 0.4570679014,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.147016613,
-      "multiplier": 0,
-      "marginContribution": 0.0139,
-      "score": 45.18,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 73531.86,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.2876,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 131802.38,
-      "paxRatio": 1.5500954032386296,
-      "mt2Ratio": 3.875785099398486,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.852126701,
-      "medianDeviation": 1.852126701,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 27942105.0,
-      "realPayment": 27942105.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
-      "meses_activos": 0.0,
-      "ticket_evento": 18245843.0,
-      "ticket_persona": 196683.0,
-      "venta_mensual": 190060867.4
+      "meses_activos": 1.0,
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2391,48 +2391,48 @@
     "mt2_salon": 380.0,
     "cantidad_eventos_salon": 47,
     "total_invitados_salon": 4455,
-    "costos_variables_salon": 32746256.86,
-    "costos_fijos_salon": 27814743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 325590896.86,
-    "ventas_totales_salon": 659158356.0,
-    "rentabilidad_salon": 0.506050566,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.2953815259,
-      "multiplier": 0,
-      "marginContribution": 0.0039,
-      "score": 8.38,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 20199.52,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.0065,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 168574.2,
-      "paxRatio": 1.9825597422795354,
-      "mt2Ratio": 1.0646949312991907,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.287158219,
-      "medianDeviation": 1.287158219,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 27814743.0,
-      "realPayment": 27814743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14024646.0,
-      "ticket_persona": 147959.0,
-      "venta_mensual": 94165479.43
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2449,48 +2449,48 @@
     "mt2_salon": 755.0,
     "cantidad_eventos_salon": 105,
     "total_invitados_salon": 10848,
-    "costos_variables_salon": 706573312.26,
-    "costos_fijos_salon": 21012718.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1041878572.26,
-    "ventas_totales_salon": 1957206224.0,
-    "rentabilidad_salon": 0.4676705196,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1288329318,
-      "multiplier": 0,
-      "marginContribution": 0.0133,
-      "score": 45.99,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 27794.6,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.4527,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 61984.42,
-      "paxRatio": 0.9337478006218516,
-      "mt2Ratio": 5.527237872514745,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.415996094,
-      "medianDeviation": 1.415996094,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 21012718.0,
-      "realPayment": 21012718.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18640059.0,
-      "ticket_persona": 180421.0,
-      "venta_mensual": 163100518.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2507,48 +2507,48 @@
     "mt2_salon": 1377.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 11757,
-    "costos_variables_salon": 658045607.1,
-    "costos_fijos_salon": 11413638.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 852748808.1,
-    "ventas_totales_salon": 1593533313.0,
-    "rentabilidad_salon": 0.4648691677,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.08594966599,
-      "multiplier": 0,
-      "marginContribution": 0.0106,
-      "score": 42.76,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8937.85,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.065,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 58531.48,
-      "paxRatio": 0.8533659061166695,
-      "mt2Ratio": 0.3500753195499471,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.6956310461,
-      "medianDeviation": 0.6956310461,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11413638.0,
-      "realPayment": 11413638.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 7.0,
-      "ticket_evento": 12449479.0,
-      "ticket_persona": 135539.0,
-      "venta_mensual": 132794442.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2565,48 +2565,48 @@
     "mt2_salon": 756.0,
     "cantidad_eventos_salon": 113,
     "total_invitados_salon": 12438,
-    "costos_variables_salon": 896013802.96,
-    "costos_fijos_salon": 28460167.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1148166418.96,
-    "ventas_totales_salon": 2706339282.0,
-    "rentabilidad_salon": 0.5757492689,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.12619334399999999,
-      "multiplier": 0,
-      "marginContribution": 0.0196,
-      "score": 59.89,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 59168.75,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.2119,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 70272.02,
-      "paxRatio": 0.8264519592005323,
-      "mt2Ratio": 3.1187210496243964,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.279917176,
-      "medianDeviation": 1.279917176,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 28460167.0,
-      "realPayment": 28460167.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 23949905.0,
-      "ticket_persona": 217586.0,
-      "venta_mensual": 225528273.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2623,48 +2623,48 @@
     "mt2_salon": 1277.0,
     "cantidad_eventos_salon": 131,
     "total_invitados_salon": 12296,
-    "costos_variables_salon": 716147354.15,
-    "costos_fijos_salon": 14161443.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 853111010.15,
-    "ventas_totales_salon": 1701275612.0,
-    "rentabilidad_salon": 0.4985462649,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.09988817497,
-      "multiplier": 0,
-      "marginContribution": 0.0109,
-      "score": 41.69,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14049.05,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1794,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 56873.27,
-      "paxRatio": 0.8567522415580033,
-      "mt2Ratio": 2.7937959615484043,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.9081191024,
-      "medianDeviation": 0.9081191024,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 14161443.0,
-      "realPayment": 14161443.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 12986837.0,
-      "ticket_persona": 138360.0,
-      "venta_mensual": 141772967.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2681,48 +2681,48 @@
     "mt2_salon": 481.0,
     "cantidad_eventos_salon": 104,
     "total_invitados_salon": 9825,
-    "costos_variables_salon": 45919493.67,
-    "costos_fijos_salon": 11683303.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 387441497.67,
-    "ventas_totales_salon": 1306198384.0,
-    "rentabilidad_salon": 0.703382348,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.08944508846,
-      "multiplier": 0,
-      "marginContribution": 0.0149,
-      "score": 48.78,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14076.27,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1799,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 66382.4,
-      "paxRatio": 1.0,
-      "mt2Ratio": 2.7992089343880875,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.9806724762,
-      "medianDeviation": 0.9806724762,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11683303.0,
-      "realPayment": 11683303.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 12559600.0,
-      "ticket_persona": 132946.0,
-      "venta_mensual": 130619838.4
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2739,48 +2739,48 @@
     "mt2_salon": 1008.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 11867,
-    "costos_variables_salon": 816064119.28,
-    "costos_fijos_salon": 19693848.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 986001435.28,
-    "ventas_totales_salon": 2187953522.0,
-    "rentabilidad_salon": 0.5493499175,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.10801242970000001,
-      "multiplier": 0,
-      "marginContribution": 0.0151,
-      "score": 50.47,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14642.27,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1912,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 89517.49,
-      "paxRatio": 1.3485124069030348,
-      "mt2Ratio": 2.911763770069959,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.174256176,
-      "medianDeviation": 1.174256176,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 19693848.0,
-      "realPayment": 19693848.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16830412.0,
-      "ticket_persona": 184373.0,
-      "venta_mensual": 182329460.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2797,48 +2797,48 @@
     "mt2_salon": 830.0,
     "cantidad_eventos_salon": 111,
     "total_invitados_salon": 10318,
-    "costos_variables_salon": 667505274.68,
-    "costos_fijos_salon": 17174943.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 784338304.68,
-    "ventas_totales_salon": 1731634008.0,
-    "rentabilidad_salon": 0.5470530718,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.11902013650000001,
-      "multiplier": 0,
-      "marginContribution": 0.0114,
-      "score": 42.32,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11449.96,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1277,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 64811.11,
-      "paxRatio": 0.9763297199257636,
-      "mt2Ratio": 2.2769405766148436,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.8791548944,
-      "medianDeviation": 0.8791548944,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 17174943.0,
-      "realPayment": 17174943.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 10.0,
-      "ticket_evento": 15600306.0,
-      "ticket_persona": 167827.0,
-      "venta_mensual": 144302834.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2855,48 +2855,48 @@
     "mt2_salon": 1345.0,
     "cantidad_eventos_salon": 136,
     "total_invitados_salon": 18669,
-    "costos_variables_salon": 1127190346.26,
-    "costos_fijos_salon": 13714743.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1363516522.26,
-    "ventas_totales_salon": 3068327889.0,
-    "rentabilidad_salon": 0.5556157713,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.05363733015,
-      "multiplier": 0,
-      "marginContribution": 0.0237,
-      "score": 71.73,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 9143.16,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0642,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 32889.07,
-      "paxRatio": 0.47950967619278667,
-      "mt2Ratio": 0.35811684674684563,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.5148809088,
-      "medianDeviation": 0.5148809088,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 13714743.0,
-      "realPayment": 13714743.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 22561234.0,
-      "ticket_persona": 164354.0,
-      "venta_mensual": 255693990.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2913,48 +2913,48 @@
     "mt2_salon": 1500.0,
     "cantidad_eventos_salon": 55,
     "total_invitados_salon": 6169,
-    "costos_variables_salon": 500921147.88,
-    "costos_fijos_salon": 16500000.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 707020463.88,
-    "ventas_totales_salon": 1121489613.0,
-    "rentabilidad_salon": 0.3695702076,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1765508995,
-      "multiplier": 0,
-      "marginContribution": 0.0056,
-      "score": 29.76,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 16616.31,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0349,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 66532.26,
-      "paxRatio": 0.9700141247221126,
-      "mt2Ratio": 0.6508231882377732,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.9850070483,
-      "medianDeviation": 0.9850070483,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 16500000.0,
-      "realPayment": 16500000.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 20390720.0,
-      "ticket_persona": 181794.0,
-      "venta_mensual": 93457467.75
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -2971,48 +2971,48 @@
     "mt2_salon": 1500.0,
     "cantidad_eventos_salon": 60,
     "total_invitados_salon": 5380,
-    "costos_variables_salon": 533582947.96,
-    "costos_fijos_salon": 18867970.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 698159863.96,
-    "ventas_totales_salon": 1014220760.0,
-    "rentabilidad_salon": 0.3116292907,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.2232409836,
-      "multiplier": 0,
-      "marginContribution": 0.0034,
-      "score": 19.36,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 14112.17,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0447,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 65742.06,
-      "paxRatio": 0.9584933202078001,
-      "mt2Ratio": 0.5527417021199926,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.9038946246,
-      "medianDeviation": 0.9038946246,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 18867970.0,
-      "realPayment": 18867970.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16903679.0,
-      "ticket_persona": 188517.0,
-      "venta_mensual": 84518396.67
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3029,48 +3029,48 @@
     "mt2_salon": 16100.0,
     "cantidad_eventos_salon": 98,
     "total_invitados_salon": 11428,
-    "costos_variables_salon": 969916413.25,
-    "costos_fijos_salon": 109355878.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1167916413.25,
-    "ventas_totales_salon": 5158278007.0,
-    "rentabilidad_salon": 0.7735840504,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.2544008939,
-      "multiplier": 0,
-      "marginContribution": 0.0383,
-      "score": 73.39,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 432236.67,
-      "paxRatio": 4.309593925523533,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 4.251850075,
-      "medianDeviation": 4.251850075,
-      "color": "red"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 109355878.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 52635490.0,
-      "ticket_persona": 451372.0,
-      "venta_mensual": 429856500.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3087,48 +3087,48 @@
     "mt2_salon": 993.0,
     "cantidad_eventos_salon": 82,
     "total_invitados_salon": 8100,
-    "costos_variables_salon": 1071379819.6,
-    "costos_fijos_salon": 74005713.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1297795459.6,
-    "ventas_totales_salon": 1904499527.0,
-    "rentabilidad_salon": 0.318563517,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.427441872,
-      "multiplier": 0,
-      "marginContribution": -0.0007,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 88842.39,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.248,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 246685.71,
-      "paxRatio": 3.5965804117747227,
-      "mt2Ratio": 3.4797549823314355,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 4.471638564,
-      "medianDeviation": 4.471638564,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 74005713.0,
-      "realPayment": 74005713.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 23225604.0,
-      "ticket_persona": 235123.0,
-      "venta_mensual": 173136320.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3145,48 +3145,48 @@
     "mt2_salon": 1337.0,
     "cantidad_eventos_salon": 100,
     "total_invitados_salon": 10693,
-    "costos_variables_salon": 870502037.05,
-    "costos_fijos_salon": 30363742.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 2182772573.05,
-    "ventas_totales_salon": 2091551955.0,
-    "rentabilidad_salon": -0.04361384274,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1742079144,
-      "multiplier": 0,
-      "marginContribution": 0.0114,
-      "score": 39.52,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 39795.21,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.0559,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 87252.13,
-      "paxRatio": 1.272101661841789,
-      "mt2Ratio": 1.5586881472957421,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.833524766,
-      "medianDeviation": 1.833524766,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 30363742.0,
-      "realPayment": 30363742.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 20915520.0,
-      "ticket_persona": 195600.0,
-      "venta_mensual": 174295996.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3203,48 +3203,48 @@
     "mt2_salon": 914.0,
     "cantidad_eventos_salon": 120,
     "total_invitados_salon": 12584,
-    "costos_variables_salon": 552009264.53,
-    "costos_fijos_salon": 23421517.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1366072107.53,
-    "ventas_totales_salon": 1810963562.0,
-    "rentabilidad_salon": 0.2456656024,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1551981552,
-      "multiplier": 0,
-      "marginContribution": 0.013,
-      "score": 39.34,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 16042.13,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0154,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 76043.89,
-      "paxRatio": 0.8943335039426753,
-      "mt2Ratio": 0.8455633845874895,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.6821485243,
-      "medianDeviation": 0.6821485243,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 23421517.0,
-      "realPayment": 23421517.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 11.0,
-      "ticket_evento": 15091363.0,
-      "ticket_persona": 143910.0,
-      "venta_mensual": 150913630.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3261,48 +3261,48 @@
     "mt2_salon": 833.0,
     "cantidad_eventos_salon": 89,
     "total_invitados_salon": 8702,
-    "costos_variables_salon": 761999411.48,
-    "costos_fijos_salon": 49992265.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1126364315.48,
-    "ventas_totales_salon": 1694677937.0,
-    "rentabilidad_salon": 0.3353519917,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.3539948016,
-      "multiplier": 0,
-      "marginContribution": 0.0044,
-      "score": 13.05,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 76911.18,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.2012,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 163909.07,
-      "paxRatio": 2.3897296299579405,
-      "mt2Ratio": 3.012436538481122,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 3.509192016,
-      "medianDeviation": 3.509192016,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 49992265.0,
-      "realPayment": 49992265.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 19041325.0,
-      "ticket_persona": 194746.0,
-      "venta_mensual": 141223161.4
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3319,48 +3319,48 @@
     "mt2_salon": 763.0,
     "cantidad_eventos_salon": 112,
     "total_invitados_salon": 10202,
-    "costos_variables_salon": 737144416.28,
-    "costos_fijos_salon": 21039700.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1018202620.28,
-    "ventas_totales_salon": 1487082910.0,
-    "rentabilidad_salon": 0.3153020498,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1697796393,
-      "multiplier": 0,
-      "marginContribution": 0.0066,
-      "score": 27.14,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 27574.97,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.008,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 81549.22,
-      "paxRatio": 1.188955482048423,
-      "mt2Ratio": 1.0800490536684106,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.424233608,
-      "medianDeviation": 1.424233608,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 21039700.0,
-      "realPayment": 21039700.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13277526.0,
-      "ticket_persona": 145764.0,
-      "venta_mensual": 123923575.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3377,48 +3377,48 @@
     "mt2_salon": 1460.0,
     "cantidad_eventos_salon": 85,
     "total_invitados_salon": 8265,
-    "costos_variables_salon": 91058580.94,
-    "costos_fijos_salon": 19625000.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 690965760.94,
-    "ventas_totales_salon": 1357440298.0,
-    "rentabilidad_salon": 0.4909788946,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.14457357740000001,
-      "multiplier": 0,
-      "marginContribution": 0.0137,
-      "score": 42.71,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 34429.82,
-      "marketMt2": 25531.22,
-      "marketDeviation": 0.0349,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 72685.19,
-      "paxRatio": 1.059721418723946,
-      "mt2Ratio": 1.3485379860421867,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 1.565885395,
-      "medianDeviation": 1.565885395,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 19625000.0,
-      "realPayment": 19625000.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15969886.0,
-      "ticket_persona": 164240.0,
-      "venta_mensual": 135744029.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3435,48 +3435,48 @@
     "mt2_salon": 650.0,
     "cantidad_eventos_salon": 140,
     "total_invitados_salon": 16183,
-    "costos_variables_salon": 917214697.83,
-    "costos_fijos_salon": 36607110.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1169691097.83,
-    "ventas_totales_salon": 2854423369.0,
-    "rentabilidad_salon": 0.5902180768,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1538963437,
-      "multiplier": 0,
-      "marginContribution": 0.02,
-      "score": 53.6,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 40183.44,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.6991,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 90165.3,
-      "paxRatio": 1.358271168261467,
-      "mt2Ratio": 7.990884251470572,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 2.051308215,
-      "medianDeviation": 2.051308215,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 36607110.0,
-      "realPayment": 36607110.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 20388738.0,
-      "ticket_persona": 176384.0,
-      "venta_mensual": 237868614.1
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3493,48 +3493,48 @@
     "mt2_salon": 570.0,
     "cantidad_eventos_salon": 99,
     "total_invitados_salon": 9228,
-    "costos_variables_salon": 807263350.83,
-    "costos_fijos_salon": 61406380.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1003513350.83,
-    "ventas_totales_salon": 1697707294.0,
-    "rentabilidad_salon": 0.4089008427,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.4340421712,
-      "multiplier": 0,
-      "marginContribution": 0.002,
-      "score": 8.08,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 311707.51,
-      "paxRatio": 3.1078640126393395,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 3.442149998,
-      "medianDeviation": 3.442149998,
-      "color": "red"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 61406380.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 10.0,
-      "ticket_evento": 17148559.0,
-      "ticket_persona": 183973.0,
-      "venta_mensual": 141475607.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3551,48 +3551,48 @@
     "mt2_salon": 911.0,
     "cantidad_eventos_salon": 112,
     "total_invitados_salon": 10343,
-    "costos_variables_salon": 554841766.98,
-    "costos_fijos_salon": 22050000.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 994127086.98,
-    "ventas_totales_salon": 1848258752.0,
-    "rentabilidad_salon": 0.4621277535,
-    "tier": 1,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1431617731,
-      "multiplier": 0,
-      "marginContribution": 0.0137,
-      "score": 43.73,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
       "marketDeviation": 0.0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 150000.0,
-      "paxRatio": 1.495567437229539,
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 100296.38,
-      "globalIndex": 1.51612488,
-      "medianDeviation": 1.51612488,
-      "color": "red"
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 22050000.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16502310.0,
-      "ticket_persona": 178697.0,
-      "venta_mensual": 154021562.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3609,48 +3609,48 @@
     "mt2_salon": 941.0,
     "cantidad_eventos_salon": 94,
     "total_invitados_salon": 8705,
-    "costos_variables_salon": 390901394.2,
-    "costos_fijos_salon": 15012345.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1127777954.2,
-    "ventas_totales_salon": 1248733484.0,
-    "rentabilidad_salon": 0.09686256623,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1442646828,
-      "multiplier": 0,
-      "marginContribution": 0.009,
-      "score": 33.78,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 20564.86,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.309,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 104252.4,
-      "paxRatio": 1.5704825375400708,
-      "mt2Ratio": 4.089530809400516,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.48748414,
-      "medianDeviation": 1.48748414,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 15012345.0,
-      "realPayment": 15012345.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13284399.0,
-      "ticket_persona": 143450.0,
-      "venta_mensual": 104061123.7
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3667,48 +3667,48 @@
     "mt2_salon": 503.0,
     "cantidad_eventos_salon": 65,
     "total_invitados_salon": 5790,
-    "costos_variables_salon": 620555458.16,
-    "costos_fijos_salon": 12897860.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 885155458.16,
-    "ventas_totales_salon": 877180781.0,
-    "rentabilidad_salon": -0.009091258419,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1323338843,
-      "multiplier": 0,
-      "marginContribution": 0.0014,
-      "score": 23.95,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 25641.87,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.1852,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 80611.63,
-      "paxRatio": 1.1071672556514385,
-      "mt2Ratio": 2.852161155374719,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 3.099298811,
-      "medianDeviation": 3.099298811,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 12897860.0,
-      "realPayment": 12897860.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13495089.0,
-      "ticket_persona": 151499.0,
-      "venta_mensual": 97464531.22
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3725,48 +3725,48 @@
     "mt2_salon": 730.0,
     "cantidad_eventos_salon": 109,
     "total_invitados_salon": 9906,
-    "costos_variables_salon": 547282802.23,
-    "costos_fijos_salon": 13296655.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 727430942.23,
-    "ventas_totales_salon": 1663782132.0,
-    "rentabilidad_salon": 0.5627847371,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.09590189541000001,
-      "multiplier": 0,
-      "marginContribution": 0.0127,
-      "score": 46.89,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 5123.95,
-      "marketMt2": 8990.33,
-      "marketDeviation": -0.043,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 73870.31,
-      "paxRatio": 1.0145780254886423,
-      "mt2Ratio": 0.5699401468021752,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.6589899555,
-      "medianDeviation": 0.6589899555,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 13296655.0,
-      "realPayment": 13296655.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15264056.0,
-      "ticket_persona": 167957.0,
-      "venta_mensual": 138648511.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3783,48 +3783,48 @@
     "mt2_salon": 270.0,
     "cantidad_eventos_salon": 91,
     "total_invitados_salon": 8658,
-    "costos_variables_salon": 700837083.22,
-    "costos_fijos_salon": 11761045.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 816917823.22,
-    "ventas_totales_salon": 1462283647.0,
-    "rentabilidad_salon": 0.4413410661,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.09651515989,
-      "multiplier": 0,
-      "marginContribution": 0.0083,
-      "score": 40.58,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 10566.98,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.0175,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 50694.16,
-      "paxRatio": 0.696263231555483,
-      "mt2Ratio": 1.1753717605471656,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.660980158,
-      "medianDeviation": 0.660980158,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11761045.0,
-      "realPayment": 11761045.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 9.0,
-      "ticket_evento": 16069051.0,
-      "ticket_persona": 168894.0,
-      "venta_mensual": 121856970.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3841,48 +3841,48 @@
     "mt2_salon": 150.0,
     "cantidad_eventos_salon": 57,
     "total_invitados_salon": 5070,
-    "costos_variables_salon": 628613926.71,
-    "costos_fijos_salon": 11761045.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 788173786.71,
-    "ventas_totales_salon": 694137097.0,
-    "rentabilidad_salon": -0.1354727908,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.2033208434,
-      "multiplier": 0,
-      "marginContribution": -0.001,
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
       "score": 0.0,
-      "color": "green",
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 78406.97,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.7721,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 72599.04,
-      "paxRatio": 0.9971176600662831,
-      "mt2Ratio": 8.72125606067853,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 1.201994086,
-      "medianDeviation": 1.201994086,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11761045.0,
-      "realPayment": 11761045.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 12177844.0,
-      "ticket_persona": 136911.0,
-      "venta_mensual": 57844758.08
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3899,48 +3899,48 @@
     "mt2_salon": 1113.0,
     "cantidad_eventos_salon": 128,
     "total_invitados_salon": 12934,
-    "costos_variables_salon": 949163835.51,
-    "costos_fijos_salon": 22291412.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1090296375.51,
-    "ventas_totales_salon": 2885750628.0,
-    "rentabilidad_salon": 0.6221792816,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.09269579339,
-      "multiplier": 0,
-      "marginContribution": 0.0222,
-      "score": 67.42,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 9184.76,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.064,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 68588.96,
-      "paxRatio": 1.0,
-      "mt2Ratio": 0.35974622442640813,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.7763777717,
-      "medianDeviation": 0.7763777717,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 22291412.0,
-      "realPayment": 22291412.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 22544927.0,
-      "ticket_persona": 223114.0,
-      "venta_mensual": 240479219.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -3957,48 +3957,48 @@
     "mt2_salon": 495.0,
     "cantidad_eventos_salon": 147,
     "total_invitados_salon": 14187,
-    "costos_variables_salon": 1103193380.84,
-    "costos_fijos_salon": 16904842.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1244325920.84,
-    "ventas_totales_salon": 2727903321.0,
-    "rentabilidad_salon": 0.5438526317,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.0743641105,
-      "multiplier": 0,
-      "marginContribution": 0.0189,
-      "score": 61.4,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 6965.32,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.0385,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 66293.5,
-      "paxRatio": 0.9986607896068839,
-      "mt2Ratio": 1.3851244665576914,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.7371802947,
-      "medianDeviation": 0.7371802947,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 16904842.0,
-      "realPayment": 16904842.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 18557165.0,
-      "ticket_persona": 192282.0,
-      "venta_mensual": 227325276.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4015,48 +4015,48 @@
     "mt2_salon": 2100.0,
     "cantidad_eventos_salon": 88,
     "total_invitados_salon": 7750,
-    "costos_variables_salon": 32181279.01,
-    "costos_fijos_salon": 28300000.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 299678223.01,
-    "ventas_totales_salon": 1150475493.0,
-    "rentabilidad_salon": 0.7395179429,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.2705837733,
-      "multiplier": 0,
-      "marginContribution": 0.0104,
-      "score": 20.53,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11660.49,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.1319,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 187417.22,
-      "paxRatio": 2.8232968377160215,
-      "mt2Ratio": 2.318806600565558,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 1.809827349,
-      "medianDeviation": 1.809827349,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 28300000.0,
-      "realPayment": 28300000.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 13073585.0,
-      "ticket_persona": 148448.0,
-      "venta_mensual": 104588681.2
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4073,48 +4073,48 @@
     "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 96,
     "total_invitados_salon": 8745,
-    "costos_variables_salon": 690678095.48,
-    "costos_fijos_salon": 8810084.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 893536199.48,
-    "ventas_totales_salon": 1493102430.0,
-    "rentabilidad_salon": 0.4015573336,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.07080626612,
-      "multiplier": 0,
-      "marginContribution": 0.0093,
-      "score": 45.0,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 6468.49,
-      "marketMt2": 8990.33,
-      "marketDeviation": -0.0281,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 46126.09,
-      "paxRatio": 0.6335226874736468,
-      "mt2Ratio": 0.7194941676223231,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.5082691076,
-      "medianDeviation": 0.5082691076,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 8810084.0,
-      "realPayment": 8810084.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15553150.0,
-      "ticket_persona": 170738.0,
-      "venta_mensual": 124425202.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4131,48 +4131,48 @@
     "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 101,
     "total_invitados_salon": 9505,
-    "costos_variables_salon": 594848026.26,
-    "costos_fijos_salon": 8810084.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 906148026.26,
-    "ventas_totales_salon": 1460488630.0,
-    "rentabilidad_salon": 0.3795583152,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.07238742282999999,
-      "multiplier": 0,
-      "marginContribution": 0.0101,
-      "score": 44.79,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8722.86,
-      "marketMt2": 8990.33,
-      "marketDeviation": -0.003,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 45648.1,
-      "paxRatio": 0.6269576933589163,
-      "mt2Ratio": 0.9702491454707447,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.5717299036,
-      "medianDeviation": 0.5717299036,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 8810084.0,
-      "realPayment": 8810084.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 11.0,
-      "ticket_evento": 14460283.0,
-      "ticket_persona": 153655.0,
-      "venta_mensual": 121707385.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4189,48 +4189,48 @@
     "mt2_salon": 2427.0,
     "cantidad_eventos_salon": 82,
     "total_invitados_salon": 7241,
-    "costos_variables_salon": 532131150.11,
-    "costos_fijos_salon": 8810084.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 637852158.11,
-    "ventas_totales_salon": 987450233.0,
-    "rentabilidad_salon": 0.3540412096,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.10706464430000001,
-      "multiplier": 0,
-      "marginContribution": 0.0047,
-      "score": 31.11,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 11441.67,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.0273,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 49774.49,
-      "paxRatio": 0.6836319460945022,
-      "mt2Ratio": 1.2726640735100936,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 0.6805608096,
-      "medianDeviation": 0.6805608096,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 8810084.0,
-      "realPayment": 8810084.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 12042076.0,
-      "ticket_persona": 136369.0,
-      "venta_mensual": 82287519.42
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4247,48 +4247,48 @@
     "mt2_salon": 1362.0,
     "cantidad_eventos_salon": 130,
     "total_invitados_salon": 12045,
-    "costos_variables_salon": 947848605.01,
-    "costos_fijos_salon": 30096243.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1053569613.01,
-    "ventas_totales_salon": 2549987683.0,
-    "rentabilidad_salon": 0.5868334502,
-    "tier": 4,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1416300629,
-      "multiplier": 0,
-      "marginContribution": 0.0165,
-      "score": 51.09,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 72521.07,
-      "marketMt2": 8990.33,
-      "marketDeviation": 0.7067,
-      "marketCostPerMt2": 8990.33,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 6.72269,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 6.72269,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 87235.49,
-      "paxRatio": 1.198143221501767,
-      "mt2Ratio": 8.066563741264225,
-      "medianPaxTier": 72808.9,
-      "globalIndex": 2.746148519,
-      "medianDeviation": 2.746148519,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 30096243.0,
-      "realPayment": 30096243.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 19615290.0,
-      "ticket_persona": 211705.0,
-      "venta_mensual": 212498973.6
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4305,48 +4305,48 @@
     "mt2_salon": 1010.0,
     "cantidad_eventos_salon": 114,
     "total_invitados_salon": 10015,
-    "costos_variables_salon": 694960663.98,
-    "costos_fijos_salon": 25811632.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 800681671.98,
-    "ventas_totales_salon": 1602154122.0,
-    "rentabilidad_salon": 0.5002467859,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1933269588,
-      "multiplier": 0,
-      "marginContribution": 0.008,
-      "score": 27.12,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 54918.37,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.1895,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 147495.04,
-      "paxRatio": 1.7346529213243176,
-      "mt2Ratio": 2.8946881002228535,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.671759024,
-      "medianDeviation": 1.671759024,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 25811632.0,
-      "realPayment": 25811632.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14053984.0,
-      "ticket_persona": 159975.0,
-      "venta_mensual": 133512843.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4363,48 +4363,48 @@
     "mt2_salon": 770.0,
     "cantidad_eventos_salon": 84,
     "total_invitados_salon": 9460,
-    "costos_variables_salon": 491060683.77,
-    "costos_fijos_salon": 24069582.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 852215599.77,
-    "ventas_totales_salon": 1402370488.0,
-    "rentabilidad_salon": 0.3923035267,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.2059619669,
-      "multiplier": 0,
-      "marginContribution": 0.0083,
-      "score": 26.99,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 15528.76,
-      "marketMt2": 18972.12,
-      "marketDeviation": -0.0181,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 85962.79,
-      "paxRatio": 1.0109872494606518,
-      "mt2Ratio": 0.8185042051178256,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 0.7329556687,
-      "medianDeviation": 0.7329556687,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 24069582.0,
-      "realPayment": 24069582.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16694887.0,
-      "ticket_persona": 148242.0,
-      "venta_mensual": 116864207.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4421,48 +4421,48 @@
     "mt2_salon": 415.0,
     "cantidad_eventos_salon": 123,
     "total_invitados_salon": 11498,
-    "costos_variables_salon": 618240871.76,
-    "costos_fijos_salon": 25291653.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 927980455.76,
-    "ventas_totales_salon": 1526807158.0,
-    "rentabilidad_salon": 0.3922084718,
-    "tier": 3,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.1987807264,
-      "multiplier": 0,
-      "marginContribution": 0.0081,
-      "score": 25.37,
-      "color": "green",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 37748.74,
-      "marketMt2": 18972.12,
-      "marketDeviation": 0.099,
-      "marketCostPerMt2": 18972.12,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 9.9469,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 9.9469,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 134530.07,
-      "paxRatio": 1.582175095050416,
-      "mt2Ratio": 1.9896954056794918,
-      "medianPaxTier": 85028.56,
-      "globalIndex": 1.344023017,
-      "medianDeviation": 1.344023017,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 25291653.0,
-      "realPayment": 25291653.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 12413066.0,
-      "ticket_persona": 132789.0,
-      "venta_mensual": 127233929.8
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4479,48 +4479,48 @@
     "mt2_salon": 470.0,
     "cantidad_eventos_salon": 122,
     "total_invitados_salon": 11562,
-    "costos_variables_salon": 616866813.37,
-    "costos_fijos_salon": 21571089.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 905701797.37,
-    "ventas_totales_salon": 1932778830.0,
-    "rentabilidad_salon": 0.5313991527,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1339279301,
-      "multiplier": 0,
-      "marginContribution": 0.0141,
-      "score": 44.57,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 43142.18,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.7579,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 115353.42,
-      "paxRatio": 1.7377108992745067,
-      "mt2Ratio": 8.579259683494211,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 2.342062382,
-      "medianDeviation": 2.342062382,
-      "color": "red"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 21571089.0,
-      "realPayment": 21571089.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 15842449.0,
-      "ticket_persona": 167166.0,
-      "venta_mensual": 161064902.5
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4537,48 +4537,48 @@
     "mt2_salon": 1550.0,
     "cantidad_eventos_salon": 96,
     "total_invitados_salon": 9449,
-    "costos_variables_salon": 752652968.27,
-    "costos_fijos_salon": 15984986.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 1056152804.27,
-    "ventas_totales_salon": 1622347152.0,
-    "rentabilidad_salon": 0.3489970362,
-    "tier": 2,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0.11823599639999999,
-      "multiplier": 0,
-      "marginContribution": 0.009,
-      "score": 39.65,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 8621.89,
-      "marketMt2": 25531.22,
-      "marketDeviation": -0.0662,
-      "marketCostPerMt2": 25531.22,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 33.789,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 33.789,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 82396.84,
-      "paxRatio": 1.2013134475285816,
-      "mt2Ratio": 0.3376998827318083,
-      "medianPaxTier": 68588.96,
-      "globalIndex": 0.8600972274,
-      "medianDeviation": 0.8600972274,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 15984986.0,
-      "realPayment": 15984986.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 16899450.0,
-      "ticket_persona": 171695.0,
-      "venta_mensual": 135195596.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4595,48 +4595,48 @@
     "mt2_salon": 670.0,
     "cantidad_eventos_salon": 94,
     "total_invitados_salon": 9248,
-    "costos_variables_salon": 94170994.1,
-    "costos_fijos_salon": 11235742.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 353024062.1,
-    "ventas_totales_salon": 1386426844.0,
-    "rentabilidad_salon": 0.745371302,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.08914510168999999,
-      "multiplier": 0,
-      "marginContribution": 0.0154,
-      "score": 50.66,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 19173.62,
-      "marketMt2": 5028.66,
-      "marketDeviation": 0.2813,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
-      "color": "yellow"
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 45673.75,
-      "paxRatio": 0.6880400527850756,
-      "mt2Ratio": 3.8128686369728713,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.9987554332,
-      "medianDeviation": 0.9987554332,
-      "color": "yellow"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11235742.0,
-      "realPayment": 11235742.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 14749222.0,
-      "ticket_persona": 149916.0,
-      "venta_mensual": 126038804.0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4653,48 +4653,48 @@
     "mt2_salon": 500.0,
     "cantidad_eventos_salon": 90,
     "total_invitados_salon": 8107,
-    "costos_variables_salon": 63899504.14,
-    "costos_fijos_salon": 11235742.0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
     "costos_totales_salon": 255719336.14,
-    "ventas_totales_salon": 1047227063.0,
-    "rentabilidad_salon": 0.7558129033,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
     "tier": 5,
     "performance": {
-      "rentIncidence": 0.1072904091,
-      "multiplier": 0,
-      "marginContribution": 0.0113,
-      "score": 40.79,
-      "color": "yellow",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 697.87,
-      "marketMt2": 5028.66,
-      "marketDeviation": -0.0861,
-      "marketCostPerMt2": 5028.66,
-      "deviation": 0,
+      "rentPerMt2": 0.0,
+      "marketMt2": 5.2907,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 5.2907,
+      "deviation": 0.0,
       "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 56461.02,
-      "paxRatio": 0.8505420111354817,
-      "mt2Ratio": 0.13877852151467787,
-      "medianPaxTier": 66382.4,
-      "globalIndex": 0.44910169,
-      "medianDeviation": 0.44910169,
-      "color": "green"
+      "rentPerPax": 0.0,
+      "paxRatio": 0,
+      "mt2Ratio": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
+      "medianDeviation": 0,
+      "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 11235742.0,
-      "realPayment": 11235742.0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 12.0,
-      "ticket_evento": 11635856.0,
-      "ticket_persona": 129176.0,
-      "venta_mensual": 104722706.3
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4707,52 +4707,52 @@
     "municipio_salon": "Núñez",
     "lat_salon": -34.5270668,
     "lon_salon": -58.4571677,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4765,52 +4765,52 @@
     "municipio_salon": "Rafael Castillo",
     "lat_salon": -34.7215238,
     "lon_salon": -58.6436412,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4823,52 +4823,52 @@
     "municipio_salon": "General Rodríguez",
     "lat_salon": -34.594363,
     "lon_salon": -58.940487,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4881,52 +4881,52 @@
     "municipio_salon": "Buenos Aires",
     "lat_salon": -34.7337908,
     "lon_salon": -58.5199157,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4939,52 +4939,52 @@
     "municipio_salon": "Buenos Aires",
     "lat_salon": -34.7337908,
     "lon_salon": -58.5199157,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -4997,52 +4997,52 @@
     "municipio_salon": "Lobos",
     "lat_salon": -35.2495308,
     "lon_salon": -59.2241341,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5055,52 +5055,52 @@
     "municipio_salon": "La Plata",
     "lat_salon": -34.9204885,
     "lon_salon": -57.9151289,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5113,52 +5113,52 @@
     "municipio_salon": "La Plata",
     "lat_salon": -34.9207701,
     "lon_salon": -57.9351125,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5171,52 +5171,52 @@
     "municipio_salon": "Lomas de Zamora",
     "lat_salon": -34.7571014,
     "lon_salon": -58.3958724,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5229,52 +5229,52 @@
     "municipio_salon": "Mar del Plata",
     "lat_salon": -37.8692632038807,
     "lon_salon": -57.5040381217154,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5287,52 +5287,52 @@
     "municipio_salon": "Del Viso",
     "lat_salon": -34.4692568,
     "lon_salon": -58.7977026,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   },
   {
@@ -5345,52 +5345,52 @@
     "municipio_salon": "Recoleta",
     "lat_salon": -34.5860662,
     "lon_salon": -58.3923,
-    "pax_calculado": 0,
-    "mt2_salon": 0,
+    "pax_calculado": 0.0,
+    "mt2_salon": 0.0,
     "cantidad_eventos_salon": 0,
     "total_invitados_salon": 0,
-    "costos_variables_salon": 0,
-    "costos_fijos_salon": 0,
-    "costos_totales_salon": 0,
-    "ventas_totales_salon": 0,
-    "rentabilidad_salon": 0,
-    "tier": 0,
+    "costos_variables_salon": 0.0,
+    "costos_fijos_salon": 0.0,
+    "costos_totales_salon": 0.0,
+    "ventas_totales_salon": 0.0,
+    "rentabilidad_salon": 0.0,
+    "tier": 5,
     "performance": {
-      "rentIncidence": 0,
-      "multiplier": 0,
-      "marginContribution": 0,
-      "score": 0,
-      "color": "red",
+      "rentIncidence": 0.0,
+      "multiplier": 0.0,
+      "marginContribution": 0.0,
+      "score": 0.0,
+      "color": "gray",
       "classification": "normal"
     },
     "benchmark": {
-      "rentPerMt2": 0,
-      "marketMt2": 0,
-      "marketDeviation": 0,
-      "marketCostPerMt2": 0,
-      "deviation": 0,
-      "color": "red"
+      "rentPerMt2": 0.0,
+      "marketMt2": 0.0,
+      "marketDeviation": 0.0,
+      "marketCostPerMt2": 0.0,
+      "deviation": 0.0,
+      "color": "green"
     },
     "efficiency": {
-      "rentPerPax": 0,
+      "rentPerPax": 0.0,
       "paxRatio": 0,
       "mt2Ratio": 0,
-      "medianPaxTier": 0,
-      "globalIndex": 0,
+      "medianPaxTier": 0.0,
+      "globalIndex": 0.0,
       "medianDeviation": 0,
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0,
-      "realPayment": 0,
+      "contractAmount": 0.0,
+      "realPayment": 0.0,
       "deviationPercent": 0,
       "color": "green"
     },
     "extra": {
       "meses_activos": 0.0,
-      "ticket_evento": 0,
-      "ticket_persona": 0,
-      "venta_mensual": 0
+      "ticket_evento": 0.0,
+      "ticket_persona": 0.0,
+      "venta_mensual": 0.0
     }
   }
 ]

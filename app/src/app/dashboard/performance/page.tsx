@@ -21,62 +21,10 @@ import {
 } from "recharts";
 
 export default function PerformancePage() {
-    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
-    const salonesResource = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
+    const { } = useDashboard();
 
-    const salones = useMemo(() => {
-        // Aggregate by id_salon to handle "All Years" view or multiple records
-        const aggregatedMap = new Map<number, any>();
-
-        salonesResource.forEach(s => {
-            if (!aggregatedMap.has(s.id_salon)) {
-                aggregatedMap.set(s.id_salon, { ...s, count: 1 });
-            } else {
-                const existing = aggregatedMap.get(s.id_salon);
-                existing.ventas_totales_salon = (existing.ventas_totales_salon || 0) + (s.ventas_totales_salon || 0);
-                existing.costos_fijos_salon = (existing.costos_fijos_salon || 0) + (s.costos_fijos_salon || 0);
-                existing.costos_variables_salon = (existing.costos_variables_salon || 0) + (s.costos_variables_salon || 0);
-                // Also sum pre-calculated metrics to promediate them
-                existing.performance = {
-                    ...existing.performance,
-                    score: (existing.performance?.score || 0) + (s.performance?.score || 0),
-                    rentIncidence: (existing.performance?.rentIncidence || 0) + (s.performance?.rentIncidence || 0),
-                    marginContribution: (existing.performance?.marginContribution || 0) + (s.performance?.marginContribution || 0),
-                };
-                existing.count += 1;
-            }
-        });
-
-        return Array.from(aggregatedMap.values()).map(s => {
-            const count = s.count || 1;
-            const avgVentas = s.ventas_totales_salon / count;
-            const avgFijos = s.costos_fijos_salon / count;
-            const avgVariables = s.costos_variables_salon / count;
-
-            // If we have only 1 record (specific year), use its performance data but fix scaling
-            if (count === 1) {
-                return {
-                    ...s,
-                    performance: {
-                        ...s.performance,
-                        // Ensure it's correctly calculated
-                        ...calcPerformance(s.costos_fijos_salon, s.ventas_totales_salon, s.costos_variables_salon)
-                    }
-                };
-            }
-
-            // For aggregated view (All Years), recalculate weighted performance
-            const perf = calcPerformance(avgFijos, avgVentas, avgVariables);
-
-            return {
-                ...s,
-                ventas_totales_salon: avgVentas,
-                costos_fijos_salon: avgFijos,
-                costos_variables_salon: avgVariables,
-                performance: perf
-            };
-        });
-    }, [salonesResource, selectedYear]);
+    // Performance works mainly on active salons
+    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
 
     // Update selected salon if it's not in the filtered list
@@ -186,17 +134,6 @@ export default function PerformancePage() {
                             <Search size={14} />
                         </div>
                     </div>
-
-                    <select
-                        value={selectedYear ?? ""}
-                        onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
-                        className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                    >
-                        <option value="">Año (Todos)</option>
-                        {availableYears.map((y) => (
-                            <option key={y} value={y}>Año {y}</option>
-                        ))}
-                    </select>
                 </div>
             </div>
 
@@ -206,7 +143,7 @@ export default function PerformancePage() {
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
                     <p className="text-3xl font-bold text-white">
                         {!selectedSalonId
-                            ? [...new Set(getSalonesData(selectedYear).filter(s => s.estado_salon === "ACTIVO").map(s => s.id_salon))].length
+                            ? [...new Set(salones.map(s => s.id_salon))].length
                             : 1}
                     </p>
                     <p className="text-xs text-slate-500 mt-1">

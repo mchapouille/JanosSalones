@@ -4,38 +4,16 @@ import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Gauge, Info } from "lucide-react";
 import { formatPercentage } from "@/lib/formatters";
-import { getSemaphoreColor, TIER_DEFINITIONS, calcEfficiency } from "@/lib/calculations";
+import { getSemaphoreColor, TIER_DEFINITIONS } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 
 export default function EfficiencyPage() {
-    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
-    const salonesResource = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
+    const { } = useDashboard();
 
-    const salones = useMemo(() => {
-        if (selectedYear !== null) return salonesResource;
-
-        const aggregatedMap = new Map<number, any>();
-        salonesResource.forEach(s => {
-            if (!aggregatedMap.has(s.id_salon)) {
-                aggregatedMap.set(s.id_salon, { ...s, count: 1 });
-            } else {
-                const existing = aggregatedMap.get(s.id_salon);
-                existing.costos_fijos_salon = (existing.costos_fijos_salon || 0) + (s.costos_fijos_salon || 0);
-                existing.count += 1;
-            }
-        });
-
-        return Array.from(aggregatedMap.values()).map(s => {
-            const avgFijos = s.costos_fijos_salon / s.count;
-            const efficiency = calcEfficiency(avgFijos, s.pax_calculado || 0, s.mt2_salon || 0, s.tier);
-            return {
-                ...s,
-                costos_fijos_salon: avgFijos,
-                efficiency
-            };
-        });
-    }, [salonesResource, selectedYear]);
+    // Efficiency Analysis works mainly on active salons
+    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
+    const [tierFilter, setTierFilter] = useState<number | null>(null);
 
     const salonesWithEfficiency = useMemo(() => salones.filter((s) => s.efficiency), [salones]);
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
@@ -68,22 +46,11 @@ export default function EfficiencyPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
                     <h1 className="text-2xl font-bold text-white">Eficiencia de Activos</h1>
                     <p className="text-slate-400 text-sm mt-1">Índice Global de Eficiencia — PAX & $m² vs Mediana del Tier</p>
                 </div>
-
-                <select
-                    value={selectedYear ?? ""}
-                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
-                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                >
-                    <option value="">Año (Todos)</option>
-                    {availableYears.map((y) => (
-                        <option key={y} value={y}>Año {y}</option>
-                    ))}
-                </select>
             </div>
 
             {/* Global KPIs Section */}

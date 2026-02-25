@@ -4,40 +4,17 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { BarChart3, Info, Search, X } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
-import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor, calcBenchmark } from "@/lib/calculations";
+import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis, ReferenceLine, Cell } from "recharts";
 
 export default function BenchmarkingPage() {
-    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const { } = useDashboard();
     const [searchTerm, setSearchTerm] = useState("");
-    const salonesResource = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
 
-    const salones = useMemo(() => {
-        if (selectedYear !== null) return salonesResource;
-
-        const aggregatedMap = new Map<number, any>();
-        salonesResource.forEach(s => {
-            if (!aggregatedMap.has(s.id_salon)) {
-                aggregatedMap.set(s.id_salon, { ...s, count: 1 });
-            } else {
-                const existing = aggregatedMap.get(s.id_salon);
-                existing.costos_fijos_salon = (existing.costos_fijos_salon || 0) + (s.costos_fijos_salon || 0);
-                existing.count += 1;
-            }
-        });
-
-        return Array.from(aggregatedMap.values()).map(s => {
-            const avgFijos = s.costos_fijos_salon / s.count;
-            const benchmark = calcBenchmark(avgFijos, s.mt2_salon || 0, s.tier);
-            return {
-                ...s,
-                costos_fijos_salon: avgFijos,
-                benchmark
-            };
-        });
-    }, [salonesResource, selectedYear]);
+    // Benchmarking works mainly on active salons
+    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
 
     const tierComparison = Object.entries(BENCHMARK_DATA).map(([tier, data]) => ({
         tier: `Tier ${tier}`, promedioReal: data.promedioReal,
@@ -100,17 +77,6 @@ export default function BenchmarkingPage() {
                             </button>
                         )}
                     </div>
-
-                    <select
-                        value={selectedYear ?? ""}
-                        onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
-                        className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                    >
-                        <option value="">Año (Todos)</option>
-                        {availableYears.map((y) => (
-                            <option key={y} value={y}>Año {y}</option>
-                        ))}
-                    </select>
                 </div>
             </div>
 
@@ -150,7 +116,7 @@ export default function BenchmarkingPage() {
                         const benchmark = BENCHMARK_DATA[tier];
                         const salonesInTier = salones.filter((s) => s.tier === tier);
                         return (
-                            <motion.div key={`${tier}-${selectedYear || 'hist'}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: tier * 0.1 }}
+                            <motion.div key={`tier-${tier}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: tier * 0.1 }}
                                 className="w-full" style={{ maxWidth: `${20 + (5 - tier) * 15 + 20}%` }}>
                                 <div className="py-3 px-5 rounded-xl" style={{ background: `${colors[tier - 1]}15`, border: `1px solid ${colors[tier - 1]}30` }}>
                                     <div className="flex items-center justify-between">

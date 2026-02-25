@@ -101,148 +101,6 @@ export function calcPerformance(
     };
 }
 
-// ---- SEMAPHORE 2: BENCHMARKING ----
-
-export interface BenchmarkResult {
-    rentPerMt2: number;
-    marketMt2: number;
-    marketDeviation: number;
-    marketCostPerMt2: number;
-    deviation: number;  // percentage
-    color: "green" | "yellow" | "red";
-}
-
-export function calcBenchmark(
-    costosFijos: number,
-    mt2: number,
-    tier: number
-): BenchmarkResult | null {
-    if (isNaN(costosFijos) || isNaN(mt2) || mt2 <= 0 || !BENCHMARK_DATA[tier]) return null;
-
-    const costPerMt2 = costosFijos / mt2;
-    const marketCostPerMt2 = BENCHMARK_DATA[tier].promedioMercado;
-    const deviation = marketCostPerMt2 > 0 ? ((costPerMt2 - marketCostPerMt2) / marketCostPerMt2) * 100 : 0;
-
-    let color: BenchmarkResult["color"];
-    if (deviation <= 0) {
-        color = "green";
-    } else if (deviation <= 50) {
-        color = "yellow";
-    } else {
-        color = "red";
-    }
-
-    return {
-        rentPerMt2: costPerMt2,
-        marketMt2: marketCostPerMt2,
-        marketDeviation: deviation,
-        marketCostPerMt2,
-        deviation,
-        color
-    };
-}
-
-// ---- SEMAPHORE 3: ASSET EFFICIENCY (Global Index) ----
-
-export interface EfficiencyResult {
-    paxRatio: number;
-    mt2Ratio: number;
-    globalIndex: number;
-    medianDeviation: number;
-    color: "green" | "yellow" | "red";
-}
-
-// Tier medians for PAX cost and m² cost (derived from audit report data)
-export const TIER_MEDIANS: Record<number, { paxMedian: number; mt2Median: number }> = {
-    1: { paxMedian: 15000, mt2Median: 45000 },
-    2: { paxMedian: 10000, mt2Median: 25531 },
-    3: { paxMedian: 7500, mt2Median: 18972 },
-    4: { paxMedian: 5000, mt2Median: 8990 },
-    5: { paxMedian: 3000, mt2Median: 2960 },
-};
-
-export function calcEfficiency(
-    costosFijos: number,
-    paxCalculado: number,
-    mt2: number,
-    tier: number
-): EfficiencyResult | null {
-    const medians = TIER_MEDIANS[tier];
-    if (!medians || paxCalculado === 0 || mt2 === 0) return null;
-
-    const costPerPax = costosFijos / paxCalculado;
-    const costPerMt2 = costosFijos / mt2;
-
-    const paxRatio = costPerPax / medians.paxMedian;
-    const mt2Ratio = costPerMt2 / medians.mt2Median;
-    const globalIndex = (paxRatio + mt2Ratio) / 2;
-
-    let color: EfficiencyResult["color"];
-    if (globalIndex < 1.0) {
-        color = "green";
-    } else if (globalIndex <= 1.25) {
-        color = "yellow";
-    } else {
-        color = "red";
-    }
-
-    return {
-        paxRatio,
-        mt2Ratio,
-        globalIndex,
-        medianDeviation: (globalIndex - 1) * 100, // Heuristic deviation from median
-        color
-    };
-}
-
-// ---- SEMAPHORE 4: CONTRACT AUDIT ----
-
-export interface ContractAuditResult {
-    contractAmount: number;
-    realPayment: number;
-    deviation: number;
-    deviationPercent: number;
-    color: "green" | "yellow" | "red";
-}
-
-export function calcContractDeviation(
-    contractAmountUSD: number,
-    realPaymentARS: number,
-    conversionRate: number = USD_ARS_RATE
-): ContractAuditResult {
-    const contractAmount = contractAmountUSD * conversionRate;
-    const deviation = realPaymentARS - contractAmount;
-    const deviationPercent = contractAmount > 0 ? (deviation / contractAmount) * 100 : 0;
-
-    let color: ContractAuditResult["color"];
-    if (Math.abs(deviationPercent) <= 5) {
-        color = "green";
-    } else if (Math.abs(deviationPercent) <= 15) {
-        color = "yellow";
-    } else {
-        color = "red";
-    }
-
-    return { contractAmount, realPayment: realPaymentARS, deviation, deviationPercent, color };
-}
-
-// ---- WHAT-IF SIMULATOR ----
-
-export function simulateRentReduction(
-    costosFijos: number,
-    ventasTotales: number,
-    costosVariables: number,
-    reductionPercent: number
-): { newCostosFijos: number; newIncidence: number; newMargin: number; marginImprovement: number } {
-    const newCostosFijos = costosFijos * (1 - reductionPercent / 100);
-    const newIncidence = ventasTotales > 0 ? (newCostosFijos / ventasTotales) : 0;
-    const originalMargin = ventasTotales - costosFijos - costosVariables;
-    const newMargin = ventasTotales - newCostosFijos - costosVariables;
-    const marginImprovement = newMargin - originalMargin;
-
-    return { newCostosFijos, newIncidence, newMargin, marginImprovement };
-}
-
 // ---- SEMAPHORE COLOR HELPER ----
 
 export interface GlobalStatusResult {
@@ -265,8 +123,8 @@ export const DEFAULT_WEIGHTS: StrategicWeights = {
 
 export function calcGlobalStatus(
     performance?: PerformanceResult,
-    benchmark?: BenchmarkResult | null,
-    efficiency?: EfficiencyResult | null,
+    benchmark?: any | null,
+    efficiency?: any | null,
     // audit dependency removed
     weights: StrategicWeights = DEFAULT_WEIGHTS
 ): GlobalStatusResult {
@@ -381,4 +239,17 @@ export function assignTier(municipio: string | null, nombreSalon: string): numbe
     }
 
     return 4; // Default to Tier 4 (Media)
+}
+
+// ---- SIMULATOR HELPERS ----
+export function simulateRentReduction(currentFijos: number, ventas: number, costosVariables: number, reductionPercent: number) {
+    const newCostosFijos = currentFijos * (1 - reductionPercent / 100);
+    const newMargin = ventas - costosVariables - newCostosFijos;
+    const currentMargin = ventas - costosVariables - currentFijos;
+    return {
+        newCostosFijos,
+        newMargin,
+        marginImprovement: newMargin - currentMargin,
+        newIncidence: ventas > 0 ? newCostosFijos / ventas : 1,
+    };
 }

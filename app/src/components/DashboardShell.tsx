@@ -147,17 +147,46 @@ export default function DashboardShell({
                             </div>
                         </div>
 
+                        {/* Refresh Data Button */}
+                        <button
+                            onClick={async () => {
+                                const btn = document.getElementById('refresh-btn-icon');
+                                if (btn) btn.classList.add('animate-spin');
+                                try {
+                                    const res = await fetch('/api/refresh-data', { method: 'POST' });
+                                    if (res.ok) {
+                                        // Force a router refresh to pick up new data
+                                        window.location.reload();
+                                    } else {
+                                        console.error('Failed to refresh data');
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                } finally {
+                                    if (btn) btn.classList.remove('animate-spin');
+                                }
+                            }}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-colors group"
+                            title="Refrescar Datos del Excel"
+                        >
+                            <svg id="refresh-btn-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 group-hover:text-white">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                            </svg>
+                            <span className="hidden sm:inline text-xs font-bold text-blue-400 group-hover:text-white">Refrescar</span>
+                        </button>
+
                         {/* Help Button */}
                         <button
                             onClick={() => setIsHelpOpen(true)}
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
                         >
                             <HelpCircle size={14} className="text-slate-400 group-hover:text-blue-400" />
-                            <span className="text-xs font-bold text-slate-400 group-hover:text-white">Ayuda</span>
+                            <span className="hidden sm:inline text-xs font-bold text-slate-400 group-hover:text-white">Ayuda</span>
                         </button>
 
                         <div className="flex items-center gap-3">
-                            <span className="text-sm text-slate-400">Admin</span>
+                            <span className="hidden sm:inline text-sm text-slate-400">Admin</span>
                             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold">
                                 A
                             </div>

@@ -4,45 +4,22 @@ import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FileCheck, AlertCircle } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
-import { getSemaphoreColor, calcContractDeviation } from "@/lib/calculations";
+import { getSemaphoreColor } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
 
 export default function ContractsPage() {
-    const { selectedYear, setSelectedYear, availableYears, conversionRate } = useDashboard();
-    const salonesResource = useMemo(() => getSalonesData(selectedYear).filter((s) => s.estado_salon === "ACTIVO"), [selectedYear]);
+    const { conversionRate } = useDashboard();
 
-    const salones = useMemo(() => {
-        if (selectedYear !== null) return salonesResource;
-
-        const aggregatedMap = new Map<number, any>();
-        salonesResource.forEach(s => {
-            if (!aggregatedMap.has(s.id_salon)) {
-                aggregatedMap.set(s.id_salon, { ...s, count: 1 });
-            } else {
-                const existing = aggregatedMap.get(s.id_salon);
-                existing.costos_fijos_salon = (existing.costos_fijos_salon || 0) + (s.costos_fijos_salon || 0);
-                if (existing.contractAudit && s.contractAudit) {
-                    existing.contractAudit.contractAmount = (existing.contractAudit.contractAmount || 0) + (s.contractAudit.contractAmount || 0);
-                }
-                existing.count += 1;
-            }
-        });
-
-        return Array.from(aggregatedMap.values()).map(s => ({
-            ...s,
-            costos_fijos_salon: s.costos_fijos_salon / s.count,
-            contractAudit: s.contractAudit ? {
-                ...s.contractAudit,
-                contractAmount: s.contractAudit.contractAmount / s.count
-            } : null
-        }));
-    }, [salonesResource, selectedYear]);
+    // Contracts works mainly on active salons
+    const salones = useMemo(() => getSalonesData().filter((s) => s.estado_salon === "ACTIVO"), []);
 
     const audits = useMemo(() =>
         salones.map((s) => {
             const contractUSD = s.contractAudit?.contractAmount ? s.contractAudit.contractAmount / conversionRate : 0;
-            const result = calcContractDeviation(contractUSD, s.costos_fijos_salon || 0, conversionRate);
+            const deviation = (s.costos_fijos_salon || 0) - (s.contractAudit?.contractAmount || 0);
+            const deviationPercent = s.contractAudit?.contractAmount ? (deviation / s.contractAudit.contractAmount) * 100 : 0;
+            const color = deviationPercent > 15 ? 'red' : deviationPercent > 5 ? 'yellow' : 'green';
 
             return {
                 id_salon: s.id_salon,
@@ -53,7 +30,13 @@ export default function ContractsPage() {
                 contratoUSD: contractUSD,
                 pagoRealARS: s.costos_fijos_salon || 0,
                 rentIncidence: s.performance?.rentIncidence || 0,
-                ...result
+                // From precalculated output (or recalced for conversionRate dynamicness):
+                contractAmount: s.contractAudit?.contractAmount || 0,
+                realPayment: s.costos_fijos_salon || 0,
+                deviation,
+                deviationPercent,
+                color,
+                ...s.contractAudit
             };
         }).filter(a => a.contratoUSD > 0), [salones, conversionRate]
     );
@@ -84,17 +67,6 @@ export default function ContractsPage() {
                         Auditoría: Monto Pactado (USD) vs Pago Real Ejecutado (ARS)
                     </p>
                 </div>
-
-                <select
-                    value={selectedYear ?? ""}
-                    onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
-                    className="bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-2.5 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                >
-                    <option value="">Año (Todos)</option>
-                    {availableYears.map((y: number) => (
-                        <option key={y} value={y}>Año {y}</option>
-                    ))}
-                </select>
             </div>
 
             {alertCount > 0 && (

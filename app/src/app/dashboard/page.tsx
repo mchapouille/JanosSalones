@@ -13,24 +13,36 @@ import {
     MapPin,
     X,
     HelpCircle,
-    AlertCircle
+    AlertCircle,
+    Sliders
 } from "lucide-react";
-import { getSemaphoreColor, TIER_DEFINITIONS, calcGlobalStatus, type StrategicWeights, DEFAULT_WEIGHTS, TIER_MEDIANS, get_color_from_incidence } from "@/lib/calculations";
+import { getSemaphoreColor, TIER_DEFINITIONS, get_color_from_incidence } from "@/lib/calculations";
 import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
 import GoogleMapView from "@/components/GoogleMapView";
 import { useDashboard } from "@/components/DashboardContext";
 
+function interpolate(val: number, x0: number, x1: number, y0: number, y1: number) {
+    if (val <= x0) return y0;
+    if (val >= x1) return y1;
+    return y0 + ((val - x0) / (x1 - x0)) * (y1 - y0);
+}
+
 export default function DashboardPage() {
-    const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+    const { } = useDashboard();
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
-    const [selectedSalonYear, setSelectedSalonYear] = useState<number | null>(null);
-    const salones = useMemo(() => getSalonesData(selectedYear), [selectedYear]);
+    const salones = useMemo(() => getSalonesData(), []);
     const [selectedTier, setSelectedTier] = useState<number | null>(null);
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
     const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
-    const [weights, setWeights] = useState<StrategicWeights>(DEFAULT_WEIGHTS);
+    const [ipWeights, setIpWeights] = useState({
+        margen: 40,
+        incidencia: 30,
+        ticketEvento: 15,
+        ticketInvitado: 15
+    });
     const [showWeights, setShowWeights] = useState(true);
+    const [rentReduction, setRentReduction] = useState<number>(0);
 
     const municipios = useMemo(
         () => [...new Set(salones.map((s) => s.municipio_salon).filter(Boolean))] as string[],
@@ -44,32 +56,20 @@ export default function DashboardPage() {
             if (selectedMunicipio && s.municipio_salon !== selectedMunicipio) return false;
             return true;
         });
-
-        if (selectedYear === null) {
-            const uniqueSalons: Record<number, SalonIntegral> = {};
-            list.forEach(s => {
-                if (!uniqueSalons[s.id_salon] || s.year > uniqueSalons[s.id_salon].year) {
-                    uniqueSalons[s.id_salon] = s;
-                }
-            });
-            return Object.values(uniqueSalons).sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon));
-        }
         return list;
-    }, [salones, selectedTier, selectedEstado, selectedMunicipio, selectedYear]);
+    }, [salones, selectedTier, selectedEstado, selectedMunicipio]);
 
-    // Get selected salon based on ID and Year
+    // Get selected salon based on ID
     const selectedSalon = useMemo(() => {
-        if (!selectedSalonId || !selectedSalonYear) return null;
-        return getSalonesData(null).find(s => s.id_salon === selectedSalonId && s.year === selectedSalonYear) || null;
-    }, [selectedSalonId, selectedSalonYear]);
+        if (!selectedSalonId) return null;
+        return salones.find(s => s.id_salon === selectedSalonId) || null;
+    }, [selectedSalonId, salones]);
 
     const handleSelectSalon = (salon: SalonIntegral | null) => {
         if (salon) {
             setSelectedSalonId(salon.id_salon);
-            setSelectedSalonYear(salon.year);
         } else {
             setSelectedSalonId(null);
-            setSelectedSalonYear(null);
         }
     };
 
@@ -79,19 +79,83 @@ export default function DashboardPage() {
 
     const totalRevenue = activeSalones.reduce((s, x) => s + (x.ventas_totales_salon || 0), 0);
     const totalEvents = activeSalones.reduce((s, x) => s + (x.cantidad_eventos_salon || 0), 0);
-    const avgIncidence = activeSalones.length > 0
-        ? (activeSalones.reduce((s, x) => s + (x.performance?.rentIncidence || 0), 0) / activeSalones.length) * 100
+
+    const validEff = activeSalones.filter(s => (s.indice_global_desviacion_mediana || 0) > 0);
+    const avgEfficiency = validEff.length > 0
+        ? validEff.reduce((acc, s) => acc + (s.indice_global_desviacion_mediana || 0), 0) / validEff.length
         : 0;
 
-    const strategicStatus = useMemo(() => {
+    const salonsInAlert = activeSalones.filter(s => s.semaforo_indice_global === 'REVISAR').length;
+
+    const dynamicScoreAndCategory = useMemo(() => {
         if (!selectedSalon) return null;
-        return calcGlobalStatus(
-            selectedSalon.performance ?? undefined,
-            selectedSalon.benchmark,
-            selectedSalon.efficiency,
-            weights
-        );
-    }, [selectedSalon, weights]);
+
+        const incPct = (selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) * 100;
+        const pts_inc = Math.max(0, Math.min(100, interpolate(incPct, 5, 30, 100, 0)));
+
+        // Use an approximate max margin from the network as the 95th percentile meta
+        const maxMargenRed = Math.max(...salones.map(s => s.margen_individual || 0));
+        const pts_mar = Math.max(0, Math.min(100, interpolate(selectedSalon.margen_individual || 0, 0, maxMargenRed || 1, 0, 100)));
+
+        const pts_eve = Math.max(0, Math.min(100, interpolate(selectedSalon.ticket_evento_promedio || 0, 10000000, 40000000, 0, 100)));
+        const pts_inv = Math.max(0, Math.min(100, interpolate(selectedSalon.ticket_persona_promedio || 0, 150000, 500000, 0, 100)));
+
+        const totalWeight = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado;
+        if (totalWeight === 0) return { score: 0, categoria: "Sin Peso", color: "gray" };
+
+        const wMargen = ipWeights.margen / totalWeight;
+        const wInc = ipWeights.incidencia / totalWeight;
+        const wEve = ipWeights.ticketEvento / totalWeight;
+        const wInv = ipWeights.ticketInvitado / totalWeight;
+
+        let currentScore = (pts_mar * wMargen) + (pts_inc * wInc) + (pts_eve * wEve) + (pts_inv * wInv);
+
+        if ((selectedSalon.margen_individual || 0) < 0) {
+            currentScore = 0;
+        }
+
+        // Provide the visual categorization
+        let categoria = "muy_baja";
+        let color = "critical";
+        let label = "Riesgo Crítico";
+
+        if (currentScore >= 60) {
+            categoria = "alta";
+            color = "green";
+            label = "Desempeño Alto";
+        } else if (currentScore >= 40) {
+            categoria = "media";
+            color = "yellow";
+            label = "Desempeño Medio";
+        } else if (currentScore >= 5) {
+            categoria = "baja";
+            color = "red";
+            label = "Desempeño Bajo";
+        }
+
+        return { score: currentScore, categoria, color, label };
+    }, [selectedSalon, ipWeights, salones]);
+
+    // What-If Simulator Calcs
+    const simulation = useMemo(() => {
+        if (!selectedSalon) return null;
+
+        const baseRent = selectedSalon.costos_fijos_salon || 0;
+        const reductionDecimal = rentReduction / 100;
+
+        const newCostosFijos = baseRent * (1 - reductionDecimal);
+        const avgMonthlySales = selectedSalon.venta_mensual_promedio_meses_activo || 1;
+
+        const newIncidence = (newCostosFijos / avgMonthlySales) * 100;
+        const newMargin = (selectedSalon.ventas_totales_salon || 0) - (selectedSalon.costos_variables_salon || 0) - (newCostosFijos * 12);
+
+        return {
+            newRent: newCostosFijos,
+            newIncidence,
+            newMargin,
+            marginImprovement: newMargin - (selectedSalon.margen_individual || 0)
+        };
+    }, [selectedSalon, rentReduction]);
 
     return (
         <div className="space-y-6">
@@ -116,28 +180,6 @@ export default function DashboardPage() {
 
                         {/* Filters Row */}
                         <div className="flex flex-wrap items-center gap-3">
-                            {/* Filter A: Year Selector */}
-                            <select
-                                value={selectedSalonYear ?? ""}
-                                onChange={(e) => {
-                                    const year = e.target.value ? parseInt(e.target.value) : null;
-                                    setSelectedSalonYear(year);
-                                    // Reset salon selection when year changes
-                                    if (year && selectedSalonId) {
-                                        const exists = getSalonesData(null).find(s => s.id_salon === selectedSalonId && s.year === year);
-                                        if (!exists) {
-                                            setSelectedSalonId(null);
-                                        }
-                                    }
-                                }}
-                                className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                            >
-                                <option value="">Año...</option>
-                                {availableYears.map((y) => (
-                                    <option key={y} value={y}>Año {y}</option>
-                                ))}
-                            </select>
-
                             {/* Filter B: Salon Selector */}
                             <select
                                 value={selectedSalonId ?? ""}
@@ -149,14 +191,9 @@ export default function DashboardPage() {
                             >
                                 <option value="">Buscar Salón...</option>
                                 {(() => {
-                                    // Get unique salons
-                                    const uniqueSalons = Array.from(new Set(getSalonesData(null).map(s => s.id_salon)))
-                                        .map(id => {
-                                            const salon = getSalonesData(null).find(s => s.id_salon === id);
-                                            return salon;
-                                        })
-                                        .filter(Boolean)
-                                        .sort((a, b) => a!.nombre_salon.localeCompare(b!.nombre_salon));
+                                    // Get unique salons from state
+                                    const uniqueSalons = [...salones]
+                                        .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon));
 
                                     return uniqueSalons.map(s => s && (
                                         <option key={s.id_salon} value={s.id_salon}>
@@ -168,10 +205,10 @@ export default function DashboardPage() {
                         </div>
 
                         {/* Validation Alert */}
-                        {selectedSalonId && selectedSalonYear && !selectedSalon && (
+                        {selectedSalonId && !selectedSalon && (
                             <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-2">
                                 <AlertCircle size={16} className="text-amber-400" />
-                                <span className="text-sm text-amber-400 font-medium">No hay datos para el periodo solicitado</span>
+                                <span className="text-sm text-amber-400 font-medium">No hay datos para el salon solicitado</span>
                             </div>
                         )}
 
@@ -273,7 +310,7 @@ export default function DashboardPage() {
                                 <div className="group/metric">
                                     <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 transition-colors group-hover/metric:text-emerald-400 tracking-widest leading-tight h-4 flex items-center justify-center">Retorno s/ Alquiler</p>
                                     <div className="h-10 flex items-center justify-center">
-                                        <p className="text-2xl font-bold text-white tracking-tight">{selectedSalon?.performance ? formatMultiplier(selectedSalon.performance.multiplier) : '—'}</p>
+                                        <p className="text-2xl font-bold text-white tracking-tight">{selectedSalon ? formatMultiplier(selectedSalon.retorno_sobre_alquiler || 0) : '—'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -289,8 +326,8 @@ export default function DashboardPage() {
                                 <div className="group/metric">
                                     <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 transition-colors group-hover/metric:text-purple-400 tracking-widest leading-tight h-4 flex items-center justify-center">Incidencia Alquiler</p>
                                     <div className="h-10 flex items-center justify-center">
-                                        <p className="text-2xl font-bold tracking-tight" style={{ color: selectedSalon?.performance ? get_color_from_incidence(selectedSalon.performance.rentIncidence) : 'white' }}>
-                                            {selectedSalon?.performance ? formatPercentage(selectedSalon.performance.rentIncidence * 100) : '—'}
+                                        <p className="text-2xl font-bold tracking-tight" style={{ color: selectedSalon ? get_color_from_incidence(selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) : 'white' }}>
+                                            {selectedSalon ? formatPercentage((selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) * 100) : '—'}
                                         </p>
                                     </div>
                                 </div>
@@ -298,8 +335,8 @@ export default function DashboardPage() {
                                     <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 transition-colors group-hover/metric:text-purple-400 tracking-widest leading-tight h-4 flex items-center justify-center">Participación Margen</p>
                                     <div className="h-10 flex items-center justify-center">
                                         <p className="text-2xl font-bold text-white tracking-tight">
-                                            {selectedSalon?.performance
-                                                ? formatPercentage(selectedSalon.performance.marginContribution * 100)
+                                            {selectedSalon
+                                                ? formatPercentage((selectedSalon.participacion_margen || 0) * 100)
                                                 : '—'}
                                         </p>
                                     </div>
@@ -310,195 +347,161 @@ export default function DashboardPage() {
                 </div>
             </motion.div>
 
-            {/* PANEL 2: ANÁLISIS DE DECISIÓN ESTRATÉGICA */}
-            {selectedSalon && strategicStatus && (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="relative overflow-hidden group pt-2"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/5" />
-                    <div className="glass-card p-6 md:p-8 relative">
-                        {/* Header: Global Status & Salon Name */}
-                        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-white/5 gap-4">
-                            <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                                    <BrainCircuit size={18} className="text-blue-400" />
+            {/* PANEL 2: MOTOR IP_SCORE Y SIMULADOR INTERACTIVO */}
+            {selectedSalon && dynamicScoreAndCategory && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* LEFT PANEL: Motor IP Score & Categorization */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="relative overflow-hidden group pt-2 h-full"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/5" />
+                        <div className="glass-card p-6 md:p-8 relative h-full flex flex-col">
+
+                            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-white/5 gap-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                        <BrainCircuit size={18} className="text-blue-400" />
+                                    </div>
+                                    <h3 className="text-lg font-bold text-white">Motor IP_SCORE</h3>
                                 </div>
-                                <h3 className="text-lg font-bold text-white">Análisis de Decisión Estratégica</h3>
                             </div>
 
-                            <div className="flex flex-col md:items-end text-left md:text-right flex-1 min-w-0">
-                                <h4 className="text-xl font-bold text-white tracking-tight break-words">{selectedSalon.nombre_salon}</h4>
-                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mt-1">
-                                    Tier {selectedSalon.tier} • {selectedSalon.municipio_salon}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col lg:flex-row gap-8">
-                            {/* Left: Global Indicator */}
-                            <div className="lg:w-1/4 flex flex-col justify-center items-center text-center p-6 rounded-2xl bg-slate-900/40 border border-white/5 shadow-inner min-h-[300px]">
-                                <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-6 font-bold">Estatus Estratégico Global</span>
-                                <div
-                                    className="w-24 h-24 rounded-full flex items-center justify-center mb-6 relative"
-                                    style={{ background: `${getSemaphoreColor(strategicStatus.color)}15`, border: `2px solid ${getSemaphoreColor(strategicStatus.color)}40` }}
-                                >
+                            <div className="flex flex-col sm:flex-row items-center gap-8 mb-8">
+                                <div className="flex flex-col items-center justify-center">
+                                    <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4 font-bold text-center">Score Principal</span>
                                     <div
-                                        className="w-14 h-14 rounded-full animate-pulse"
-                                        style={{ background: getSemaphoreColor(strategicStatus.color), opacity: 0.2 }}
-                                    />
-                                    <div
-                                        className="absolute w-5 h-5 rounded-full"
-                                        style={{ background: getSemaphoreColor(strategicStatus.color), boxShadow: `0 0 20px ${getSemaphoreColor(strategicStatus.color)}` }}
-                                    />
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">{strategicStatus.label}</h3>
-                                <p className="text-slate-400 text-xs leading-relaxed max-w-[200px] mx-auto">
-                                    {strategicStatus.description}
-                                </p>
-                            </div>
-
-                            {/* Right: The 3 Strategic Pillars */}
-                            <div className="lg:w-3/4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                                {/* 1. PERFORMANCE */}
-                                <div className="flex flex-col bg-slate-900/40 rounded-2xl border border-white/5 overflow-hidden group/pillar hover:border-blue-500/30 transition-colors">
-                                    <div className="bg-white/5 px-4 py-3 border-b border-white/5 flex items-center justify-between">
-                                        <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest">Performance</span>
+                                        className="w-32 h-32 rounded-full flex items-center justify-center relative shadow-2xl"
+                                        style={{ background: `${getSemaphoreColor(dynamicScoreAndCategory.color)}15`, border: `4px solid ${getSemaphoreColor(dynamicScoreAndCategory.color)}50` }}
+                                    >
                                         <div
-                                            className="w-2 h-2 rounded-full cursor-help"
-                                            style={{ background: getSemaphoreColor(selectedSalon.performance?.color || 'gray') }}
-                                            title="Calculado sobre rentabilidad operativa e incidencia de alquiler"
+                                            className="absolute inset-0 rounded-full animate-pulse z-0"
+                                            style={{ background: getSemaphoreColor(dynamicScoreAndCategory.color), opacity: 0.1 }}
                                         />
-                                    </div>
-                                    <div className="p-5 flex flex-col gap-4">
-                                        {[
-                                            { label: 'Score Rentabilidad', value: `${formatNumber(selectedSalon.performance?.score || 0)} pts`, highlight: true },
-                                            { label: 'Cant. Eventos', value: formatNumber(selectedSalon.cantidad_eventos_salon || 0) },
-                                            { label: 'Cant. Invitados', value: formatNumber(selectedSalon.total_invitados_salon || 0) },
-                                            { label: 'Costos Var.', value: formatARS(selectedSalon.costos_variables_salon || 0) },
-                                            { label: 'Costos Totales', value: formatARS(selectedSalon.costos_totales_salon || 0) }
-                                        ].map((row, idx) => (
-                                            <div key={idx} className="flex flex-col border-b border-white/5 last:border-0 pb-2 last:pb-0">
-                                                <span className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</span>
-                                                <span className={`text-sm font-bold ${row.highlight ? 'text-blue-400' : 'text-white'}`}>{row.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="px-5 pb-3">
-                                        <p className="text-[9px] text-slate-500 italic">* Costos son anuales</p>
+                                        <h3 className="text-4xl font-black text-white relative z-10">{dynamicScoreAndCategory.score.toFixed(0)}</h3>
+                                        <span className="absolute bottom-2 text-[10px] font-bold" style={{ color: getSemaphoreColor(dynamicScoreAndCategory.color) }}>
+                                            PTS
+                                        </span>
                                     </div>
                                 </div>
 
-                                {/* 2. BENCHMARKING */}
-                                <div className="flex flex-col bg-slate-900/40 rounded-2xl border border-white/5 overflow-hidden group/pillar hover:border-cyan-500/30 transition-colors">
-                                    <div className="bg-white/5 px-4 py-3 border-b border-white/5 flex items-center justify-between">
-                                        <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest">Benchmarking</span>
-                                        <div
-                                            className="w-2 h-2 rounded-full cursor-help"
-                                            style={{ background: getSemaphoreColor(selectedSalon.benchmark?.color || 'gray') }}
-                                            title="Calculado comparando precios y costos vs mercado"
-                                        />
-                                    </div>
-                                    <div className="p-5 flex flex-col gap-4">
-                                        {[
-                                            { label: 'm² Salón', value: `${formatNumber(selectedSalon.mt2_salon || 0)} m²` },
-                                            { label: 'm² Mercado', value: `${formatNumber(selectedSalon.benchmark?.marketMt2 || 0)} m²` },
-                                            { label: 'Precio Alquiler', value: formatARS(selectedSalon.contractAudit?.contractAmount || selectedSalon.costos_fijos_salon || 0) },
-                                            { label: 'Semaforo Tipo', value: `Tier ${selectedSalon.tier}` },
-                                            { label: 'Desvío Mercado', value: formatPercentage(selectedSalon.benchmark?.marketDeviation || 0), highlight: true },
-                                            { label: 'Precio m²', value: formatARS(selectedSalon.benchmark?.rentPerMt2 || 0) }
-                                        ].map((row, idx) => (
-                                            <div key={idx} className="flex flex-col border-b border-white/5 last:border-0 pb-2 last:pb-0">
-                                                <span className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</span>
-                                                <span className={`text-sm font-bold ${row.highlight ? 'text-cyan-400' : 'text-white'}`}>{row.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                <div className="flex-1 flex flex-col justify-center">
+                                    <h4 className="text-xl font-bold text-white mb-2">{dynamicScoreAndCategory.label}</h4>
+                                    <p className="text-sm text-slate-400 mb-4">
+                                        Categorización actual ajustada a ponderaciones personalizadas. La categoría base original del sistema es <span className="text-white font-bold uppercase">{selectedSalon.categoria_ip}</span>.
+                                    </p>
 
-                                {/* 3. EFICIENCIA */}
-                                <div className="flex flex-col bg-slate-900/40 rounded-2xl border border-white/5 overflow-hidden group/pillar hover:border-emerald-500/30 transition-colors">
-                                    <div className="bg-white/5 px-4 py-3 border-b border-white/5 flex items-center justify-between">
-                                        <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest">Eficiencia</span>
+                                    <div className="flex gap-2">
+                                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-800/80 text-white uppercase tracking-wider">
+                                            {dynamicScoreAndCategory.categoria}
+                                        </span>
                                         <div
-                                            className="w-2 h-2 rounded-full cursor-help"
-                                            style={{ background: getSemaphoreColor(selectedSalon.efficiency?.color || 'gray') }}
-                                            title="Calculado sobre índice global de desviación de la media"
+                                            className="w-6 h-6 rounded-full"
+                                            style={{ background: getSemaphoreColor(dynamicScoreAndCategory.color), boxShadow: `0 0 10px ${getSemaphoreColor(dynamicScoreAndCategory.color)}` }}
                                         />
-                                    </div>
-                                    <div className="p-5 flex flex-col flex-1 justify-between">
-                                        <div className="flex flex-col gap-4">
-                                            {[
-                                                { label: 'PAX Calculado', value: formatNumber(selectedSalon.pax_calculado || 0) },
-                                                { label: 'm² Salón', value: `${formatNumber(selectedSalon.mt2_salon || 0)} m²` },
-                                                { label: 'Precio Alquiler', value: formatARS(selectedSalon.contractAudit?.contractAmount || selectedSalon.costos_fijos_salon || 0) },
-                                                { label: 'Desvío Mediana', value: formatPercentage(selectedSalon.efficiency?.medianDeviation || 0) }
-                                            ].map((row, idx) => (
-                                                <div key={idx} className="flex flex-col border-b border-white/5 last:border-0 pb-2 last:pb-0">
-                                                    <span className="text-[9px] text-slate-500 uppercase font-bold tracking-tight mb-0.5">{row.label}</span>
-                                                    <span className="text-sm font-bold text-white">{row.value}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className="mt-6 pt-4 border-t border-emerald-500/20 text-center">
-                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Dictamen</span>
-                                            <p className={`text-lg font-black mt-1 ${selectedSalon.efficiency?.color === 'red' || selectedSalon.efficiency?.color === 'yellow'
-                                                ? 'text-red-400'
-                                                : 'text-emerald-400'
-                                                }`}>
-                                                {selectedSalon.efficiency?.color === 'green' ? 'ESTABILIZADO' : 'BAJO RENDIMIENTO'}
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Weight sliders section (Simplified for 3 pillars) */}
-                        <div className="mt-8 pt-6 border-t border-white/5">
-                            <button
-                                onClick={() => setShowWeights(!showWeights)}
-                                className="flex items-center gap-2 text-xs text-slate-500 hover:text-blue-400 transition-colors mb-4 font-bold uppercase tracking-wider"
-                            >
-                                <BrainCircuit size={14} />
-                                {showWeights ? "Ocultar Ponderación" : "Ajustar Ponderación del Estatus Global"}
-                            </button>
+                            <div className="mt-auto pt-6 border-t border-white/5">
+                                <h4 className="flex items-center gap-2 text-xs text-slate-400 font-bold uppercase tracking-wider mb-6">
+                                    <Sliders size={14} /> Ponderación Dinámica de Score
+                                </h4>
 
-                            {showWeights && (
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                                <div className="space-y-5">
                                     {[
-                                        { id: 'performance', label: 'Performance', color: 'bg-blue-500', text: 'text-blue-400' },
-                                        { id: 'benchmarking', label: 'Benchmarking', color: 'bg-cyan-500', text: 'text-cyan-400' },
-                                        { id: 'efficiency', label: 'Eficiencia', color: 'bg-emerald-500', text: 'text-emerald-400' }
+                                        { id: 'margen', label: 'Margen Individual', value: ipWeights.margen, color: 'bg-emerald-500' },
+                                        { id: 'incidencia', label: 'Incidencia Alquiler', value: ipWeights.incidencia, color: 'bg-purple-500' },
+                                        { id: 'ticketEvento', label: 'Ticket Evento', value: ipWeights.ticketEvento, color: 'bg-blue-500' },
+                                        { id: 'ticketInvitado', label: 'Ticket Invitado', value: ipWeights.ticketInvitado, color: 'bg-cyan-500' }
                                     ].map((w) => (
                                         <div key={w.id} className="space-y-2">
                                             <div className="flex justify-between items-end">
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{w.label}</span>
-                                                <span className={`text-sm font-mono font-bold ${w.text}`}>{(weights as any)[w.id]}%</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wide">{w.label}</span>
+                                                <span className={`text-xs font-mono font-bold text-white`}>{w.value} pts</span>
                                             </div>
                                             <input
                                                 type="range"
                                                 min="0"
                                                 max="100"
                                                 step="5"
-                                                value={(weights as any)[w.id]}
-                                                onChange={(e) => setWeights({ ...weights, [w.id]: parseInt(e.target.value) })}
-                                                className={`w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-${w.color.split('-')[1]}-500`}
+                                                value={w.value}
+                                                onChange={(e) => setIpWeights({ ...ipWeights, [w.id]: parseInt(e.target.value) })}
+                                                className={`w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:${w.color} transition-all`}
                                             />
                                         </div>
                                     ))}
-                                    <div className="md:col-span-3 pt-2">
-                                        <p className="text-[9px] text-slate-600 text-center">
-                                            * La suma de pesos afecta el cálculo del índice global. El módulo Contratos ya no impacta en esta decisión.
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* RIGHT PANEL: Simulador What-If */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="relative overflow-hidden group pt-2 h-full"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/10 via-transparent to-blue-600/5 rounded-2xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/5" />
+                        <div className="glass-card p-6 md:p-8 relative h-full flex flex-col">
+                            <div className="flex items-center gap-3 mb-8 pb-6 border-b border-white/5">
+                                <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                                    <TrendingUp size={18} className="text-cyan-400" />
+                                </div>
+                                <h3 className="text-lg font-bold text-white">Simulador "What-If"</h3>
+                            </div>
+
+                            <div className="mb-8">
+                                <label className="text-xs text-slate-400 uppercase font-bold tracking-widest block mb-4">
+                                    Reducción de Alquiler / Costos Fijos
+                                </label>
+                                <div className="flex items-center gap-4 mb-2">
+                                    <input
+                                        type="range"
+                                        min="0" max="50" step="1"
+                                        value={rentReduction}
+                                        onChange={(e) => setRentReduction(parseInt(e.target.value))}
+                                        className="flex-1 h-3 rounded-full appearance-none bg-slate-800 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 hover:[&::-webkit-slider-thumb]:scale-110 transition-all shadow-inner"
+                                    />
+                                    <span className="text-2xl font-black text-cyan-400 min-w-[3rem] text-right">{rentReduction}%</span>
+                                </div>
+                                <p className="text-[10px] text-slate-500 mb-6">Proyecta la mejora de eficiencia aplicando un descuento porcentual sobre el costo de alquiler mensual actual.</p>
+                            </div>
+
+                            {simulation && (
+                                <div className="grid grid-cols-2 gap-4 mt-auto">
+                                    <div className="p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-center">
+                                        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-1">Nuevo Alquiler</p>
+                                        <p className="text-xl font-bold text-white">{formatARS(simulation.newRent)}</p>
+                                        <p className="text-[9px] text-slate-500 mt-1 line-through">{formatARS(selectedSalon.costos_fijos_salon || 0)}</p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-center relative overflow-hidden group/kpi">
+                                        <div className={`absolute inset-0 opacity-10 transition-opacity group-hover/kpi:opacity-20`} style={{ background: simulation.newIncidence > 25 ? "red" : simulation.newIncidence > 15 ? "yellow" : "green" }} />
+                                        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-1 relative z-10">Nueva Incid.</p>
+                                        <p className="text-2xl font-black relative z-10" style={{ color: simulation.newIncidence > 25 ? "#ef4444" : simulation.newIncidence > 15 ? "#eab308" : "#22c55e" }}>
+                                            {formatPercentage(simulation.newIncidence)}
                                         </p>
+                                        <p className="text-[9px] text-slate-500 mt-1 relative z-10">
+                                            Origen: {formatPercentage((selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) * 100)}
+                                        </p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-center">
+                                        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-1">Nuevo Margen</p>
+                                        <p className="text-xl font-bold text-white">{formatARS(simulation.newMargin)}</p>
+                                        <p className="text-[9px] text-slate-500 mt-1">Beneficio absoluto tras costos</p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col justify-center shadow-inner shadow-emerald-500/10">
+                                        <p className="text-[10px] text-emerald-500/80 uppercase tracking-widest font-bold mb-1">Mejora Margen</p>
+                                        <p className="text-2xl font-black text-emerald-400">+{formatARS(simulation.marginImprovement)}</p>
+                                        <p className="text-[9px] text-emerald-500/60 mt-1">Impacto extra generado</p>
                                     </div>
                                 </div>
                             )}
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             )}
 
             {/* PANEL 3: VISTA GENERAL DE SALONES */}
@@ -522,17 +525,6 @@ export default function DashboardPage() {
 
                         {/* General Filters Section */}
                         <div className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                            {/* Year Filter */}
-                            <select
-                                value={selectedYear ?? ""}
-                                onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
-                                className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[140px] font-bold"
-                            >
-                                <option value="">Año (Todos)</option>
-                                {availableYears.map((y) => (
-                                    <option key={y} value={y}>Año {y}</option>
-                                ))}
-                            </select>
 
                             <select
                                 value={selectedEstado ?? ""}
@@ -583,31 +575,31 @@ export default function DashboardPage() {
                         {[
                             {
                                 label: selectedEstado ? (selectedEstado === "ACTIVO" ? "Salones Activos" : selectedEstado === "OBRA" ? "Salones en Obra" : "Salones Devueltos") : "Red de Salones",
-                                value: selectedYear ? filtered.length.toString() : "0",
+                                value: filtered.length.toString(),
                                 icon: Building2,
                                 color: "#2563eb",
-                                sub: selectedYear ? (selectedEstado ? `Filtrado por ${selectedEstado}` : `${salones.filter(s => s.estado_salon === "ACTIVO").length} activos en red`) : "Seleccione año..."
+                                sub: selectedEstado ? `Filtrado por ${selectedEstado}` : `${salones.filter(s => s.estado_salon === "ACTIVO").length} activos en red`
                             },
                             {
                                 label: "Facturación Total",
-                                value: selectedYear ? formatARS(totalRevenue) : "$ 0",
+                                value: formatARS(totalRevenue),
                                 icon: DollarSign,
                                 color: "#22c55e",
-                                sub: selectedYear ? "periodo analizado" : "—"
+                                sub: "periodo analizado"
                             },
                             {
                                 label: "Eventos Totales",
-                                value: selectedYear ? formatNumber(totalEvents) : "0",
+                                value: formatNumber(totalEvents),
                                 icon: Users,
                                 color: "#8b5cf6",
-                                sub: selectedYear ? "acumulado" : "—"
+                                sub: "acumulado"
                             },
                             {
-                                label: "Incidencia Promedio",
-                                value: selectedYear ? formatPercentage(avgIncidence) : "0%",
+                                label: "Eficiencia Promedio",
+                                value: avgEfficiency.toFixed(2),
                                 icon: TrendingUp,
-                                color: !selectedYear ? "#64748b" : (avgIncidence > 25 ? "#ef4444" : avgIncidence > 15 ? "#eab308" : "#22c55e"),
-                                sub: selectedYear ? (avgIncidence > 25 ? "⚠ Alerta" : "normal") : "—"
+                                color: avgEfficiency > 1.25 ? "#ef4444" : avgEfficiency < 0.85 ? "#22c55e" : "#eab308",
+                                sub: `${salonsInAlert} en alerta (REVISAR)`
                             },
                         ].map((kpi, idx) => {
                             const Icon = kpi.icon;
@@ -662,9 +654,9 @@ export default function DashboardPage() {
                     <div className="space-y-1">
                         {filtered.map((salon) => (
                             <button
-                                key={`${salon.id_salon}-${salon.year}`}
+                                key={`${salon.id_salon}`}
                                 onClick={() => handleSelectSalon(salon)}
-                                className={`w-full text-left px-3 py-2 rounded-lg transition-all border ${selectedSalon?.id_salon === salon.id_salon && selectedSalon?.year === salon.year
+                                className={`w-full text-left px-3 py-2 rounded-lg transition-all border ${selectedSalon?.id_salon === salon.id_salon
                                     ? "border-blue-500/40 bg-blue-500/10"
                                     : "border-transparent hover:bg-white/5"
                                     }`}
