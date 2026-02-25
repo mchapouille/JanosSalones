@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Map, AdvancedMarker, APIProvider } from "@vis.gl/react-google-maps";
 import { type SalonIntegral } from "@/lib/sample-data";
 import { getSemaphoreColor } from "@/lib/calculations";
@@ -28,6 +29,7 @@ interface GoogleMapViewProps {
 
 export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }: GoogleMapViewProps) {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     // Center of GBA roughly (San Isidro/Vicente Lopez area)
     const defaultCenter = { lat: -34.58, lng: -58.55 };
@@ -54,6 +56,8 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                                     salon.performance ? getSemaphoreColor(salon.performance.color) : "#3b82f6";
 
                         const isSelected = selectedSalon?.id_salon === salon.id_salon;
+                        const isHovered = hoveredId === salon.id_salon;
+                        const showLabel = isSelected || isHovered;
 
                         return (
                             <AdvancedMarker
@@ -62,50 +66,69 @@ export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }:
                                 onClick={() => onSelectSalon(salon)}
                                 title={salon.nombre_salon}
                             >
-                                {/* Custom marker with pin + name label */}
                                 <div
                                     style={{
                                         display: "flex",
                                         flexDirection: "column",
                                         alignItems: "center",
-                                        gap: "2px",
+                                        gap: "3px",
                                         cursor: "pointer",
-                                        transform: isSelected ? "scale(1.25)" : "scale(1)",
+                                        transform: isSelected ? "scale(1.3)" : isHovered ? "scale(1.15)" : "scale(1)",
                                         transition: "transform 0.15s ease",
+                                        zIndex: isSelected ? 100 : isHovered ? 50 : 1,
                                     }}
+                                    onMouseEnter={() => setHoveredId(salon.id_salon)}
+                                    onMouseLeave={() => setHoveredId(null)}
                                 >
                                     {/* Pin dot */}
                                     <div
                                         style={{
-                                            width: isSelected ? 18 : 14,
-                                            height: isSelected ? 18 : 14,
+                                            width: isSelected ? 18 : isHovered ? 16 : 12,
+                                            height: isSelected ? 18 : isHovered ? 16 : 12,
                                             borderRadius: "50%",
                                             background: markerColor,
-                                            border: isSelected ? "2.5px solid #fff" : `2px solid ${markerColor}`,
-                                            boxShadow: `0 0 ${isSelected ? 10 : 6}px ${markerColor}80`,
+                                            border: isSelected
+                                                ? "2.5px solid #fff"
+                                                : isHovered
+                                                    ? `2px solid #fff`
+                                                    : `1.5px solid ${markerColor}99`,
+                                            boxShadow: isSelected
+                                                ? `0 0 14px ${markerColor}cc, 0 0 4px #fff4`
+                                                : isHovered
+                                                    ? `0 0 10px ${markerColor}99`
+                                                    : `0 0 4px ${markerColor}50`,
                                             transition: "all 0.15s ease",
                                         }}
                                     />
-                                    {/* Salon name label */}
-                                    <div
-                                        style={{
-                                            background: "rgba(15,23,42,0.88)",
-                                            color: isSelected ? "#fff" : "#94a3b8",
-                                            fontSize: "9px",
-                                            fontWeight: isSelected ? 700 : 500,
-                                            padding: "1px 5px",
-                                            borderRadius: "4px",
-                                            whiteSpace: "nowrap",
-                                            border: isSelected ? `1px solid ${markerColor}60` : "1px solid rgba(255,255,255,0.08)",
-                                            maxWidth: "120px",
-                                            overflow: "hidden",
-                                            textOverflow: "ellipsis",
-                                            backdropFilter: "blur(4px)",
-                                            letterSpacing: "0.02em",
-                                        }}
-                                    >
-                                        {salon.nombre_salon}
-                                    </div>
+
+                                    {/* Salon name label — visible on hover or selected */}
+                                    {showLabel && (
+                                        <div
+                                            style={{
+                                                background: isSelected
+                                                    ? `rgba(15,23,42,0.95)`
+                                                    : "rgba(15,23,42,0.88)",
+                                                color: isSelected ? "#fff" : "#cbd5e1",
+                                                fontSize: "10px",
+                                                fontWeight: isSelected ? 700 : 600,
+                                                padding: "2px 7px",
+                                                borderRadius: "5px",
+                                                whiteSpace: "nowrap",
+                                                border: isSelected
+                                                    ? `1px solid ${markerColor}80`
+                                                    : "1px solid rgba(255,255,255,0.15)",
+                                                maxWidth: "150px",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                backdropFilter: "blur(6px)",
+                                                letterSpacing: "0.02em",
+                                                boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                                                pointerEvents: "none",
+                                            }}
+                                        >
+                                            {salon.nombre_salon}
+                                        </div>
+                                    )}
                                 </div>
                             </AdvancedMarker>
                         );

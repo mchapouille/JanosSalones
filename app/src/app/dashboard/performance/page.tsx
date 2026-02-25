@@ -92,12 +92,12 @@ export default function PerformancePage() {
     }, [salones, selectedSalonId]);
 
     const groupedSalones = useMemo(() => {
-        // Here we use salones list directly to have access to full performance object
         const baseList = salones.filter(s => s.performance);
         return {
-            efficient: baseList.filter(s => (s.performance?.score || 0) >= 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
-            aligned: baseList.filter(s => (s.performance?.score || 0) >= 40 && (s.performance?.score || 0) < 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
-            critical: baseList.filter(s => (s.performance?.score || 0) < 40).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
+            alta: baseList.filter(s => (s.performance?.score || 0) >= 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
+            media: baseList.filter(s => (s.performance?.score || 0) >= 40 && (s.performance?.score || 0) < 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
+            baja: baseList.filter(s => (s.performance?.score || 0) >= 5 && (s.performance?.score || 0) < 40).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
+            muyBaja: baseList.filter(s => (s.performance?.score || 0) < 5).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
         };
     }, [salones]);
 
@@ -133,21 +133,35 @@ export default function PerformancePage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Header */}
+            <div className="flex items-center justify-between gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-white">Performance</h1>
                     <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad</p>
                 </div>
+            </div>
 
-                <div className="flex flex-wrap items-center gap-3">
-                    <div className="relative">
+            {/* Salon Selector — prominent panel */}
+            <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20" />
+                <div className="glass-card p-5 relative flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                        <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
+                            <Search size={16} className="text-blue-400" />
+                        </div>
+                        <div>
+                            <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Seleccionar Salón</p>
+                            <p className="text-[10px] text-slate-600 mt-0.5">Filtra todos los paneles por salón activo</p>
+                        </div>
+                    </div>
+                    <div className="flex-1 relative">
                         <select
                             value={selectedSalonId ?? ""}
                             onChange={(e) => setSelectedSalonId(e.target.value ? parseInt(e.target.value) : null)}
-                            className="bg-slate-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500/50 min-w-[200px] transition-all appearance-none cursor-pointer"
+                            className="w-full bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-3 text-sm text-blue-100 font-bold focus:outline-none focus:border-blue-500/60 appearance-none cursor-pointer transition-colors"
                         >
-                            <option value="">Buscar Salón...</option>
-                            {salones
+                            <option value="">— Ver todos los salones activos —</option>
+                            {[...salones]
                                 .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
                                 .map(s => (
                                     <option key={s.id_salon} value={s.id_salon}>
@@ -156,10 +170,18 @@ export default function PerformancePage() {
                                 ))
                             }
                         </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-blue-500/60">
                             <Search size={14} />
                         </div>
                     </div>
+                    {selectedSalonId && (
+                        <button
+                            onClick={() => setSelectedSalonId(null)}
+                            className="flex-shrink-0 text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all"
+                        >
+                            <X size={12} /> Limpiar
+                        </button>
+                    )}
                 </div>
             </div>
 
@@ -178,10 +200,18 @@ export default function PerformancePage() {
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Score Rentabilidad</p>
-                    <p className="text-3xl font-bold text-blue-400">
-                        {(!selectedSalonId ? 100 : (salones.find(s => s.id_salon === selectedSalonId)?.performance?.score || 0)).toFixed(0)}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">índice de salud financiera</p>
+                    {(() => {
+                        // Use dynamicScore when salon selected (same source as the panel circle)
+                        const score = !selectedSalonId ? 100 : (dynamicScore?.score ?? 0);
+                        const scoreColor = score >= 60 ? "#22c55e" : score >= 40 ? "#facc15" : score >= 5 ? "#f97316" : "#ef4444";
+                        const scoreLabel = score >= 60 ? "Alta" : score >= 40 ? "Media" : score >= 5 ? "Baja" : "Muy Baja";
+                        return (
+                            <>
+                                <p className="text-3xl font-bold" style={{ color: scoreColor }}>{score.toFixed(0)}</p>
+                                <p className="text-xs font-bold mt-1" style={{ color: scoreColor }}>{scoreLabel}</p>
+                            </>
+                        );
+                    })()}
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Margen Total</p>
@@ -261,9 +291,9 @@ export default function PerformancePage() {
                                 }}
                             />
                             {/* Reference Lines for Score Quadrants */}
-                            <ReferenceLine y={5} stroke="#ef4444" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Nula', fill: '#ef4444', fontSize: 9 }} />
-                            <ReferenceLine y={40} stroke="#f97316" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Baja', fill: '#f97316', fontSize: 9 }} />
-                            <ReferenceLine y={60} stroke="#3b82f6" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Estándar', fill: '#3b82f6', fontSize: 9 }} />
+                            <ReferenceLine y={5} stroke="#ef4444" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Muy Baja', fill: '#ef4444', fontSize: 9 }} />
+                            <ReferenceLine y={40} stroke="#f97316" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Media', fill: '#f97316', fontSize: 9 }} />
+                            <ReferenceLine y={60} stroke="#22c55e" strokeDasharray="3 3" opacity={0.5} label={{ position: 'right', value: 'Alta', fill: '#22c55e', fontSize: 9 }} />
                             <Scatter name="Salones" data={chartData}>
                                 {chartData.map((entry, index) => (
                                     <Cell
@@ -290,31 +320,31 @@ export default function PerformancePage() {
                         </h3>
                         <div className="space-y-4">
                             <div className="flex gap-3">
-                                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1" />
+                                <div className="w-2 h-2 rounded-full bg-green-500 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#22c55e88]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-green-400">Muy Rentable (60-100)</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Salones con alta contribución y score optimizado.</p>
+                                    <p className="text-[11px] font-bold text-green-400">Alta (60 – 100)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Alta contribución al margen y score optimizado.</p>
                                 </div>
                             </div>
-                            <div className="flex gap-3 pt-4 border-t border-white/5">
-                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1" />
+                            <div className="flex gap-3 pt-3 border-t border-white/5">
+                                <div className="w-2 h-2 rounded-full bg-yellow-400 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#facc1588]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-blue-400">Estándar (40-60)</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Performance alineada con el promedio de la red.</p>
+                                    <p className="text-[11px] font-bold text-yellow-400">Media (40 – 60)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Performance alineada con el promedio de la red.</p>
                                 </div>
                             </div>
-                            <div className="flex gap-3 pt-4 border-t border-white/5">
-                                <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1" />
+                            <div className="flex gap-3 pt-3 border-t border-white/5">
+                                <div className="w-2 h-2 rounded-full bg-orange-500 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#f9731688]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-orange-400">Baja Rentabilidad (5-40)</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Requiere revisión de costos o impulsos comerciales.</p>
+                                    <p className="text-[11px] font-bold text-orange-400">Baja (5 – 40)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Requiere revisión de costos o impulso comercial.</p>
                                 </div>
                             </div>
-                            <div className="flex gap-3 pt-4 border-t border-white/5">
-                                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1" />
+                            <div className="flex gap-3 pt-3 border-t border-white/5">
+                                <div className="w-2 h-2 rounded-full bg-red-600 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#ef444488]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-red-400">Nula Rentabilidad (&lt; 5)</p>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed italic">Situación crítica. Revisión inmediata de contrato.</p>
+                                    <p className="text-[11px] font-bold text-red-500">Muy Baja (&lt; 5)</p>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed">Situación crítica. Revisión inmediata de contrato.</p>
                                 </div>
                             </div>
                         </div>
@@ -328,75 +358,91 @@ export default function PerformancePage() {
                 </div>
             </div>
 
-            {/* Situation Cards Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* High Efficiency */}
-                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[320px]">
+            {/* Situation Cards Row — 4 buckets matching guide */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                {/* Alta (60-100) */}
+                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[300px]">
                     <div className="p-4 border-b border-green-500/20 bg-green-500/5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
-                            <span className="text-[11px] font-black text-green-400 uppercase tracking-widest">Alta Eficiencia</span>
+                            <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
+                            <span className="text-[11px] font-black text-green-400 uppercase tracking-widest">Alta</span>
+                            <span className="text-[9px] text-green-600 font-bold">60-100</span>
                         </div>
                         <span className="px-2 py-0.5 rounded-full bg-green-500/10 text-[10px] font-bold text-green-500 border border-green-500/20">
-                            {groupedSalones.efficient.length}
+                            {groupedSalones.alta.length}
                         </span>
                     </div>
-                    <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
-                        {groupedSalones.efficient.map(s => (
-                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-green-500/10 border-green-500/30" : "bg-slate-900/60 border-white/5 hover:border-green-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
-                                <div className="text-right">
-                                    <p className="text-[10px] font-black text-green-400">{s.performance?.score.toFixed(0)} pts</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Score</p>
-                                </div>
+                    <div className="p-3 overflow-y-auto flex-1 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-800">
+                        {groupedSalones.alta.map(s => (
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-green-500/10 border-green-500/30" : "bg-slate-900/60 border-white/5 hover:border-green-500/20"}`}>
+                                <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
+                                <span className="text-[10px] font-black text-green-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* Aligned */}
-                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[320px]">
-                    <div className="p-4 border-b border-blue-500/20 bg-blue-500/5 flex items-center justify-between">
+                {/* Media (40-60) */}
+                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[300px]">
+                    <div className="p-4 border-b border-yellow-500/20 bg-yellow-500/5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.4)]" />
-                            <span className="text-[11px] font-black text-blue-400 uppercase tracking-widest">Alineados</span>
+                            <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
+                            <span className="text-[11px] font-black text-yellow-400 uppercase tracking-widest">Media</span>
+                            <span className="text-[9px] text-yellow-600 font-bold">40-60</span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full bg-blue-500/10 text-[10px] font-bold text-blue-500 border border-blue-500/20">
-                            {groupedSalones.aligned.length}
+                        <span className="px-2 py-0.5 rounded-full bg-yellow-500/10 text-[10px] font-bold text-yellow-500 border border-yellow-500/20">
+                            {groupedSalones.media.length}
                         </span>
                     </div>
-                    <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
-                        {groupedSalones.aligned.map(s => (
-                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-blue-500/10 border-blue-500/30" : "bg-slate-900/60 border-white/5 hover:border-blue-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
-                                <div className="text-right">
-                                    <p className="text-[10px] font-black text-blue-400">{s.performance?.score.toFixed(0)} pts</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Estandar</p>
-                                </div>
+                    <div className="p-3 overflow-y-auto flex-1 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-800">
+                        {groupedSalones.media.map(s => (
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-yellow-500/10 border-yellow-500/30" : "bg-slate-900/60 border-white/5 hover:border-yellow-500/20"}`}>
+                                <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
+                                <span className="text-[10px] font-black text-yellow-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* High Risk */}
-                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[320px]">
-                    <div className="p-4 border-b border-red-500/20 bg-red-500/5 flex items-center justify-between">
+                {/* Baja (5-40) */}
+                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[300px]">
+                    <div className="p-4 border-b border-orange-500/20 bg-orange-500/5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
-                            <span className="text-[11px] font-black text-red-500 uppercase tracking-widest">Críticos</span>
+                            <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+                            <span className="text-[11px] font-black text-orange-400 uppercase tracking-widest">Baja</span>
+                            <span className="text-[9px] text-orange-600 font-bold">5-40</span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-[10px] font-bold text-red-500 border border-red-500/20">
-                            {groupedSalones.critical.length}
+                        <span className="px-2 py-0.5 rounded-full bg-orange-500/10 text-[10px] font-bold text-orange-500 border border-orange-500/20">
+                            {groupedSalones.baja.length}
                         </span>
                     </div>
-                    <div className="p-3 overflow-y-auto flex-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
-                        {groupedSalones.critical.map(s => (
-                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${selectedSalonId === s.id_salon ? "bg-red-500/10 border-red-500/30" : "bg-slate-900/60 border-white/5 hover:border-red-500/20"}`}>
-                                <span className="text-[11px] font-bold text-slate-200">{s.nombre_salon}</span>
-                                <div className="text-right">
-                                    <p className="text-[10px] font-black text-red-400">{s.performance?.score.toFixed(0)} pts</p>
-                                    <p className="text-[8px] text-slate-500 uppercase tracking-tighter">Análisis</p>
-                                </div>
+                    <div className="p-3 overflow-y-auto flex-1 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-800">
+                        {groupedSalones.baja.map(s => (
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-orange-500/10 border-orange-500/30" : "bg-slate-900/60 border-white/5 hover:border-orange-500/20"}`}>
+                                <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
+                                <span className="text-[10px] font-black text-orange-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Muy Baja (< 5) */}
+                <div className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[300px]">
+                    <div className="p-4 border-b border-red-600/20 bg-red-600/5 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.5)]" />
+                            <span className="text-[11px] font-black text-red-500 uppercase tracking-widest">Muy Baja</span>
+                            <span className="text-[9px] text-red-800 font-bold">&lt; 5</span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-red-600/10 text-[10px] font-bold text-red-600 border border-red-600/20">
+                            {groupedSalones.muyBaja.length}
+                        </span>
+                    </div>
+                    <div className="p-3 overflow-y-auto flex-1 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-800">
+                        {groupedSalones.muyBaja.map(s => (
+                            <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-red-600/10 border-red-600/30" : "bg-slate-900/60 border-white/5 hover:border-red-600/20"}`}>
+                                <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
+                                <span className="text-[10px] font-black text-red-500 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
@@ -516,7 +562,7 @@ export default function PerformancePage() {
                                             <input
                                                 type="range" min="0" max="100" step="5" value={w.value}
                                                 onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
-                                                className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full transition-all"
+                                                className="w-full h-2 rounded-lg cursor-pointer"
                                                 style={{ accentColor: w.color }}
                                             />
                                         </div>
