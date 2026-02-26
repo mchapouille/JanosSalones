@@ -50,47 +50,55 @@ export default function DashboardShell({
     const [refreshMsg, setRefreshMsg] = useState('');
 
     const handleRefresh = async () => {
-        if (refreshStatus === 'loading' || refreshStatus === 'async') return;
+        if (refreshStatus === 'loading') return;
         setRefreshStatus('loading');
         setRefreshMsg('');
+
         try {
             const res = await fetch('/api/refresh-data', { method: 'POST' });
             const data = await res.json();
+
             if (!res.ok || !data.success) {
                 setRefreshStatus('error');
                 setRefreshMsg(data.message || 'Error al refrescar');
                 setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
-            } else if (data.async) {
-                // Production: GitHub Actions dispatched — poll every 30s until data changes
-                setRefreshStatus('async');
-                setRefreshMsg('Procesando datos en segundo plano...');
-                const snapshotCount = salones.length;
-                const snapshotFirst = salones[0]?.ventas_totales_salon ?? 0;
-                let attempts = 0;
-                const maxAttempts = 10; // 5 min max
-                const poll = setInterval(async () => {
-                    attempts++;
-                    await reloadSalones();
-                    // Detect change: different count or different first value
-                    if (attempts >= maxAttempts) {
-                        clearInterval(poll);
-                        setRefreshStatus('idle');
-                    }
-                }, 30000);
-                // After reload we need a separate effect to detect the change
-                // and clear the interval — we use a timeout-based check instead
-                setTimeout(() => {
+                return;
+            }
+
+            if (!data.async) {
+                // LOCAL: data updated synchronously
+                await reloadSalones();
+                setRefreshStatus('success');
+                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
+                return;
+            }
+
+            // PRODUCTION: Actions dispatched — stay in loading, poll until data changes
+            // Snapshot: serialize first 5 ip_scores to detect a real data change
+            const makeSnapshot = (arr: typeof salones) =>
+                arr.slice(0, 5).map(s => `${s.id_salon}:${s.ip_score ?? 0}`).join('|');
+            const snapshot = makeSnapshot(salones);
+
+            let attempts = 0;
+            const maxAttempts = 10; // 10 × 30s = 5 min max
+
+            const poll = setInterval(async () => {
+                attempts++;
+                const newSalones = await reloadSalones();
+                const newSnapshot = makeSnapshot(newSalones);
+
+                if (newSnapshot !== snapshot) {
+                    // Data changed — declare success
                     clearInterval(poll);
                     setRefreshStatus('success');
                     setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
-                }, 150000); // 2.5 min: enough time for Actions to finish
-            } else {
-                // Local: done immediately
-                setRefreshStatus('success');
-                setRefreshMsg('Datos actualizados');
-                await reloadSalones();
-                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
-            }
+                } else if (attempts >= maxAttempts) {
+                    // Timed out — give up silently
+                    clearInterval(poll);
+                    setRefreshStatus('idle');
+                }
+            }, 30000); // poll every 30s
+
         } catch {
             setRefreshStatus('error');
             setRefreshMsg('Error de conexión');

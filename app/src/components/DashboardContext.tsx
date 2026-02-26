@@ -24,7 +24,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     const [salones, setSalones] = useState<SalonIntegral[]>(() => getSalonesData());
     const [salonesLoading, setSalonesLoading] = useState(false);
 
-    const reloadSalones = useCallback(async () => {
+    const reloadSalones = useCallback(async (): Promise<SalonIntegral[]> => {
         setSalonesLoading(true);
         try {
             const res = await fetch("/api/salones");
@@ -32,6 +32,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
                 const data: SalonIntegral[] = await res.json();
                 if (data.length > 0) {
                     setSalones(data);
+                    return data;
                 }
             }
         } catch (err) {
@@ -39,7 +40,8 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         } finally {
             setSalonesLoading(false);
         }
-    }, []);
+        return salones; // fallback: return current
+    }, [salones]);
 
     // Refresh from server on mount to pick up the latest committed JSON
     useEffect(() => {
