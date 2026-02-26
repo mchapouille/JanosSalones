@@ -66,38 +66,21 @@ export default function DashboardShell({
             }
 
             if (!data.async) {
-                // LOCAL: data updated synchronously
+                // LOCAL: done immediately
                 await reloadSalones();
                 setRefreshStatus('success');
                 setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
                 return;
             }
 
-            // PRODUCTION: Actions dispatched — stay in loading, poll until data changes
-            // Snapshot: serialize first 5 ip_scores to detect a real data change
-            const makeSnapshot = (arr: typeof salones) =>
-                arr.slice(0, 5).map(s => `${s.id_salon}:${s.ip_score ?? 0}`).join('|');
-            const snapshot = makeSnapshot(salones);
-
-            let attempts = 0;
-            const maxAttempts = 10; // 10 × 30s = 5 min max
-
-            const poll = setInterval(async () => {
-                attempts++;
-                const newSalones = await reloadSalones();
-                const newSnapshot = makeSnapshot(newSalones);
-
-                if (newSnapshot !== snapshot) {
-                    // Data changed — declare success
-                    clearInterval(poll);
-                    setRefreshStatus('success');
-                    setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
-                } else if (attempts >= maxAttempts) {
-                    // Timed out — give up silently
-                    clearInterval(poll);
-                    setRefreshStatus('idle');
-                }
-            }, 30000); // poll every 30s
+            // PRODUCTION: show info toast, then success after 1 min
+            setRefreshStatus('async');
+            setRefreshMsg('Los datos serán actualizados en los próximos 2 minutos');
+            setTimeout(() => {
+                setRefreshStatus('success');
+                reloadSalones();
+                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
+            }, 60000); // 1 min
 
         } catch {
             setRefreshStatus('error');
