@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET;
 
@@ -11,8 +11,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
     }
 
-    revalidateTag("salon-data");
-    console.log("Cache revalidated for tag: salon-data");
+    // Revalidate the full layout cache so all pages fetch fresh data
+    revalidatePath("/", "layout");
+    console.log("Cache revalidated via revalidatePath");
 
     return NextResponse.json({ revalidated: true, timestamp: new Date().toISOString() });
 }

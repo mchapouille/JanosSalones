@@ -1,27 +1,21 @@
 import { NextResponse } from "next/server";
-import { unstable_cache } from "next/cache";
 import { auth } from "@/auth";
 import { mapRawToSalon, type SalonIntegral } from "@/lib/sample-data";
 
 const GITHUB_RAW_URL =
     "https://raw.githubusercontent.com/mchapouille/JanosSalones/main/app/src/lib/salones_data.json";
 
-// Cached fetch — busted via revalidateTag('salon-data')
-const fetchSalonesFromGitHub = unstable_cache(
-    async (): Promise<SalonIntegral[]> => {
-        const res = await fetch(GITHUB_RAW_URL, {
-            // Always re-check on server, rely on unstable_cache for dedup
-            cache: "no-store",
-        });
-        if (!res.ok) {
-            throw new Error(`Failed to fetch salon data: ${res.status}`);
-        }
-        const raw = await res.json();
-        return raw.map(mapRawToSalon);
-    },
-    ["salon-data"],
-    { tags: ["salon-data"], revalidate: 3600 } // 1h fallback TTL
-);
+async function fetchSalonesFromGitHub(): Promise<SalonIntegral[]> {
+    const res = await fetch(GITHUB_RAW_URL, {
+        // Next.js will cache this fetch; revalidatePath('/','layout') busts it
+        next: { revalidate: 3600 },
+    });
+    if (!res.ok) {
+        throw new Error(`Failed to fetch salon data: ${res.status}`);
+    }
+    const raw = await res.json();
+    return raw.map(mapRawToSalon);
+}
 
 export async function GET(request: Request) {
     try {
