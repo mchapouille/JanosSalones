@@ -29,6 +29,7 @@
     },
     "benchmark": {
       "rentPerMt2": 58012.318181818184,
+      "costPerMt2": 58012.318181818184,
       "marketMt2": 5290.7,
       "marketDeviation": 9.964960814602641,
       "marketCostPerMt2": 5290.7,
@@ -87,6 +88,7 @@
     },
     "benchmark": {
       "rentPerMt2": 21705.451724137933,
+      "costPerMt2": 21705.451724137933,
       "marketMt2": 5290.7,
       "marketDeviation": 3.1025670939833923,
       "marketCostPerMt2": 5290.7,
@@ -145,6 +147,7 @@
     },
     "benchmark": {
       "rentPerMt2": 29971.53076923077,
+      "costPerMt2": 29971.53076923077,
       "marketMt2": 6722.69,
       "marketDeviation": 3.458264588911696,
       "marketCostPerMt2": 6722.69,
@@ -203,6 +206,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 25443.3519510329,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -261,6 +265,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 21921.20039551747,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -319,6 +324,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 31610.704372623575,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -377,6 +383,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 43020.00129366106,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -435,6 +442,7 @@
     },
     "benchmark": {
       "rentPerMt2": 58295.55614035088,
+      "costPerMt2": 58295.55614035088,
       "marketMt2": 9946.9,
       "marketDeviation": 4.86067580254661,
       "marketCostPerMt2": 9946.9,
@@ -493,6 +501,7 @@
     },
     "benchmark": {
       "rentPerMt2": 28776.91330049261,
+      "costPerMt2": 28776.91330049261,
       "marketMt2": 9946.9,
       "marketDeviation": 1.8930534438360305,
       "marketCostPerMt2": 9946.9,
@@ -551,6 +560,7 @@
     },
     "benchmark": {
       "rentPerMt2": 21520.3185520362,
+      "costPerMt2": 21520.3185520362,
       "marketMt2": 33789.0,
       "marketDeviation": -0.3630969086970257,
       "marketCostPerMt2": 33789.0,
@@ -609,6 +619,7 @@
     },
     "benchmark": {
       "rentPerMt2": 17591.783180026283,
+      "costPerMt2": 17591.783180026283,
       "marketMt2": 33789.0,
       "marketDeviation": -0.47936360413074425,
       "marketCostPerMt2": 33789.0,
@@ -667,6 +678,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 5290.7,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 5290.7,
@@ -725,6 +737,7 @@
     },
     "benchmark": {
       "rentPerMt2": 28182.788957055214,
+      "costPerMt2": 28182.788957055214,
       "marketMt2": 5290.7,
       "marketDeviation": 4.326854472386493,
       "marketCostPerMt2": 5290.7,
@@ -783,6 +796,7 @@
     },
     "benchmark": {
       "rentPerMt2": 11334.411538461538,
+      "costPerMt2": 11334.411538461538,
       "marketMt2": 5290.7,
       "marketDeviation": 1.1423273930598103,
       "marketCostPerMt2": 5290.7,
@@ -841,6 +855,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14360.412490650711,
+      "costPerMt2": 14360.412490650711,
       "marketMt2": 5290.7,
       "marketDeviation": 1.7142745743759262,
       "marketCostPerMt2": 5290.7,
@@ -899,6 +914,7 @@
     },
     "benchmark": {
       "rentPerMt2": 17369.149863760216,
+      "costPerMt2": 17369.149863760216,
       "marketMt2": 9946.9,
       "marketDeviation": 0.7461872406237338,
       "marketCostPerMt2": 9946.9,
@@ -957,6 +973,7 @@
     },
     "benchmark": {
       "rentPerMt2": 51254.30449438202,
+      "costPerMt2": 51254.30449438202,
       "marketMt2": 9946.9,
       "marketDeviation": 4.152791773756851,
       "marketCostPerMt2": 9946.9,
@@ -1015,6 +1032,7 @@
     },
     "benchmark": {
       "rentPerMt2": 35416.40605590062,
+      "costPerMt2": 35416.40605590062,
       "marketMt2": 9946.9,
       "marketDeviation": 2.5605471107481343,
       "marketCostPerMt2": 9946.9,
@@ -1073,6 +1091,7 @@
     },
     "benchmark": {
       "rentPerMt2": 45794.117647058825,
+      "costPerMt2": 45794.117647058825,
       "marketMt2": 5290.7,
       "marketDeviation": 7.655587662702256,
       "marketCostPerMt2": 5290.7,
@@ -1131,6 +1150,7 @@
     },
     "benchmark": {
       "rentPerMt2": 62973.703505644684,
+      "costPerMt2": 62973.703505644684,
       "marketMt2": 9946.9,
       "marketDeviation": 5.330987896293789,
       "marketCostPerMt2": 9946.9,
@@ -1189,6 +1209,7 @@
     },
     "benchmark": {
       "rentPerMt2": 7975.302738503775,
+      "costPerMt2": 7975.302738503775,
       "marketMt2": 33789.0,
       "marketDeviation": -0.7639674823610118,
       "marketCostPerMt2": 33789.0,
@@ -1247,6 +1268,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 16119.864583333334,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -1305,6 +1327,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 21169.72921225383,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -1363,6 +1386,7 @@
     },
     "benchmark": {
       "rentPerMt2": 10920.779356060606,
+      "costPerMt2": 10920.779356060606,
       "marketMt2": 33789.0,
       "marketDeviation": -0.6767948339382459,
       "marketCostPerMt2": 33789.0,
@@ -1421,6 +1445,7 @@
     },
     "benchmark": {
       "rentPerMt2": 44529.843822843824,
+      "costPerMt2": 44529.843822843824,
       "marketMt2": 33789.0,
       "marketDeviation": 0.3178798965001576,
       "marketCostPerMt2": 33789.0,
@@ -1479,6 +1504,7 @@
     },
     "benchmark": {
       "rentPerMt2": 15405.889516129033,
+      "costPerMt2": 15405.889516129033,
       "marketMt2": 33789.0,
       "marketDeviation": -0.5440560680656712,
       "marketCostPerMt2": 33789.0,
@@ -1537,6 +1563,7 @@
     },
     "benchmark": {
       "rentPerMt2": 17480.86859967051,
+      "costPerMt2": 17480.86859967051,
       "marketMt2": 9946.9,
       "marketDeviation": 0.757418753548393,
       "marketCostPerMt2": 9946.9,
@@ -1595,6 +1622,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 8409.531428571428,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -1653,6 +1681,7 @@
     },
     "benchmark": {
       "rentPerMt2": 3808.5893023255812,
+      "costPerMt2": 3808.5893023255812,
       "marketMt2": 9946.9,
       "marketDeviation": -0.6171079127843266,
       "marketCostPerMt2": 9946.9,
@@ -1711,6 +1740,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14130.35068762279,
+      "costPerMt2": 14130.35068762279,
       "marketMt2": 6722.69,
       "marketDeviation": 1.1018893757741008,
       "marketCostPerMt2": 6722.69,
@@ -1769,6 +1799,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 6722.69,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 6722.69,
@@ -1827,6 +1858,7 @@
     },
     "benchmark": {
       "rentPerMt2": 18372.417485265225,
+      "costPerMt2": 18372.417485265225,
       "marketMt2": 6722.69,
       "marketDeviation": 1.7328967251599028,
       "marketCostPerMt2": 6722.69,
@@ -1885,6 +1917,7 @@
     },
     "benchmark": {
       "rentPerMt2": 4989.707298136646,
+      "costPerMt2": 4989.707298136646,
       "marketMt2": 5290.7,
       "marketDeviation": -0.05689090325729174,
       "marketCostPerMt2": 5290.7,
@@ -1943,6 +1976,7 @@
     },
     "benchmark": {
       "rentPerMt2": 8448.831739961759,
+      "costPerMt2": 8448.831739961759,
       "marketMt2": 9946.9,
       "marketDeviation": -0.15060654676715768,
       "marketCostPerMt2": 9946.9,
@@ -2001,6 +2035,7 @@
     },
     "benchmark": {
       "rentPerMt2": 34134.84907597536,
+      "costPerMt2": 34134.84907597536,
       "marketMt2": 9946.9,
       "marketDeviation": 2.4317072732183256,
       "marketCostPerMt2": 9946.9,
@@ -2059,6 +2094,7 @@
     },
     "benchmark": {
       "rentPerMt2": 24949.174157303372,
+      "costPerMt2": 24949.174157303372,
       "marketMt2": 5290.7,
       "marketDeviation": 3.7156660096590945,
       "marketCostPerMt2": 5290.7,
@@ -2117,6 +2153,7 @@
     },
     "benchmark": {
       "rentPerMt2": 28646.074656188604,
+      "costPerMt2": 28646.074656188604,
       "marketMt2": 6722.69,
       "marketDeviation": 3.26110301920639,
       "marketCostPerMt2": 6722.69,
@@ -2175,6 +2212,7 @@
     },
     "benchmark": {
       "rentPerMt2": 15404.232584269663,
+      "costPerMt2": 15404.232584269663,
       "marketMt2": 6722.69,
       "marketDeviation": 1.2913792818454612,
       "marketCostPerMt2": 6722.69,
@@ -2233,6 +2271,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0.0,
       "marketMt2": 5290.7,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 5290.7,
@@ -2291,6 +2330,7 @@
     },
     "benchmark": {
       "rentPerMt2": 19322.02670625495,
+      "costPerMt2": 19322.02670625495,
       "marketMt2": 6722.69,
       "marketDeviation": 1.874151077359651,
       "marketCostPerMt2": 6722.69,
@@ -2349,6 +2389,7 @@
     },
     "benchmark": {
       "rentPerMt2": 73531.8552631579,
+      "costPerMt2": 73531.8552631579,
       "marketMt2": 9946.9,
       "marketDeviation": 6.392439379420512,
       "marketCostPerMt2": 9946.9,
@@ -2407,6 +2448,7 @@
     },
     "benchmark": {
       "rentPerMt2": 20199.522875816994,
+      "costPerMt2": 20199.522875816994,
       "marketMt2": 9946.9,
       "marketDeviation": 1.0307354930497938,
       "marketCostPerMt2": 9946.9,
@@ -2465,6 +2507,7 @@
     },
     "benchmark": {
       "rentPerMt2": 27794.600529100528,
+      "costPerMt2": 27794.600529100528,
       "marketMt2": 5290.7,
       "marketDeviation": 4.253482625947517,
       "marketCostPerMt2": 5290.7,
@@ -2523,6 +2566,7 @@
     },
     "benchmark": {
       "rentPerMt2": 8937.852779953015,
+      "costPerMt2": 8937.852779953015,
       "marketMt2": 33789.0,
       "marketDeviation": -0.7354803995397019,
       "marketCostPerMt2": 33789.0,
@@ -2581,6 +2625,7 @@
     },
     "benchmark": {
       "rentPerMt2": 59168.74636174636,
+      "costPerMt2": 59168.74636174636,
       "marketMt2": 9946.9,
       "marketDeviation": 4.948460963892908,
       "marketCostPerMt2": 9946.9,
@@ -2639,6 +2684,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14049.050595238095,
+      "costPerMt2": 14049.050595238095,
       "marketMt2": 5290.7,
       "marketDeviation": 1.6554237804521321,
       "marketCostPerMt2": 5290.7,
@@ -2697,6 +2743,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14076.268674698795,
+      "costPerMt2": 14076.268674698795,
       "marketMt2": 5290.7,
       "marketDeviation": 1.6605682943086542,
       "marketCostPerMt2": 5290.7,
@@ -2755,6 +2802,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14642.266171003717,
+      "costPerMt2": 14642.266171003717,
       "marketMt2": 5290.7,
       "marketDeviation": 1.767547993838947,
       "marketCostPerMt2": 5290.7,
@@ -2813,6 +2861,7 @@
     },
     "benchmark": {
       "rentPerMt2": 11449.962,
+      "costPerMt2": 11449.962,
       "marketMt2": 5290.7,
       "marketDeviation": 1.1641676904757405,
       "marketCostPerMt2": 5290.7,
@@ -2871,6 +2920,7 @@
     },
     "benchmark": {
       "rentPerMt2": 9143.162,
+      "costPerMt2": 9143.162,
       "marketMt2": 33789.0,
       "marketDeviation": -0.7294041847938678,
       "marketCostPerMt2": 33789.0,
@@ -2929,6 +2979,7 @@
     },
     "benchmark": {
       "rentPerMt2": 16616.31419939577,
+      "costPerMt2": 16616.31419939577,
       "marketMt2": 33789.0,
       "marketDeviation": -0.508233028518282,
       "marketCostPerMt2": 33789.0,
@@ -2987,6 +3038,7 @@
     },
     "benchmark": {
       "rentPerMt2": 14112.169035153329,
+      "costPerMt2": 14112.169035153329,
       "marketMt2": 33789.0,
       "marketDeviation": -0.5823442826022277,
       "marketCostPerMt2": 33789.0,
@@ -3045,6 +3097,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 119645.38074398249,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -3103,6 +3156,7 @@
     },
     "benchmark": {
       "rentPerMt2": 88842.3925570228,
+      "costPerMt2": 88842.3925570228,
       "marketMt2": 33789.0,
       "marketDeviation": 1.6293288513132322,
       "marketCostPerMt2": 33789.0,
@@ -3161,6 +3215,7 @@
     },
     "benchmark": {
       "rentPerMt2": 39795.20576671035,
+      "costPerMt2": 39795.20576671035,
       "marketMt2": 33789.0,
       "marketDeviation": 0.17775624513037824,
       "marketCostPerMt2": 33789.0,
@@ -3219,6 +3274,7 @@
     },
     "benchmark": {
       "rentPerMt2": 16042.13493150685,
+      "costPerMt2": 16042.13493150685,
       "marketMt2": 9946.9,
       "marketDeviation": 0.612777340830495,
       "marketCostPerMt2": 9946.9,
@@ -3277,6 +3333,7 @@
     },
     "benchmark": {
       "rentPerMt2": 76911.17692307693,
+      "costPerMt2": 76911.17692307693,
       "marketMt2": 33789.0,
       "marketDeviation": 1.2762193886494695,
       "marketCostPerMt2": 33789.0,
@@ -3335,6 +3392,7 @@
     },
     "benchmark": {
       "rentPerMt2": 27574.967234600263,
+      "costPerMt2": 27574.967234600263,
       "marketMt2": 33789.0,
       "marketDeviation": -0.18390697461895106,
       "marketCostPerMt2": 33789.0,
@@ -3393,6 +3451,7 @@
     },
     "benchmark": {
       "rentPerMt2": 34429.82456140351,
+      "costPerMt2": 34429.82456140351,
       "marketMt2": 33789.0,
       "marketDeviation": 0.018965478747625303,
       "marketCostPerMt2": 33789.0,
@@ -3451,6 +3510,7 @@
     },
     "benchmark": {
       "rentPerMt2": 40183.43578485181,
+      "costPerMt2": 40183.43578485181,
       "marketMt2": 5290.7,
       "marketDeviation": 6.595107601045574,
       "marketCostPerMt2": 5290.7,
@@ -3509,6 +3569,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 107730.49124561403,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -3567,6 +3628,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 41749.502982107355,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -3625,6 +3687,7 @@
     },
     "benchmark": {
       "rentPerMt2": 20564.85616438356,
+      "costPerMt2": 20564.85616438356,
       "marketMt2": 5290.7,
       "marketDeviation": 2.886982093935313,
       "marketCostPerMt2": 5290.7,
@@ -3683,6 +3746,7 @@
     },
     "benchmark": {
       "rentPerMt2": 85985.73333333334,
+      "costPerMt2": 85985.73333333334,
       "marketMt2": 6722.69,
       "marketDeviation": 11.790376074656624,
       "marketCostPerMt2": 6722.69,
@@ -3741,6 +3805,7 @@
     },
     "benchmark": {
       "rentPerMt2": 5123.95183044316,
+      "costPerMt2": 5123.95183044316,
       "marketMt2": 6722.69,
       "marketDeviation": -0.23781227002239272,
       "marketCostPerMt2": 6722.69,
@@ -3799,6 +3864,7 @@
     },
     "benchmark": {
       "rentPerMt2": 10566.97619047619,
+      "costPerMt2": 10566.97619047619,
       "marketMt2": 6722.69,
       "marketDeviation": 0.5718374922056783,
       "marketCostPerMt2": 6722.69,
@@ -3857,6 +3923,7 @@
     },
     "benchmark": {
       "rentPerMt2": 23759.685858585857,
+      "costPerMt2": 23759.685858585857,
       "marketMt2": 6722.69,
       "marketDeviation": 2.5342527855048886,
       "marketCostPerMt2": 6722.69,
@@ -3915,6 +3982,7 @@
     },
     "benchmark": {
       "rentPerMt2": 9184.75983106716,
+      "costPerMt2": 9184.75983106716,
       "marketMt2": 33789.0,
       "marketDeviation": -0.7281730790770026,
       "marketCostPerMt2": 33789.0,
@@ -3973,6 +4041,7 @@
     },
     "benchmark": {
       "rentPerMt2": 6965.324268644417,
+      "costPerMt2": 6965.324268644417,
       "marketMt2": 5290.7,
       "marketDeviation": 0.31652225010762614,
       "marketCostPerMt2": 5290.7,
@@ -4031,6 +4100,7 @@
     },
     "benchmark": {
       "rentPerMt2": 11660.486196950967,
+      "costPerMt2": 11660.486196950967,
       "marketMt2": 5290.7,
       "marketDeviation": 1.2039590596614753,
       "marketCostPerMt2": 5290.7,
@@ -4089,6 +4159,7 @@
     },
     "benchmark": {
       "rentPerMt2": 6468.490212922174,
+      "costPerMt2": 6468.490212922174,
       "marketMt2": 6722.69,
       "marketDeviation": -0.037812213128647305,
       "marketCostPerMt2": 6722.69,
@@ -4147,6 +4218,7 @@
     },
     "benchmark": {
       "rentPerMt2": 8722.855118811882,
+      "costPerMt2": 8722.855118811882,
       "marketMt2": 6722.69,
       "marketDeviation": 0.2975245205136459,
       "marketCostPerMt2": 6722.69,
@@ -4205,6 +4277,7 @@
     },
     "benchmark": {
       "rentPerMt2": 11441.667103896103,
+      "costPerMt2": 11441.667103896103,
       "marketMt2": 6722.69,
       "marketDeviation": 0.7019477476867301,
       "marketCostPerMt2": 6722.69,
@@ -4263,6 +4336,7 @@
     },
     "benchmark": {
       "rentPerMt2": 72521.06746987952,
+      "costPerMt2": 72521.06746987952,
       "marketMt2": 6722.69,
       "marketDeviation": 9.787507302862325,
       "marketCostPerMt2": 6722.69,
@@ -4321,6 +4395,7 @@
     },
     "benchmark": {
       "rentPerMt2": 54918.36595744681,
+      "costPerMt2": 54918.36595744681,
       "marketMt2": 9946.9,
       "marketDeviation": 4.521153923076215,
       "marketCostPerMt2": 9946.9,
@@ -4379,6 +4454,7 @@
     },
     "benchmark": {
       "rentPerMt2": 15528.762580645162,
+      "costPerMt2": 15528.762580645162,
       "marketMt2": 9946.9,
       "marketDeviation": 0.5611660497888953,
       "marketCostPerMt2": 9946.9,
@@ -4437,6 +4513,7 @@
     },
     "benchmark": {
       "rentPerMt2": 37748.73582089552,
+      "costPerMt2": 37748.73582089552,
       "marketMt2": 9946.9,
       "marketDeviation": 2.7950251657195224,
       "marketCostPerMt2": 9946.9,
@@ -4495,6 +4572,7 @@
     },
     "benchmark": {
       "rentPerMt2": 43142.178,
+      "costPerMt2": 43142.178,
       "marketMt2": 5290.7,
       "marketDeviation": 7.1543421475419136,
       "marketCostPerMt2": 5290.7,
@@ -4553,6 +4631,7 @@
     },
     "benchmark": {
       "rentPerMt2": 8621.891046386192,
+      "costPerMt2": 8621.891046386192,
       "marketMt2": 33789.0,
       "marketDeviation": -0.7448314230552491,
       "marketCostPerMt2": 33789.0,
@@ -4611,6 +4690,7 @@
     },
     "benchmark": {
       "rentPerMt2": 19173.621160409555,
+      "costPerMt2": 19173.621160409555,
       "marketMt2": 5290.7,
       "marketDeviation": 2.6240235054736716,
       "marketCostPerMt2": 5290.7,
@@ -4669,6 +4749,7 @@
     },
     "benchmark": {
       "rentPerMt2": 697.8721739130435,
+      "costPerMt2": 697.8721739130435,
       "marketMt2": 5290.7,
       "marketDeviation": -0.8680945481858652,
       "marketCostPerMt2": 5290.7,
@@ -4727,6 +4808,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -4785,6 +4867,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -4843,6 +4926,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -4901,6 +4985,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -4959,6 +5044,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5017,6 +5103,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5075,6 +5162,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5133,6 +5221,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5191,6 +5280,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5249,6 +5339,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5307,6 +5398,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
@@ -5365,6 +5457,7 @@
     },
     "benchmark": {
       "rentPerMt2": 0.0,
+      "costPerMt2": 0,
       "marketMt2": 0.0,
       "marketDeviation": 0.0,
       "marketCostPerMt2": 0.0,
