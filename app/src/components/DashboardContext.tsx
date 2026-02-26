@@ -48,6 +48,19 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         reloadSalones();
     }, [reloadSalones]);
 
+    // Auto-fetch live USD Oficial Minorista from BCRA API on mount
+    useEffect(() => {
+        fetch("/api/dolar-rate")
+            .then((res) => res.ok ? res.json() : null)
+            .then((data) => {
+                if (data && typeof data.value === "number" && !data.error) {
+                    setConversionRate(data.value);
+                }
+            })
+            .catch(() => { /* keep fallback */ });
+    }, []);
+
+
     return (
         <DashboardContext.Provider value={{
             conversionRate,

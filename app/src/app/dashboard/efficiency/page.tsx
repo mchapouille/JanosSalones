@@ -36,6 +36,7 @@ export default function EfficiencyPage() {
         const alertCount = salonesWithEfficiency.filter(s => s.efficiency?.color === "red").length;
         return {
             avgIndex,
+            efficientCount,
             efficientPct: (efficientCount / salonesWithEfficiency.length) * 100,
             alertCount,
             total: salonesWithEfficiency.length
@@ -67,8 +68,8 @@ export default function EfficiencyPage() {
                         <p className="text-xs text-slate-500 mt-1">índice global de red</p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">% Salones Eficientes</p>
-                        <p className="text-3xl font-bold text-green-400">{formatPercentage(globalKPIs.efficientPct)}</p>
+                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Eficientes</p>
+                        <p className="text-3xl font-bold text-green-400">{globalKPIs.efficientCount}</p>
                         <p className="text-xs text-slate-500 mt-1">estatus verde</p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="kpi-card">
