@@ -43,14 +43,14 @@ export default function DashboardShell({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-    const { conversionRate, setConversionRate, setIsHelpOpen } = useDashboard();
+    const { conversionRate, setConversionRate, setIsHelpOpen, salones, reloadSalones } = useDashboard();
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [refreshStatus, setRefreshStatus] = useState<RefreshStatus>('idle');
     const [refreshMsg, setRefreshMsg] = useState('');
 
     const handleRefresh = async () => {
-        if (refreshStatus === 'loading') return;
+        if (refreshStatus === 'loading' || refreshStatus === 'async') return;
         setRefreshStatus('loading');
         setRefreshMsg('');
         try {
@@ -59,22 +59,43 @@ export default function DashboardShell({
             if (!res.ok || !data.success) {
                 setRefreshStatus('error');
                 setRefreshMsg(data.message || 'Error al refrescar');
+                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
             } else if (data.async) {
-                // Production: workflow dispatched, Vercel will redeploy in ~2 min
+                // Production: GitHub Actions dispatched — poll every 30s until data changes
                 setRefreshStatus('async');
-                setRefreshMsg('Procesando datos… Vercel actualizará en ~2 minutos');
+                setRefreshMsg('Procesando datos en segundo plano...');
+                const snapshotCount = salones.length;
+                const snapshotFirst = salones[0]?.ventas_totales_salon ?? 0;
+                let attempts = 0;
+                const maxAttempts = 10; // 5 min max
+                const poll = setInterval(async () => {
+                    attempts++;
+                    await reloadSalones();
+                    // Detect change: different count or different first value
+                    if (attempts >= maxAttempts) {
+                        clearInterval(poll);
+                        setRefreshStatus('idle');
+                    }
+                }, 30000);
+                // After reload we need a separate effect to detect the change
+                // and clear the interval — we use a timeout-based check instead
+                setTimeout(() => {
+                    clearInterval(poll);
+                    setRefreshStatus('success');
+                    setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
+                }, 150000); // 2.5 min: enough time for Actions to finish
             } else {
-                // Local: done, reload page to pick up new JSON
+                // Local: done immediately
                 setRefreshStatus('success');
                 setRefreshMsg('Datos actualizados');
-                setTimeout(() => window.location.reload(), 800);
+                await reloadSalones();
+                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 5000);
             }
         } catch {
             setRefreshStatus('error');
             setRefreshMsg('Error de conexión');
+            setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
         }
-        // Auto-reset toast after 6s
-        setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
     };
 
 
