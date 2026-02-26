@@ -191,8 +191,8 @@ export default function DashboardShell({
                                 onClick={handleRefresh}
                                 disabled={refreshStatus === 'loading'}
                                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors group ${refreshStatus === 'loading'
-                                        ? 'bg-blue-500/20 border-blue-500/30 cursor-wait'
-                                        : 'bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/20'
+                                    ? 'bg-blue-500/20 border-blue-500/30 cursor-wait'
+                                    : 'bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/20'
                                     }`}
                                 title="Refrescar Datos del Excel"
                             >
@@ -201,7 +201,7 @@ export default function DashboardShell({
                                     className={`text-blue-400 group-hover:text-white ${refreshStatus === 'loading' ? 'animate-spin' : ''}`}
                                 />
                                 <span className="hidden sm:inline text-xs font-bold text-blue-400 group-hover:text-white">
-                                    Refrescar
+                                    {refreshStatus === 'loading' ? 'Actualizando datos...' : 'Refrescar'}
                                 </span>
                             </button>
 
@@ -213,16 +213,17 @@ export default function DashboardShell({
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: -8, scale: 0.95 }}
                                         className={`absolute right-0 top-10 z-50 flex items-start gap-2 px-4 py-3 rounded-xl shadow-2xl border min-w-[260px] max-w-[340px] backdrop-blur-xl ${refreshStatus === 'success'
-                                                ? 'bg-green-950/90 border-green-500/30 text-green-300'
-                                                : refreshStatus === 'async'
-                                                    ? 'bg-blue-950/90 border-blue-500/30 text-blue-300'
-                                                    : 'bg-red-950/90 border-red-500/30 text-red-300'
+                                            ? 'bg-green-950/90 border-green-500/30 text-green-300'
+                                            : refreshStatus === 'async'
+                                                ? 'bg-blue-950/90 border-blue-500/30 text-blue-300'
+                                                : 'bg-red-950/90 border-red-500/30 text-red-300'
                                             }`}
                                     >
-                                        {refreshStatus === 'success' && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-400" />}
-                                        {refreshStatus === 'async' && <Clock size={16} className="flex-shrink-0 mt-0.5 text-blue-400" />}
+                                        {(refreshStatus === 'success' || refreshStatus === 'async') && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-400" />}
                                         {refreshStatus === 'error' && <AlertCircle size={16} className="flex-shrink-0 mt-0.5 text-red-400" />}
-                                        <p className="text-xs font-medium leading-snug">{refreshMsg}</p>
+                                        <p className="text-xs font-medium leading-snug">
+                                            {refreshStatus === 'error' ? refreshMsg : 'Datos actualizados correctamente'}
+                                        </p>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
