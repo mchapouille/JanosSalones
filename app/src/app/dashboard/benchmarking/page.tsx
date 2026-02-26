@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Search, X, ChevronDown } from "lucide-react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { BarChart3, ChevronDown, X } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
 import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor } from "@/lib/calculations";
 import { useDashboard } from "@/components/DashboardContext";
@@ -17,29 +17,49 @@ const TIER_COLORS: Record<number, string> = {
 
 export default function BenchmarkingPage() {
     const { salones: allSalones } = useDashboard();
-    const [searchTerm, setSearchTerm] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        function handleClick(e: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, []);
 
     // Active salons only
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
-    // Salon benchmarks — Tier 2+ only (Tier 1 excluded from scatter/lists)
+    // All active salons for the dropdown (same style as Dashboard)
+    const dropdownSuggestions = useMemo(() => {
+        const q = searchQuery.toLowerCase();
+        return salones
+            .filter(s => !q || s.nombre_salon.toLowerCase().includes(q) || String(s.id_salon).includes(q))
+            .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon));
+    }, [salones, searchQuery]);
+
+    // Salon benchmarks — all tiers (scatter shows everything, lists filter Tier 2+)
     const salonBenchmarks = useMemo(() =>
         salones
-            .filter((s: any) => s.benchmark && s.tier >= 2)
+            .filter((s: any) => s.benchmark)
             .map((s: any) => ({
                 id: s.id_salon,
                 name: s.nombre_salon,
                 tier: s.tier,
-                costPerMt2: s.benchmark!.costPerMt2 ?? 0,
+                // costPerMt2 = costos_fijos_salon / mt2_salon (from backend)
+                costPerMt2: s.benchmark!.costPerMt2 ?? (s.mt2_salon > 0 ? (s.costos_fijos_salon ?? 0) / s.mt2_salon : 0),
                 marketCost: s.benchmark!.marketCostPerMt2 ?? 0,
                 deviation: s.benchmark!.deviation ?? 0,
                 color: getSemaphoreColor(s.benchmark!.color),
-                isFiltered: searchTerm === "" || s.nombre_salon.toLowerCase().includes(searchTerm.toLowerCase()),
             }))
             .sort((a: any, b: any) => b.deviation - a.deviation),
-        [salones, searchTerm]
+        [salones]
     );
 
     const selectedSalon = useMemo(() =>
@@ -47,46 +67,41 @@ export default function BenchmarkingPage() {
         [salonBenchmarks, selectedSalonId]
     );
 
-    // Per-group sorted by |deviation| desc (highest % first)
+    const selectedSalonMeta = useMemo(() =>
+        selectedSalonId != null ? salones.find(s => s.id_salon === selectedSalonId) ?? null : null,
+        [salones, selectedSalonId]
+    );
+
+    // Per-group (Tier 2+), sorted by |deviation| desc
+    const salonBenchmarksTier2Plus = useMemo(() =>
+        salonBenchmarks.filter(s => s.tier >= 2),
+        [salonBenchmarks]
+    );
+
     const groupedBenchmarks = useMemo(() => {
         const byAbs = (a: typeof salonBenchmarks[0], b: typeof salonBenchmarks[0]) =>
             Math.abs(b.deviation) - Math.abs(a.deviation);
+        const arr = salonBenchmarksTier2Plus;
         return {
-            efficient: [...salonBenchmarks.filter(b => b.deviation <= 0)].sort(byAbs),
-            aligned: [...salonBenchmarks.filter(b => b.deviation > 0 && b.deviation <= 50)].sort(byAbs),
-            critical: [...salonBenchmarks.filter(b => b.deviation > 50)].sort(byAbs),
+            efficient: [...arr.filter(b => b.deviation <= 0)].sort(byAbs),
+            aligned: [...arr.filter(b => b.deviation > 0 && b.deviation <= 50)].sort(byAbs),
+            critical: [...arr.filter(b => b.deviation > 50)].sort(byAbs),
         };
-    }, [salonBenchmarks]);
+    }, [salonBenchmarksTier2Plus]);
 
-    // Search dropdown suggestions
-    const suggestions = useMemo(() =>
-        searchTerm.length > 0
-            ? salonBenchmarks.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 8)
-            : [],
-        [salonBenchmarks, searchTerm]
+    const handleSelectSalon = (id: number | null) => {
+        setSelectedSalonId(id);
+        setDropdownOpen(false);
+        setSearchQuery("");
+    };
+
+    // ZAxis size: selected gets bigger dot
+    const salonBenchmarksWithSize = useMemo(() =>
+        salonBenchmarks.map(s => ({ ...s, dotSize: s.id === selectedSalonId ? 200 : 70 })),
+        [salonBenchmarks, selectedSalonId]
     );
 
-    const handleSelectSalon = (s: typeof salonBenchmarks[0]) => {
-        setSelectedSalonId(prev => prev === s.id ? null : s.id);
-        setSearchTerm(s.name);
-        setShowDropdown(false);
-    };
-
-    const clearSelection = () => {
-        setSelectedSalonId(null);
-        setSearchTerm("");
-        setShowDropdown(false);
-    };
-
-    // KPI
-    const avgReal = salonBenchmarks.length > 0
-        ? salonBenchmarks.reduce((acc, s) => acc + s.costPerMt2, 0) / salonBenchmarks.length
-        : 0;
-    const avgDev = salonBenchmarks.length > 0
-        ? salonBenchmarks.reduce((acc, s) => acc + s.deviation, 0) / salonBenchmarks.length
-        : 0;
-
-    // Tier comparison bar chart (all tiers, from BENCHMARK_DATA)
+    // Tier comparison bar chart
     const tierComparison = Object.entries(BENCHMARK_DATA).map(([tier, data]) => ({
         tier: `Tier ${tier}`,
         promedioReal: data.promedioReal,
@@ -95,136 +110,130 @@ export default function BenchmarkingPage() {
         estado: data.estado,
     }));
 
-    // ZAxis size: selected gets larger dot
-    const salonBenchmarksWithSize = useMemo(() =>
-        salonBenchmarks.map(s => ({
-            ...s,
-            dotSize: s.id === selectedSalonId ? 220 : 70,
-        })),
-        [salonBenchmarks, selectedSalonId]
-    );
+    // Individual panel values (0 when nothing selected)
+    const panelValues = {
+        costPerMt2: selectedSalon?.costPerMt2 ?? 0,
+        marketCost: selectedSalon?.marketCost ?? 0,
+        deviation: selectedSalon?.deviation ?? 0,
+        name: selectedSalon?.name ?? "—",
+        tier: selectedSalon?.tier ?? "—",
+    };
 
     return (
         <div className="space-y-6">
 
-            {/* Header + Search */}
+            {/* ── Header + Salon Dropdown ── */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
                     <p className="text-slate-400 text-sm mt-1">Comparación $/m² vs Mercado (Zonaprop / Argenprop)</p>
                 </div>
 
-                {/* Salon search */}
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
-                    <input
-                        type="text"
-                        placeholder="Buscar salón para comparar..."
-                        value={searchTerm}
-                        onChange={e => { setSearchTerm(e.target.value); setShowDropdown(true); setSelectedSalonId(null); }}
-                        onFocus={() => setShowDropdown(true)}
-                        className="bg-slate-900/80 border border-white/10 rounded-xl pl-9 pr-9 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 w-[260px] transition-all"
-                    />
-                    {searchTerm ? (
-                        <button onClick={clearSelection} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white">
-                            <X size={14} />
-                        </button>
-                    ) : (
-                        <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-                    )}
-                    {/* Dropdown */}
-                    <AnimatePresence>
-                        {showDropdown && suggestions.length > 0 && (
-                            <motion.div
-                                initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }}
-                                className="absolute top-full left-0 right-0 mt-1 z-50 bg-slate-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden"
-                            >
-                                {suggestions.map(s => (
+                {/* Salon dropdown — same pattern as Dashboard */}
+                <div className="relative" ref={dropdownRef}>
+                    <button
+                        onClick={() => setDropdownOpen(o => !o)}
+                        className="flex items-center gap-2 bg-slate-900/80 border border-white/10 rounded-xl pl-4 pr-3 py-2.5 text-sm text-white hover:border-blue-500/50 transition-all w-[280px] justify-between"
+                    >
+                        <span className={selectedSalonMeta ? "text-white" : "text-slate-500"}>
+                            {selectedSalonMeta
+                                ? `#${selectedSalonMeta.id_salon} — ${selectedSalonMeta.nombre_salon}`
+                                : "Seleccionar salón..."}
+                        </span>
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                            {selectedSalonId && (
+                                <span
+                                    onClick={e => { e.stopPropagation(); handleSelectSalon(null); }}
+                                    className="text-slate-500 hover:text-white transition-colors cursor-pointer"
+                                >
+                                    <X size={13} />
+                                </span>
+                            )}
+                            <ChevronDown size={14} className={`text-slate-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                        </div>
+                    </button>
+
+                    {dropdownOpen && (
+                        <div className="absolute top-full left-0 right-0 mt-1 z-50 bg-slate-950 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+                            {/* Search inside dropdown */}
+                            <div className="p-2 border-b border-white/5">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar..."
+                                    autoFocus
+                                    value={searchQuery}
+                                    onChange={e => setSearchQuery(e.target.value)}
+                                    className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50"
+                                />
+                            </div>
+                            <div className="max-h-52 overflow-y-auto">
+                                {dropdownSuggestions.map(s => (
                                     <button
-                                        key={s.id}
-                                        onClick={() => handleSelectSalon(s)}
-                                        className="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-white/5 hover:text-white flex items-center justify-between transition-colors"
+                                        key={s.id_salon}
+                                        onClick={() => handleSelectSalon(s.id_salon)}
+                                        className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between transition-colors ${s.id_salon === selectedSalonId ? "bg-blue-500/15 text-blue-300" : "text-slate-300 hover:bg-white/5 hover:text-white"}`}
                                     >
-                                        <span>{s.name}</span>
-                                        <span className="text-[10px] text-slate-500 font-bold">Tier {s.tier}</span>
+                                        <span className="truncate">{s.nombre_salon}</span>
+                                        <span className="text-[10px] text-slate-500 ml-2 flex-shrink-0">#{s.id_salon} · T{s.tier}</span>
                                     </button>
                                 ))}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                {dropdownSuggestions.length === 0 && (
+                                    <p className="text-xs text-slate-600 italic px-4 py-3">Sin resultados</p>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
-            {/* ── Individual Salon Compare Panel ── */}
-            <AnimatePresence>
-                {selectedSalon && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -8, height: 0 }} animate={{ opacity: 1, y: 0, height: "auto" }} exit={{ opacity: 0, y: -8, height: 0 }}
-                        className="glass-card p-6 border border-blue-500/20 bg-blue-500/3 overflow-hidden"
-                    >
-                        <div className="flex items-start justify-between mb-5">
-                            <div>
-                                <p className="text-[10px] text-blue-400 uppercase font-black tracking-wider mb-1">Análisis Individual</p>
-                                <h2 className="text-xl font-bold text-white">{selectedSalon.name}</h2>
-                                <p className="text-xs text-slate-500 mt-0.5">Tier {selectedSalon.tier} · $/m² real vs referencia de mercado zonal</p>
-                            </div>
-                            <button onClick={clearSelection} className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/5 transition-colors">
-                                <X size={15} />
-                            </button>
+            {/* ── Individual Analysis Panel (always visible) ── */}
+            <div className="glass-card p-5 border border-white/5">
+                <div className="flex items-start justify-between mb-4">
+                    <div>
+                        <p className="text-[10px] text-blue-400 uppercase font-black tracking-wider mb-1">Análisis Individual</p>
+                        <p className="text-base font-bold text-white">{panelValues.name}</p>
+                        {selectedSalon && <p className="text-xs text-slate-500 mt-0.5">Tier {panelValues.tier} · $/m² real vs referencia de mercado</p>}
+                    </div>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                    {[
+                        {
+                            label: "Real $/m²",
+                            value: panelValues.costPerMt2 > 0 ? formatARS(panelValues.costPerMt2) : "—",
+                            sub: "costos_fijos / m²",
+                            colorClass: "text-white",
+                            bg: "bg-white/4 border-white/5",
+                        },
+                        {
+                            label: "Mercado $/m²",
+                            value: panelValues.marketCost > 0 ? formatARS(panelValues.marketCost) : "—",
+                            sub: `Referencia${selectedSalon ? ` Tier ${panelValues.tier}` : ""}`,
+                            colorClass: "text-blue-400",
+                            bg: "bg-blue-500/4 border-blue-500/10",
+                        },
+                        {
+                            label: "Desvío",
+                            value: selectedSalon ? `${panelValues.deviation > 0 ? "+" : ""}${formatPercentage(panelValues.deviation)}` : "—",
+                            sub: selectedSalon
+                                ? panelValues.deviation > 50 ? "Sobrecosto crítico" : panelValues.deviation > 0 ? "Sobre mercado" : "Bajo mercado"
+                                : "sin selección",
+                            colorClass: !selectedSalon ? "text-slate-500" : panelValues.deviation > 50 ? "text-red-400" : panelValues.deviation > 0 ? "text-yellow-400" : "text-green-400",
+                            bg: !selectedSalon ? "bg-white/4 border-white/5" : panelValues.deviation > 50 ? "bg-red-500/5 border-red-500/10" : panelValues.deviation > 0 ? "bg-yellow-500/5 border-yellow-500/10" : "bg-green-500/5 border-green-500/10",
+                        },
+                    ].map(card => (
+                        <div key={card.label} className={`p-3.5 rounded-2xl border text-center ${card.bg}`}>
+                            <p className="text-[10px] text-slate-500 uppercase font-bold mb-1.5">{card.label}</p>
+                            <p className={`text-xl font-black ${card.colorClass}`}>{card.value}</p>
+                            <p className="text-[10px] text-slate-500 mt-1">{card.sub}</p>
                         </div>
-                        <div className="grid grid-cols-3 gap-4">
-                            {[
-                                { label: "Real $/m²", value: formatARS(selectedSalon.costPerMt2), sub: "Costo real del salón", colorClass: "text-white", bg: "bg-white/5 border-white/5" },
-                                { label: "Mercado $/m²", value: formatARS(selectedSalon.marketCost), sub: `Referencia Tier ${selectedSalon.tier}`, colorClass: "text-blue-400", bg: "bg-blue-500/5 border-blue-500/10" },
-                                {
-                                    label: "Desvío",
-                                    value: `${selectedSalon.deviation > 0 ? "+" : ""}${formatPercentage(selectedSalon.deviation)}`,
-                                    sub: selectedSalon.deviation > 50 ? "Sobrecosto crítico" : selectedSalon.deviation > 0 ? "Sobre mercado" : "Bajo mercado",
-                                    colorClass: selectedSalon.deviation > 50 ? "text-red-400" : selectedSalon.deviation > 0 ? "text-yellow-400" : "text-green-400",
-                                    bg: selectedSalon.deviation > 50 ? "bg-red-500/5 border-red-500/10" : selectedSalon.deviation > 0 ? "bg-yellow-500/5 border-yellow-500/10" : "bg-green-500/5 border-green-500/10",
-                                },
-                            ].map(card => (
-                                <div key={card.label} className={`p-4 rounded-2xl border text-center ${card.bg}`}>
-                                    <p className="text-[10px] text-slate-500 uppercase font-bold mb-2">{card.label}</p>
-                                    <p className={`text-2xl font-black ${card.colorClass}`}>{card.value}</p>
-                                    <p className="text-[10px] text-slate-500 mt-1">{card.sub}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* ── KPI Cards ── */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
-                    <p className="text-3xl font-bold text-white">{salonBenchmarks.length}</p>
-                    <p className="text-xs text-slate-500 mt-1">
-                        De {salones.length} activos {salones.length > salonBenchmarks.length && <span className="text-amber-400 font-bold ml-1">({salones.length - salonBenchmarks.length} sin info / Tier 1)</span>}
-                    </p>
-                </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Promedio Real $/m²</p>
-                    <p className="text-3xl font-bold text-blue-400">
-                        {avgReal > 0 ? formatARS(avgReal) : <span className="text-slate-600">—</span>}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">valor medio de la red</p>
-                </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Promedio</p>
-                    <p className="text-3xl font-bold" style={{ color: avgDev > 0 ? "#ef4444" : "#22c55e" }}>
-                        {avgDev !== 0 ? `${avgDev > 0 ? "+" : ""}${formatPercentage(avgDev)}` : <span className="text-slate-600">—</span>}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">vs mercado zonal</p>
-                </motion.div>
+                    ))}
+                </div>
             </div>
 
             {/* ── Pirámide Tier 2–5 ── */}
             <div className="glass-card p-6">
                 <h2 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
-                    <BarChart3 size={16} className="text-blue-400" />
-                    Pirámide de Tiers — Segmentos Benchmarkeados
+                    <BarChart3 size={16} className="text-blue-400" /> Pirámide de Tiers — Segmentos con Benchmarking
                 </h2>
                 <div className="space-y-2">
                     {[2, 3, 4, 5].map((tier, idx) => {
@@ -241,27 +250,22 @@ export default function BenchmarkingPage() {
                                 className="rounded-lg overflow-hidden"
                             >
                                 <div className="flex items-center gap-3 px-4 py-2.5" style={{ background: `${color}10`, border: `1px solid ${color}22` }}>
-                                    {/* Tier badge */}
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center font-black text-xs" style={{ background: `${color}18`, color }}>
-                                        T{tier}
-                                    </div>
-                                    {/* Name + examples */}
+                                    <div className="flex-shrink-0 w-7 h-7 rounded-md flex items-center justify-center font-black text-xs" style={{ background: `${color}18`, color }}>T{tier}</div>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-bold text-white leading-tight">{def?.name}</p>
                                         <p className="text-[10px] text-slate-500 truncate">{def?.examples?.join(", ")}</p>
                                     </div>
-                                    {/* Stats */}
                                     <div className="flex items-center gap-5 flex-shrink-0">
                                         <div className="text-right">
                                             <p className="text-sm font-bold text-white">{count}</p>
-                                            <p className="text-[9px] text-slate-500 uppercase tracking-wide">salones</p>
+                                            <p className="text-[9px] text-slate-500 uppercase">salones</p>
                                         </div>
                                         {benchmark && (
                                             <div className="text-right w-14">
                                                 <p className="text-sm font-bold" style={{ color: benchmark.desvio <= 0 ? "#22c55e" : "#ef4444" }}>
                                                     {benchmark.desvio > 0 ? "+" : ""}{formatPercentage(benchmark.desvio)}
                                                 </p>
-                                                <p className="text-[9px] text-slate-500 uppercase tracking-wide">desvío</p>
+                                                <p className="text-[9px] text-slate-500 uppercase">desvío</p>
                                             </div>
                                         )}
                                     </div>
@@ -272,19 +276,16 @@ export default function BenchmarkingPage() {
                 </div>
             </div>
 
-            {/* ── Bar Chart Real vs Mercado ── */}
+            {/* ── Bar Chart ── */}
             <div className="glass-card p-6">
                 <h2 className="text-base font-semibold text-white mb-4">$/m² Promedio: Real vs Mercado por Tier</h2>
-                <div className="h-[260px]">
+                <div className="h-[250px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={tierComparison} barGap={4} barCategoryGap="30%">
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                             <XAxis dataKey="tier" tick={{ fill: "#94a3b8", fontSize: 12 }} />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
-                            <Tooltip
-                                contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }}
-                                formatter={(value: any) => value !== undefined ? formatARS(Number(value)) : ""}
-                            />
+                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: any) => value !== undefined ? formatARS(Number(value)) : ""} />
                             <Bar dataKey="promedioReal" name="Costo Real /m²" fill="#ef4444" radius={[4, 4, 0, 0]} />
                             <Bar dataKey="promedioMercado" name="Mercado /m²" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         </BarChart>
@@ -299,7 +300,7 @@ export default function BenchmarkingPage() {
                     <thead>
                         <tr className="border-b border-white/5">
                             {["Segmento", "Real /m²", "Mercado /m²", "Desvío", "Estado"].map((h, i) => (
-                                <th key={h} className={`py-3 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider ${i === 0 ? "text-left" : i === 1 || i === 2 ? "text-right" : "text-center"}`}>{h}</th>
+                                <th key={h} className={`py-3 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider ${i === 0 ? "text-left" : i < 3 ? "text-right" : "text-center"}`}>{h}</th>
                             ))}
                         </tr>
                     </thead>
@@ -326,51 +327,52 @@ export default function BenchmarkingPage() {
 
             {/* ── Strategic Scatter ── */}
             <div className="glass-card p-6">
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-5">
                     <div>
                         <h2 className="text-base font-semibold text-white">Análisis Estratégico de Activos</h2>
-                        <p className="text-xs text-slate-500 mt-1">Dispersión Costo Real vs Referencia de Mercado · Click para seleccionar salón</p>
+                        <p className="text-xs text-slate-500 mt-1">Dispersión Costo Real vs Referencia de Mercado · Click para seleccionar</p>
                     </div>
                     {selectedSalonId && (
-                        <button onClick={clearSelection} className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 transition-colors">
+                        <button onClick={() => handleSelectSalon(null)} className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
                             <X size={11} /> Deseleccionar
                         </button>
                     )}
                 </div>
 
+                {/* Chart + legend same height */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
                     <div className="lg:col-span-3 h-[420px] relative">
-                        <div className="absolute top-3 right-3 text-[9px] font-black text-red-500/25 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-red-500/5 bg-red-500/5">SOBRE-MERCADO</div>
-                        <div className="absolute bottom-10 left-14 text-[9px] font-black text-green-500/25 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-green-500/5 bg-green-500/5">BAJO-MERCADO</div>
+                        <div className="absolute top-3 right-3 text-[9px] font-black text-red-500/20 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-red-500/5 bg-red-500/5">SOBRE-MERCADO</div>
+                        <div className="absolute bottom-10 left-16 text-[9px] font-black text-green-500/20 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-green-500/5 bg-green-500/5">BAJO-MERCADO</div>
                         <ResponsiveContainer width="100%" height="100%">
-                            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                            <ScatterChart margin={{ top: 20, right: 20, bottom: 25, left: 20 }}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
                                 <XAxis type="number" dataKey="marketCost" name="Mercado /m²" stroke="#475569"
                                     tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                    label={{ value: "Mercado ($/m²)", position: "bottom", offset: 0, fill: "#64748b", fontSize: 12 }}
+                                    label={{ value: "Mercado ($/m²)", position: "bottom", offset: 5, fill: "#64748b", fontSize: 11 }}
                                     domain={["auto", "auto"]}
                                 />
                                 <YAxis type="number" dataKey="costPerMt2" name="Real /m²" stroke="#475569"
                                     tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                    label={{ value: "Real ($/m²)", angle: -90, position: "left", fill: "#64748b", fontSize: 12 }}
+                                    label={{ value: "Real ($/m²)", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11, offset: 10 }}
                                     domain={["auto", "auto"]}
                                 />
-                                <ZAxis type="number" dataKey="dotSize" range={[70, 220]} />
+                                <ZAxis type="number" dataKey="dotSize" range={[70, 200]} />
                                 <Tooltip cursor={{ strokeDasharray: "3 3" }}
                                     content={({ active, payload }) => {
                                         if (!active || !payload?.length) return null;
                                         const d = payload[0].payload;
                                         return (
-                                            <div className="bg-slate-900 border border-white/10 p-3 rounded-xl shadow-2xl text-left">
-                                                <p className="text-sm font-bold text-white mb-2">{d.name}</p>
+                                            <div className="bg-slate-900 border border-white/10 p-3 rounded-xl shadow-2xl text-left min-w-[180px]">
+                                                <p className="text-xs font-bold text-white mb-2">{d.name}</p>
                                                 <div className="space-y-1 border-t border-white/5 pt-2">
                                                     {[
-                                                        ["Real", formatARS(d.costPerMt2), "text-white"],
-                                                        ["Mercado", formatARS(d.marketCost), "text-blue-400"],
+                                                        ["Real $/m²", formatARS(d.costPerMt2), "text-white"],
+                                                        ["Mercado $/m²", formatARS(d.marketCost), "text-blue-400"],
                                                         ["Desvío", `${d.deviation > 0 ? "+" : ""}${d.deviation.toFixed(1)}%`, d.deviation > 0 ? "text-red-400" : "text-green-400"],
                                                     ].map(([k, v, cls]) => (
                                                         <div key={k as string} className="flex justify-between gap-4">
-                                                            <span className="text-[10px] text-slate-500 uppercase">{k}:</span>
+                                                            <span className="text-[10px] text-slate-500">{k}:</span>
                                                             <span className={`text-[10px] font-bold ${cls}`}>{v}</span>
                                                         </div>
                                                     ))}
@@ -382,26 +384,24 @@ export default function BenchmarkingPage() {
                                 <ReferenceLine
                                     segment={[{ x: 0, y: 0 }, { x: 999999, y: 999999 }]}
                                     stroke="#3b82f6" strokeWidth={1} strokeDasharray="5 5"
-                                    label={{ position: "top", value: "Paridad", fill: "#3b82f6", fontSize: 10 }}
                                 />
                                 <Scatter
                                     name="Salones"
                                     data={salonBenchmarksWithSize}
-                                    onClick={(data: any) => setSelectedSalonId(prev => prev === data.id ? null : data.id)}
+                                    onClick={(data: any) => handleSelectSalon(data.id === selectedSalonId ? null : data.id)}
                                     className="cursor-pointer"
                                 >
                                     {salonBenchmarksWithSize.map((entry, i) => {
                                         const isSel = entry.id === selectedSalonId;
                                         const hasSel = selectedSalonId !== null;
-                                        const opacity = hasSel ? (isSel ? 1 : 0.08) : 0.75;
+                                        const opacity = hasSel ? (isSel ? 1 : 0.1) : 0.8;
                                         return (
                                             <Cell
                                                 key={`c-${i}`}
                                                 fill={entry.color}
                                                 stroke={isSel ? "#fff" : entry.color}
-                                                strokeWidth={isSel ? 2.5 : 0}
+                                                strokeWidth={isSel ? 2 : 0}
                                                 fillOpacity={opacity}
-                                                strokeOpacity={isSel ? 1 : 0}
                                             />
                                         );
                                     })}
@@ -410,23 +410,26 @@ export default function BenchmarkingPage() {
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Legend */}
-                    <div className="p-4 rounded-2xl bg-slate-900/50 border border-white/5 self-start">
-                        <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Guía</h3>
-                        <div className="space-y-4">
+                    {/* Legend — same height as chart (h-[420px]) */}
+                    <div className="h-[420px] p-4 rounded-2xl bg-slate-900/50 border border-white/5 flex flex-col justify-center">
+                        <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Guía Estratégica</h3>
+                        <div className="space-y-5">
                             {[
-                                { color: "bg-green-500", label: "Eficiencia Máxima", desc: "Costo real por debajo del mercado zonal." },
-                                { color: "bg-yellow-500", label: "Alineación", desc: "Desvío tolerable vs referencia." },
-                                { color: "bg-red-500", label: "Sobrecosto", desc: "Requiere revisión de contrato." },
-                            ].map((g, i) => (
-                                <div key={g.label} className={`flex gap-2.5 ${i > 0 ? "pt-3 border-t border-white/5" : ""}`}>
-                                    <div className={`w-1.5 h-1.5 rounded-full ${g.color} mt-1 flex-shrink-0`} />
-                                    <div>
-                                        <p className="text-[11px] font-bold" style={{ color: g.color.includes("green") ? "#4ade80" : g.color.includes("yellow") ? "#facc15" : "#f87171" }}>{g.label}</p>
-                                        <p className="text-[10px] text-slate-500 leading-relaxed">{g.desc}</p>
+                                { color: "#22c55e", label: "Eficiencia Máxima", desc: "Costo real por debajo de la referencia zonal." },
+                                { color: "#eab308", label: "Alineación", desc: "Desvío tolerable respecto al mercado." },
+                                { color: "#ef4444", label: "Sobrecosto", desc: "Requiere revisión de contrato urgente." },
+                            ].map((g, i, arr) => (
+                                <div key={g.label} className={i < arr.length - 1 ? "pb-5 border-b border-white/5" : ""}>
+                                    <div className="flex items-center gap-2 mb-1.5">
+                                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: g.color }} />
+                                        <p className="text-[11px] font-bold" style={{ color: g.color }}>{g.label}</p>
                                     </div>
+                                    <p className="text-[10px] text-slate-500 leading-relaxed pl-4">{g.desc}</p>
                                 </div>
                             ))}
+                        </div>
+                        <div className="mt-auto pt-5 border-t border-white/5">
+                            <p className="text-[10px] text-slate-600 leading-relaxed">Cada punto es un salón. El eje de paridad (línea azul) representa la igualdad real=mercado.</p>
                         </div>
                     </div>
                 </div>
@@ -435,10 +438,10 @@ export default function BenchmarkingPage() {
                 <div className="border-t border-white/5 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {[
-                            { key: "efficient" as const, label: "Eficiencia Máxima", color: "#22c55e", glow: "rgba(34,197,94,0.4)", sub: "Bajo Mercado", pct: (d: number) => formatPercentage(d), prefix: "" },
-                            { key: "aligned" as const, label: "Alineados", color: "#eab308", glow: "rgba(234,179,8,0.4)", sub: "Desvío tolerable", pct: (d: number) => formatPercentage(d), prefix: "+" },
-                            { key: "critical" as const, label: "Sobrecosto Crítico", color: "#ef4444", glow: "rgba(239,68,68,0.4)", sub: "Fuerte Desvío", pct: (d: number) => formatPercentage(d), prefix: "+" },
-                        ].map(({ key, label, color, glow, sub, pct, prefix }) => (
+                            { key: "efficient" as const, label: "Eficiencia Máxima", color: "#22c55e", glow: "rgba(34,197,94,0.35)", sub: "Bajo Mercado", prefix: "" },
+                            { key: "aligned" as const, label: "Alineados", color: "#eab308", glow: "rgba(234,179,8,0.35)", sub: "Desvío tolerable", prefix: "+" },
+                            { key: "critical" as const, label: "Sobrecosto Crítico", color: "#ef4444", glow: "rgba(239,68,68,0.35)", sub: "Fuerte Desvío", prefix: "+" },
+                        ].map(({ key, label, color, glow, sub, prefix }) => (
                             <div key={key} className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[260px]">
                                 <div className="px-4 py-3 flex items-center justify-between flex-shrink-0" style={{ background: `${color}08`, borderBottom: `1px solid ${color}20` }}>
                                     <div className="flex items-center gap-2">
@@ -455,16 +458,13 @@ export default function BenchmarkingPage() {
                                         return (
                                             <button
                                                 key={s.id}
-                                                onClick={() => handleSelectSalon(s)}
+                                                onClick={() => handleSelectSalon(isSel ? null : s.id)}
                                                 className="w-full p-2.5 rounded-lg border flex items-center justify-between transition-all text-left"
-                                                style={{
-                                                    background: isSel ? `${color}12` : "transparent",
-                                                    borderColor: isSel ? `${color}40` : "rgba(255,255,255,0.05)",
-                                                }}
+                                                style={{ background: isSel ? `${color}12` : "transparent", borderColor: isSel ? `${color}40` : "rgba(255,255,255,0.05)" }}
                                             >
                                                 <span className="text-[11px] font-semibold text-slate-200 truncate mr-2">{s.name}</span>
                                                 <div className="text-right flex-shrink-0">
-                                                    <p className="text-[10px] font-black" style={{ color }}>{prefix}{pct(s.deviation)}</p>
+                                                    <p className="text-[10px] font-black" style={{ color }}>{prefix}{formatPercentage(s.deviation)}</p>
                                                     <p className="text-[8px] text-slate-500 uppercase">{sub}</p>
                                                 </div>
                                             </button>

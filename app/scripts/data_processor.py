@@ -357,6 +357,7 @@ def procesar_datos_dashboard(ruta_archivo):
             },
             "benchmark": {
                 "rentPerMt2": safe_float(row['precio_mt2']),
+                "costPerMt2": safe_float(row['costos_fijos_salon']) / safe_float(row['mt2_salon']) if safe_float(row['mt2_salon']) > 0 else 0,
                 "marketMt2": safe_float(row['mediana_benchmarking_mt']),
                 "marketDeviation": safe_float(row['semaforo_benchmarking']),
                 "marketCostPerMt2": safe_float(row['mediana_benchmarking_mt']),
