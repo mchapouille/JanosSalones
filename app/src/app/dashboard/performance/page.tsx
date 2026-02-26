@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, AlertTriangle, Award, Sliders, Search, X, BrainCircuit } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
@@ -34,6 +34,42 @@ export default function PerformancePage() {
 
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
     const [ipWeights, setIpWeights] = useState({ margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 });
+
+    // Dual filter state (same pattern as Dashboard)
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const searchRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClick(e: MouseEvent) {
+            if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+                setShowSuggestions(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, []);
+
+    const suggestions = useMemo(() => {
+        if (!searchQuery.trim()) return [];
+        const q = searchQuery.toLowerCase();
+        return [...salones]
+            .filter(s => s.nombre_salon.toLowerCase().includes(q))
+            .sort((a, b) => {
+                const aS = a.nombre_salon.toLowerCase().startsWith(q);
+                const bS = b.nombre_salon.toLowerCase().startsWith(q);
+                if (aS && !bS) return -1;
+                if (!aS && bS) return 1;
+                return a.nombre_salon.localeCompare(b.nombre_salon);
+            })
+            .slice(0, 8);
+    }, [searchQuery, salones]);
+
+    const handleSelectSuggestion = (id: number) => {
+        setSelectedSalonId(id);
+        setSearchQuery("");
+        setShowSuggestions(false);
+    };
 
     // Update selected salon if it's not in the filtered list
     useEffect(() => {
@@ -134,54 +170,83 @@ export default function PerformancePage() {
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div className="flex items-center justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-white">Performance</h1>
-                    <p className="text-slate-400 text-sm mt-1">Análisis de Rentabilidad</p>
+            {/* Header + dual filter (same pattern as Dashboard) */}
+            <div className="flex flex-col gap-6 pb-6 border-b border-white/5">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                        <TrendingUp size={18} className="text-blue-400" />
+                    </div>
+                    <div>
+                        <h1 className="text-2xl font-bold text-white">Performance</h1>
+                        <p className="text-slate-400 text-sm">Análisis de Rentabilidad</p>
+                    </div>
                 </div>
-            </div>
 
-            {/* Salon Selector — prominent panel */}
-            <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-purple-600/5 rounded-2xl border border-blue-500/20" />
-                <div className="glass-card p-5 relative flex flex-col sm:flex-row sm:items-center gap-4">
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                        <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
-                            <Search size={16} className="text-blue-400" />
-                        </div>
-                        <div>
-                            <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Seleccionar Salón</p>
-                            <p className="text-[10px] text-slate-600 mt-0.5">Filtra todos los paneles por salón activo</p>
+                <div className="flex flex-wrap items-start gap-4">
+                    {/* Predictive search input */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Buscar por nombre</label>
+                        <div className="relative" ref={searchRef}>
+                            <div className="relative">
+                                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
+                                    onFocus={() => searchQuery && setShowSuggestions(true)}
+                                    placeholder="Escribir nombre del salón..."
+                                    className="bg-slate-900 border border-blue-500/30 rounded-lg pl-8 pr-4 py-2 text-sm text-blue-100 placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-[260px] transition-colors"
+                                />
+                                {searchQuery && (
+                                    <button onClick={() => { setSearchQuery(""); setShowSuggestions(false); }} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+                                        <X size={12} />
+                                    </button>
+                                )}
+                            </div>
+                            {showSuggestions && suggestions.length > 0 && (
+                                <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-slate-900 border border-blue-500/25 rounded-xl shadow-2xl overflow-hidden">
+                                    {suggestions.map((s, idx) => (
+                                        <button
+                                            key={s.id_salon}
+                                            onMouseDown={() => handleSelectSuggestion(s.id_salon)}
+                                            className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-white/5 transition-colors ${idx !== 0 ? "border-t border-white/5" : ""}`}
+                                        >
+                                            <span className="text-sm text-slate-200 font-medium flex-1 truncate">{s.nombre_salon}</span>
+                                            <span className="text-[10px] text-slate-600 font-mono">#{s.id_salon}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
-                    <div className="flex-1 relative">
+
+                    <div className="flex items-end pb-2 text-slate-700 text-xs font-bold select-none">ó</div>
+
+                    {/* Select dropdown */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Seleccionar de lista</label>
                         <select
                             value={selectedSalonId ?? ""}
                             onChange={(e) => setSelectedSalonId(e.target.value ? parseInt(e.target.value) : null)}
-                            className="w-full bg-slate-900 border border-blue-500/30 rounded-xl px-4 py-3 text-sm text-blue-100 font-bold focus:outline-none focus:border-blue-500/60 appearance-none cursor-pointer transition-colors"
+                            className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[260px] font-bold"
                         >
-                            <option value="">— Ver todos los salones activos —</option>
+                            <option value="">Buscar Salón...</option>
                             {[...salones]
                                 .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
                                 .map(s => (
                                     <option key={s.id_salon} value={s.id_salon}>
                                         {s.nombre_salon} ({s.id_salon})
                                     </option>
-                                ))
-                            }
+                                ))}
                         </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-blue-500/60">
-                            <Search size={14} />
-                        </div>
                     </div>
+
                     {selectedSalonId && (
-                        <button
-                            onClick={() => setSelectedSalonId(null)}
-                            className="flex-shrink-0 text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all"
-                        >
-                            <X size={12} /> Limpiar
-                        </button>
+                        <div className="flex items-end pb-2">
+                            <button onClick={() => { setSelectedSalonId(null); setSearchQuery(""); }} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
+                                <X size={12} /> Limpiar
+                            </button>
+                        </div>
                     )}
                 </div>
             </div>
@@ -225,6 +290,108 @@ export default function PerformancePage() {
                     </p>
                     <p className="text-xs text-slate-500 mt-1">contribución acumulada</p>
                 </motion.div>
+            </div>
+
+            {/* Score Rentabilidad Panel — above matrix */}
+            {selectedSalonId && dynamicScore && (() => {
+                const hex = getSemaphoreColor(dynamicScore.color);
+                const totalWeight = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado;
+                const weights = [
+                    { id: 'margen', label: 'Margen', value: ipWeights.margen, color: '#10b981' },
+                    { id: 'incidencia', label: 'Incidencia', value: ipWeights.incidencia, color: '#8b5cf6' },
+                    { id: 'ticketEvento', label: 'Tk. Evento', value: ipWeights.ticketEvento, color: '#3b82f6' },
+                    { id: 'ticketInvitado', label: 'Tk. Invitado', value: ipWeights.ticketInvitado, color: '#06b6d4' },
+                ] as const;
+                return (
+                    <div className="relative overflow-hidden glass-card">
+                        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(circle at 15% 60%, ${hex}18, transparent 55%)` }} />
+                        <div className="flex items-center gap-3 px-6 pt-5 pb-4 border-b border-white/5">
+                            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${hex}20` }}>
+                                <BrainCircuit size={15} style={{ color: hex }} />
+                            </div>
+                            <h3 className="text-sm font-bold text-white">Score Rentabilidad</h3>
+                            <span className="ml-auto text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border" style={{ color: hex, borderColor: `${hex}40`, background: `${hex}12` }}>
+                                {dynamicScore.label}
+                            </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-6 p-6">
+                            <div className="flex flex-col items-center justify-center gap-2">
+                                <div className="w-24 h-24 rounded-full flex flex-col items-center justify-center relative shadow-xl flex-shrink-0" style={{ background: `${hex}10`, border: `3px solid ${hex}50` }}>
+                                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.06 }} />
+                                    <span className="text-3xl font-black text-white relative z-10 leading-none">{dynamicScore.score.toFixed(0)}</span>
+                                    <span className="text-[9px] font-bold tracking-widest relative z-10 mt-0.5" style={{ color: hex }}>/ 100</span>
+                                </div>
+                                <div className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${totalWeight === 100 ? 'text-green-400 border-green-500/30 bg-green-500/8' : 'text-yellow-400 border-yellow-500/30 bg-yellow-500/8'}`}>
+                                    Σ {totalWeight} / 100
+                                </div>
+                            </div>
+                            <div className="space-y-1">
+                                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                                    <Sliders size={10} /> Ponderación Dinámica
+                                </p>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {weights.map((w) => {
+                                        const pct = Math.round((w.value / Math.max(totalWeight, 1)) * 100);
+                                        return (
+                                            <div key={w.id} className="rounded-xl border p-3 flex flex-col gap-2" style={{ borderColor: `${w.color}25`, background: `${w.color}08` }}>
+                                                <div className="flex items-center justify-between gap-1">
+                                                    <span className="text-[10px] font-bold text-slate-400">{w.label}</span>
+                                                    <span className="text-[10px] font-black tabular-nums" style={{ color: w.color }}>{w.value}</span>
+                                                </div>
+                                                <input type="range" min="0" max="100" step="5" value={w.value}
+                                                    onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
+                                                    className="w-full h-1.5 rounded-full cursor-pointer" style={{ accentColor: w.color }}
+                                                />
+                                                <div className="w-full h-1 rounded-full bg-slate-800 overflow-hidden">
+                                                    <div className="h-full rounded-full transition-all duration-300" style={{ width: `${pct}%`, background: w.color }} />
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
+            {/* What-If Simulator — above matrix */}
+            <div className="glass-card p-6">
+                <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    <Sliders size={18} className="text-cyan-400" />
+                    Simulador &quot;What-If&quot; — Reducción de Alquiler
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                        <div>
+                            <label className="text-sm text-slate-400 mb-2 block">Salón Seleccionado</label>
+                            <div className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2.5 text-sm text-white flex items-center justify-between">
+                                <span className="font-bold">{simSalon?.nombre_salon || 'Ningún salón seleccionado'}</span>
+                                <div className={`w-2 h-2 rounded-full ${simSalon ? 'bg-green-500' : 'bg-slate-600'}`} />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="text-sm text-slate-400 mb-2 block">
+                                Reducción de Alquiler: <span className="text-white font-bold">{rentReduction}%</span>
+                            </label>
+                            <input type="range" min={0} max={50} step={1} value={rentReduction}
+                                onChange={(e) => setRentReduction(parseInt(e.target.value))}
+                                className="w-full h-2 rounded-full appearance-none bg-slate-800 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-lg"
+                            />
+                            <div className="flex justify-between text-xs text-slate-600 mt-1"><span>0%</span><span>25%</span><span>50%</span></div>
+                        </div>
+                    </div>
+                    {simulation && simSalon && (
+                        <div className="space-y-3">
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="glass-card-light p-3"><p className="text-xs text-slate-500">Nuevo Alquiler</p><p className="text-lg font-bold text-white">{formatARS(simulation.newCostosFijos)}</p></div>
+                                <div className="glass-card-light p-3"><p className="text-xs text-slate-500">Incidencia Resultante</p><p className="text-lg font-bold" style={{ color: simulation.newIncidence > 0.25 ? "#ef4444" : simulation.newIncidence > 0.15 ? "#eab308" : "#22c55e" }}>{rentReduction === 0 && simSalon?.performance ? formatPercentage(simSalon.performance.rentIncidence * 100) : formatPercentage(simulation.newIncidence * 100)}</p></div>
+                                <div className="glass-card-light p-3"><p className="text-xs text-slate-500">Nuevo Margen</p><p className="text-lg font-bold text-white">{formatARS(simulation.newMargin)}</p></div>
+                                <div className="glass-card-light p-3"><p className="text-xs text-slate-500">Mejora en Margen</p><p className="text-lg font-bold text-green-400">+{formatARS(simulation.marginImprovement)}</p></div>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Revenue vs Rent Scatter Chart */}
@@ -517,162 +684,7 @@ export default function PerformancePage() {
             </div>
 
 
-            {/* Score Rentabilidad Panel */}
-            {selectedSalonId && dynamicScore && (() => {
-                const hex = getSemaphoreColor(dynamicScore.color);
-                const totalWeight = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado;
-                const weights = [
-                    { id: 'margen', label: 'Margen', shortLabel: 'MAR', value: ipWeights.margen, color: '#10b981' },
-                    { id: 'incidencia', label: 'Incidencia', shortLabel: 'INC', value: ipWeights.incidencia, color: '#8b5cf6' },
-                    { id: 'ticketEvento', label: 'Tk. Evento', shortLabel: 'EVT', value: ipWeights.ticketEvento, color: '#3b82f6' },
-                    { id: 'ticketInvitado', label: 'Tk. Invitado', shortLabel: 'INV', value: ipWeights.ticketInvitado, color: '#06b6d4' },
-                ] as const;
-                return (
-                    <div className="relative overflow-hidden glass-card">
-                        {/* Background gradient */}
-                        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(circle at 15% 60%, ${hex}18, transparent 55%)` }} />
-
-                        {/* Header */}
-                        <div className="flex items-center gap-3 px-6 pt-5 pb-4 border-b border-white/5">
-                            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${hex}20` }}>
-                                <BrainCircuit size={15} style={{ color: hex }} />
-                            </div>
-                            <h3 className="text-sm font-bold text-white">Score Rentabilidad</h3>
-                            <span className="ml-auto text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border" style={{ color: hex, borderColor: `${hex}40`, background: `${hex}12` }}>
-                                {dynamicScore.label}
-                            </span>
-                        </div>
-
-                        {/* Body: 2-col grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-6 p-6">
-                            {/* Score circle */}
-                            <div className="flex flex-col items-center justify-center gap-2">
-                                <div
-                                    className="w-24 h-24 rounded-full flex flex-col items-center justify-center relative shadow-xl flex-shrink-0"
-                                    style={{ background: `${hex}10`, border: `3px solid ${hex}50` }}
-                                >
-                                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.06 }} />
-                                    <span className="text-3xl font-black text-white relative z-10 leading-none">{dynamicScore.score.toFixed(0)}</span>
-                                    <span className="text-[9px] font-bold tracking-widest relative z-10 mt-0.5" style={{ color: hex }}>/ 100</span>
-                                </div>
-                                {/* Mini weight total indicator */}
-                                <div className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${totalWeight === 100 ? 'text-green-400 border-green-500/30 bg-green-500/8' : 'text-yellow-400 border-yellow-500/30 bg-yellow-500/8'}`}>
-                                    Σ {totalWeight} / 100
-                                </div>
-                            </div>
-
-                            {/* Weight controls — compact 2×2 grid */}
-                            <div className="space-y-1">
-                                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                                    <Sliders size={10} /> Ponderación Dinámica
-                                </p>
-                                <div className="grid grid-cols-2 gap-3">
-                                    {weights.map((w) => {
-                                        const pct = Math.round((w.value / Math.max(totalWeight, 1)) * 100);
-                                        return (
-                                            <div
-                                                key={w.id}
-                                                className="rounded-xl border p-3 flex flex-col gap-2"
-                                                style={{ borderColor: `${w.color}25`, background: `${w.color}08` }}
-                                            >
-                                                {/* Label + badge */}
-                                                <div className="flex items-center justify-between gap-1">
-                                                    <span className="text-[10px] font-bold text-slate-400">{w.label}</span>
-                                                    <span className="text-[10px] font-black tabular-nums" style={{ color: w.color }}>
-                                                        {w.value}
-                                                    </span>
-                                                </div>
-                                                {/* Compact slider */}
-                                                <input
-                                                    type="range"
-                                                    min="0" max="100" step="5"
-                                                    value={w.value}
-                                                    onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
-                                                    className="w-full h-1.5 rounded-full cursor-pointer"
-                                                    style={{ accentColor: w.color }}
-                                                />
-                                                {/* Contribution bar */}
-                                                <div className="w-full h-1 rounded-full bg-slate-800 overflow-hidden">
-                                                    <div
-                                                        className="h-full rounded-full transition-all duration-300"
-                                                        style={{ width: `${pct}%`, background: w.color }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            })()}
-
-
-            {/* What-If Simulator */}
-            <div className="glass-card p-6">
-                <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                    <Sliders size={18} className="text-cyan-400" />
-                    Simulador &quot;What-If&quot; — Reducción de Alquiler
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                        <div>
-                            <label className="text-sm text-slate-400 mb-2 block">Salón Seleccionado</label>
-                            <div className="bg-slate-900/80 border border-slate-700/60 rounded-xl px-4 py-2.5 text-sm text-white flex items-center justify-between">
-                                <span className="font-bold">{simSalon?.nombre_salon || 'Ningún salón seleccionado'}</span>
-                                <div className={`w-2 h-2 rounded-full ${simSalon ? 'bg-green-500' : 'bg-slate-600'}`} />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label className="text-sm text-slate-400 mb-2 block">
-                                Reducción de Alquiler: <span className="text-white font-bold">{rentReduction}%</span>
-                            </label>
-                            <input
-                                type="range"
-                                min={0}
-                                max={50}
-                                step={1}
-                                value={rentReduction}
-                                onChange={(e) => setRentReduction(parseInt(e.target.value))}
-                                className="w-full h-2 rounded-full appearance-none bg-slate-800 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-lg"
-                            />
-                            <div className="flex justify-between text-xs text-slate-600 mt-1">
-                                <span>0%</span><span>25%</span><span>50%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {simulation && simSalon && (
-                        <div className="space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
-                                <div className="glass-card-light p-3">
-                                    <p className="text-xs text-slate-500">Nuevo Alquiler</p>
-                                    <p className="text-lg font-bold text-white">{formatARS(simulation.newCostosFijos)}</p>
-                                </div>
-                                <div className="glass-card-light p-3">
-                                    <p className="text-xs text-slate-500">Incidencia Resultante</p>
-                                    <p className="text-lg font-bold" style={{ color: simulation.newIncidence > 0.25 ? "#ef4444" : simulation.newIncidence > 0.15 ? "#eab308" : "#22c55e" }}>
-                                        {rentReduction === 0 && simSalon?.performance
-                                            ? formatPercentage(simSalon.performance.rentIncidence * 100)
-                                            : formatPercentage(simulation.newIncidence * 100)}
-                                    </p>
-                                </div>
-                                <div className="glass-card-light p-3">
-                                    <p className="text-xs text-slate-500">Nuevo Margen</p>
-                                    <p className="text-lg font-bold text-white">{formatARS(simulation.newMargin)}</p>
-                                </div>
-                                <div className="glass-card-light p-3">
-                                    <p className="text-xs text-slate-500">Mejora en Margen</p>
-                                    <p className="text-lg font-bold text-green-400">+{formatARS(simulation.marginImprovement)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div >
+        </div>
     );
 }
+

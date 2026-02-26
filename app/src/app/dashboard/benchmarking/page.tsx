@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, ChevronDown, X } from "lucide-react";
+import { BarChart3, X, Search } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
 import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor } from "@/lib/calculations";
 import { useDashboard } from "@/components/DashboardContext";
@@ -18,15 +18,15 @@ const TIER_COLORS: Record<number, string> = {
 export default function BenchmarkingPage() {
     const { salones: allSalones } = useDashboard();
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const searchRef = useRef<HTMLDivElement>(null);
 
-    // Close dropdown on outside click
+    // Close suggestions on outside click
     useEffect(() => {
         function handleClick(e: MouseEvent) {
-            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-                setDropdownOpen(false);
+            if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+                setShowSuggestions(false);
             }
         }
         document.addEventListener("mousedown", handleClick);
@@ -36,15 +36,23 @@ export default function BenchmarkingPage() {
     // Active salons only
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
-    // All active salons for the dropdown (same style as Dashboard)
-    const dropdownSuggestions = useMemo(() => {
+    // Autocomplete suggestions
+    const suggestions = useMemo(() => {
+        if (!searchQuery.trim()) return [];
         const q = searchQuery.toLowerCase();
         return salones
-            .filter(s => !q || s.nombre_salon.toLowerCase().includes(q) || String(s.id_salon).includes(q))
-            .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon));
+            .filter(s => s.nombre_salon.toLowerCase().includes(q))
+            .sort((a, b) => {
+                const aS = a.nombre_salon.toLowerCase().startsWith(q);
+                const bS = b.nombre_salon.toLowerCase().startsWith(q);
+                if (aS && !bS) return -1;
+                if (!aS && bS) return 1;
+                return a.nombre_salon.localeCompare(b.nombre_salon);
+            })
+            .slice(0, 8);
     }, [salones, searchQuery]);
 
-    // Salon benchmarks — all tiers (scatter shows everything, lists filter Tier 2+)
+    // Salon benchmarks — all tiers
     const salonBenchmarks = useMemo(() =>
         salones
             .filter((s: any) => s.benchmark)
@@ -52,7 +60,6 @@ export default function BenchmarkingPage() {
                 id: s.id_salon,
                 name: s.nombre_salon,
                 tier: s.tier,
-                // costPerMt2 = costos_fijos_salon / mt2_salon (from backend)
                 costPerMt2: s.benchmark!.costPerMt2 ?? (s.mt2_salon > 0 ? (s.costos_fijos_salon ?? 0) / s.mt2_salon : 0),
                 marketCost: s.benchmark!.marketCostPerMt2 ?? 0,
                 deviation: s.benchmark!.deviation ?? 0,
@@ -72,7 +79,6 @@ export default function BenchmarkingPage() {
         [salones, selectedSalonId]
     );
 
-    // Per-group (Tier 2+), sorted by |deviation| desc
     const salonBenchmarksTier2Plus = useMemo(() =>
         salonBenchmarks.filter(s => s.tier >= 2),
         [salonBenchmarks]
@@ -91,17 +97,15 @@ export default function BenchmarkingPage() {
 
     const handleSelectSalon = (id: number | null) => {
         setSelectedSalonId(id);
-        setDropdownOpen(false);
         setSearchQuery("");
+        setShowSuggestions(false);
     };
 
-    // ZAxis size: selected gets bigger dot
     const salonBenchmarksWithSize = useMemo(() =>
         salonBenchmarks.map(s => ({ ...s, dotSize: s.id === selectedSalonId ? 200 : 70 })),
         [salonBenchmarks, selectedSalonId]
     );
 
-    // Tier comparison bar chart
     const tierComparison = Object.entries(BENCHMARK_DATA).map(([tier, data]) => ({
         tier: `Tier ${tier}`,
         promedioReal: data.promedioReal,
@@ -110,7 +114,6 @@ export default function BenchmarkingPage() {
         estado: data.estado,
     }));
 
-    // Individual panel values (0 when nothing selected)
     const panelValues = {
         costPerMt2: selectedSalon?.costPerMt2 ?? 0,
         marketCost: selectedSalon?.marketCost ?? 0,
@@ -122,65 +125,82 @@ export default function BenchmarkingPage() {
     return (
         <div className="space-y-6">
 
-            {/* ── Header + Salon Dropdown ── */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
-                    <p className="text-slate-400 text-sm mt-1">Comparación $/m² vs Mercado (Zonaprop / Argenprop)</p>
+            {/* ── Header + dual filter ── */}
+            <div className="flex flex-col gap-6 pb-6 border-b border-white/5">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                        <BarChart3 size={18} className="text-blue-400" />
+                    </div>
+                    <div>
+                        <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
+                        <p className="text-slate-400 text-sm">Comparación $/m² vs Mercado (Zonaprop / Argenprop)</p>
+                    </div>
                 </div>
 
-                {/* Salon dropdown — same pattern as Dashboard */}
-                <div className="relative" ref={dropdownRef}>
-                    <button
-                        onClick={() => setDropdownOpen(o => !o)}
-                        className="flex items-center gap-2 bg-slate-900/80 border border-white/10 rounded-xl pl-4 pr-3 py-2.5 text-sm text-white hover:border-blue-500/50 transition-all w-[280px] justify-between"
-                    >
-                        <span className={selectedSalonMeta ? "text-white" : "text-slate-500"}>
-                            {selectedSalonMeta
-                                ? `#${selectedSalonMeta.id_salon} — ${selectedSalonMeta.nombre_salon}`
-                                : "Seleccionar salón..."}
-                        </span>
-                        <div className="flex items-center gap-1.5 flex-shrink-0">
-                            {selectedSalonId && (
-                                <span
-                                    onClick={e => { e.stopPropagation(); handleSelectSalon(null); }}
-                                    className="text-slate-500 hover:text-white transition-colors cursor-pointer"
-                                >
-                                    <X size={13} />
-                                </span>
-                            )}
-                            <ChevronDown size={14} className={`text-slate-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
-                        </div>
-                    </button>
-
-                    {dropdownOpen && (
-                        <div className="absolute top-full left-0 right-0 mt-1 z-50 bg-slate-950 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-                            {/* Search inside dropdown */}
-                            <div className="p-2 border-b border-white/5">
+                <div className="flex flex-wrap items-start gap-4">
+                    {/* Predictive search input */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Buscar por nombre</label>
+                        <div className="relative" ref={searchRef}>
+                            <div className="relative">
+                                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
                                 <input
                                     type="text"
-                                    placeholder="Buscar..."
-                                    autoFocus
                                     value={searchQuery}
-                                    onChange={e => setSearchQuery(e.target.value)}
-                                    className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50"
+                                    onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
+                                    onFocus={() => searchQuery && setShowSuggestions(true)}
+                                    placeholder="Escribir nombre del salón..."
+                                    className="bg-slate-900 border border-blue-500/30 rounded-lg pl-8 pr-4 py-2 text-sm text-blue-100 placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-[260px] transition-colors"
                                 />
-                            </div>
-                            <div className="max-h-52 overflow-y-auto">
-                                {dropdownSuggestions.map(s => (
-                                    <button
-                                        key={s.id_salon}
-                                        onClick={() => handleSelectSalon(s.id_salon)}
-                                        className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between transition-colors ${s.id_salon === selectedSalonId ? "bg-blue-500/15 text-blue-300" : "text-slate-300 hover:bg-white/5 hover:text-white"}`}
-                                    >
-                                        <span className="truncate">{s.nombre_salon}</span>
-                                        <span className="text-[10px] text-slate-500 ml-2 flex-shrink-0">#{s.id_salon} · T{s.tier}</span>
+                                {searchQuery && (
+                                    <button onClick={() => { setSearchQuery(""); setShowSuggestions(false); }} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+                                        <X size={12} />
                                     </button>
-                                ))}
-                                {dropdownSuggestions.length === 0 && (
-                                    <p className="text-xs text-slate-600 italic px-4 py-3">Sin resultados</p>
                                 )}
                             </div>
+                            {showSuggestions && suggestions.length > 0 && (
+                                <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-slate-900 border border-blue-500/25 rounded-xl shadow-2xl overflow-hidden">
+                                    {suggestions.map((s, idx) => (
+                                        <button
+                                            key={s.id_salon}
+                                            onMouseDown={() => handleSelectSalon(s.id_salon)}
+                                            className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-white/5 transition-colors ${idx !== 0 ? "border-t border-white/5" : ""}`}
+                                        >
+                                            <span className="text-sm text-slate-200 font-medium flex-1 truncate">{s.nombre_salon}</span>
+                                            <span className="text-[10px] text-slate-600 font-mono">#{s.id_salon}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="flex items-end pb-2 text-slate-700 text-xs font-bold select-none">ó</div>
+
+                    {/* Select dropdown */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Seleccionar de lista</label>
+                        <select
+                            value={selectedSalonId ?? ""}
+                            onChange={(e) => handleSelectSalon(e.target.value ? parseInt(e.target.value) : null)}
+                            className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[260px] font-bold"
+                        >
+                            <option value="">Buscar Salón...</option>
+                            {[...salones]
+                                .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
+                                .map(s => (
+                                    <option key={s.id_salon} value={s.id_salon}>
+                                        {s.nombre_salon} ({s.id_salon})
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+
+                    {selectedSalonId && (
+                        <div className="flex items-end pb-2">
+                            <button onClick={() => handleSelectSalon(null)} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
+                                <X size={12} /> Limpiar
+                            </button>
                         </div>
                     )}
                 </div>
@@ -239,7 +259,7 @@ export default function BenchmarkingPage() {
                     {[2, 3, 4, 5].map((tier, idx) => {
                         const def = TIER_DEFINITIONS[tier];
                         const benchmark = BENCHMARK_DATA[tier];
-                        const count = salones.filter(s => s.tier === tier).length;
+                        const count = salones.filter((s: any) => s.tier === tier).length;
                         const color = TIER_COLORS[tier];
                         const widths = ["88%", "72%", "56%", "42%"];
                         return (
@@ -410,7 +430,7 @@ export default function BenchmarkingPage() {
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Legend — same height as chart (h-[420px]) */}
+                    {/* Legend — same h-[420px] as chart */}
                     <div className="h-[420px] p-4 rounded-2xl bg-slate-900/50 border border-white/5 flex flex-col justify-center">
                         <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Guía Estratégica</h3>
                         <div className="space-y-5">
