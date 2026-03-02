@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, AlertTriangle, Award, Sliders, Search, X, BrainCircuit } from "lucide-react";
+import { TrendingUp, AlertTriangle, Award, Sliders, Search, X, BrainCircuit, Ticket, UserCheck, BarChart2 } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
@@ -19,6 +19,20 @@ import {
     ReferenceLine,
     Cell,
 } from "recharts";
+
+function getIpScoreLabel(score: number): string {
+    if (score >= 60) return "Alta";
+    if (score >= 40) return "Media";
+    if (score >= 20) return "Baja";
+    return "Muy baja";
+}
+
+function getIpScoreColor(score: number): string {
+    if (score >= 60) return "green";
+    if (score >= 40) return "yellow";
+    if (score >= 20) return "red";
+    return "critical";
+}
 
 function interpolateScore(val: number, x0: number, x1: number, y0: number, y1: number) {
     if (val <= x0) return y0;
@@ -126,8 +140,8 @@ export default function PerformancePage() {
         return {
             alta: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 60).sort((a, b) => (b.ip_score || b.performance?.score || 0) - (a.ip_score || a.performance?.score || 0)),
             media: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 40 && (s.ip_score || s.performance?.score || 0) < 60).sort((a, b) => (b.ip_score || b.performance?.score || 0) - (a.ip_score || a.performance?.score || 0)),
-            baja: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 20 && (s.ip_score || s.performance?.score || 0) < 40).sort((a, b) => (a.ip_score || a.performance?.score || 0) - (b.ip_score || b.performance?.score || 0)),
-            muyBaja: baseList.filter(s => (s.ip_score || s.performance?.score || 0) < 20).sort((a, b) => (a.ip_score || a.performance?.score || 0) - (b.ip_score || b.performance?.score || 0)),
+            baja: baseList.filter(s => (s.ip_score || 0) >= 20 && (s.ip_score || 0) < 40).sort((a, b) => (b.ip_score || 0) - (a.ip_score || 0)),
+            muyBaja: baseList.filter(s => (s.ip_score || 0) < 20).sort((a, b) => (b.ip_score || 0) - (a.ip_score || 0)),
         };
     }, [salones]);
 
@@ -341,6 +355,79 @@ export default function PerformancePage() {
                                         </div>
                                     ))}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
+            {/* ── Indicadores Operativos (shown when salon selected) ── */}
+            {selectedSalonId && (() => {
+                const s = salones.find(x => x.id_salon === selectedSalonId);
+                if (!s) return null;
+                const tktEvento = s.ticket_evento_promedio || (s.extra as any)?.ticket_evento || 0;
+                const tktInvitado = s.ticket_persona_promedio || (s.extra as any)?.ticket_persona || 0;
+                const eventos = s.cantidad_eventos_salon || 0;
+                const invitados = s.total_invitados_salon || 0;
+                const invPorEvento = eventos > 0 ? invitados / eventos : 0;
+                const incidencia = s.incidencia_alquiler_sobre_facturacion_anual || 0;
+                const ipScore = s.ip_score || 0;
+                const retLabel = getIpScoreLabel(ipScore);
+                const retColor = getSemaphoreColor(getIpScoreColor(ipScore));
+                return (
+                    <div className="glass-card p-5">
+                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Indicadores Operativos</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                            {/* Tkt por evento */}
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                <div className="flex items-center gap-1.5">
+                                    <Ticket size={12} className="text-cyan-400" />
+                                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Evento</span>
+                                </div>
+                                <span className="text-base font-black text-white">
+                                    {tktEvento > 0 ? formatARS(tktEvento) : "—"}
+                                </span>
+                            </div>
+                            {/* Tkt por invitado */}
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                <div className="flex items-center gap-1.5">
+                                    <Ticket size={12} className="text-purple-400" />
+                                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Invitado</span>
+                                </div>
+                                <span className="text-base font-black text-white">
+                                    {tktInvitado > 0 ? formatARS(tktInvitado) : "—"}
+                                </span>
+                            </div>
+                            {/* Invitados por evento */}
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                <div className="flex items-center gap-1.5">
+                                    <UserCheck size={12} className="text-blue-400" />
+                                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Inv. / Evento</span>
+                                </div>
+                                <span className="text-base font-black text-white">
+                                    {invPorEvento > 0 ? invPorEvento.toFixed(0) : "—"}
+                                </span>
+                            </div>
+                            {/* Incidencia promedio */}
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                <div className="flex items-center gap-1.5">
+                                    <BarChart2 size={12} className="text-orange-400" />
+                                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Incidencia</span>
+                                </div>
+                                <span className="text-base font-black"
+                                    style={{ color: get_color_from_incidence(incidencia) }}>
+                                    {incidencia > 0 ? formatPercentage(incidencia * 100) : "—"}
+                                </span>
+                            </div>
+                            {/* Retorno sobre alquiler */}
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                <div className="flex items-center gap-1.5">
+                                    <TrendingUp size={12} className="text-emerald-400" />
+                                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Ret. Alquiler</span>
+                                </div>
+                                <span className="text-base font-black" style={{ color: retColor }}>
+                                    {retLabel}
+                                </span>
                             </div>
                         </div>
                     </div>

@@ -19,9 +19,6 @@ import {
     Circle,
     Search,
     Receipt,
-    Ticket,
-    UserCheck,
-    BarChart2,
 } from "lucide-react";
 import { getSemaphoreColor, TIER_DEFINITIONS, get_color_from_incidence } from "@/lib/calculations";
 import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
@@ -201,25 +198,6 @@ export default function DashboardPage() {
         },
     ] : null;
 
-    // Extra KPIs for selected salon
-    const extraKpis = selectedSalon ? (() => {
-        const tktEvento = selectedSalon.ticket_evento_promedio || 0;
-        const tktInvitado = selectedSalon.ticket_persona_promedio || 0;
-        const eventos = selectedSalon.cantidad_eventos_salon || 0;
-        const invitados = selectedSalon.total_invitados_salon || 0;
-        const invPorEvento = eventos > 0 ? invitados / eventos : 0;
-        const incidencia = selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0;
-        const ipScore = selectedSalon.ip_score || 0;
-        return {
-            tktEvento,
-            tktInvitado,
-            invPorEvento,
-            incidencia,
-            retornoLabel: isNonActive ? "—" : getIpScoreLabel(ipScore),
-            retornoColor: isNonActive ? "#6b7280" : getSemaphoreColor(getIpScoreColor(ipScore)),
-        };
-    })() : null;
-
     return (
         <div className="space-y-6">
             {/* PANEL 1: DATOS DEL SALÓN SELECCIONADO */}
@@ -398,65 +376,6 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
-                            {/* ── EXTRA KPIs STRIP ── */}
-                            {extraKpis && (
-                                <div>
-                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Indicadores Operativos</p>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                                        {/* Tkt por evento */}
-                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
-                                            <div className="flex items-center gap-1.5">
-                                                <Ticket size={12} className="text-cyan-400" />
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Evento</span>
-                                            </div>
-                                            <span className="text-base font-black text-white">
-                                                {isNonActive ? "—" : (extraKpis.tktEvento > 0 ? formatARS(extraKpis.tktEvento) : "—")}
-                                            </span>
-                                        </div>
-                                        {/* Tkt por invitado */}
-                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
-                                            <div className="flex items-center gap-1.5">
-                                                <Ticket size={12} className="text-purple-400" />
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Invitado</span>
-                                            </div>
-                                            <span className="text-base font-black text-white">
-                                                {isNonActive ? "—" : (extraKpis.tktInvitado > 0 ? formatARS(extraKpis.tktInvitado) : "—")}
-                                            </span>
-                                        </div>
-                                        {/* Invitados por evento */}
-                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
-                                            <div className="flex items-center gap-1.5">
-                                                <UserCheck size={12} className="text-blue-400" />
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Inv. / Evento</span>
-                                            </div>
-                                            <span className="text-base font-black text-white">
-                                                {isNonActive ? "—" : (extraKpis.invPorEvento > 0 ? extraKpis.invPorEvento.toFixed(0) : "—")}
-                                            </span>
-                                        </div>
-                                        {/* Incidencia promedio */}
-                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
-                                            <div className="flex items-center gap-1.5">
-                                                <BarChart2 size={12} className="text-orange-400" />
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Incidencia</span>
-                                            </div>
-                                            <span className="text-base font-black"
-                                                style={{ color: isNonActive ? "#6b7280" : get_color_from_incidence(extraKpis.incidencia) }}>
-                                                {isNonActive ? "—" : (extraKpis.incidencia > 0 ? formatPercentage(extraKpis.incidencia * 100) : "—")}
-                                            </span>
-                                        </div>
-                                        {/* Retorno sobre alquiler (ip_score category) */}
-                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
-                                            <div className="flex items-center gap-1.5">
-                                                <TrendingUp size={12} className="text-emerald-400" />
-                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Ret. Alquiler</span>
-                                            </div>
-                                            <span className="text-base font-black" style={{ color: extraKpis.retornoColor }}>
-                                                {extraKpis.retornoLabel}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
 
                             {/* ── DETAIL PANELS — compact 3-column ── */}
                             <div>
