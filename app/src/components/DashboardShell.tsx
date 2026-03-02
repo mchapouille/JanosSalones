@@ -60,8 +60,9 @@ export default function DashboardShell({
 
             if (!res.ok || !data.success) {
                 setRefreshStatus('error');
-                setRefreshMsg(data.message || 'Error al refrescar');
-                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 6000);
+                const detail = data.error ? ` — ${data.error}` : '';
+                setRefreshMsg((data.message || 'Error al refrescar') + detail);
+                setTimeout(() => { setRefreshStatus('idle'); setRefreshMsg(''); }, 12000);
                 return;
             }
 
@@ -233,7 +234,7 @@ export default function DashboardShell({
                                     >
                                         {(refreshStatus === 'success' || refreshStatus === 'async') && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-400" />}
                                         {refreshStatus === 'error' && <AlertCircle size={16} className="flex-shrink-0 mt-0.5 text-red-400" />}
-                                        <p className="text-xs font-medium leading-snug">
+                                        <p className="text-xs font-medium leading-snug break-all">
                                             {refreshStatus === 'error' ? refreshMsg : 'Datos actualizados correctamente'}
                                         </p>
                                     </motion.div>

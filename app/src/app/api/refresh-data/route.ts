@@ -18,11 +18,37 @@ export async function POST() {
     if (IS_VERCEL) {
         if (!GITHUB_PAT) {
             return NextResponse.json(
-                { success: false, message: 'GITHUB_PAT no configurado en las variables de entorno de Vercel.' },
+                { success: false, message: 'GITHUB_PAT no configurado en Vercel.' },
                 { status: 500 }
             );
         }
 
+        // ── Step 1: validate token identity ──
+        try {
+            const userRes = await fetch('https://api.github.com/user', {
+                headers: {
+                    Authorization: `Bearer ${GITHUB_PAT}`,
+                    Accept: 'application/vnd.github+json',
+                    'X-GitHub-Api-Version': '2022-11-28',
+                },
+            });
+            if (!userRes.ok) {
+                const body = await userRes.text();
+                return NextResponse.json(
+                    { success: false, message: `Token inválido (${userRes.status})`, error: body },
+                    { status: 500 }
+                );
+            }
+            const userJson = await userRes.json();
+            console.log('[refresh] Token valid for user:', userJson.login);
+        } catch (e: any) {
+            return NextResponse.json(
+                { success: false, message: 'No se pudo validar el token', error: e.message },
+                { status: 500 }
+            );
+        }
+
+        // ── Step 2: dispatch workflow ──
         try {
             const response = await fetch(
                 `https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/refresh-data.yml/dispatches`,
@@ -43,24 +69,23 @@ export async function POST() {
 
             if (!response.ok) {
                 const body = await response.text();
-                console.error('GitHub API error:', response.status, body);
+                console.error('GitHub dispatch error:', response.status, body);
                 return NextResponse.json(
                     { success: false, message: `Error al disparar el workflow: ${response.status}`, error: body },
                     { status: 500 }
                 );
             }
 
-            // GitHub returns 204 No Content on success
             return NextResponse.json({
                 success: true,
                 async: true,
-                message: 'Workflow iniciado. Los datos se actualizarán en ~2 minutos cuando Vercel redespliege.',
+                message: 'Workflow iniciado. Los datos se actualizarán en ~2 minutos.',
             });
 
         } catch (error: any) {
             console.error('Error calling GitHub API:', error);
             return NextResponse.json(
-                { success: false, message: 'Error de red al conectar con GitHub Actions', error: error.message },
+                { success: false, message: 'Error de red al conectar con GitHub', error: error.message },
                 { status: 500 }
             );
         }
