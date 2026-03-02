@@ -371,9 +371,7 @@ export default function PerformancePage() {
                 const invitados = s.total_invitados_salon || 0;
                 const invPorEvento = eventos > 0 ? invitados / eventos : 0;
                 const incidencia = s.incidencia_alquiler_sobre_facturacion_anual || 0;
-                const ipScore = s.ip_score || 0;
-                const retLabel = getIpScoreLabel(ipScore);
-                const retColor = getSemaphoreColor(getIpScoreColor(ipScore));
+                const retorno = s.retorno_sobre_alquiler || s.performance?.multiplier || 0;
                 return (
                     <div className="glass-card p-5">
                         <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Indicadores Operativos</p>
@@ -425,8 +423,8 @@ export default function PerformancePage() {
                                     <TrendingUp size={12} className="text-emerald-400" />
                                     <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Ret. Alquiler</span>
                                 </div>
-                                <span className="text-base font-black" style={{ color: retColor }}>
-                                    {retLabel}
+                                <span className="text-base font-black text-white">
+                                    {retorno > 0 ? `${retorno.toFixed(2)}x` : "—"}
                                 </span>
                             </div>
                         </div>
