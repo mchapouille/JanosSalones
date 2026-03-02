@@ -81,6 +81,69 @@ def assign_tier(municipio, nombre_salon):
                 return tier
     return 4
 
+def build_contract_audit(row):
+    """
+    Applies the 3 conditional rules for contract audit:
+    Condition 1: estado_contrato != 'vigente' → blocked, show 'Contrato no vigente'
+    Condition 2: vigente but alquiler_contrato is empty/0 → 'Sin dato de alquiler en el contrato'
+    Condition 3: vigente + valid alquiler_contrato → calculate deviation
+    """
+    estado = str(row.get('estado_contrato', '')).strip().lower()
+    precio_alquiler = float(row.get('precio_alquiler', 0) or 0)
+    alquiler_contrato = float(row.get('alquiler_contrato', 0) or 0)
+
+    # Condition 1: Contract not active
+    if estado != 'vigente':
+        return {
+            "contractStatus": "non_active",
+            "estadoContrato": estado if estado else "sin_estado",
+            "precioAlquiler": precio_alquiler,
+            "alquilerContrato": 0,
+            "desvioNominal": None,
+            "desvioPercent": None,
+            "color": "gray"
+        }
+
+    # Condition 2: Vigente but no contract rent amount
+    if alquiler_contrato <= 0:
+        return {
+            "contractStatus": "no_data",
+            "estadoContrato": "vigente",
+            "precioAlquiler": precio_alquiler,
+            "alquilerContrato": 0,
+            "desvioNominal": None,
+            "desvioPercent": None,
+            "color": "gray"
+        }
+
+    # Condition 3: Happy path — calculate deviation
+    # Formula: desvio_nominal = precio_alquiler - alquiler_contrato
+    # Formula: desvio_pct = ((precio_alquiler - alquiler_contrato) / alquiler_contrato) * 100
+    desvio_nominal = precio_alquiler - alquiler_contrato
+    desvio_pct = (desvio_nominal / alquiler_contrato) * 100
+
+    # Color semaphore based on deviation percentage
+    if desvio_pct > 15:
+        color = 'red'
+    elif desvio_pct > 5:
+        color = 'yellow'
+    elif desvio_pct >= -5:
+        color = 'green'
+    else:
+        # Paying LESS than contract (negative deviation) — also flag for review
+        color = 'yellow'
+
+    return {
+        "contractStatus": "ok",
+        "estadoContrato": "vigente",
+        "precioAlquiler": precio_alquiler,
+        "alquilerContrato": alquiler_contrato,
+        "desvioNominal": round(desvio_nominal, 2),
+        "desvioPercent": round(desvio_pct, 4),
+        "color": color
+    }
+
+
 def procesar_datos_dashboard(ruta_archivo):
     print(f"Reading {ruta_archivo}...")
     xf = pd.ExcelFile(ruta_archivo)
@@ -120,7 +183,8 @@ def procesar_datos_dashboard(ruta_archivo):
     # Ensure required raw columns exist
     cols_numericas = ['cantidad_eventos_salon', 'total_invitados_salon', 'costos_variables_salon',
                       'costos_fijos_salon', 'ventas_totales_salon', 'mt2_salon', 'pax_calculado',
-                      'meses_activos', 'mediana_benchmarking_mt']
+                      'meses_activos', 'mediana_benchmarking_mt',
+                      'precio_alquiler', 'alquiler_contrato']
     
     for col in cols_numericas:
         if col not in df.columns:
@@ -130,6 +194,14 @@ def procesar_datos_dashboard(ruta_archivo):
             else:
                 df[col] = 0
         df[col] = df[col].apply(clean_numeric)
+
+    # Normalize estado_contrato: strip, lowercase
+    if 'estado_contrato' in df.columns:
+        df['estado_contrato'] = df['estado_contrato'].apply(
+            lambda x: str(x).strip().lower() if pd.notna(x) and str(x).strip() != '' else ''
+        )
+    else:
+        df['estado_contrato'] = ''
 
     # Use tier_salon from Excel if available, otherwise calculate with assign_tier()
     if 'tier_salon' in df.columns:
@@ -373,12 +445,7 @@ def procesar_datos_dashboard(ruta_archivo):
                 "medianDeviation": (eff_index - 1) * 100 if eff_index > 0 else 0,
                 "color": eff_color
             },
-            "contractAudit": {
-                "contractAmount": safe_float(row['costos_fijos_salon']),
-                "realPayment": safe_float(row['costos_fijos_salon']),
-                "deviationPercent": 0,
-                "color": "green"
-            },
+            "contractAudit": build_contract_audit(row),
             "extra": {
                 "meses_activos": safe_float(row.get('meses_activos', 12)),
                 "ticket_evento": safe_float(row['venta_x_evento_promedio_anual']),

@@ -1,62 +1,124 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FileCheck, AlertCircle } from "lucide-react";
-import { formatARS, formatPercentage } from "@/lib/formatters";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    FileCheck,
+    AlertCircle,
+    TrendingUp,
+    TrendingDown,
+    Minus,
+    Ban,
+    HelpCircle,
+    CheckCircle2,
+} from "lucide-react";
+import { formatARS } from "@/lib/formatters";
 import { getSemaphoreColor } from "@/lib/calculations";
-import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
+
+// ────── Types & helpers ──────
+
+type ContractStatus = "ok" | "non_active" | "no_data";
+
+function getContractAuditData(s: any) {
+    const ca = s.contractAudit ?? {};
+    const status: ContractStatus = ca.contractStatus ?? "non_active";
+    return {
+        status,
+        estadoContrato: ca.estadoContrato ?? "",
+        precioAlquiler: ca.precioAlquiler ?? 0,
+        alquilerContrato: ca.alquilerContrato ?? 0,
+        desvioNominal: ca.desvioNominal ?? null,
+        desvioPercent: ca.desvioPercent ?? null,
+        color: ca.color ?? "gray",
+    };
+}
+
+function ContractStatusBadge({ status, estadoContrato }: { status: ContractStatus; estadoContrato: string }) {
+    if (status === "non_active") {
+        return (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-700/60 border border-slate-600/40 text-slate-400">
+                <Ban size={11} />
+                Contrato no vigente
+            </span>
+        );
+    }
+    if (status === "no_data") {
+        return (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 border border-amber-500/30 text-amber-400">
+                <HelpCircle size={11} />
+                Sin dato de alquiler
+            </span>
+        );
+    }
+    return (
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 border border-green-500/30 text-green-400">
+            <CheckCircle2 size={11} />
+            Vigente
+        </span>
+    );
+}
+
+function DesvioIcon({ pct }: { pct: number }) {
+    if (pct > 5) return <TrendingUp size={20} className="text-red-400" />;
+    if (pct < -5) return <TrendingDown size={20} className="text-yellow-400" />;
+    return <Minus size={20} className="text-green-400" />;
+}
+
+function getDesvioLabel(desvioPercent: number) {
+    if (desvioPercent > 15) return "DESVÍO CRÍTICO";
+    if (desvioPercent > 5) return "REVISIÓN MANUAL";
+    if (desvioPercent >= -5) return "CUMPLIMIENTO OK";
+    return "PAGO INFERIOR AL CONTRATO";
+}
+
+// ────── Main Page ──────
 
 export default function ContractsPage() {
     const { conversionRate, salones: allSalones } = useDashboard();
 
-    // Contracts works mainly on active salons
-    const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
-
-    const audits = useMemo(() =>
-        salones.map((s) => {
-            const contractUSD = s.contractAudit?.contractAmount ? s.contractAudit.contractAmount / conversionRate : 0;
-            const deviation = (s.costos_fijos_salon || 0) - (s.contractAudit?.contractAmount || 0);
-            const deviationPercent = s.contractAudit?.contractAmount ? (deviation / s.contractAudit.contractAmount) * 100 : 0;
-            const color = deviationPercent > 15 ? 'red' : deviationPercent > 5 ? 'yellow' : 'green';
-
-            return {
-                id_salon: s.id_salon,
-                year: s.year,
-                nombre: s.nombre_salon,
-                municipio: s.municipio_salon,
-                tier: s.tier,
-                contratoUSD: contractUSD,
-                pagoRealARS: s.costos_fijos_salon || 0,
-                rentIncidence: s.performance?.rentIncidence || 0,
-                // From precalculated output (or recalced for conversionRate dynamicness):
-                contractAmount: s.contractAudit?.contractAmount || 0,
-                realPayment: s.costos_fijos_salon || 0,
-                deviation,
-                deviationPercent,
-                color,
-                ...s.contractAudit
-            };
-        }).filter(a => a.contratoUSD > 0), [salones, conversionRate]
+    const activeSalones = useMemo(
+        () => allSalones.filter((s) => s.estado_salon === "ACTIVO"),
+        [allSalones]
     );
 
-    const [selectedAuditKey, setSelectedAuditKey] = useState<string | null>(null);
+    const enriched = useMemo(() =>
+        activeSalones.map((s) => ({
+            ...s,
+            _contract: getContractAuditData(s),
+        })),
+        [activeSalones]
+    );
 
-    // Initial selection
+    const auditable = useMemo(
+        () => enriched.filter((s) => s._contract.status === "ok"),
+        [enriched]
+    );
+
+    const totalNoVigentes = enriched.filter((s) => s._contract.status === "non_active").length;
+    const totalSinDato = enriched.filter((s) => s._contract.status === "no_data").length;
+    const alertCount = auditable.filter((s) => s._contract.color === "red").length;
+    const totalDesvioNominal = auditable.reduce((acc, s) => acc + (s._contract.desvioNominal ?? 0), 0);
+
+    const [selectedId, setSelectedId] = useState<number | null>(null);
+
     useEffect(() => {
-        if (audits.length > 0 && selectedAuditKey === null) {
-            setSelectedAuditKey(String(audits[0].id_salon));
+        if (auditable.length > 0 && selectedId === null) {
+            setSelectedId(auditable[0].id_salon);
         }
-    }, [audits, selectedAuditKey]);
+    }, [auditable, selectedId]);
 
-    const selectedAudit = useMemo(() =>
-        audits.find(a => String(a.id_salon) === selectedAuditKey),
-        [audits, selectedAuditKey]
+    const selected = useMemo(
+        () => enriched.find((s) => s.id_salon === selectedId) ?? null,
+        [enriched, selectedId]
     );
 
-    const totalDeviation = audits.reduce((s, a) => s + a.deviation, 0);
-    const alertCount = audits.filter((a) => a.color === "red").length;
+    const sortedAuditable = useMemo(
+        () => [...auditable].sort((a, b) =>
+            Math.abs(b._contract.desvioPercent ?? 0) - Math.abs(a._contract.desvioPercent ?? 0)
+        ),
+        [auditable]
+    );
 
     return (
         <div className="space-y-6">
@@ -64,7 +126,7 @@ export default function ContractsPage() {
                 <div>
                     <h1 className="text-2xl font-bold text-white">Auditoría de Contratos</h1>
                     <p className="text-slate-400 text-sm mt-1">
-                        Auditoría: Monto Pactado (USD) vs Pago Real Ejecutado (ARS)
+                        Análisis de desvío entre alquiler pactado (contrato) y precio actual de alquiler
                     </p>
                 </div>
             </div>
@@ -73,168 +135,297 @@ export default function ContractsPage() {
                 <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3">
                     <AlertCircle size={20} className="text-red-400 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-red-400">
-                        <strong>{alertCount} contratos</strong> con desvíos superiores al 15% entre monto pactado y pago real.
+                        <strong>{alertCount} {alertCount === 1 ? "contrato" : "contratos"}</strong> con desvíos superiores al 15% entre monto pactado y precio actual.
                     </p>
                 </div>
             )}
 
-            {/* Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Contratos Analizados</p>
-                    <p className="text-3xl font-bold text-white">{audits.length}</p>
-                    <p className="text-xs text-slate-500 mt-1">
-                        De {salones.length} activos {salones.length > audits.length && <span className="text-red-400 font-bold ml-1">({salones.length - audits.length} s/info)</span>}
-                    </p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Contratos Auditables</p>
+                    <p className="text-3xl font-bold text-white">{auditable.length}</p>
+                    <p className="text-xs text-slate-500 mt-1">vigentes con datos</p>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Total Acumulado</p>
-                    <p className="text-3xl font-bold" style={{ color: totalDeviation > 0 ? "#ef4444" : "#22c55e" }}>
-                        {totalDeviation > 0 ? "+" : ""}{formatARS(totalDeviation)}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">pago real vs contrato</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.07 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">No Vigentes</p>
+                    <p className="text-3xl font-bold text-slate-500">{totalNoVigentes}</p>
+                    <p className="text-xs text-slate-500 mt-1">vencidos o sin estado</p>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Tasa Conversión</p>
-                    <p className="text-3xl font-bold text-cyan-400">{formatARS(conversionRate)}</p>
-                    <p className="text-xs text-slate-500 mt-1">USD → ARS (Manual)</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Sin Dato Contrato</p>
+                    <p className="text-3xl font-bold text-amber-400">{totalSinDato}</p>
+                    <p className="text-xs text-slate-500 mt-1">vigentes sin monto</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.21 }} className="kpi-card">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Total Acum.</p>
+                    <p
+                        className="text-3xl font-bold"
+                        style={{ color: totalDesvioNominal > 0 ? "#ef4444" : totalDesvioNominal < 0 ? "#eab308" : "#22c55e" }}
+                    >
+                        {totalDesvioNominal > 0 ? "+" : ""}{formatARS(totalDesvioNominal)}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-1">precio actual vs contrato</p>
                 </motion.div>
             </div>
 
-            {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Left: Audit List Sidebar */}
-                <div className="lg:col-span-1 glass-card p-4 overflow-hidden flex flex-col h-full max-h-[600px]">
+                <div className="lg:col-span-1 glass-card p-4 flex flex-col max-h-[640px]">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-lg font-semibold text-white">Salones</h2>
-                        <span className="text-[10px] text-slate-500 uppercase font-bold">{audits.length} AUDITORÍAS</span>
+                        <span className="text-[10px] text-slate-500 uppercase font-bold">{auditable.length} AUDITABLES</span>
                     </div>
-                    <div className="overflow-y-auto pr-2 space-y-1">
-                        {audits
-                            .sort((a, b) => Math.abs(b.deviationPercent) - Math.abs(a.deviationPercent))
-                            .map((a) => {
-                                const key = `${a.id_salon}-${a.year}`;
-                                const isActive = selectedAuditKey === key;
-                                const color = getSemaphoreColor(a.color);
-                                return (
-                                    <button
-                                        key={a.id_salon}
-                                        onClick={() => setSelectedAuditKey(String(a.id_salon))}
-                                        className={`w-full text-left p-3 rounded-xl transition-all border ${isActive
-                                            ? "bg-blue-500/10 border-blue-500/30"
-                                            : "bg-transparent border-transparent hover:bg-white/5"
-                                            }`}
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex-1 min-w-0">
-                                                <p className={`text-sm font-medium truncate ${isActive ? "text-blue-100" : "text-slate-300"}`}>
-                                                    {a.nombre}
-                                                </p>
-                                                <div className="flex items-center gap-2 mt-0.5">
-                                                    <span className="text-[10px] text-slate-500">Tier {a.tier}</span>
-                                                    <span className="text-[10px] text-slate-600">•</span>
-                                                    <span className={`text-[10px] font-bold ${a.deviationPercent > 0 ? "text-red-400" : "text-green-400"}`}>
-                                                        Desvío: {a.deviationPercent > 0 ? "+" : ""}{formatPercentage(a.deviationPercent)}
-                                                    </span>
-                                                    <span className="text-[10px] text-slate-600">•</span>
-                                                    <span className="text-[10px] text-slate-400">Inc: {formatPercentage(a.rentIncidence)}</span>
-                                                </div>
+                    <div className="overflow-y-auto pr-1 space-y-1 flex-1">
+                        {sortedAuditable.map((s) => {
+                            const ca = s._contract;
+                            const isActive = selectedId === s.id_salon;
+                            const color = getSemaphoreColor(ca.color);
+                            const pct = ca.desvioPercent ?? 0;
+                            return (
+                                <button
+                                    key={s.id_salon}
+                                    onClick={() => setSelectedId(s.id_salon)}
+                                    className={`w-full text-left p-3 rounded-xl transition-all border ${isActive
+                                        ? "bg-blue-500/10 border-blue-500/30"
+                                        : "bg-transparent border-transparent hover:bg-white/5"
+                                        }`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex-1 min-w-0 pr-2">
+                                            <p className={`text-sm font-medium truncate ${isActive ? "text-blue-100" : "text-slate-300"}`}>
+                                                {s.nombre_salon}
+                                            </p>
+                                            <div className="flex items-center gap-2 mt-0.5">
+                                                <span className="text-[10px] text-slate-500">Tier {s.tier}</span>
+                                                <span className="text-[10px] text-slate-600">•</span>
+                                                <span className="text-[10px] font-bold" style={{ color }}>
+                                                    {pct > 0 ? "+" : ""}{pct.toFixed(1)}%
+                                                </span>
                                             </div>
-                                            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
                                         </div>
-                                    </button>
-                                );
-                            })}
+                                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: color }} />
+                                    </div>
+                                </button>
+                            );
+                        })}
+                        {sortedAuditable.length === 0 && (
+                            <div className="flex flex-col items-center justify-center py-12 text-center">
+                                <FileCheck size={36} className="text-slate-700 mb-3" />
+                                <p className="text-slate-500 text-sm">No hay contratos vigentes con datos completos</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                {/* Right: Detailed Audit View */}
                 <div className="lg:col-span-2">
-                    {selectedAudit ? (
-                        <motion.div
-                            key={`${selectedAudit.id_salon}-${selectedAudit.year}`}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="glass-card p-6 h-full"
-                        >
-                            <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
-                                <div>
-                                    <h2 className="text-2xl font-bold text-white mb-1">{selectedAudit.nombre}</h2>
-                                    <p className="text-slate-400">Detalle de Auditoría Contractual — Año {selectedAudit.year}</p>
-                                </div>
-                                <span
-                                    className="px-4 py-1.5 rounded-full text-xs font-bold"
-                                    style={{
-                                        background: `${getSemaphoreColor(selectedAudit.color)}15`,
-                                        color: getSemaphoreColor(selectedAudit.color),
-                                        border: `1px solid ${getSemaphoreColor(selectedAudit.color)}30`
-                                    }}
-                                >
-                                    {selectedAudit.color === "green" ? "CUMPLIMIENTO OK" : selectedAudit.color === "yellow" ? "REVISIÓN MANUAL" : "DESVÍO CRÍTICO"}
-                                </span>
+                    <AnimatePresence mode="wait">
+                        {selected ? (
+                            <DetailPanel key={selected.id_salon} salon={selected} conversionRate={conversionRate} />
+                        ) : (
+                            <div className="glass-card p-20 flex flex-col items-center justify-center text-center opacity-50 border-dashed">
+                                <FileCheck size={48} className="text-slate-700 mb-4" />
+                                <p className="text-slate-500">Seleccioná un salón para ver la auditoría detallada.</p>
                             </div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <FileCheck size={60} className="text-blue-400" />
-                                    </div>
-                                    <p className="text-xs text-slate-500 uppercase font-bold mb-4">Contrato Pactado</p>
-                                    <div className="space-y-3 relative z-10">
-                                        <div className="flex justify-between items-baseline">
-                                            <span className="text-slate-400 text-xs">Monto USD:</span>
-                                            <span className="text-lg font-bold text-white">USD {selectedAudit.contratoUSD.toLocaleString("es-AR")}</span>
-                                        </div>
-                                        <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
-                                            <span className="text-slate-400 text-xs">Monto ARS (est.):</span>
-                                            <span className="text-lg font-bold text-cyan-400">{formatARS(selectedAudit.contractAmount)}</span>
-                                        </div>
-                                    </div>
-                                </div>
+            {(totalNoVigentes > 0 || totalSinDato > 0) && (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-6">
+                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">
+                        Salones sin auditoría disponible
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {enriched
+                            .filter((s) => s._contract.status !== "ok")
+                            .map((s) => (
+                                <NonAuditableRow key={s.id_salon} salon={s} />
+                            ))}
+                    </div>
+                </motion.div>
+            )}
+        </div>
+    );
+}
 
-                                <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <AlertCircle size={60} className="text-purple-400" />
-                                    </div>
-                                    <p className="text-xs text-slate-500 uppercase font-bold mb-4">Pago Real Ejecutado</p>
-                                    <div className="space-y-3 relative z-10">
-                                        <div className="flex justify-between items-baseline">
-                                            <span className="text-slate-400 text-xs">Total ARS:</span>
-                                            <span className="text-lg font-bold text-white">{formatARS(selectedAudit.realPayment)}</span>
-                                        </div>
-                                        <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
-                                            <span className="text-slate-400 text-xs">Desvío Detectado:</span>
-                                            <span className={`text-lg font-bold ${selectedAudit.deviation > 0 ? "text-red-400" : "text-green-400"}`}>
-                                                {selectedAudit.deviation > 0 ? "+" : ""}{formatARS(selectedAudit.deviation)}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+// ────── Detail Panel ──────
 
-                            <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center justify-center text-center">
-                                <p className="text-xs text-slate-500 uppercase font-bold mb-2">Desvío del Contrato</p>
-                                <div className="flex items-baseline gap-2">
-                                    <span className={`text-5xl font-black ${selectedAudit.deviationPercent > 15 ? "text-red-500" : selectedAudit.deviationPercent > 5 ? "text-yellow-500" : "text-green-500"}`}>
-                                        {selectedAudit.deviation > 0 ? "+" : ""}{selectedAudit.deviationPercent.toFixed(1)}%
-                                    </span>
-                                </div>
-                                <p className="text-xs text-slate-400 mt-4 max-w-sm leading-relaxed">
-                                    {selectedAudit.deviationPercent > 15
-                                        ? `El desvío supera el umbral crítico. El salón tiene una incidencia real de alquiler del ${formatPercentage(selectedAudit.rentIncidence)}.`
-                                        : selectedAudit.deviationPercent > 5
-                                            ? `El desvío es moderado (${formatPercentage(selectedAudit.deviationPercent)}). La incidencia sobre ventas es del ${formatPercentage(selectedAudit.rentIncidence)}.`
-                                            : "El pago real está alineado con el contrato pactado según la tasa de conversión actual."}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ) : (
-                        <div className="glass-card p-20 flex flex-col items-center justify-center text-center opacity-50 border-dashed">
-                            <FileCheck size={48} className="text-slate-700 mb-4" />
-                            <p className="text-slate-500">Selecciona un salón para ver la auditoría detallada.</p>
+function DetailPanel({ salon, conversionRate }: { salon: any; conversionRate: number }) {
+    const ca = salon._contract;
+    const status: ContractStatus = ca.status;
+    const color = getSemaphoreColor(ca.color);
+    const desvioPercent = ca.desvioPercent ?? 0;
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            className="glass-card p-6 h-full"
+        >
+            <div className="flex items-start justify-between mb-8 border-b border-white/5 pb-6 gap-4 flex-wrap">
+                <div>
+                    <h2 className="text-2xl font-bold text-white mb-1">{salon.nombre_salon}</h2>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p className="text-slate-400 text-sm">Auditoría Contractual · {salon.municipio_salon}</p>
+                        <ContractStatusBadge status={status} estadoContrato={ca.estadoContrato} />
+                    </div>
+                </div>
+                {status === "ok" && (
+                    <span
+                        className="px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap flex-shrink-0"
+                        style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}
+                    >
+                        {getDesvioLabel(desvioPercent)}
+                    </span>
+                )}
+            </div>
+
+            {/* Condition 1: Non-active */}
+            {status === "non_active" && (
+                <div className="flex flex-col items-center justify-center py-16 text-center gap-6">
+                    <div className="w-16 h-16 rounded-2xl bg-slate-800/60 border border-slate-700/40 flex items-center justify-center">
+                        <Ban size={32} className="text-slate-500" />
+                    </div>
+                    <div>
+                        <p className="text-xl font-bold text-slate-400">Contrato no vigente</p>
+                        {ca.estadoContrato && ca.estadoContrato !== "sin_estado" && (
+                            <p className="text-sm text-slate-600 mt-1 capitalize">Estado: {ca.estadoContrato}</p>
+                        )}
+                        <p className="text-sm text-slate-600 mt-3 max-w-sm leading-relaxed">
+                            No se pueden calcular desvíos sin un contrato vigente. Regularizar el estado contractual para habilitar la auditoría.
+                        </p>
+                    </div>
+                    {ca.precioAlquiler > 0 && (
+                        <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 text-center">
+                            <p className="text-xs text-slate-500 uppercase font-bold mb-1">Precio Alquiler Actual</p>
+                            <p className="text-lg font-bold text-slate-300">{formatARS(ca.precioAlquiler)}</p>
+                            <p className="text-[10px] text-slate-600 mt-1">
+                                ≈ USD {Math.round(ca.precioAlquiler / conversionRate).toLocaleString("es-AR")}
+                            </p>
                         </div>
                     )}
                 </div>
+            )}
+
+            {/* Condition 2: No contract amount */}
+            {status === "no_data" && (
+                <div className="flex flex-col items-center justify-center py-16 text-center gap-6">
+                    <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
+                        <HelpCircle size={32} className="text-amber-400" />
+                    </div>
+                    <div>
+                        <p className="text-xl font-bold text-amber-400">Sin dato de alquiler en el contrato</p>
+                        <p className="text-sm text-slate-500 mt-3 max-w-sm leading-relaxed">
+                            El contrato está vigente pero no tiene monto pactado cargado. No es posible calcular el desvío sin ese dato.
+                        </p>
+                    </div>
+                    {ca.precioAlquiler > 0 && (
+                        <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 text-center">
+                            <p className="text-xs text-slate-500 uppercase font-bold mb-1">Precio Alquiler Actual</p>
+                            <p className="text-lg font-bold text-white">{formatARS(ca.precioAlquiler)}</p>
+                            <p className="text-[10px] text-slate-600 mt-1">
+                                ≈ USD {Math.round(ca.precioAlquiler / conversionRate).toLocaleString("es-AR")}
+                            </p>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* Condition 3: Happy path */}
+            {status === "ok" && (
+                <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden">
+                            <div className="absolute top-3 right-3 opacity-5 pointer-events-none">
+                                <FileCheck size={56} className="text-blue-400" />
+                            </div>
+                            <p className="text-xs text-slate-500 uppercase font-bold mb-4">Alquiler Pactado (Contrato)</p>
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-baseline">
+                                    <span className="text-slate-400 text-xs">Monto ARS:</span>
+                                    <span className="text-xl font-bold text-cyan-300">{formatARS(ca.alquilerContrato)}</span>
+                                </div>
+                                <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
+                                    <span className="text-slate-400 text-xs">Equiv. USD:</span>
+                                    <span className="text-base font-bold text-slate-300">
+                                        USD {Math.round(ca.alquilerContrato / conversionRate).toLocaleString("es-AR")}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden">
+                            <div className="absolute top-3 right-3 opacity-5 pointer-events-none">
+                                <AlertCircle size={56} className="text-purple-400" />
+                            </div>
+                            <p className="text-xs text-slate-500 uppercase font-bold mb-4">Precio Alquiler Actual</p>
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-baseline">
+                                    <span className="text-slate-400 text-xs">Monto ARS:</span>
+                                    <span className="text-xl font-bold text-white">{formatARS(ca.precioAlquiler)}</span>
+                                </div>
+                                <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
+                                    <span className="text-slate-400 text-xs">Desvío Nominal:</span>
+                                    <span className={`text-base font-bold ${(ca.desvioNominal ?? 0) > 0 ? "text-red-400" : "text-green-400"}`}>
+                                        {(ca.desvioNominal ?? 0) > 0 ? "+" : ""}{formatARS(ca.desvioNominal ?? 0)}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        className="p-8 rounded-2xl border flex flex-col items-center justify-center text-center"
+                        style={{ background: `${color}08`, borderColor: `${color}25` }}
+                    >
+                        <div className="flex items-center gap-3 mb-2">
+                            <DesvioIcon pct={desvioPercent} />
+                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío del Alquiler</p>
+                        </div>
+                        <div className="flex items-baseline gap-1 my-3">
+                            <span className="text-6xl font-black" style={{ color }}>
+                                {desvioPercent > 0 ? "+" : ""}{desvioPercent.toFixed(1)}
+                            </span>
+                            <span className="text-2xl font-bold text-slate-400">%</span>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-3 max-w-sm leading-relaxed">
+                            {desvioPercent > 15
+                                ? "El pago supera el contrato en más del 15%. Se recomienda revisión contractual urgente."
+                                : desvioPercent > 5
+                                    ? `Desvío moderado. El precio actual excede el monto pactado en ${desvioPercent.toFixed(1)}%.`
+                                    : desvioPercent >= -5
+                                        ? "El precio actual está alineado con el monto pactado en contrato."
+                                        : `El precio actual es inferior al contrato en ${Math.abs(desvioPercent).toFixed(1)}%.`}
+                        </p>
+                    </div>
+                </div>
+            )}
+        </motion.div>
+    );
+}
+
+// ────── Non-auditable row ──────
+
+function NonAuditableRow({ salon }: { salon: any }) {
+    const ca = salon._contract;
+    const isNonActive = ca.status === "non_active";
+    return (
+        <div className={`p-4 rounded-xl border flex items-center gap-3 ${isNonActive
+            ? "bg-slate-900/40 border-slate-800/40"
+            : "bg-amber-500/5 border-amber-500/15"
+            }`}>
+            {isNonActive
+                ? <Ban size={15} className="text-slate-600 flex-shrink-0" />
+                : <HelpCircle size={15} className="text-amber-500 flex-shrink-0" />
+            }
+            <div className="min-w-0">
+                <p className={`text-sm font-medium truncate ${isNonActive ? "text-slate-400" : "text-slate-300"}`}>
+                    {salon.nombre_salon}
+                </p>
+                <p className={`text-[10px] font-bold uppercase ${isNonActive ? "text-slate-600" : "text-amber-600"}`}>
+                    {isNonActive ? "Contrato no vigente" : "Sin dato de alquiler en el contrato"}
+                </p>
             </div>
         </div>
     );

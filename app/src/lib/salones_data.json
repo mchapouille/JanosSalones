@@ -46,10 +46,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 35735588.0,
-      "realPayment": 35735588.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 35735588.0,
+      "alquilerContrato": 22543509.0,
+      "desvioNominal": 13192079.0,
+      "desvioPercent": 58.5183,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -105,10 +108,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 18883743.0,
-      "realPayment": 18883743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 18883743.0,
+      "alquilerContrato": 12601815.0,
+      "desvioNominal": 6281928.0,
+      "desvioPercent": 49.8494,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 8.0,
@@ -164,10 +170,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 19481495.0,
-      "realPayment": 19481495.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 19481495.0,
+      "alquilerContrato": 13552000.0,
+      "desvioNominal": 5929495.0,
+      "desvioPercent": 43.7537,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -223,10 +232,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 33254461.0,
-      "realPayment": 33254461.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 33254461.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -282,10 +294,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 33254461.0,
-      "realPayment": 33254461.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 33254461.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -341,10 +356,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 33254461.0,
-      "realPayment": 33254461.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 33254461.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -400,10 +418,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 33254461.0,
-      "realPayment": 33254461.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 33254461.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 11.0,
@@ -459,10 +480,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 33228467.0,
-      "realPayment": 33228467.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 33228467.0,
+      "alquilerContrato": 23464000.0,
+      "desvioNominal": 9764467.0,
+      "desvioPercent": 41.6147,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 11.0,
@@ -518,10 +542,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 29208567.0,
-      "realPayment": 29208567.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 29208567.0,
+      "alquilerContrato": 22911000.0,
+      "desvioNominal": 6297567.0,
+      "desvioPercent": 27.4871,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -577,10 +604,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 23779952.0,
-      "realPayment": 23779952.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 23779952.0,
+      "alquilerContrato": 20335000.0,
+      "desvioNominal": 3444952.0,
+      "desvioPercent": 16.941,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -636,10 +666,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 26774694.0,
-      "realPayment": 26774694.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 26774694.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -695,10 +728,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 12083957.0,
-      "realPayment": 12083957.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 12083957.0,
+      "alquilerContrato": 9282000.0,
+      "desvioNominal": 2801957.0,
+      "desvioPercent": 30.187,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 1.0,
@@ -754,10 +790,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 22968973.0,
-      "realPayment": 22968973.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 22968973.0,
+      "alquilerContrato": 17570000.0,
+      "desvioNominal": 5398973.0,
+      "desvioPercent": 30.7284,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -813,10 +852,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 14734735.0,
-      "realPayment": 14734735.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 14734735.0,
+      "alquilerContrato": 6267800.0,
+      "desvioNominal": 8466935.0,
+      "desvioPercent": 135.0862,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -872,10 +914,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 38399743.0,
-      "realPayment": 38399743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 38399743.0,
+      "alquilerContrato": 33880000.0,
+      "desvioNominal": 4519743.0,
+      "desvioPercent": 13.3404,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -931,10 +976,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 12748956.0,
-      "realPayment": 12748956.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 12748956.0,
+      "alquilerContrato": 15729000.0,
+      "desvioNominal": -2980044.0,
+      "desvioPercent": -18.9462,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 10.0,
@@ -990,10 +1038,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 22808165.5,
-      "realPayment": 22808165.5,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 22808165.5,
+      "alquilerContrato": 9528750.0,
+      "desvioNominal": 13279415.5,
+      "desvioPercent": 139.3616,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 9.0,
@@ -1049,10 +1100,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 22808165.5,
-      "realPayment": 22808165.5,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 22808165.5,
+      "alquilerContrato": 9528750.0,
+      "desvioNominal": 13279415.5,
+      "desvioPercent": 139.3616,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1108,10 +1162,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 15570000.0,
-      "realPayment": 15570000.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 15570000.0,
+      "alquilerContrato": 13552000.0,
+      "desvioNominal": 2018000.0,
+      "desvioPercent": 14.8908,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1167,10 +1224,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 105984743.0,
-      "realPayment": 105984743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 105984743.0,
+      "alquilerContrato": 98252000.0,
+      "desvioNominal": 7732743.0,
+      "desvioPercent": 7.8703,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1226,10 +1286,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11620016.09,
-      "realPayment": 11620016.09,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 11620016.09,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 7.0,
@@ -1285,10 +1348,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 30950140.0,
-      "realPayment": 30950140.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 30950140.0,
+      "alquilerContrato": 38115000.0,
+      "desvioNominal": -7164860.0,
+      "desvioPercent": -18.798,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 9.0,
@@ -1344,9 +1410,12 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 38698265.0,
-      "realPayment": 38698265.0,
-      "deviationPercent": 0,
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 38698265.0,
+      "alquilerContrato": 38115000.0,
+      "desvioNominal": 583265.0,
+      "desvioPercent": 1.5303,
       "color": "green"
     },
     "extra": {
@@ -1403,10 +1472,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11532343.0,
-      "realPayment": 11532343.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 11532343.0,
+      "alquilerContrato": 6776000.0,
+      "desvioNominal": 4756343.0,
+      "desvioPercent": 70.194,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1462,10 +1534,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 19103303.0,
-      "realPayment": 19103303.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 19103303.0,
+      "alquilerContrato": 29584800.0,
+      "desvioNominal": -10481497.0,
+      "desvioPercent": -35.4287,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1521,10 +1596,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 19103303.0,
-      "realPayment": 19103303.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido (si es atelier darwin)",
+      "precioAlquiler": 19103303.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1580,10 +1658,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 10610887.24,
-      "realPayment": 10610887.24,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 10610887.24,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1639,10 +1720,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 42678372.0,
-      "realPayment": 42678372.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 42678372.0,
+      "alquilerContrato": 16940000.0,
+      "desvioNominal": 25738372.0,
+      "desvioPercent": 151.9384,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1698,10 +1782,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 8188467.0,
-      "realPayment": 8188467.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 8188467.0,
+      "alquilerContrato": 7520800.0,
+      "desvioNominal": 667667.0,
+      "desvioPercent": 8.8776,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1757,10 +1844,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 14384697.0,
-      "realPayment": 14384697.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 14384697.0,
+      "alquilerContrato": 10055500.0,
+      "desvioNominal": 4329197.0,
+      "desvioPercent": 43.053,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 11.0,
@@ -1816,10 +1906,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 14384697.0,
-      "realPayment": 14384697.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 14384697.0,
+      "alquilerContrato": 10055500.0,
+      "desvioNominal": 4329197.0,
+      "desvioPercent": 43.053,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1875,10 +1968,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 18703121.0,
-      "realPayment": 18703121.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 18703121.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1934,10 +2030,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 6426743.0,
-      "realPayment": 6426743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 6426743.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -1993,10 +2092,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 17674956.0,
-      "realPayment": 17674956.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 17674956.0,
+      "alquilerContrato": 13594000.0,
+      "desvioNominal": 4080956.0,
+      "desvioPercent": 30.0203,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2052,10 +2154,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 33247343.0,
-      "realPayment": 33247343.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 33247343.0,
+      "alquilerContrato": 16905000.0,
+      "desvioNominal": 16342343.0,
+      "desvioPercent": 96.6717,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2111,10 +2216,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 22204765.0,
-      "realPayment": 22204765.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 22204765.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2170,10 +2278,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 14580852.0,
-      "realPayment": 14580852.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 14580852.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2229,10 +2340,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 13709767.0,
-      "realPayment": 13709767.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 13709767.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2288,10 +2402,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2347,10 +2464,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 24403719.73,
-      "realPayment": 24403719.73,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 24403719.73,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2406,10 +2526,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 27942105.0,
-      "realPayment": 27942105.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 27942105.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2465,10 +2588,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 27814743.0,
-      "realPayment": 27814743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 27814743.0,
+      "alquilerContrato": 30492000.0,
+      "desvioNominal": -2677257.0,
+      "desvioPercent": -8.7802,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2524,10 +2650,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 21012718.0,
-      "realPayment": 21012718.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 21012718.0,
+      "alquilerContrato": 7735000.0,
+      "desvioNominal": 13277718.0,
+      "desvioPercent": 171.6576,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2583,10 +2712,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11413638.0,
-      "realPayment": 11413638.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 11413638.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 7.0,
@@ -2642,10 +2774,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 28460167.0,
-      "realPayment": 28460167.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 28460167.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2701,10 +2836,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 14161443.0,
-      "realPayment": 14161443.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 14161443.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2760,10 +2898,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11683303.0,
-      "realPayment": 11683303.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 11683303.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2819,10 +2960,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 19693848.0,
-      "realPayment": 19693848.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 19693848.0,
+      "alquilerContrato": 10829000.0,
+      "desvioNominal": 8864848.0,
+      "desvioPercent": 81.8621,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2878,10 +3022,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 17174943.0,
-      "realPayment": 17174943.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 17174943.0,
+      "alquilerContrato": 9069200.0,
+      "desvioNominal": 8105743.0,
+      "desvioPercent": 89.3766,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 10.0,
@@ -2937,10 +3084,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 13714743.0,
-      "realPayment": 13714743.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 13714743.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -2996,10 +3146,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 16500000.0,
-      "realPayment": 16500000.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 16500000.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3055,10 +3208,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 18867970.0,
-      "realPayment": 18867970.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 18867970.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3114,10 +3270,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 109355878.0,
-      "realPayment": 109355878.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 109355878.0,
+      "alquilerContrato": 76230000.0,
+      "desvioNominal": 33125878.0,
+      "desvioPercent": 43.4552,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3173,10 +3332,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 74005713.0,
-      "realPayment": 74005713.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 74005713.0,
+      "alquilerContrato": 135520000.0,
+      "desvioNominal": -61514287.0,
+      "desvioPercent": -45.3913,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3232,10 +3394,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 30363742.0,
-      "realPayment": 30363742.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 30363742.0,
+      "alquilerContrato": 24346000.0,
+      "desvioNominal": 6017742.0,
+      "desvioPercent": 24.7176,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3291,10 +3456,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 23421517.0,
-      "realPayment": 23421517.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 23421517.0,
+      "alquilerContrato": 16093000.0,
+      "desvioNominal": 7328517.0,
+      "desvioPercent": 45.5385,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 11.0,
@@ -3350,10 +3518,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 49992265.0,
-      "realPayment": 49992265.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 49992265.0,
+      "alquilerContrato": 27527500.0,
+      "desvioNominal": 22464765.0,
+      "desvioPercent": 81.6084,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3409,10 +3580,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 21039700.0,
-      "realPayment": 21039700.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 21039700.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3468,10 +3642,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 19625000.0,
-      "realPayment": 19625000.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 19625000.0,
+      "alquilerContrato": 15470000.0,
+      "desvioNominal": 4155000.0,
+      "desvioPercent": 26.8584,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3527,10 +3704,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 36607110.0,
-      "realPayment": 36607110.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 36607110.0,
+      "alquilerContrato": 31528000.0,
+      "desvioNominal": 5079110.0,
+      "desvioPercent": 16.1098,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3586,10 +3766,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 61406380.01,
-      "realPayment": 61406380.01,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 61406380.01,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 10.0,
@@ -3645,10 +3828,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 21000000.0,
-      "realPayment": 21000000.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 21000000.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3704,10 +3890,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 15012345.0,
-      "realPayment": 15012345.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 15012345.0,
+      "alquilerContrato": 10417400.0,
+      "desvioNominal": 4594945.0,
+      "desvioPercent": 44.1084,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3763,10 +3952,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 12897860.0,
-      "realPayment": 12897860.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 12897860.0,
+      "alquilerContrato": 7035000.0,
+      "desvioNominal": 5862860.0,
+      "desvioPercent": 83.3385,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3822,10 +4014,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 13296655.0,
-      "realPayment": 13296655.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 13296655.0,
+      "alquilerContrato": 9282000.0,
+      "desvioNominal": 4014655.0,
+      "desvioPercent": 43.252,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3881,10 +4076,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11761044.5,
-      "realPayment": 11761044.5,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 11761044.5,
+      "alquilerContrato": 12432000.0,
+      "desvioNominal": -670955.5,
+      "desvioPercent": -5.397,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 9.0,
@@ -3940,10 +4138,13 @@
       "color": "yellow"
     },
     "contractAudit": {
-      "contractAmount": 11761044.5,
-      "realPayment": 11761044.5,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 11761044.5,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -3999,10 +4200,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 22291412.11,
-      "realPayment": 22291412.11,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 22291412.11,
+      "alquilerContrato": 6776000.0,
+      "desvioNominal": 15515412.11,
+      "desvioPercent": 228.976,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4058,10 +4262,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 16904842.0,
-      "realPayment": 16904842.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 16904842.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4117,9 +4324,12 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 28300000.0,
-      "realPayment": 28300000.0,
-      "deviationPercent": 0,
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 28300000.0,
+      "alquilerContrato": 27846000.0,
+      "desvioNominal": 454000.0,
+      "desvioPercent": 1.6304,
       "color": "green"
     },
     "extra": {
@@ -4176,10 +4386,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 8810083.67,
-      "realPayment": 8810083.67,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 8810083.67,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4235,10 +4448,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 8810083.67,
-      "realPayment": 8810083.67,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 8810083.67,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 11.0,
@@ -4294,10 +4510,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 8810083.67,
-      "realPayment": 8810083.67,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 8810083.67,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4353,10 +4572,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 30096243.0,
-      "realPayment": 30096243.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 30096243.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4412,10 +4634,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 25811632.0,
-      "realPayment": 25811632.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 25811632.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4471,10 +4696,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 24069582.0,
-      "realPayment": 24069582.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 24069582.0,
+      "alquilerContrato": 12376000.0,
+      "desvioNominal": 11693582.0,
+      "desvioPercent": 94.486,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4530,10 +4758,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 25291653.0,
-      "realPayment": 25291653.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 25291653.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4589,10 +4820,13 @@
       "color": "red"
     },
     "contractAudit": {
-      "contractAmount": 21571089.0,
-      "realPayment": 21571089.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 21571089.0,
+      "alquilerContrato": 18564000.0,
+      "desvioNominal": 3007089.0,
+      "desvioPercent": 16.1985,
+      "color": "red"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4648,10 +4882,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 15984986.0,
-      "realPayment": 15984986.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "vencido",
+      "precioAlquiler": 15984986.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4707,10 +4944,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11235742.0,
-      "realPayment": 11235742.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "ok",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 11235742.0,
+      "alquilerContrato": 15176000.0,
+      "desvioNominal": -3940258.0,
+      "desvioPercent": -25.9637,
+      "color": "yellow"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4766,10 +5006,13 @@
       "color": "green"
     },
     "contractAudit": {
-      "contractAmount": 11235742.0,
-      "realPayment": 11235742.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "no_data",
+      "estadoContrato": "vigente",
+      "precioAlquiler": 11235742.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 12.0,
@@ -4825,10 +5068,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -4884,10 +5130,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -4943,10 +5192,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5002,10 +5254,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5061,10 +5316,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5120,10 +5378,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5179,10 +5440,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5238,10 +5502,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5297,10 +5564,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5356,10 +5626,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5415,10 +5688,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,
@@ -5474,10 +5750,13 @@
       "color": "gray"
     },
     "contractAudit": {
-      "contractAmount": 0.0,
-      "realPayment": 0.0,
-      "deviationPercent": 0,
-      "color": "green"
+      "contractStatus": "non_active",
+      "estadoContrato": "sin_estado",
+      "precioAlquiler": 0.0,
+      "alquilerContrato": 0,
+      "desvioNominal": null,
+      "desvioPercent": null,
+      "color": "gray"
     },
     "extra": {
       "meses_activos": 0.0,

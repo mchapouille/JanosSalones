@@ -152,9 +152,25 @@ export default function DashboardPage() {
         },
         {
             label: "Contratos",
-            color: selectedSalon.contractAudit?.color || "green",
-            value: "—",
-            sublabel: getSemaforoLabel(selectedSalon.contractAudit?.color || "green"),
+            color: (() => {
+                const ca = selectedSalon.contractAudit;
+                if (!ca || ca.contractStatus === "non_active") return "gray";
+                if (ca.contractStatus === "no_data") return "gray";
+                return ca.color || "green";
+            })(),
+            value: (() => {
+                const ca = selectedSalon.contractAudit;
+                if (!ca || ca.contractStatus === "non_active") return "—";
+                if (ca.contractStatus === "no_data") return "—";
+                const pct = ca.desvioPercent ?? 0;
+                return `${pct > 0 ? "+" : ""}${pct.toFixed(1)}%`;
+            })(),
+            sublabel: (() => {
+                const ca = selectedSalon.contractAudit;
+                if (!ca || ca.contractStatus === "non_active") return "No vigente";
+                if (ca.contractStatus === "no_data") return "Sin dato";
+                return getSemaforoLabel(ca.color || "green");
+            })(),
         },
     ] : null;
 
