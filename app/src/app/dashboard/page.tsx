@@ -155,7 +155,7 @@ export default function DashboardPage() {
             color: (() => {
                 const ca = selectedSalon.contractAudit;
                 if (!ca || ca.contractStatus === "non_active") return "gray";
-                if (ca.contractStatus === "no_data") return "gray";
+                if (ca.contractStatus === "no_data") return "yellow";
                 return ca.color || "green";
             })(),
             value: (() => {
@@ -167,9 +167,12 @@ export default function DashboardPage() {
             })(),
             sublabel: (() => {
                 const ca = selectedSalon.contractAudit;
-                if (!ca || ca.contractStatus === "non_active") return "No vigente";
-                if (ca.contractStatus === "no_data") return "Sin dato";
-                return getSemaforoLabel(ca.color || "green");
+                if (!ca || ca.contractStatus === "non_active") return "Vencido / Sin estado";
+                if (ca.contractStatus === "no_data") return "Vigente sin monto";
+                const pct = ca.desvioPercent ?? 0;
+                if (pct > 5) return "Con desvío";
+                if (pct < -5) return "Pago inferior";
+                return "Sin desvío";
             })(),
         },
     ] : null;
