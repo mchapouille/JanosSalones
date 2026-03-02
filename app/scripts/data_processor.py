@@ -290,7 +290,7 @@ def procesar_datos_dashboard(ruta_archivo):
     # Asignación del Semáforo Performance
     df_procesables.loc[idx_v, 'semaforo_performance'] = np.where(df_procesables.loc[idx_v, 'ip_score'] >= 60, "alta",
                                                         np.where(df_procesables.loc[idx_v, 'ip_score'] >= 40, "media",
-                                                        np.where(df_procesables.loc[idx_v, 'ip_score'] >= 5, "baja", "muy_baja")))
+                                                        np.where(df_procesables.loc[idx_v, 'ip_score'] >= 20, "baja", "muy_baja")))
     
     # Formateo a decimal
     df_procesables.loc[idx_v, 'incidencia_alquiler_sobre_facturacion_anual'] = df_procesables.loc[idx_v, 'incidencia_alquiler_sobre_facturacion_anual'] / 100

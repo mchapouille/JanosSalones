@@ -19,6 +19,9 @@ import {
     Circle,
     Search,
     Receipt,
+    Ticket,
+    UserCheck,
+    BarChart2,
 } from "lucide-react";
 import { getSemaphoreColor, TIER_DEFINITIONS, get_color_from_incidence } from "@/lib/calculations";
 import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
@@ -34,6 +37,20 @@ function getSemaforoLabel(color: string): string {
         case "critical": return "Crítico";
         default: return "—";
     }
+}
+
+function getIpScoreLabel(score: number): string {
+    if (score >= 60) return "Alta";
+    if (score >= 40) return "Media";
+    if (score >= 20) return "Baja";
+    return "Muy baja";
+}
+
+function getIpScoreColor(score: number): string {
+    if (score >= 60) return "green";
+    if (score >= 40) return "yellow";
+    if (score >= 20) return "red";
+    return "critical";
 }
 
 function SemaforoIcon({ color, size = 20 }: { color: string; size?: number }) {
@@ -126,46 +143,53 @@ export default function DashboardPage() {
         ? validInc.reduce((acc, s) => acc + (s.incidencia_alquiler_sobre_facturacion_anual || 0), 0) / validInc.length
         : 0;
 
+    // Determine if selected salon is non-active (DEVUELTOS or OBRA)
+    const isNonActive = selectedSalon && selectedSalon.estado_salon !== "ACTIVO";
+
+    // Determine if Tier 1 (No benchmark applicable)
+    const isTier1 = selectedSalon && Number(selectedSalon.tier) === 1;
+
     // Semaphore cards for selected salon
     const semaforos = selectedSalon ? [
         {
             label: "Rentabilidad",
-            color: selectedSalon.performance?.color || "gray",
-            value: `${(selectedSalon.ip_score || 0).toFixed(0)} pts`,
-            sublabel: getSemaforoLabel(selectedSalon.performance?.color || "gray"),
+            color: isNonActive ? "gray" : (selectedSalon.performance?.color || "gray"),
+            value: isNonActive ? "—" : `${(selectedSalon.ip_score || 0).toFixed(0)} pts`,
+            sublabel: isNonActive ? "—" : getSemaforoLabel(selectedSalon.performance?.color || "gray"),
         },
         {
             label: "Benchmarking",
-            color: selectedSalon.benchmark?.color || "gray",
-            value: selectedSalon.benchmark?.deviation != null
+            // Tier 1 gets gray (no benchmark reference); non-active also gray
+            color: (isNonActive || isTier1) ? "gray" : (selectedSalon.benchmark?.color || "gray"),
+            value: (isNonActive || isTier1) ? "—" : (selectedSalon.benchmark?.deviation != null
                 ? `${selectedSalon.benchmark.deviation > 0 ? "+" : ""}${selectedSalon.benchmark.deviation.toFixed(0)}%`
-                : "—",
-            sublabel: getSemaforoLabel(selectedSalon.benchmark?.color || "gray"),
+                : "—"),
+            sublabel: isNonActive ? "—" : (isTier1 ? "Sin referencia (T1)" : getSemaforoLabel(selectedSalon.benchmark?.color || "gray")),
         },
         {
             label: "Eficiencia",
-            color: selectedSalon.efficiency?.color || "gray",
-            value: (selectedSalon.efficiency?.globalIndex || 0) > 0
+            color: isNonActive ? "gray" : (selectedSalon.efficiency?.color || "gray"),
+            value: isNonActive ? "—" : ((selectedSalon.efficiency?.globalIndex || 0) > 0
                 ? `${(selectedSalon.efficiency.globalIndex).toFixed(2)}x`
-                : "—",
-            sublabel: getSemaforoLabel(selectedSalon.efficiency?.color || "gray"),
+                : "—"),
+            sublabel: isNonActive ? "—" : getSemaforoLabel(selectedSalon.efficiency?.color || "gray"),
         },
         {
             label: "Contratos",
-            color: (() => {
+            color: isNonActive ? "gray" : (() => {
                 const ca = selectedSalon.contractAudit;
                 if (!ca || ca.contractStatus === "non_active") return "gray";
                 if (ca.contractStatus === "no_data") return "yellow";
                 return ca.color || "green";
             })(),
-            value: (() => {
+            value: isNonActive ? "—" : (() => {
                 const ca = selectedSalon.contractAudit;
                 if (!ca || ca.contractStatus === "non_active") return "—";
                 if (ca.contractStatus === "no_data") return "—";
                 const pct = ca.desvioPercent ?? 0;
                 return `${pct > 0 ? "+" : ""}${pct.toFixed(1)}%`;
             })(),
-            sublabel: (() => {
+            sublabel: isNonActive ? "—" : (() => {
                 const ca = selectedSalon.contractAudit;
                 if (!ca || ca.contractStatus === "non_active") return "Vencido / Sin estado";
                 if (ca.contractStatus === "no_data") return "Vigente sin monto";
@@ -176,6 +200,25 @@ export default function DashboardPage() {
             })(),
         },
     ] : null;
+
+    // Extra KPIs for selected salon
+    const extraKpis = selectedSalon ? (() => {
+        const tktEvento = selectedSalon.ticket_evento_promedio || 0;
+        const tktInvitado = selectedSalon.ticket_persona_promedio || 0;
+        const eventos = selectedSalon.cantidad_eventos_salon || 0;
+        const invitados = selectedSalon.total_invitados_salon || 0;
+        const invPorEvento = eventos > 0 ? invitados / eventos : 0;
+        const incidencia = selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0;
+        const ipScore = selectedSalon.ip_score || 0;
+        return {
+            tktEvento,
+            tktInvitado,
+            invPorEvento,
+            incidencia,
+            retornoLabel: isNonActive ? "—" : getIpScoreLabel(ipScore),
+            retornoColor: isNonActive ? "#6b7280" : getSemaphoreColor(getIpScoreColor(ipScore)),
+        };
+    })() : null;
 
     return (
         <div className="space-y-6">
@@ -189,7 +232,7 @@ export default function DashboardPage() {
                 <div className="glass-card p-6 md:p-8 relative">
 
                     {/* Header */}
-                    <div className="flex flex-col gap-6 mb-8 pb-6 border-b border-white/5">
+                    <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-white/5">
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
                                 <Building2 size={18} className="text-blue-400" />
@@ -299,62 +342,55 @@ export default function DashboardPage() {
                             </div>
                         )}
 
-                        {/* Salon Basic Info */}
+                        {/* Salon Basic Info — compact row */}
                         {selectedSalon && (
-                            <div className="flex flex-wrap items-center gap-4">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500 uppercase font-bold">Estado:</span>
-                                    <span className={`text-sm font-bold px-3 py-1 rounded-lg ${selectedSalon.estado_salon === "ACTIVO" ? "bg-green-500/20 text-green-400" :
-                                        selectedSalon.estado_salon === "OBRA" ? "bg-amber-500/20 text-amber-400" :
-                                            "bg-slate-500/20 text-slate-400"
-                                        }`}>
-                                        {selectedSalon.estado_salon}
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500 uppercase font-bold">Tier:</span>
-                                    <span className="text-sm font-bold text-white">{selectedSalon.tier}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500 uppercase font-bold">Municipio:</span>
-                                    <span className="text-sm font-bold text-white">{selectedSalon.municipio_salon}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500 uppercase font-bold">Superficie:</span>
-                                    <span className="text-sm font-bold text-white">{selectedSalon.mt2_salon} m²</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500 uppercase font-bold">PAX:</span>
-                                    <span className="text-sm font-bold text-white">{selectedSalon.pax_calculado}</span>
-                                </div>
+                            <div className="flex flex-wrap items-center gap-3">
+                                <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${selectedSalon.estado_salon === "ACTIVO" ? "bg-green-500/20 text-green-400" :
+                                    selectedSalon.estado_salon === "OBRA" ? "bg-amber-500/20 text-amber-400" :
+                                        "bg-slate-500/20 text-slate-400"
+                                    }`}>
+                                    {selectedSalon.estado_salon}
+                                </span>
+                                <span className="text-slate-600 text-xs">·</span>
+                                <span className="text-xs text-slate-500 font-bold uppercase">Tier</span>
+                                <span className="text-xs font-bold text-white">{selectedSalon.tier}</span>
+                                <span className="text-slate-600 text-xs">·</span>
+                                <span className="text-xs text-slate-500 font-bold uppercase">Municipio</span>
+                                <span className="text-xs font-bold text-white">{selectedSalon.municipio_salon}</span>
+                                <span className="text-slate-600 text-xs">·</span>
+                                <span className="text-xs text-slate-500 font-bold uppercase">Sup.</span>
+                                <span className="text-xs font-bold text-white">{selectedSalon.mt2_salon} m²</span>
+                                <span className="text-slate-600 text-xs">·</span>
+                                <span className="text-xs text-slate-500 font-bold uppercase">PAX</span>
+                                <span className="text-xs font-bold text-white">{selectedSalon.pax_calculado}</span>
                             </div>
                         )}
                     </div>
 
                     {selectedSalon && semaforos ? (
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {/* ── SEMAPHORE PANEL ── */}
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-4">Semáforos</p>
-                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Semáforos</p>
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                                     {semaforos.map((sem) => {
                                         const hex = getSemaphoreColor(sem.color);
                                         return (
                                             <div
                                                 key={sem.label}
-                                                className="relative p-5 rounded-2xl border flex flex-col items-center text-center gap-3 overflow-hidden"
+                                                className="relative p-4 rounded-xl border flex flex-col items-center text-center gap-2 overflow-hidden"
                                                 style={{ background: `${hex}08`, borderColor: `${hex}25` }}
                                             >
                                                 <div className="absolute inset-0 opacity-5 pointer-events-none"
                                                     style={{ background: `radial-gradient(circle at 50% 0%, ${hex}, transparent 70%)` }} />
-                                                <div className="w-11 h-11 rounded-full flex items-center justify-center relative z-10"
+                                                <div className="w-9 h-9 rounded-full flex items-center justify-center relative z-10"
                                                     style={{ background: `${hex}15`, border: `2px solid ${hex}40` }}>
-                                                    <SemaforoIcon color={sem.color} size={20} />
+                                                    <SemaforoIcon color={sem.color} size={16} />
                                                 </div>
-                                                <span className="text-[10px] text-slate-400 uppercase font-black tracking-[0.18em] relative z-10">{sem.label}</span>
-                                                <span className="text-sm font-black uppercase tracking-wider relative z-10" style={{ color: hex }}>{sem.sublabel}</span>
+                                                <span className="text-[9px] text-slate-400 uppercase font-black tracking-[0.18em] relative z-10">{sem.label}</span>
+                                                <span className="text-xs font-black uppercase tracking-wider relative z-10" style={{ color: hex }}>{sem.sublabel}</span>
                                                 {sem.value !== "—" && (
-                                                    <span className="text-xs text-slate-500 font-mono relative z-10">{sem.value}</span>
+                                                    <span className="text-[10px] text-slate-500 font-mono relative z-10">{sem.value}</span>
                                                 )}
                                             </div>
                                         );
@@ -362,87 +398,121 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
-                            {/* ── 4 DETAIL PANELS ── */}
+                            {/* ── EXTRA KPIs STRIP ── */}
+                            {extraKpis && (
+                                <div>
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Indicadores Operativos</p>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                                        {/* Tkt por evento */}
+                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5">
+                                                <Ticket size={12} className="text-cyan-400" />
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Evento</span>
+                                            </div>
+                                            <span className="text-base font-black text-white">
+                                                {isNonActive ? "—" : (extraKpis.tktEvento > 0 ? formatARS(extraKpis.tktEvento) : "—")}
+                                            </span>
+                                        </div>
+                                        {/* Tkt por invitado */}
+                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5">
+                                                <Ticket size={12} className="text-purple-400" />
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Tkt / Invitado</span>
+                                            </div>
+                                            <span className="text-base font-black text-white">
+                                                {isNonActive ? "—" : (extraKpis.tktInvitado > 0 ? formatARS(extraKpis.tktInvitado) : "—")}
+                                            </span>
+                                        </div>
+                                        {/* Invitados por evento */}
+                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5">
+                                                <UserCheck size={12} className="text-blue-400" />
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Inv. / Evento</span>
+                                            </div>
+                                            <span className="text-base font-black text-white">
+                                                {isNonActive ? "—" : (extraKpis.invPorEvento > 0 ? extraKpis.invPorEvento.toFixed(0) : "—")}
+                                            </span>
+                                        </div>
+                                        {/* Incidencia promedio */}
+                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5">
+                                                <BarChart2 size={12} className="text-orange-400" />
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Incidencia</span>
+                                            </div>
+                                            <span className="text-base font-black"
+                                                style={{ color: isNonActive ? "#6b7280" : get_color_from_incidence(extraKpis.incidencia) }}>
+                                                {isNonActive ? "—" : (extraKpis.incidencia > 0 ? formatPercentage(extraKpis.incidencia * 100) : "—")}
+                                            </span>
+                                        </div>
+                                        {/* Retorno sobre alquiler (ip_score category) */}
+                                        <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5">
+                                                <TrendingUp size={12} className="text-emerald-400" />
+                                                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Ret. Alquiler</span>
+                                            </div>
+                                            <span className="text-base font-black" style={{ color: extraKpis.retornoColor }}>
+                                                {extraKpis.retornoLabel}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ── DETAIL PANELS — compact 3-column ── */}
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-4">Indicadores Detallados</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    {/* Operación */}
-                                    <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center text-center">
-                                        <div className="flex items-center gap-2 w-full justify-center border-b border-white/5 pb-4 mb-6">
-                                            <Activity size={16} className="text-blue-400" />
-                                            <span className="text-[11px] text-slate-500 uppercase font-black tracking-[0.2em]">Operación</span>
+                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-3">Indicadores Detallados</p>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                                    {/* Eventos */}
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <Activity size={11} className="text-blue-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Eventos</span>
                                         </div>
-                                        <div className="flex flex-col space-y-8 w-full">
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Cantidad Eventos</p>
-                                                <p className="text-2xl font-bold text-white">{formatNumber(selectedSalon.cantidad_eventos_salon || 0)}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Cantidad Invitados</p>
-                                                <p className="text-2xl font-bold text-white">{formatNumber(selectedSalon.total_invitados_salon || 0)}</p>
-                                            </div>
-                                        </div>
+                                        <span className="text-xl font-black text-white">{formatNumber(selectedSalon.cantidad_eventos_salon || 0)}</span>
                                     </div>
-
-                                    {/* Financiero */}
-                                    <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center text-center">
-                                        <div className="flex items-center gap-2 w-full justify-center border-b border-white/5 pb-4 mb-6">
-                                            <DollarSign size={16} className="text-green-400" />
-                                            <span className="text-[11px] text-slate-500 uppercase font-black tracking-[0.2em]">Financiero</span>
+                                    {/* Invitados */}
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <Users size={11} className="text-blue-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Invitados</span>
                                         </div>
-                                        <div className="flex flex-col space-y-8 w-full">
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest text-green-400/70">Ventas Totales</p>
-                                                <p className="text-xl font-bold text-green-400">{formatARS(selectedSalon.ventas_totales_salon || 0)}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest text-red-400/70">Costos Totales</p>
-                                                <p className="text-xl font-bold text-red-400">{formatARS(selectedSalon.costos_totales_salon || 0)}</p>
-                                            </div>
-                                        </div>
+                                        <span className="text-xl font-black text-white">{formatNumber(selectedSalon.total_invitados_salon || 0)}</span>
                                     </div>
-
+                                    {/* Ventas */}
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <DollarSign size={11} className="text-green-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Ventas</span>
+                                        </div>
+                                        <span className="text-sm font-black text-green-400">{formatARS(selectedSalon.ventas_totales_salon || 0)}</span>
+                                    </div>
+                                    {/* Costos */}
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <Receipt size={11} className="text-red-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Costos</span>
+                                        </div>
+                                        <span className="text-sm font-black text-red-400">{formatARS(selectedSalon.costos_totales_salon || 0)}</span>
+                                    </div>
                                     {/* Rentabilidad */}
-                                    <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center text-center">
-                                        <div className="flex items-center gap-2 w-full justify-center border-b border-white/5 pb-4 mb-6">
-                                            <TrendingUp size={16} className="text-emerald-400" />
-                                            <span className="text-[11px] text-slate-500 uppercase font-black tracking-[0.2em]">Rentabilidad</span>
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <TrendingUp size={11} className="text-emerald-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Rentab.</span>
                                         </div>
-                                        <div className="flex flex-col space-y-8 w-full">
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Rentabilidad (%)</p>
-                                                <p className={`text-2xl font-bold ${(selectedSalon.rentabilidad_salon || 0) < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                                                    {formatPercentage((selectedSalon.rentabilidad_salon || 0) * 100, 2)}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Retorno s/ Alquiler</p>
-                                                <p className="text-2xl font-bold text-white">{formatMultiplier(selectedSalon.retorno_sobre_alquiler || 0)}</p>
-                                            </div>
-                                        </div>
+                                        <span className={`text-xl font-black ${(selectedSalon.rentabilidad_salon || 0) < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                                            {formatPercentage((selectedSalon.rentabilidad_salon || 0) * 100, 1)}
+                                        </span>
                                     </div>
-
-                                    {/* Indicadores */}
-                                    <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 flex flex-col items-center text-center">
-                                        <div className="flex items-center gap-2 w-full justify-center border-b border-white/5 pb-4 mb-6">
-                                            <BrainCircuit size={16} className="text-purple-400" />
-                                            <span className="text-[11px] text-slate-500 uppercase font-black tracking-[0.2em]">Indicadores</span>
+                                    {/* Partic. Margen */}
+                                    <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 flex flex-col gap-1">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <BrainCircuit size={11} className="text-purple-400" />
+                                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Part. Margen</span>
                                         </div>
-                                        <div className="flex flex-col space-y-8 w-full">
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Incidencia Alquiler</p>
-                                                <p className="text-2xl font-bold"
-                                                    style={{ color: get_color_from_incidence(selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) }}>
-                                                    {formatPercentage((selectedSalon.incidencia_alquiler_sobre_facturacion_anual || 0) * 100)}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold mb-2 tracking-widest">Participación Margen</p>
-                                                <p className="text-2xl font-bold text-white">
-                                                    {formatPercentage((selectedSalon.participacion_margen || 0) * 100)}
-                                                </p>
-                                            </div>
-                                        </div>
+                                        <span className="text-xl font-black text-white">
+                                            {formatPercentage((selectedSalon.participacion_margen || 0) * 100, 1)}
+                                        </span>
                                     </div>
                                 </div>
                             </div>

@@ -270,10 +270,8 @@ export default function BenchmarkingPage() {
                                 className="rounded-lg overflow-hidden"
                             >
                                 <div className="flex items-center gap-3 px-4 py-2.5" style={{ background: `${color}10`, border: `1px solid ${color}22` }}>
-                                    <div className="flex-shrink-0 w-7 h-7 rounded-md flex items-center justify-center font-black text-xs" style={{ background: `${color}18`, color }}>T{tier}</div>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-bold text-white leading-tight">{def?.name}</p>
-                                        <p className="text-[10px] text-slate-500 truncate">{def?.examples?.join(", ")}</p>
                                     </div>
                                     <div className="flex items-center gap-5 flex-shrink-0">
                                         <div className="text-right">

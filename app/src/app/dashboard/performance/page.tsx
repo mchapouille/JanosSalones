@@ -33,7 +33,6 @@ export default function PerformancePage() {
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
-    const [ipWeights, setIpWeights] = useState({ margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 });
 
     // Dual filter state (same pattern as Dashboard)
     const [searchQuery, setSearchQuery] = useState("");
@@ -78,24 +77,18 @@ export default function PerformancePage() {
         }
     }, [salones, selectedSalonId]);
 
-    // Compute dynamic IP score for selected salon
+    // Compute dynamic IP score for selected salon (uses fixed weights matching backend)
+    const FIXED_WEIGHTS = { margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 };
     const dynamicScore = useMemo(() => {
         const s = salones.find(x => x.id_salon === selectedSalonId);
         if (!s) return null;
-        const incPct = (s.incidencia_alquiler_sobre_facturacion_anual || 0) * 100;
-        const maxMargen = Math.max(...salones.map(x => x.margen_individual || 0));
-        const pts_inc = Math.max(0, Math.min(100, interpolateScore(incPct, 5, 30, 100, 0)));
-        const pts_mar = Math.max(0, Math.min(100, interpolateScore(s.margen_individual || 0, 0, maxMargen || 1, 0, 100)));
-        const pts_eve = Math.max(0, Math.min(100, interpolateScore(s.ticket_evento_promedio || 0, 10000000, 40000000, 0, 100)));
-        const pts_inv = Math.max(0, Math.min(100, interpolateScore(s.ticket_persona_promedio || 0, 150000, 500000, 0, 100)));
-        const total = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado || 100;
-        let score = (pts_mar * ipWeights.margen + pts_inc * ipWeights.incidencia + pts_eve * ipWeights.ticketEvento + pts_inv * ipWeights.ticketInvitado) / total;
-        if ((s.margen_individual || 0) < 0) score = 0;
-        const label = score >= 60 ? "Desempeño Alto" : score >= 40 ? "Desempeño Medio" : score >= 5 ? "Desempeño Bajo" : "Riesgo Crítico";
-        const color = score >= 60 ? "green" : score >= 40 ? "yellow" : score >= 5 ? "red" : "critical";
-        const categoria = score >= 60 ? "alta" : score >= 40 ? "media" : score >= 5 ? "baja" : "muy_baja";
+        // Use backend ip_score directly for consistency
+        const score = s.ip_score || s.performance?.score || 0;
+        const label = score >= 60 ? "Desempeño Alto" : score >= 40 ? "Desempeño Medio" : score >= 20 ? "Desempeño Bajo" : "Riesgo Crítico";
+        const color = score >= 60 ? "green" : score >= 40 ? "yellow" : score >= 20 ? "red" : "critical";
+        const categoria = score >= 60 ? "alta" : score >= 40 ? "media" : score >= 20 ? "baja" : "muy_baja";
         return { score, label, color, categoria };
-    }, [selectedSalonId, salones, ipWeights]);
+    }, [selectedSalonId, salones]);
 
     // Data for ScatterChart: Margen Total (X) vs Score Rentabilidad (Y)
     const chartData = useMemo(() => {
@@ -131,10 +124,10 @@ export default function PerformancePage() {
     const groupedSalones = useMemo(() => {
         const baseList = salones.filter(s => s.performance);
         return {
-            alta: baseList.filter(s => (s.performance?.score || 0) >= 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
-            media: baseList.filter(s => (s.performance?.score || 0) >= 40 && (s.performance?.score || 0) < 60).sort((a, b) => (b.performance?.score || 0) - (a.performance?.score || 0)),
-            baja: baseList.filter(s => (s.performance?.score || 0) >= 5 && (s.performance?.score || 0) < 40).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
-            muyBaja: baseList.filter(s => (s.performance?.score || 0) < 5).sort((a, b) => (a.performance?.score || 0) - (b.performance?.score || 0)),
+            alta: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 60).sort((a, b) => (b.ip_score || b.performance?.score || 0) - (a.ip_score || a.performance?.score || 0)),
+            media: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 40 && (s.ip_score || s.performance?.score || 0) < 60).sort((a, b) => (b.ip_score || b.performance?.score || 0) - (a.ip_score || a.performance?.score || 0)),
+            baja: baseList.filter(s => (s.ip_score || s.performance?.score || 0) >= 20 && (s.ip_score || s.performance?.score || 0) < 40).sort((a, b) => (a.ip_score || a.performance?.score || 0) - (b.ip_score || b.performance?.score || 0)),
+            muyBaja: baseList.filter(s => (s.ip_score || s.performance?.score || 0) < 20).sort((a, b) => (a.ip_score || a.performance?.score || 0) - (b.ip_score || b.performance?.score || 0)),
         };
     }, [salones]);
 
@@ -267,10 +260,11 @@ export default function PerformancePage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Score Rentabilidad</p>
                     {(() => {
-                        // Use dynamicScore when salon selected (same source as the panel circle)
-                        const score = !selectedSalonId ? 100 : (dynamicScore?.score ?? 0);
-                        const scoreColor = score >= 60 ? "#22c55e" : score >= 40 ? "#facc15" : score >= 5 ? "#f97316" : "#ef4444";
-                        const scoreLabel = score >= 60 ? "Alta" : score >= 40 ? "Media" : score >= 5 ? "Baja" : "Muy Baja";
+                        // Use backend ip_score for consistency with the list cards
+                        const s = salones.find(x => x.id_salon === selectedSalonId);
+                        const score = !selectedSalonId ? 100 : (s?.ip_score || s?.performance?.score || 0);
+                        const scoreColor = score >= 60 ? "#22c55e" : score >= 40 ? "#facc15" : score >= 20 ? "#f97316" : "#ef4444";
+                        const scoreLabel = score >= 60 ? "Alta" : score >= 40 ? "Media" : score >= 20 ? "Baja" : "Muy Baja";
                         return (
                             <>
                                 <p className="text-3xl font-bold" style={{ color: scoreColor }}>{score.toFixed(0)}</p>
@@ -292,15 +286,23 @@ export default function PerformancePage() {
                 </motion.div>
             </div>
 
-            {/* Score Rentabilidad Panel — above matrix */}
-            {selectedSalonId && dynamicScore && (() => {
-                const hex = getSemaphoreColor(dynamicScore.color);
-                const totalWeight = ipWeights.margen + ipWeights.incidencia + ipWeights.ticketEvento + ipWeights.ticketInvitado;
+            {/* Score Rentabilidad Panel — always visible */}
+            {(() => {
+                // When no salon selected, show average network score
+                const panelScore = dynamicScore ?? (() => {
+                    const active = salones.filter(s => (s.ip_score || 0) > 0);
+                    const avg = active.length > 0
+                        ? active.reduce((acc, s) => acc + (s.ip_score || 0), 0) / active.length
+                        : 0;
+                    const color = avg >= 60 ? "green" : avg >= 40 ? "yellow" : avg >= 20 ? "red" : "critical";
+                    return { score: avg, color, label: avg >= 60 ? "Alta" : avg >= 40 ? "Media" : avg >= 20 ? "Baja" : "Muy Baja" };
+                })();
+                const hex = getSemaphoreColor(panelScore.color);
                 const weights = [
-                    { id: 'margen', label: 'Margen', value: ipWeights.margen, color: '#10b981' },
-                    { id: 'incidencia', label: 'Incidencia', value: ipWeights.incidencia, color: '#8b5cf6' },
-                    { id: 'ticketEvento', label: 'Tk. Evento', value: ipWeights.ticketEvento, color: '#3b82f6' },
-                    { id: 'ticketInvitado', label: 'Tk. Invitado', value: ipWeights.ticketInvitado, color: '#06b6d4' },
+                    { id: 'margen', label: 'Margen', value: FIXED_WEIGHTS.margen, color: '#10b981' },
+                    { id: 'incidencia', label: 'Incidencia', value: FIXED_WEIGHTS.incidencia, color: '#8b5cf6' },
+                    { id: 'ticketEvento', label: 'Tk. Evento', value: FIXED_WEIGHTS.ticketEvento, color: '#3b82f6' },
+                    { id: 'ticketInvitado', label: 'Tk. Invitado', value: FIXED_WEIGHTS.ticketInvitado, color: '#06b6d4' },
                 ] as const;
                 return (
                     <div className="relative overflow-hidden glass-card">
@@ -311,43 +313,33 @@ export default function PerformancePage() {
                             </div>
                             <h3 className="text-sm font-bold text-white">Score Rentabilidad</h3>
                             <span className="ml-auto text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border" style={{ color: hex, borderColor: `${hex}40`, background: `${hex}12` }}>
-                                {dynamicScore.label}
+                                {panelScore.label}{!selectedSalonId ? " · Red" : ""}
                             </span>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-6 p-6">
                             <div className="flex flex-col items-center justify-center gap-2">
                                 <div className="w-24 h-24 rounded-full flex flex-col items-center justify-center relative shadow-xl flex-shrink-0" style={{ background: `${hex}10`, border: `3px solid ${hex}50` }}>
                                     <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: hex, opacity: 0.06 }} />
-                                    <span className="text-3xl font-black text-white relative z-10 leading-none">{dynamicScore.score.toFixed(0)}</span>
+                                    <span className="text-3xl font-black text-white relative z-10 leading-none">{panelScore.score.toFixed(0)}</span>
                                     <span className="text-[9px] font-bold tracking-widest relative z-10 mt-0.5" style={{ color: hex }}>/ 100</span>
-                                </div>
-                                <div className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${totalWeight === 100 ? 'text-green-400 border-green-500/30 bg-green-500/8' : 'text-yellow-400 border-yellow-500/30 bg-yellow-500/8'}`}>
-                                    Σ {totalWeight} / 100
                                 </div>
                             </div>
                             <div className="space-y-1">
                                 <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                                    <Sliders size={10} /> Ponderación Dinámica
+                                    <Sliders size={10} /> Ponderación Fija
                                 </p>
                                 <div className="grid grid-cols-2 gap-3">
-                                    {weights.map((w) => {
-                                        const pct = Math.round((w.value / Math.max(totalWeight, 1)) * 100);
-                                        return (
-                                            <div key={w.id} className="rounded-xl border p-3 flex flex-col gap-2" style={{ borderColor: `${w.color}25`, background: `${w.color}08` }}>
-                                                <div className="flex items-center justify-between gap-1">
-                                                    <span className="text-[10px] font-bold text-slate-400">{w.label}</span>
-                                                    <span className="text-[10px] font-black tabular-nums" style={{ color: w.color }}>{w.value}</span>
-                                                </div>
-                                                <input type="range" min="0" max="100" step="5" value={w.value}
-                                                    onChange={(e) => setIpWeights(prev => ({ ...prev, [w.id]: parseInt(e.target.value) }))}
-                                                    className="w-full h-1.5 rounded-full cursor-pointer" style={{ accentColor: w.color }}
-                                                />
-                                                <div className="w-full h-1 rounded-full bg-slate-800 overflow-hidden">
-                                                    <div className="h-full rounded-full transition-all duration-300" style={{ width: `${pct}%`, background: w.color }} />
-                                                </div>
+                                    {weights.map((w) => (
+                                        <div key={w.id} className="rounded-xl border p-3 flex flex-col gap-1" style={{ borderColor: `${w.color}25`, background: `${w.color}08` }}>
+                                            <div className="flex items-center justify-between gap-1">
+                                                <span className="text-[10px] font-bold text-slate-400">{w.label}</span>
+                                                <span className="text-[10px] font-black tabular-nums" style={{ color: w.color }}>{w.value}%</span>
                                             </div>
-                                        );
-                                    })}
+                                            <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mt-1">
+                                                <div className="h-full rounded-full" style={{ width: `${w.value}%`, background: w.color }} />
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -459,7 +451,7 @@ export default function PerformancePage() {
                                 }}
                             />
                             {/* Reference Lines for Score Quadrants */}
-                            <ReferenceLine y={5} stroke="#f97316" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Baja', fill: '#f97316', fontSize: 9 }} />
+                            <ReferenceLine y={20} stroke="#f97316" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Baja', fill: '#f97316', fontSize: 9 }} />
                             <ReferenceLine y={40} stroke="#facc15" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Media', fill: '#facc15', fontSize: 9 }} />
                             <ReferenceLine y={60} stroke="#22c55e" strokeDasharray="3 3" opacity={0.6} label={{ position: 'right', value: 'Alta', fill: '#22c55e', fontSize: 9 }} />
                             <Scatter name="Salones" data={chartData}>
@@ -501,17 +493,17 @@ export default function PerformancePage() {
                                     <p className="text-[10px] text-slate-500 leading-relaxed">Performance alineada con el promedio de la red.</p>
                                 </div>
                             </div>
-                            <div className="flex gap-3 pt-3 border-t border-white/5">
+                            <div className="flex gap-3">
                                 <div className="w-2 h-2 rounded-full bg-orange-500 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#f9731688]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-orange-400">Baja (5 – 40)</p>
+                                    <p className="text-[11px] font-bold text-orange-400">Baja (20 – 40)</p>
                                     <p className="text-[10px] text-slate-500 leading-relaxed">Requiere revisión de costos o impulso comercial.</p>
                                 </div>
                             </div>
                             <div className="flex gap-3 pt-3 border-t border-white/5">
                                 <div className="w-2 h-2 rounded-full bg-red-600 mt-0.5 flex-shrink-0 shadow-[0_0_6px_#ef444488]" />
                                 <div>
-                                    <p className="text-[11px] font-bold text-red-500">Muy Baja (&lt; 5)</p>
+                                    <p className="text-[11px] font-bold text-red-500">Muy Baja (&lt; 20)</p>
                                     <p className="text-[10px] text-slate-500 leading-relaxed">Situación crítica. Revisión inmediata de contrato.</p>
                                 </div>
                             </div>
@@ -544,7 +536,7 @@ export default function PerformancePage() {
                         {groupedSalones.alta.map(s => (
                             <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-green-500/10 border-green-500/30" : "bg-slate-900/60 border-white/5 hover:border-green-500/20"}`}>
                                 <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
-                                <span className="text-[10px] font-black text-green-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
+                                <span className="text-[10px] font-black text-green-400 flex-shrink-0">{(s.ip_score || 0).toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
@@ -566,7 +558,7 @@ export default function PerformancePage() {
                         {groupedSalones.media.map(s => (
                             <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-yellow-500/10 border-yellow-500/30" : "bg-slate-900/60 border-white/5 hover:border-yellow-500/20"}`}>
                                 <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
-                                <span className="text-[10px] font-black text-yellow-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
+                                <span className="text-[10px] font-black text-yellow-400 flex-shrink-0">{(s.ip_score || 0).toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
@@ -578,7 +570,7 @@ export default function PerformancePage() {
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
                             <span className="text-[11px] font-black text-orange-400 uppercase tracking-widest">Baja</span>
-                            <span className="text-[9px] text-orange-600 font-bold">5-40</span>
+                            <span className="text-[9px] text-orange-600 font-bold">20-40</span>
                         </div>
                         <span className="px-2 py-0.5 rounded-full bg-orange-500/10 text-[10px] font-bold text-orange-500 border border-orange-500/20">
                             {groupedSalones.baja.length}
@@ -588,7 +580,7 @@ export default function PerformancePage() {
                         {groupedSalones.baja.map(s => (
                             <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-orange-500/10 border-orange-500/30" : "bg-slate-900/60 border-white/5 hover:border-orange-500/20"}`}>
                                 <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
-                                <span className="text-[10px] font-black text-orange-400 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
+                                <span className="text-[10px] font-black text-orange-400 flex-shrink-0">{(s.ip_score || 0).toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
@@ -600,7 +592,7 @@ export default function PerformancePage() {
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.5)]" />
                             <span className="text-[11px] font-black text-red-500 uppercase tracking-widest">Muy Baja</span>
-                            <span className="text-[9px] text-red-800 font-bold">&lt; 5</span>
+                            <span className="text-[9px] text-red-800 font-bold">&lt; 20</span>
                         </div>
                         <span className="px-2 py-0.5 rounded-full bg-red-600/10 text-[10px] font-bold text-red-600 border border-red-600/20">
                             {groupedSalones.muyBaja.length}
@@ -610,7 +602,7 @@ export default function PerformancePage() {
                         {groupedSalones.muyBaja.map(s => (
                             <div key={s.id_salon} onClick={() => setSelectedSalonId(s.id_salon)} className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${selectedSalonId === s.id_salon ? "bg-red-600/10 border-red-600/30" : "bg-slate-900/60 border-white/5 hover:border-red-600/20"}`}>
                                 <span className="text-[10px] font-bold text-slate-200 truncate mr-2">{s.nombre_salon}</span>
-                                <span className="text-[10px] font-black text-red-500 flex-shrink-0">{s.performance?.score.toFixed(0)} pts</span>
+                                <span className="text-[10px] font-black text-red-500 flex-shrink-0">{(s.ip_score || 0).toFixed(0)} pts</span>
                             </div>
                         ))}
                     </div>
