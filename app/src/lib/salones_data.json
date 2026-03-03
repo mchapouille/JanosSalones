@@ -1376,7 +1376,7 @@
     "pax_calculado": 530.0,
     "mt2_salon": 1828.0,
     "cantidad_eventos_salon": 144,
-    "total_invitados_salon": 1883,
+    "total_invitados_salon": 18830,
     "costos_variables_salon": 819147510.94,
     "costos_fijos_salon": 38698265.0,
     "costos_totales_salon": 1283526690.94,
@@ -1387,7 +1387,7 @@
       "rentIncidence": 0.12680335663216738,
       "multiplier": 7.886226568124781,
       "marginContribution": 0.0315891579129265,
-      "score": 83.49956743677879,
+      "score": 70.40617412898727,
       "color": "green",
       "classification": "normal"
     },
@@ -1421,7 +1421,7 @@
     "extra": {
       "meses_activos": 12.0,
       "ticket_evento": 25431940.465277776,
-      "ticket_persona": 1944874.8948486457,
+      "ticket_persona": 194487.48948486458,
       "venta_mensual": 305183285.5833333
     }
   },
