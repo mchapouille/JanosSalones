@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { TrendingUp, AlertTriangle, Award, Sliders, BrainCircuit, Ticket, UserCheck, BarChart2 } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
-import { getSalonesData } from "@/lib/sample-data";
+
 import { useDashboard } from "@/components/DashboardContext";
 import { PredictiveSearch } from "@/components/PredictiveSearch";
 import { SalonSelector } from "@/components/SalonSelector";
@@ -43,24 +43,22 @@ function interpolateScore(val: number, x0: number, x1: number, y0: number, y1: n
 }
 
 export default function PerformancePage() {
-    const { salones: allSalones } = useDashboard();
+    const { salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
 
     // Performance works mainly on active salons
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
-
-    const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
 
     // Handle salon selection from PredictiveSearch
     const handleSelectSearch = (salon: { id_salon: number }) => {
         setSelectedSalonId(salon.id_salon);
     };
 
-    // Update selected salon if it's not in the filtered list
+    // Update selected salon if it's not in the filtered list (guard invalid IDs)
     useEffect(() => {
         if (selectedSalonId && !salones.find(s => s.id_salon === selectedSalonId)) {
             setSelectedSalonId(null);
         }
-    }, [salones, selectedSalonId]);
+    }, [salones, selectedSalonId, setSelectedSalonId]);
 
     // Compute dynamic IP score for selected salon (uses fixed weights matching backend)
     const FIXED_WEIGHTS = { margen: 40, incidencia: 30, ticketEvento: 15, ticketInvitado: 15 };
@@ -75,35 +73,27 @@ export default function PerformancePage() {
         return { score, label, color, categoria };
     }, [selectedSalonId, salones]);
 
-    // Data for ScatterChart: Margen Total (X) vs Score Rentabilidad (Y)
+    // Data for ScatterChart: all eligible salones; selected salon is visually highlighted
     const chartData = useMemo(() => {
-        if (!selectedSalonId) {
-            // Default View: Show ONE aggregate point
-            const totalMargin = salones.reduce((acc, s) => acc + ((s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0)), 0);
-            return [{
-                id: 'total',
-                name: 'Total Red',
-                x: totalMargin,
-                y: 100, // Fixed 100 per instruction
-                z: 1,
-                color: '#3b82f6',
-                isFiltered: true
-            }];
-        }
-
-        // Selected View: Show ONLY the selected salon
-        const s = salones.find(x => x.id_salon === selectedSalonId);
-        if (!s) return [];
-
-        return [{
-            id: s.id_salon,
-            name: s.nombre_salon,
-            x: (s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0),
-            y: s.performance?.score || 0,
-            z: 1,
-            color: getSemaphoreColor(s.performance?.color || "gray"),
-            isFiltered: true
-        }];
+        return salones
+            .filter(s => s.performance)
+            .map(s => {
+                const isSelected = s.id_salon === selectedSalonId;
+                const baseColor = getSemaphoreColor(s.performance?.color || "gray");
+                return {
+                    id: s.id_salon,
+                    name: s.nombre_salon,
+                    x: (s.ventas_totales_salon || 0) - (s.costos_totales_salon || 0),
+                    y: s.performance?.score || 0,
+                    z: 1,
+                    color: baseColor,
+                    isSelected,
+                    // Visual emphasis props — selected: prominent; peers: subdued
+                    fillOpacity: isSelected ? 0.9 : (selectedSalonId ? 0.2 : 0.45),
+                    strokeOpacity: isSelected ? 1 : (selectedSalonId ? 0.15 : 0.7),
+                    r: isSelected ? 10 : 5,
+                };
+            });
     }, [salones, selectedSalonId]);
 
     const groupedSalones = useMemo(() => {
@@ -293,8 +283,8 @@ export default function PerformancePage() {
             {selectedSalonId && (() => {
                 const s = salones.find(x => x.id_salon === selectedSalonId);
                 if (!s) return null;
-                const tktEvento = s.ticket_evento_promedio || (s.extra as any)?.ticket_evento || 0;
-                const tktInvitado = s.ticket_persona_promedio || (s.extra as any)?.ticket_persona || 0;
+                const tktEvento = s.ticket_evento_promedio || 0;
+                const tktInvitado = s.ticket_persona_promedio || 0;
                 const eventos = s.cantidad_eventos_salon || 0;
                 const invitados = s.total_invitados_salon || 0;
                 const invPorEvento = eventos > 0 ? invitados / eventos : 0;
@@ -436,7 +426,7 @@ export default function PerformancePage() {
                                 tick={{ fill: "#94a3b8", fontSize: 11 }}
                                 label={{ value: 'Score Rentabilidad', angle: -90, position: 'left', offset: 0, fill: '#64748b', fontSize: 12 }}
                             />
-                            <ZAxis type="number" dataKey="z" range={[100, 100]} />
+                            <ZAxis type="number" dataKey="z" range={[60, 60]} />
                             <Tooltip
                                 cursor={{ strokeDasharray: '3 3' }}
                                 content={({ active, payload }) => {
@@ -444,7 +434,10 @@ export default function PerformancePage() {
                                         const data = payload[0].payload;
                                         return (
                                             <div className="bg-slate-900 border border-white/10 p-4 rounded-xl shadow-2xl backdrop-blur-md min-w-[200px]">
-                                                <p className="text-sm font-bold text-white mb-3 border-b border-white/5 pb-2">{data.name}</p>
+                                                <p className="text-sm font-bold text-white mb-3 border-b border-white/5 pb-2">
+                                                    {data.name}
+                                                    {data.isSelected && <span className="ml-2 text-[10px] text-blue-400 font-normal">(seleccionado)</span>}
+                                                </p>
                                                 <div className="space-y-2">
                                                     <div className="flex justify-between gap-4">
                                                         <span className="text-[10px] text-slate-500 uppercase">Margen Total:</span>
@@ -472,12 +465,13 @@ export default function PerformancePage() {
                                     <Cell
                                         key={`cell-${index}`}
                                         fill={entry.color}
-                                        strokeWidth={2}
-                                        stroke={entry.color}
-                                        fillOpacity={entry.isFiltered ? 0.4 : 0.05}
-                                        strokeOpacity={entry.isFiltered ? 1 : 0.1}
-                                        className={`cursor-pointer transition-all ${entry.isFiltered ? "hover:fill-opacity-80" : "pointer-events-none"}`}
-                                        onClick={() => entry.isFiltered && setSelectedSalonId(entry.id as number)}
+                                        stroke={entry.isSelected ? "#ffffff" : entry.color}
+                                        strokeWidth={entry.isSelected ? 2 : 1}
+                                        fillOpacity={entry.fillOpacity}
+                                        strokeOpacity={entry.strokeOpacity}
+                                        r={entry.r}
+                                        className="cursor-pointer"
+                                        onClick={() => setSelectedSalonId(entry.id === selectedSalonId ? null : entry.id as number)}
                                     />
                                 ))}
                             </Scatter>

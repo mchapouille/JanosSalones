@@ -22,7 +22,6 @@ import {
     CheckCircle2,
     AlertCircle,
     RefreshCw,
-    Clock,
 } from "lucide-react";
 import HelpModal from "./HelpModal";
 
@@ -43,7 +42,7 @@ export default function DashboardShell({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-    const { conversionRate, setConversionRate, setIsHelpOpen, salones, reloadSalones } = useDashboard();
+    const { conversionRate, setConversionRate, setIsHelpOpen, reloadSalones, salonesError } = useDashboard();
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [refreshStatus, setRefreshStatus] = useState<RefreshStatus>('idle');
@@ -259,6 +258,20 @@ export default function DashboardShell({
                         </div>
                     </div>
                 </header>
+
+                {/* Salones error banner */}
+                {salonesError && (
+                    <div className="flex items-center gap-3 px-6 py-3 bg-red-950/60 border-b border-red-500/20 text-red-300 text-sm">
+                        <AlertCircle size={16} className="flex-shrink-0 text-red-400" />
+                        <span className="flex-1">{salonesError}</span>
+                        <button
+                            onClick={reloadSalones}
+                            className="text-xs font-bold text-red-400 hover:text-red-200 underline underline-offset-2 transition-colors"
+                        >
+                            Reintentar
+                        </button>
+                    </div>
+                )}
 
                 {/* Page content */}
                 <main className="flex-1 p-6 overflow-y-auto">{children}</main>

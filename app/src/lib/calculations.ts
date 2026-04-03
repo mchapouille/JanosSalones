@@ -123,8 +123,8 @@ export const DEFAULT_WEIGHTS: StrategicWeights = {
 
 export function calcGlobalStatus(
     performance?: PerformanceResult,
-    benchmark?: any | null,
-    efficiency?: any | null,
+    benchmark?: { color?: string } | null,
+    efficiency?: { color?: string } | null,
     // audit dependency removed
     weights: StrategicWeights = DEFAULT_WEIGHTS
 ): GlobalStatusResult {

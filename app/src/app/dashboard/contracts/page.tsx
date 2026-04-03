@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     FileCheck,
@@ -36,7 +36,7 @@ function getContractAuditData(s: SalonIntegral) {
     };
 }
 
-function ContractStatusBadge({ status, estadoContrato }: { status: ContractStatus; estadoContrato: string }) {
+function ContractStatusBadge({ status }: { status: ContractStatus; estadoContrato: string }) {
     if (status === "non_active") {
         return (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-700/60 border border-slate-600/40 text-slate-400">
@@ -77,7 +77,7 @@ function getDesvioLabel(desvioPercent: number) {
 // ────── Main Page ──────
 
 export default function ContractsPage() {
-    const { conversionRate, salones: allSalones } = useDashboard();
+    const { conversionRate, salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
 
     const activeSalones = useMemo(
         () => allSalones.filter((s) => s.estado_salon === "ACTIVO"),
@@ -102,17 +102,17 @@ export default function ContractsPage() {
     const alertCount = auditable.filter((s) => s._contract.color === "red").length;
     const totalDesvioNominal = auditable.reduce((acc, s) => acc + (s._contract.desvioNominal ?? 0), 0);
 
-    const [selectedId, setSelectedId] = useState<number | null>(null);
-
-    useEffect(() => {
-        if (auditable.length > 0 && selectedId === null) {
-            setSelectedId(auditable[0].id_salon);
+    // Resolve effective selection: use shared context id if it's auditable, otherwise fall back to first auditable
+    const effectiveSelectedId = useMemo(() => {
+        if (selectedSalonId !== null && enriched.find((s) => s.id_salon === selectedSalonId)) {
+            return selectedSalonId;
         }
-    }, [auditable, selectedId]);
+        return auditable.length > 0 ? auditable[0].id_salon : null;
+    }, [selectedSalonId, enriched, auditable]);
 
     const selected = useMemo(
-        () => enriched.find((s) => s.id_salon === selectedId) ?? null,
-        [enriched, selectedId]
+        () => enriched.find((s) => s.id_salon === effectiveSelectedId) ?? null,
+        [enriched, effectiveSelectedId]
     );
 
     const sortedAuditable = useMemo(
@@ -179,13 +179,13 @@ export default function ContractsPage() {
                     <div className="overflow-y-auto pr-1 space-y-1 flex-1">
                         {sortedAuditable.map((s) => {
                             const ca = s._contract;
-                            const isActive = selectedId === s.id_salon;
+                            const isActive = effectiveSelectedId === s.id_salon;
                             const color = getSemaphoreColor(ca.color);
                             const pct = ca.desvioPercent ?? 0;
                             return (
                                 <button
                                     key={s.id_salon}
-                                    onClick={() => setSelectedId(s.id_salon)}
+                                    onClick={() => setSelectedSalonId(s.id_salon)}
                                     className={`w-full text-left p-3 rounded-xl transition-all border ${isActive
                                         ? "bg-blue-500/10 border-blue-500/30"
                                         : "bg-transparent border-transparent hover:bg-white/5"

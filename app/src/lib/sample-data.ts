@@ -78,6 +78,7 @@ export interface SalonIntegral {
 }
 
 /** Shared raw→SalonIntegral mapping (used by static getSalonesData and runtime /api/salones) */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mapRawToSalon(row: any): SalonIntegral {
     return {
         ...row,
@@ -97,6 +98,7 @@ export function mapRawToSalon(row: any): SalonIntegral {
 
 /** Static build-time data (used locally and as fallback) */
 export function getSalonesData(): SalonIntegral[] {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (rawSalonesData as any[]).map(mapRawToSalon);
 }
 

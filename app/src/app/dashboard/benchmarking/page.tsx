@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { BarChart3, X } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
@@ -18,8 +18,7 @@ const TIER_COLORS: Record<number, string> = {
 };
 
 export default function BenchmarkingPage() {
-    const { salones: allSalones } = useDashboard();
-    const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
+    const { salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
 
     // Active salons only
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
@@ -49,11 +48,6 @@ export default function BenchmarkingPage() {
     const selectedSalon = useMemo(() =>
         selectedSalonId != null ? salonBenchmarks.find(s => s.id === selectedSalonId) ?? null : null,
         [salonBenchmarks, selectedSalonId]
-    );
-
-    const selectedSalonMeta = useMemo(() =>
-        selectedSalonId != null ? salones.find(s => s.id_salon === selectedSalonId) ?? null : null,
-        [salones, selectedSalonId]
     );
 
     const salonBenchmarksTier2Plus = useMemo(() =>
@@ -191,7 +185,7 @@ export default function BenchmarkingPage() {
                     {[2, 3, 4, 5].map((tier, idx) => {
                         const def = TIER_DEFINITIONS[tier];
                         const benchmark = BENCHMARK_DATA[tier];
-                        const count = salones.filter((s: any) => s.tier === tier).length;
+                        const count = salones.filter((s) => s.tier === tier).length;
                         const color = TIER_COLORS[tier];
                         const widths = ["88%", "72%", "56%", "42%"];
                         return (
@@ -235,7 +229,7 @@ export default function BenchmarkingPage() {
                             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                             <XAxis dataKey="tier" tick={{ fill: "#94a3b8", fontSize: 12 }} />
                             <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
-                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: any) => value !== undefined ? formatARS(Number(value)) : ""} />
+                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: number | string | undefined) => value !== undefined ? formatARS(Number(value)) : ""} />
                             <Bar dataKey="promedioReal" name="Costo Real /m²" fill="#ef4444" radius={[4, 4, 0, 0]} />
                             <Bar dataKey="promedioMercado" name="Mercado /m²" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         </BarChart>
@@ -338,7 +332,7 @@ export default function BenchmarkingPage() {
                                 <Scatter
                                     name="Salones"
                                     data={salonBenchmarksWithSize}
-                                    onClick={(data: any) => handleSelectSalon(data.id === selectedSalonId ? null : data.id)}
+                                    onClick={(data: { id: number }) => handleSelectSalon(data.id === selectedSalonId ? null : data.id)}
                                     className="cursor-pointer"
                                 >
                                     {salonBenchmarksWithSize.map((entry, i) => {

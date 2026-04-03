@@ -5,6 +5,17 @@ import { mapRawToSalon, type SalonIntegral } from "@/lib/sample-data";
 const GITHUB_API_URL =
     "https://api.github.com/repos/mchapouille/JanosSalones/contents/app/src/lib/salones_data.json";
 
+// Module-level TTL cache — key is always "default" (unfiltered)
+// Filtering happens in-memory after cache retrieval
+interface SalonesCache {
+    data: SalonIntegral[];
+    timestamp: number;
+}
+
+const cache = new Map<string, SalonesCache>();
+const CACHE_TTL_MS = Number(process.env.CACHE_TTL_MS ?? 5 * 60 * 1000); // Default: 5 minutes
+const CACHE_KEY = "default";
+
 async function fetchSalonesFromGitHub(): Promise<SalonIntegral[]> {
     const headers: Record<string, string> = {
         Accept: "application/vnd.github.raw+json",
@@ -15,7 +26,7 @@ async function fetchSalonesFromGitHub(): Promise<SalonIntegral[]> {
 
     const res = await fetch(GITHUB_API_URL, {
         headers,
-        cache: "no-store", // Never cache — always get the latest committed JSON
+        cache: "no-store", // Always get the latest from GitHub on cache miss
     });
 
     if (!res.ok) {
@@ -24,6 +35,21 @@ async function fetchSalonesFromGitHub(): Promise<SalonIntegral[]> {
 
     const raw = await res.json();
     return raw.map(mapRawToSalon);
+}
+
+async function getSalones(): Promise<SalonIntegral[]> {
+    const cached = cache.get(CACHE_KEY);
+    const now = Date.now();
+
+    // Cache hit: return cached data if still within TTL
+    if (cached && now - cached.timestamp < CACHE_TTL_MS) {
+        return cached.data;
+    }
+
+    // Cache miss or expired: fetch fresh data and store in cache
+    const data = await fetchSalonesFromGitHub();
+    cache.set(CACHE_KEY, { data, timestamp: now });
+    return data;
 }
 
 export async function GET(request: Request) {
@@ -38,7 +64,8 @@ export async function GET(request: Request) {
         const municipio = searchParams.get("municipio");
         const tier = searchParams.get("tier");
 
-        let salones = await fetchSalonesFromGitHub();
+        // Always load unfiltered data from cache; filter in memory
+        let salones = await getSalones();
 
         if (estado) {
             salones = salones.filter((s) => s.estado_salon === estado.toUpperCase());

@@ -62,8 +62,7 @@ function SemaforoIcon({ color, size = 20 }: { color: string; size?: number }) {
 }
 
 export default function DashboardPage() {
-    const { salones } = useDashboard();
-    const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
+    const { salones, selectedSalonId, setSelectedSalonId } = useDashboard();
     const [selectedEstado, setSelectedEstado] = useState<string | null>(null);
 
     // Handle salon selection from PredictiveSearch

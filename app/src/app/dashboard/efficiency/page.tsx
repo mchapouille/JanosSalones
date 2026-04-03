@@ -1,27 +1,29 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Gauge, Info } from "lucide-react";
 import { formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, TIER_DEFINITIONS } from "@/lib/calculations";
-import { getSalonesData } from "@/lib/sample-data";
+
 import { useDashboard } from "@/components/DashboardContext";
 
 export default function EfficiencyPage() {
-    const { salones: allSalones } = useDashboard();
+    const { salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
     const [tierFilter, setTierFilter] = useState<number | null>(null);
 
     const salonesWithEfficiency = useMemo(() => salones.filter((s) => s.efficiency), [salones]);
-    const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
 
-    // Initial selection
+    // Auto-select first efficient salon if nothing is selected yet
+    const hasInitialized = useRef(false);
     useEffect(() => {
-        if (salonesWithEfficiency.length > 0 && selectedSalonId === null) {
+        if (hasInitialized.current) return;
+        hasInitialized.current = true;
+        if (selectedSalonId === null && salonesWithEfficiency.length > 0) {
             setSelectedSalonId(salonesWithEfficiency[0].id_salon);
         }
-    }, [salonesWithEfficiency, selectedSalonId]);
+    }, [salonesWithEfficiency, selectedSalonId, setSelectedSalonId]);
 
     const selectedSalon = useMemo(() =>
         salonesWithEfficiency.find(s => s.id_salon === selectedSalonId),
