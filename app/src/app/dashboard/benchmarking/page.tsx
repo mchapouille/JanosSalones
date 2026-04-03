@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, X, Search } from "lucide-react";
+import { BarChart3, X } from "lucide-react";
 import { formatARS, formatPercentage } from "@/lib/formatters";
 import { BENCHMARK_DATA, TIER_DEFINITIONS, getSemaphoreColor } from "@/lib/calculations";
 import { useDashboard } from "@/components/DashboardContext";
+import { PredictiveSearch } from "@/components/PredictiveSearch";
+import { SalonSelector } from "@/components/SalonSelector";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
     ResponsiveContainer, ScatterChart, Scatter, ZAxis, ReferenceLine, Cell,
@@ -18,54 +20,29 @@ const TIER_COLORS: Record<number, string> = {
 export default function BenchmarkingPage() {
     const { salones: allSalones } = useDashboard();
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
-    const [searchQuery, setSearchQuery] = useState("");
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    const searchRef = useRef<HTMLDivElement>(null);
-
-    // Close suggestions on outside click
-    useEffect(() => {
-        function handleClick(e: MouseEvent) {
-            if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-                setShowSuggestions(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClick);
-        return () => document.removeEventListener("mousedown", handleClick);
-    }, []);
 
     // Active salons only
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
 
-    // Autocomplete suggestions
-    const suggestions = useMemo(() => {
-        if (!searchQuery.trim()) return [];
-        const q = searchQuery.toLowerCase();
-        return salones
-            .filter(s => s.nombre_salon.toLowerCase().includes(q))
-            .sort((a, b) => {
-                const aS = a.nombre_salon.toLowerCase().startsWith(q);
-                const bS = b.nombre_salon.toLowerCase().startsWith(q);
-                if (aS && !bS) return -1;
-                if (!aS && bS) return 1;
-                return a.nombre_salon.localeCompare(b.nombre_salon);
-            })
-            .slice(0, 8);
-    }, [salones, searchQuery]);
+    // Handle salon selection from PredictiveSearch
+    const handleSelectSearch = (salon: { id_salon: number }) => {
+        setSelectedSalonId(salon.id_salon);
+    };
 
     // Salon benchmarks — all tiers
     const salonBenchmarks = useMemo(() =>
         salones
-            .filter((s: any) => s.benchmark)
-            .map((s: any) => ({
+            .filter((s) => s.benchmark)
+            .map((s) => ({
                 id: s.id_salon,
                 name: s.nombre_salon,
                 tier: s.tier,
-                costPerMt2: s.benchmark!.costPerMt2 ?? (s.mt2_salon > 0 ? (s.costos_fijos_salon ?? 0) / s.mt2_salon : 0),
+                costPerMt2: s.benchmark!.costPerMt2 ?? ((s.mt2_salon ?? 0) > 0 ? (s.costos_fijos_salon ?? 0) / (s.mt2_salon ?? 1) : 0),
                 marketCost: s.benchmark!.marketCostPerMt2 ?? 0,
                 deviation: s.benchmark!.deviation ?? 0,
                 color: getSemaphoreColor(s.benchmark!.color),
             }))
-            .sort((a: any, b: any) => b.deviation - a.deviation),
+            .sort((a, b) => b.deviation - a.deviation),
         [salones]
     );
 
@@ -97,8 +74,6 @@ export default function BenchmarkingPage() {
 
     const handleSelectSalon = (id: number | null) => {
         setSelectedSalonId(id);
-        setSearchQuery("");
-        setShowSuggestions(false);
     };
 
     const salonBenchmarksWithSize = useMemo(() =>
@@ -139,67 +114,24 @@ export default function BenchmarkingPage() {
 
                 <div className="flex flex-wrap items-start gap-4">
                     {/* Predictive search input */}
-                    <div className="flex flex-col gap-1">
-                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Buscar por nombre</label>
-                        <div className="relative" ref={searchRef}>
-                            <div className="relative">
-                                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-                                <input
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
-                                    onFocus={() => searchQuery && setShowSuggestions(true)}
-                                    placeholder="Escribir nombre del salón..."
-                                    className="bg-slate-900 border border-blue-500/30 rounded-lg pl-8 pr-4 py-2 text-sm text-blue-100 placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-[260px] transition-colors"
-                                />
-                                {searchQuery && (
-                                    <button onClick={() => { setSearchQuery(""); setShowSuggestions(false); }} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
-                                        <X size={12} />
-                                    </button>
-                                )}
-                            </div>
-                            {showSuggestions && suggestions.length > 0 && (
-                                <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-slate-900 border border-blue-500/25 rounded-xl shadow-2xl overflow-hidden">
-                                    {suggestions.map((s, idx) => (
-                                        <button
-                                            key={s.id_salon}
-                                            onMouseDown={() => handleSelectSalon(s.id_salon)}
-                                            className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-white/5 transition-colors ${idx !== 0 ? "border-t border-white/5" : ""}`}
-                                        >
-                                            <span className="text-sm text-slate-200 font-medium flex-1 truncate">{s.nombre_salon}</span>
-                                            <span className="text-[10px] text-slate-600 font-mono">#{s.id_salon}</span>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    <PredictiveSearch
+                        salones={salones}
+                        onSelect={handleSelectSearch}
+                    />
 
                     <div className="flex items-end pb-2 text-slate-700 text-xs font-bold select-none">ó</div>
 
                     {/* Select dropdown */}
-                    <div className="flex flex-col gap-1">
-                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Seleccionar de lista</label>
-                        <select
-                            value={selectedSalonId ?? ""}
-                            onChange={(e) => handleSelectSalon(e.target.value ? parseInt(e.target.value) : null)}
-                            className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[260px] font-bold"
-                        >
-                            <option value="">Buscar Salón...</option>
-                            {[...salones]
-                                .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
-                                .map(s => (
-                                    <option key={s.id_salon} value={s.id_salon}>
-                                        {s.nombre_salon} ({s.id_salon})
-                                    </option>
-                                ))}
-                        </select>
-                    </div>
+                    <SalonSelector
+                        value={selectedSalonId}
+                        onChange={handleSelectSalon}
+                        salones={salones}
+                    />
 
                     {selectedSalonId && (
                         <div className="flex items-end pb-2">
                             <button onClick={() => handleSelectSalon(null)} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
-                                <X size={12} /> Limpiar
+                                Limpiar
                             </button>
                         </div>
                     )}

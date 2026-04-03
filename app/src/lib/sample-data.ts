@@ -2,6 +2,38 @@
 import { assignTier, getSemaphoreColor, type PerformanceResult } from "./calculations";
 import rawSalonesData from './salones_data.json';
 
+// ---- TypeScript Interfaces for calculated fields ----
+
+export interface SalonExtra {
+    venta_mensual?: number;
+    ticket_evento?: number;
+    ticket_persona?: number;
+}
+
+export interface EfficiencyResult {
+    globalIndex: number;
+    paxRatio: number;
+    mt2Ratio: number;
+    color: "green" | "yellow" | "red";
+}
+
+export interface BenchmarkResult {
+    costPerMt2: number;
+    marketCostPerMt2: number;
+    deviation: number;
+    color: "green" | "yellow" | "red" | "gray";
+}
+
+export interface ContractAuditResult {
+    contractStatus: "ok" | "non_active" | "no_data";
+    estadoContrato: string;
+    precioAlquiler: number;
+    alquilerContrato: number;
+    desvioNominal: number | null;
+    desvioPercent: number | null;
+    color: string;
+}
+
 export interface SalonIntegral {
     id_salon: number;
     year: number;
@@ -38,11 +70,11 @@ export interface SalonIntegral {
     tier: number;
 
     // Legacy or calculated objects
-    performance?: any;
-    efficiency?: any;
-    benchmark?: any;
-    contractAudit?: any;
-    extra?: any;
+    performance?: PerformanceResult;
+    efficiency?: EfficiencyResult;
+    benchmark?: BenchmarkResult;
+    contractAudit?: ContractAuditResult;
+    extra?: SalonExtra;
 }
 
 /** Shared raw→SalonIntegral mapping (used by static getSalonesData and runtime /api/salones) */

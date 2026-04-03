@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { revalidatePath } from 'next/cache';
+import { auth } from '@/auth';
 
 const execAsync = promisify(exec);
 
@@ -10,6 +11,8 @@ const GITHUB_REPO = process.env.GITHUB_REPO || 'mchapouille/JanosSalones';
 const GITHUB_PAT = process.env.GITHUB_PAT;
 
 export async function POST() {
+    const session = await auth();
+    if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     // ─────────────────────────────────────────────────────────────────
     // PRODUCTION (Vercel): trigger GitHub Actions workflow via API
     // The workflow downloads the Excel from Google Drive, runs
@@ -41,9 +44,10 @@ export async function POST() {
             }
             const userJson = await userRes.json();
             console.log('[refresh] Token valid for user:', userJson.login);
-        } catch (e: any) {
+        } catch (e: unknown) {
+            const message = e instanceof Error ? e.message : String(e);
             return NextResponse.json(
-                { success: false, message: 'No se pudo validar el token', error: e.message },
+                { success: false, message: 'No se pudo validar el token', error: message },
                 { status: 500 }
             );
         }
@@ -82,10 +86,11 @@ export async function POST() {
                 message: 'Workflow iniciado. Los datos se actualizarán en ~2 minutos.',
             });
 
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : String(error);
             console.error('Error calling GitHub API:', error);
             return NextResponse.json(
-                { success: false, message: 'Error de red al conectar con GitHub', error: error.message },
+                { success: false, message: 'Error de red al conectar con GitHub', error: message },
                 { status: 500 }
             );
         }
@@ -116,10 +121,11 @@ export async function POST() {
             output: stdout,
         });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
         console.error('Error refreshing data:', error);
         return NextResponse.json(
-            { success: false, message: 'Error al procesar el archivo Excel', error: error.message },
+            { success: false, message: 'Error al procesar el archivo Excel', error: message },
             { status: 500 }
         );
     }

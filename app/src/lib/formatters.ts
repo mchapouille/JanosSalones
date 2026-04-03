@@ -1,4 +1,4 @@
-export function formatARS(value: any): string {
+export function formatARS(value: number | string | null | undefined): string {
     const num = typeof value === 'string' ? parseFloat(value) : value;
     if (num === null || num === undefined || isNaN(num)) return "S/D";
     return new Intl.NumberFormat("es-AR", {
@@ -10,7 +10,7 @@ export function formatARS(value: any): string {
     }).format(num);
 }
 
-export function formatUSD(value: any): string {
+export function formatUSD(value: number | string | null | undefined): string {
     const num = typeof value === 'string' ? parseFloat(value) : value;
     if (num === null || num === undefined || isNaN(num)) return "S/D";
     return new Intl.NumberFormat("es-AR", {
@@ -27,7 +27,7 @@ export function formatPercentage(value: number, decimals: number = 1): string {
     return `${value.toFixed(decimals)}%`;
 }
 
-export function formatNumber(value: any): string {
+export function formatNumber(value: number | string | null | undefined): string {
     const num = typeof value === 'string' ? parseFloat(value) : value;
     if (num === null || num === undefined || isNaN(num)) return "0";
     return new Intl.NumberFormat("es-AR", { useGrouping: true }).format(num);

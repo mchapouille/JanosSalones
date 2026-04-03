@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, AlertTriangle, Award, Sliders, Search, X, BrainCircuit, Ticket, UserCheck, BarChart2 } from "lucide-react";
+import { TrendingUp, AlertTriangle, Award, Sliders, BrainCircuit, Ticket, UserCheck, BarChart2 } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
 import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
 import { getSalonesData } from "@/lib/sample-data";
 import { useDashboard } from "@/components/DashboardContext";
+import { PredictiveSearch } from "@/components/PredictiveSearch";
+import { SalonSelector } from "@/components/SalonSelector";
 import {
     ScatterChart,
     Scatter,
@@ -48,40 +50,9 @@ export default function PerformancePage() {
 
     const [selectedSalonId, setSelectedSalonId] = useState<number | null>(null);
 
-    // Dual filter state (same pattern as Dashboard)
-    const [searchQuery, setSearchQuery] = useState("");
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    const searchRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        function handleClick(e: MouseEvent) {
-            if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-                setShowSuggestions(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClick);
-        return () => document.removeEventListener("mousedown", handleClick);
-    }, []);
-
-    const suggestions = useMemo(() => {
-        if (!searchQuery.trim()) return [];
-        const q = searchQuery.toLowerCase();
-        return [...salones]
-            .filter(s => s.nombre_salon.toLowerCase().includes(q))
-            .sort((a, b) => {
-                const aS = a.nombre_salon.toLowerCase().startsWith(q);
-                const bS = b.nombre_salon.toLowerCase().startsWith(q);
-                if (aS && !bS) return -1;
-                if (!aS && bS) return 1;
-                return a.nombre_salon.localeCompare(b.nombre_salon);
-            })
-            .slice(0, 8);
-    }, [searchQuery, salones]);
-
-    const handleSelectSuggestion = (id: number) => {
-        setSelectedSalonId(id);
-        setSearchQuery("");
-        setShowSuggestions(false);
+    // Handle salon selection from PredictiveSearch
+    const handleSelectSearch = (salon: { id_salon: number }) => {
+        setSelectedSalonId(salon.id_salon);
     };
 
     // Update selected salon if it's not in the filtered list
@@ -191,67 +162,24 @@ export default function PerformancePage() {
 
                 <div className="flex flex-wrap items-start gap-4">
                     {/* Predictive search input */}
-                    <div className="flex flex-col gap-1">
-                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Buscar por nombre</label>
-                        <div className="relative" ref={searchRef}>
-                            <div className="relative">
-                                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-                                <input
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
-                                    onFocus={() => searchQuery && setShowSuggestions(true)}
-                                    placeholder="Escribir nombre del salón..."
-                                    className="bg-slate-900 border border-blue-500/30 rounded-lg pl-8 pr-4 py-2 text-sm text-blue-100 placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-[260px] transition-colors"
-                                />
-                                {searchQuery && (
-                                    <button onClick={() => { setSearchQuery(""); setShowSuggestions(false); }} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
-                                        <X size={12} />
-                                    </button>
-                                )}
-                            </div>
-                            {showSuggestions && suggestions.length > 0 && (
-                                <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-slate-900 border border-blue-500/25 rounded-xl shadow-2xl overflow-hidden">
-                                    {suggestions.map((s, idx) => (
-                                        <button
-                                            key={s.id_salon}
-                                            onMouseDown={() => handleSelectSuggestion(s.id_salon)}
-                                            className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-white/5 transition-colors ${idx !== 0 ? "border-t border-white/5" : ""}`}
-                                        >
-                                            <span className="text-sm text-slate-200 font-medium flex-1 truncate">{s.nombre_salon}</span>
-                                            <span className="text-[10px] text-slate-600 font-mono">#{s.id_salon}</span>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    <PredictiveSearch
+                        salones={salones}
+                        onSelect={handleSelectSearch}
+                    />
 
                     <div className="flex items-end pb-2 text-slate-700 text-xs font-bold select-none">ó</div>
 
                     {/* Select dropdown */}
-                    <div className="flex flex-col gap-1">
-                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">Seleccionar de lista</label>
-                        <select
-                            value={selectedSalonId ?? ""}
-                            onChange={(e) => setSelectedSalonId(e.target.value ? parseInt(e.target.value) : null)}
-                            className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[260px] font-bold"
-                        >
-                            <option value="">Buscar Salón...</option>
-                            {[...salones]
-                                .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
-                                .map(s => (
-                                    <option key={s.id_salon} value={s.id_salon}>
-                                        {s.nombre_salon} ({s.id_salon})
-                                    </option>
-                                ))}
-                        </select>
-                    </div>
+                    <SalonSelector
+                        value={selectedSalonId}
+                        onChange={setSelectedSalonId}
+                        salones={salones}
+                    />
 
                     {selectedSalonId && (
                         <div className="flex items-end pb-2">
-                            <button onClick={() => { setSelectedSalonId(null); setSearchQuery(""); }} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
-                                <X size={12} /> Limpiar
+                            <button onClick={() => setSelectedSalonId(null)} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
+                                Limpiar
                             </button>
                         </div>
                     )}

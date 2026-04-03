@@ -20,8 +20,10 @@ import { useDashboard } from "@/components/DashboardContext";
 
 type ContractStatus = "ok" | "non_active" | "no_data";
 
-function getContractAuditData(s: any) {
-    const ca = s.contractAudit ?? {};
+import { type SalonIntegral, type ContractAuditResult } from "@/lib/sample-data";
+
+function getContractAuditData(s: SalonIntegral) {
+    const ca = s.contractAudit ?? ({} as ContractAuditResult);
     const status: ContractStatus = ca.contractStatus ?? "non_active";
     return {
         status,
@@ -250,7 +252,11 @@ export default function ContractsPage() {
 
 // ────── Detail Panel ──────
 
-function DetailPanel({ salon, conversionRate }: { salon: any; conversionRate: number }) {
+interface SalonWithContract extends SalonIntegral {
+    _contract: ReturnType<typeof getContractAuditData>;
+}
+
+function DetailPanel({ salon, conversionRate }: { salon: SalonWithContract; conversionRate: number }) {
     const ca = salon._contract;
     const status: ContractStatus = ca.status;
     const color = getSemaphoreColor(ca.color);
@@ -407,7 +413,7 @@ function DetailPanel({ salon, conversionRate }: { salon: any; conversionRate: nu
 
 // ────── Non-auditable row ──────
 
-function NonAuditableRow({ salon }: { salon: any }) {
+function NonAuditableRow({ salon }: { salon: SalonWithContract }) {
     const ca = salon._contract;
     const isNonActive = ca.status === "non_active";
     return (
