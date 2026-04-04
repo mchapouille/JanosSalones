@@ -17,15 +17,15 @@ export function SalonSelector({
 }: SalonSelectorProps) {
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">
+            <label className="text-[10px] text-[#6b5d4a] uppercase font-bold tracking-widest pl-1">
                 {label}
             </label>
             <select
                 value={value ?? ""}
                 onChange={(e) => onChange(e.target.value ? parseInt(e.target.value) : null)}
-                className="bg-slate-900 border border-blue-500/30 rounded-lg px-4 py-2 text-sm text-blue-100 focus:outline-none focus:border-blue-500/60 min-w-[260px] font-bold"
+                className="bg-white border border-[#b8891a]/25 rounded-lg px-4 py-2 text-sm text-[#1a1208] focus:outline-none focus:border-[#b8891a]/50 min-w-[260px] font-bold"
             >
-                <option value="">Buscar Salón...</option>
+                <option value="">Seleccionar...</option>
                 {[...salones]
                     .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
                     .map(s => (

@@ -1,0 +1,51 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: Next.js 16.1.6 (App Router), TypeScript 5 (strict), Tailwind CSS v4, NextAuth.js v5 beta
+  Architecture: Server components by default; DashboardContext for shared state; path alias @/* → ./src/*
+  Data: Static JSON (src/lib/salones_data.json) — refreshed via GitHub Actions + Python scripts
+  Style: ESLint 9 (eslint-config-next core-web-vitals + typescript), Prettier not configured
+  Commits: conventional commits type(scope): description — types: feat|fix|chore|refactor|docs
+
+strict_tdd: false  # No test runner installed — vitest/jest not found in package.json
+
+testing:
+  runner: null
+  strict_tdd: false
+  note: "No test runner detected. Unit/integration/E2E testing unavailable."
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage: false
+  quality_tools:
+    linter: "eslint"            # eslint-config-next, core-web-vitals + typescript
+    type_checker: "tsc --noEmit"
+    formatter: null
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules/packages
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing code patterns and conventions
+    - Server components by default; "use client" only when required
+    - Never hardcode secrets; use .env.local
+    - Never run build after changes
+  verify:
+    - Run `tsc --noEmit` and `eslint` as quality gates
+    - Compare implementation against every spec scenario
+    - Note: no test runner available — behavioral evidence via code inspection only
+  archive:
+    - Warn before merging destructive deltas (large removals)

@@ -126,8 +126,8 @@ export default function ContractsPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Auditoría de Contratos</h1>
-                    <p className="text-slate-400 text-sm mt-1">
+                    <h1 className="text-2xl font-bold text-[#1a1208] font-display">Auditoría de Contratos</h1>
+                    <p className="text-[#6b5d4a]/60 text-sm mt-1">
                         Análisis de desvío entre alquiler pactado (contrato) y precio actual de alquiler
                     </p>
                 </div>
@@ -144,37 +144,37 @@ export default function ContractsPage() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Contratos Auditables</p>
-                    <p className="text-3xl font-bold text-white">{auditable.length}</p>
-                    <p className="text-xs text-slate-500 mt-1">vigentes con datos</p>
+                    <p className="text-xs text-[#6b5d4a]/60 uppercase tracking-wider mb-2">Contratos Auditables</p>
+                    <p className="text-3xl font-bold text-[#1a1208]">{auditable.length}</p>
+                    <p className="text-xs text-[#6b5d4a]/50 mt-1">vigentes con datos</p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.07 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">No Vigentes</p>
-                    <p className="text-3xl font-bold text-slate-500">{totalNoVigentes}</p>
-                    <p className="text-xs text-slate-500 mt-1">vencidos o sin estado</p>
+                    <p className="text-xs text-[#6b5d4a]/60 uppercase tracking-wider mb-2">No Vigentes</p>
+                    <p className="text-3xl font-bold text-[#6b5d4a]/60">{totalNoVigentes}</p>
+                    <p className="text-xs text-[#6b5d4a]/50 mt-1">vencidos o sin estado</p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Sin Dato Contrato</p>
-                    <p className="text-3xl font-bold text-amber-400">{totalSinDato}</p>
-                    <p className="text-xs text-slate-500 mt-1">vigentes sin monto</p>
+                    <p className="text-xs text-[#6b5d4a]/60 uppercase tracking-wider mb-2">Sin Dato Contrato</p>
+                    <p className="text-3xl font-bold text-amber-600">{totalSinDato}</p>
+                    <p className="text-xs text-[#6b5d4a]/50 mt-1">vigentes sin monto</p>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.21 }} className="kpi-card">
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Desvío Total Acum.</p>
+                    <p className="text-xs text-[#6b5d4a]/60 uppercase tracking-wider mb-2">Desvío Total Acum.</p>
                     <p
                         className="text-3xl font-bold"
                         style={{ color: totalDesvioNominal > 0 ? "#ef4444" : totalDesvioNominal < 0 ? "#eab308" : "#22c55e" }}
                     >
                         {totalDesvioNominal > 0 ? "+" : ""}{formatARS(totalDesvioNominal)}
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">precio actual vs contrato</p>
+                    <p className="text-xs text-[#6b5d4a]/50 mt-1">precio actual vs contrato</p>
                 </motion.div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1 glass-card p-4 flex flex-col max-h-[640px]">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-lg font-semibold text-white">Salones</h2>
-                        <span className="text-[10px] text-slate-500 uppercase font-bold">{auditable.length} AUDITABLES</span>
+                        <h2 className="text-lg font-semibold text-[#1a1208]">Salones</h2>
+                        <span className="text-[10px] text-[#6b5d4a]/50 uppercase font-bold">{auditable.length} AUDITABLES</span>
                     </div>
                     <div className="overflow-y-auto pr-1 space-y-1 flex-1">
                         {sortedAuditable.map((s) => {
@@ -187,18 +187,18 @@ export default function ContractsPage() {
                                     key={s.id_salon}
                                     onClick={() => setSelectedSalonId(s.id_salon)}
                                     className={`w-full text-left p-3 rounded-xl transition-all border ${isActive
-                                        ? "bg-blue-500/10 border-blue-500/30"
-                                        : "bg-transparent border-transparent hover:bg-white/5"
+                                        ? "bg-[#7a1515]/8 border-[#b8891a]/30"
+                                        : "bg-transparent border-transparent hover:bg-[#7a1515]/4"
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <div className="flex-1 min-w-0 pr-2">
-                                            <p className={`text-sm font-medium truncate ${isActive ? "text-blue-100" : "text-slate-300"}`}>
+                                            <p className={`text-sm font-medium truncate ${isActive ? "text-[#1a1208] font-semibold" : "text-[#6b5d4a]/80"}`}>
                                                 {s.nombre_salon}
                                             </p>
                                             <div className="flex items-center gap-2 mt-0.5">
-                                                <span className="text-[10px] text-slate-500">Tier {s.tier}</span>
-                                                <span className="text-[10px] text-slate-600">•</span>
+                                                <span className="text-[10px] text-[#6b5d4a]/50">Tier {s.tier}</span>
+                                                <span className="text-[10px] text-[#6b5d4a]/30">•</span>
                                                 <span className="text-[10px] font-bold" style={{ color }}>
                                                     {pct > 0 ? "+" : ""}{pct.toFixed(1)}%
                                                 </span>
@@ -269,11 +269,11 @@ function DetailPanel({ salon, conversionRate }: { salon: SalonWithContract; conv
             exit={{ opacity: 0, x: -10 }}
             className="glass-card p-6 h-full"
         >
-            <div className="flex items-start justify-between mb-8 border-b border-white/5 pb-6 gap-4 flex-wrap">
+            <div className="flex items-start justify-between mb-8 border-b border-[#b8891a]/10 pb-6 gap-4 flex-wrap">
                 <div>
-                    <h2 className="text-2xl font-bold text-white mb-1">{salon.nombre_salon}</h2>
+                    <h2 className="text-2xl font-bold text-[#1a1208] mb-1">{salon.nombre_salon}</h2>
                     <div className="flex items-center gap-3 flex-wrap">
-                        <p className="text-slate-400 text-sm">Auditoría Contractual · {salon.municipio_salon}</p>
+                        <p className="text-[#6b5d4a] text-sm">Auditoría Contractual · {salon.municipio_salon}</p>
                         <ContractStatusBadge status={status} estadoContrato={ca.estadoContrato} />
                     </div>
                 </div>
@@ -290,23 +290,23 @@ function DetailPanel({ salon, conversionRate }: { salon: SalonWithContract; conv
             {/* Condition 1: Non-active */}
             {status === "non_active" && (
                 <div className="flex flex-col items-center justify-center py-16 text-center gap-6">
-                    <div className="w-16 h-16 rounded-2xl bg-slate-800/60 border border-slate-700/40 flex items-center justify-center">
-                        <Ban size={32} className="text-slate-500" />
+                    <div className="w-16 h-16 rounded-2xl bg-[#f3ede3] border border-[#b8891a]/20 flex items-center justify-center">
+                        <Ban size={32} className="text-[#6b5d4a]" />
                     </div>
                     <div>
-                        <p className="text-xl font-bold text-slate-400">Contrato no vigente</p>
+                        <p className="text-xl font-bold text-[#1a1208]">Contrato no vigente</p>
                         {ca.estadoContrato && ca.estadoContrato !== "sin_estado" && (
-                            <p className="text-sm text-slate-600 mt-1 capitalize">Estado: {ca.estadoContrato}</p>
+                            <p className="text-sm text-[#6b5d4a] mt-1 capitalize">Estado: {ca.estadoContrato}</p>
                         )}
-                        <p className="text-sm text-slate-600 mt-3 max-w-sm leading-relaxed">
+                        <p className="text-sm text-[#6b5d4a] mt-3 max-w-sm leading-relaxed">
                             No se pueden calcular desvíos sin un contrato vigente. Regularizar el estado contractual para habilitar la auditoría.
                         </p>
                     </div>
                     {ca.precioAlquiler > 0 && (
-                        <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 text-center">
-                            <p className="text-xs text-slate-500 uppercase font-bold mb-1">Precio Alquiler Actual</p>
-                            <p className="text-lg font-bold text-slate-300">{formatARS(ca.precioAlquiler)}</p>
-                            <p className="text-[10px] text-slate-600 mt-1">
+                        <div className="p-4 rounded-xl bg-[#fdf9f0] border border-[#b8891a]/10 text-center">
+                            <p className="text-xs text-[#6b5d4a] uppercase font-bold mb-1">Precio Alquiler Actual</p>
+                            <p className="text-lg font-bold text-[#1a1208]">{formatARS(ca.precioAlquiler)}</p>
+                            <p className="text-[10px] text-[#6b5d4a] mt-1">
                                 ≈ USD {Math.round(ca.precioAlquiler / conversionRate).toLocaleString("es-AR")}
                             </p>
                         </div>
@@ -342,38 +342,38 @@ function DetailPanel({ salon, conversionRate }: { salon: SalonWithContract; conv
             {status === "ok" && (
                 <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden">
-                            <div className="absolute top-3 right-3 opacity-5 pointer-events-none">
-                                <FileCheck size={56} className="text-blue-400" />
+                        <div className="p-5 rounded-2xl bg-[#fdf9f0] border border-[#b8891a]/10 relative overflow-hidden">
+                            <div className="absolute top-3 right-3 opacity-20 pointer-events-none">
+                                <FileCheck size={56} className="text-[#b8891a]" />
                             </div>
-                            <p className="text-xs text-slate-500 uppercase font-bold mb-4">Alquiler Pactado (Contrato)</p>
+                            <p className="text-xs text-[#6b5d4a] uppercase font-bold mb-4">Alquiler Pactado (Contrato)</p>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-baseline">
-                                    <span className="text-slate-400 text-xs">Monto ARS:</span>
-                                    <span className="text-xl font-bold text-cyan-300">{formatARS(ca.alquilerContrato)}</span>
+                                    <span className="text-[#6b5d4a] text-xs">Monto ARS:</span>
+                                    <span className="text-xl font-bold text-[#1a1208]">{formatARS(ca.alquilerContrato)}</span>
                                 </div>
-                                <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
-                                    <span className="text-slate-400 text-xs">Equiv. USD:</span>
-                                    <span className="text-base font-bold text-slate-300">
+                                <div className="flex justify-between items-baseline pt-3 border-t border-[#b8891a]/10">
+                                    <span className="text-[#6b5d4a] text-xs">Equiv. USD:</span>
+                                    <span className="text-base font-bold text-[#1a1208]">
                                         USD {Math.round(ca.alquilerContrato / conversionRate).toLocaleString("es-AR")}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-5 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden">
-                            <div className="absolute top-3 right-3 opacity-5 pointer-events-none">
-                                <AlertCircle size={56} className="text-purple-400" />
+                        <div className="p-5 rounded-2xl bg-[#fdf9f0] border border-[#b8891a]/10 relative overflow-hidden">
+                            <div className="absolute top-3 right-3 opacity-20 pointer-events-none">
+                                <AlertCircle size={56} className="text-[#b8891a]" />
                             </div>
-                            <p className="text-xs text-slate-500 uppercase font-bold mb-4">Precio Alquiler Actual</p>
+                            <p className="text-xs text-[#6b5d4a] uppercase font-bold mb-4">Precio Alquiler Actual</p>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-baseline">
-                                    <span className="text-slate-400 text-xs">Monto ARS:</span>
-                                    <span className="text-xl font-bold text-white">{formatARS(ca.precioAlquiler)}</span>
+                                    <span className="text-[#6b5d4a] text-xs">Monto ARS:</span>
+                                    <span className="text-xl font-bold text-[#1a1208]">{formatARS(ca.precioAlquiler)}</span>
                                 </div>
-                                <div className="flex justify-between items-baseline pt-3 border-t border-white/5">
-                                    <span className="text-slate-400 text-xs">Desvío Nominal:</span>
-                                    <span className={`text-base font-bold ${(ca.desvioNominal ?? 0) > 0 ? "text-red-400" : "text-green-400"}`}>
+                                <div className="flex justify-between items-baseline pt-3 border-t border-[#b8891a]/10">
+                                    <span className="text-[#6b5d4a] text-xs">Desvío Nominal:</span>
+                                    <span className={`text-base font-bold ${(ca.desvioNominal ?? 0) > 0 ? "text-[#dc2626]" : "text-[#16a34a]"}`}>
                                         {(ca.desvioNominal ?? 0) > 0 ? "+" : ""}{formatARS(ca.desvioNominal ?? 0)}
                                     </span>
                                 </div>
@@ -387,15 +387,15 @@ function DetailPanel({ salon, conversionRate }: { salon: SalonWithContract; conv
                     >
                         <div className="flex items-center gap-3 mb-2">
                             <DesvioIcon pct={desvioPercent} />
-                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío del Alquiler</p>
+                            <p className="text-xs text-[#6b5d4a] uppercase font-bold">Desvío del Alquiler</p>
                         </div>
                         <div className="flex items-baseline gap-1 my-3">
                             <span className="text-6xl font-black" style={{ color }}>
                                 {desvioPercent > 0 ? "+" : ""}{desvioPercent.toFixed(1)}
                             </span>
-                            <span className="text-2xl font-bold text-slate-400">%</span>
+                            <span className="text-2xl font-bold text-[#6b5d4a]">%</span>
                         </div>
-                        <p className="text-xs text-slate-400 mt-3 max-w-sm leading-relaxed">
+                        <p className="text-xs text-[#6b5d4a] mt-3 max-w-sm leading-relaxed">
                             {desvioPercent > 15
                                 ? "El pago supera el contrato en más del 15%. Se recomienda revisión contractual urgente."
                                 : desvioPercent > 5
@@ -418,18 +418,18 @@ function NonAuditableRow({ salon }: { salon: SalonWithContract }) {
     const isNonActive = ca.status === "non_active";
     return (
         <div className={`p-4 rounded-xl border flex items-center gap-3 ${isNonActive
-            ? "bg-slate-900/40 border-slate-800/40"
-            : "bg-amber-500/5 border-amber-500/15"
+            ? "bg-[#f3ede3] border-[#b8891a]/15"
+            : "bg-amber-50 border-amber-200"
             }`}>
             {isNonActive
-                ? <Ban size={15} className="text-slate-600 flex-shrink-0" />
-                : <HelpCircle size={15} className="text-amber-500 flex-shrink-0" />
+                ? <Ban size={15} className="text-[#6b5d4a] flex-shrink-0" />
+                : <HelpCircle size={15} className="text-amber-600 flex-shrink-0" />
             }
             <div className="min-w-0">
-                <p className={`text-sm font-medium truncate ${isNonActive ? "text-slate-400" : "text-slate-300"}`}>
+                <p className={`text-sm font-medium truncate ${isNonActive ? "text-[#1a1208]" : "text-[#1a1208]"}`}>
                     {salon.nombre_salon}
                 </p>
-                <p className={`text-[10px] font-bold uppercase ${isNonActive ? "text-slate-600" : "text-amber-600"}`}>
+                <p className={`text-[10px] font-bold uppercase ${isNonActive ? "text-[#6b5d4a]" : "text-amber-700"}`}>
                     {isNonActive ? "Contrato no vigente" : "Sin dato de alquiler en el contrato"}
                 </p>
             </div>

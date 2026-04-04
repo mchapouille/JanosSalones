@@ -49,8 +49,8 @@ export default function EfficiencyPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Eficiencia de Activos</h1>
-                    <p className="text-slate-400 text-sm mt-1">Índice Global de Eficiencia — PAX & $m² vs Mediana del Tier</p>
+                    <h1 className="text-2xl font-bold text-[#1a1208] font-display">Eficiencia de Activos</h1>
+                    <p className="text-[#7a6d5a] text-sm mt-1">Índice Global de Eficiencia — PAX & $m² vs Mediana del Tier</p>
                 </div>
             </div>
 
@@ -58,26 +58,26 @@ export default function EfficiencyPage() {
             {globalKPIs && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="kpi-card">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Analizados</p>
-                        <p className="text-3xl font-bold text-white">{globalKPIs.total}</p>
-                        <p className="text-xs text-slate-500 mt-1">
-                            De {salones.length} activos {salones.length > globalKPIs.total && <span className="text-red-400 font-bold ml-1">({salones.length - globalKPIs.total} s/info)</span>}
-                        </p>
+                        <p className="text-xs text-[#7a6d5a] uppercase tracking-wider mb-2">Salones Analizados</p>
+                        <p className="text-3xl font-bold text-[#1a1208]">{globalKPIs.total}</p>
+                        <p className="text-xs text-[#856f57] mt-1">
+                             De {salones.length} activos {salones.length > globalKPIs.total && <span className="text-red-600 font-bold ml-1">({salones.length - globalKPIs.total} s/info)</span>}
+                         </p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="kpi-card">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Eficiencia Promedio</p>
-                        <p className="text-3xl font-bold text-blue-400">{globalKPIs.avgIndex.toFixed(2)}</p>
-                        <p className="text-xs text-slate-500 mt-1">índice global de red</p>
+                        <p className="text-xs text-[#7a6d5a] uppercase tracking-wider mb-2">Eficiencia Promedio</p>
+                        <p className="text-3xl font-bold text-[#b8891a]">{globalKPIs.avgIndex.toFixed(2)}</p>
+                        <p className="text-xs text-[#856f57] mt-1">índice global de red</p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="kpi-card">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones Eficientes</p>
-                        <p className="text-3xl font-bold text-green-400">{globalKPIs.efficientCount}</p>
-                        <p className="text-xs text-slate-500 mt-1">estatus verde</p>
+                        <p className="text-xs text-[#7a6d5a] uppercase tracking-wider mb-2">Salones Eficientes</p>
+                        <p className="text-3xl font-bold text-green-600">{globalKPIs.efficientCount}</p>
+                        <p className="text-xs text-[#856f57] mt-1">estatus verde</p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="kpi-card">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Salones en Alerta</p>
-                        <p className="text-3xl font-bold text-red-500">{globalKPIs.alertCount}</p>
-                        <p className="text-xs text-slate-500 mt-1">requieren revisión</p>
+                        <p className="text-xs text-[#7a6d5a] uppercase tracking-wider mb-2">Salones en Alerta</p>
+                        <p className="text-3xl font-bold text-red-600">{globalKPIs.alertCount}</p>
+                        <p className="text-xs text-[#856f57] mt-1">requieren revisión</p>
                     </motion.div>
                 </div>
             )}
@@ -85,7 +85,7 @@ export default function EfficiencyPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Left: Salon Selector Table */}
                 <div className="lg:col-span-1 glass-card p-4 overflow-hidden flex flex-col h-full max-h-[600px]">
-                    <h2 className="text-lg font-semibold text-white mb-4">Seleccionar Salón</h2>
+                    <h2 className="text-lg font-semibold text-[#1a1208] mb-4">Seleccionar Salón</h2>
                     <div className="overflow-y-auto pr-2 space-y-1">
                         {salonesWithEfficiency
                             .sort((a, b) => a.nombre_salon.localeCompare(b.nombre_salon))
@@ -97,14 +97,14 @@ export default function EfficiencyPage() {
                                         key={s.id_salon}
                                         onClick={() => setSelectedSalonId(s.id_salon)}
                                         className={`w-full text-left p-3 rounded-xl transition-all border ${isActive
-                                            ? "bg-blue-500/10 border-blue-500/30"
-                                            : "bg-transparent border-transparent hover:bg-white/5"
+                                            ? "bg-[#7a1515]/8 border-[#b8891a]/30"
+                                            : "bg-transparent border-transparent hover:bg-[#7a1515]/4"
                                             }`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className={`text-sm font-medium ${isActive ? "text-blue-100" : "text-slate-300"}`}>{s.nombre_salon}</p>
-                                                <p className="text-[10px] text-slate-500">Tier {s.tier} • {s.municipio_salon}</p>
+                                                <p className={`text-sm font-medium ${isActive ? "text-[#1a1208] font-semibold" : "text-[#7a6d5a]"}`}>{s.nombre_salon}</p>
+                                                 <p className="text-[10px] text-[#856f57]">Tier {s.tier} • {s.municipio_salon}</p>
                                             </div>
                                             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
                                         </div>
@@ -123,10 +123,10 @@ export default function EfficiencyPage() {
                             animate={{ opacity: 1, x: 0 }}
                             className="glass-card p-6 h-full"
                         >
-                            <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
+                            <div className="flex items-center justify-between mb-8 border-b border-[#b8891a]/10 pb-6">
                                 <div>
-                                    <h2 className="text-2xl font-bold text-white mb-1">{selectedSalon.nombre_salon}</h2>
-                                    <p className="text-slate-400">Eficiencia Individual de Salón — {TIER_DEFINITIONS[selectedSalon.tier]?.name}</p>
+                                    <h2 className="text-2xl font-bold text-[#1a1208] mb-1">{selectedSalon.nombre_salon}</h2>
+                                     <p className="text-[#7a6d5a]">Eficiencia Individual de Salón — {TIER_DEFINITIONS[selectedSalon.tier]?.name}</p>
                                 </div>
                                 <div className="flex flex-col items-end">
                                     <span
@@ -139,15 +139,15 @@ export default function EfficiencyPage() {
                                     >
                                         {selectedSalon.efficiency!.color === "green" ? "EFICIENTE" : selectedSalon.efficiency!.color === "yellow" ? "ESTABILIZADO" : "BAJO RENDIMIENTO"}
                                     </span>
-                                    <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Estatus Tier {selectedSalon.tier}</p>
+                                     <p className="text-[10px] text-[#856f57] uppercase tracking-widest font-bold">Estatus Tier {selectedSalon.tier}</p>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                                 {/* Gauge and Central Index */}
-                                <div className="flex flex-col items-center justify-center p-6 bg-slate-900/40 rounded-3xl border border-white/5 relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-4 opacity-10">
-                                        <Gauge size={100} className="text-blue-400" />
+                                <div className="flex flex-col items-center justify-center p-6 bg-[#faf8f4] rounded-3xl border border-[#b8891a]/12 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-4 opacity-8">
+                                        <Gauge size={100} className="text-[#b8891a]" />
                                     </div>
                                     <div className="relative z-10">
                                         <svg width="240" height="140" viewBox="0 0 140 80">
@@ -162,51 +162,51 @@ export default function EfficiencyPage() {
                                                 stroke={getSemaphoreColor(selectedSalon.efficiency!.color)} strokeWidth="3" strokeLinecap="round"
                                             />
                                             <circle cx="70" cy="70" r="5" fill={getSemaphoreColor(selectedSalon.efficiency!.color)} />
-                                            <text x="70" y="65" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">
+                                            <text x="70" y="65" textAnchor="middle" fill="#1a1208" fontSize="16" fontWeight="bold">
                                                 {(selectedSalon.efficiency?.globalIndex || 0).toFixed(2)}
                                             </text>
                                         </svg>
                                         <div className="text-center mt-2">
-                                            <p className="text-xs text-slate-500 uppercase font-bold tracking-tight">Índice Global</p>
+                                            <p className="text-xs text-[#7a6d5a] uppercase font-bold tracking-tight">Índice Global</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Ratio Details */}
                                 <div className="space-y-4">
-                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
+                                    <div className="p-5 rounded-2xl bg-[#faf8f4] border border-[#b8891a]/12">
                                         <div className="flex justify-between items-end mb-2">
-                                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío Índice PAX</p>
-                                            <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.paxRatio || 0).toFixed(2)}</p>
+                                            <p className="text-xs text-[#7a6d5a] uppercase font-bold">Desvío Índice PAX</p>
+                                            <p className="text-xl font-bold text-[#1a1208]">{(selectedSalon.efficiency?.paxRatio || 0).toFixed(2)}</p>
                                         </div>
-                                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                        <div className="h-1.5 w-full bg-[#e8dcc8] rounded-full overflow-hidden">
                                             <div
-                                                className="h-full bg-blue-500 rounded-full"
+                                                className="h-full bg-[#b8891a] rounded-full"
                                                 style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.paxRatio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
-                                        <p className="text-[10px] text-slate-600 mt-2">precio_pax / mediana_pax del tier. 1.0 = alineado con la mediana.</p>
+                                         <p className="text-[10px] text-[#856f57] mt-2">precio_pax / mediana_pax del tier. 1.0 = alineado con la mediana.</p>
                                     </div>
 
-                                    <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
+                                    <div className="p-5 rounded-2xl bg-[#faf8f4] border border-[#b8891a]/12">
                                         <div className="flex justify-between items-end mb-2">
-                                            <p className="text-xs text-slate-500 uppercase font-bold">Desvío Índice MT2</p>
-                                            <p className="text-xl font-bold text-white">{(selectedSalon.efficiency?.mt2Ratio || 0).toFixed(2)}</p>
+                                            <p className="text-xs text-[#7a6d5a] uppercase font-bold">Desvío Índice MT2</p>
+                                            <p className="text-xl font-bold text-[#1a1208]">{(selectedSalon.efficiency?.mt2Ratio || 0).toFixed(2)}</p>
                                         </div>
-                                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                        <div className="h-1.5 w-full bg-[#e8dcc8] rounded-full overflow-hidden">
                                             <div
-                                                className="h-full bg-emerald-500 rounded-full"
+                                                className="h-full bg-emerald-600 rounded-full"
                                                 style={{ width: `${Math.min(100, ((selectedSalon.efficiency?.mt2Ratio || 0) / 2) * 100)}%` }}
                                             />
                                         </div>
-                                        <p className="text-[10px] text-slate-600 mt-2">precio_mt2 / mediana_mt2 del tier. 1.0 = alineado con la mediana.</p>
+                                         <p className="text-[10px] text-[#856f57] mt-2">precio_mt2 / mediana_mt2 del tier. 1.0 = alineado con la mediana.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="mt-8 p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-start gap-3">
-                                <Info size={16} className="text-blue-400 mt-1 flex-shrink-0" />
-                                <p className="text-xs text-blue-300/70 leading-relaxed">
+                            <div className="mt-8 p-4 rounded-xl bg-[#f0dfa0]/20 border border-[#b8891a]/15 flex items-start gap-3">
+                                <Info size={16} className="text-[#b8891a] mt-1 flex-shrink-0" />
+                                 <p className="text-xs text-[#7a6d5a] leading-relaxed">
                                     El Índice Global de <strong>{(selectedSalon.efficiency?.globalIndex || 0).toFixed(2)}</strong> para {selectedSalon.nombre_salon}{" "}
                                     indica que el activo está operando a un{" "}
                                     {(selectedSalon.efficiency?.globalIndex || 0) > 1 ? "sobrecosto" : "nivel óptimo"}{" "}
@@ -216,8 +216,8 @@ export default function EfficiencyPage() {
                         </motion.div>
                     ) : (
                         <div className="glass-card p-20 flex flex-col items-center justify-center text-center opacity-50 border-dashed">
-                            <Gauge size={48} className="text-slate-700 mb-4" />
-                            <p className="text-slate-500">Selecciona un salón para ver el análisis de eficiencia detallado.</p>
+                            <Gauge size={48} className="text-[#b8891a]/30 mb-4" />
+                             <p className="text-[#7a6d5a]">Selecciona un salón para ver el análisis de eficiencia detallado.</p>
                         </div>
                     )}
                 </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Map, AdvancedMarker, APIProvider } from "@vis.gl/react-google-maps";
+import { MapPin } from "lucide-react";
 import { type SalonIntegral } from "@/lib/sample-data";
 import { getSemaphoreColor } from "@/lib/calculations";
 
@@ -27,9 +28,34 @@ interface GoogleMapViewProps {
     onSelectSalon: (salon: SalonIntegral) => void;
 }
 
+function MapUnavailablePlaceholder({ salonCount }: { salonCount: number }) {
+    return (
+        <div className="w-full h-full rounded-xl overflow-hidden border border-slate-700/30 flex flex-col items-center justify-center bg-slate-900/60 gap-4">
+            <div className="flex flex-col items-center gap-3 text-center px-6">
+                <div className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700/50">
+                    <MapPin size={24} className="text-slate-500" />
+                </div>
+                <p className="text-sm font-semibold text-slate-400">Mapa no disponible</p>
+                <p className="text-xs text-slate-600 max-w-xs leading-relaxed">
+                    Configurá <code className="px-1 py-0.5 rounded bg-slate-800 text-slate-400 font-mono text-[11px]">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> en <code className="px-1 py-0.5 rounded bg-slate-800 text-slate-400 font-mono text-[11px]">.env.local</code> para habilitar el mapa.
+                </p>
+                {salonCount > 0 && (
+                    <p className="text-xs text-slate-600">
+                        {salonCount} salón{salonCount !== 1 ? "es" : ""} disponible{salonCount !== 1 ? "s" : ""} — usá la lista lateral para navegar.
+                    </p>
+                )}
+            </div>
+        </div>
+    );
+}
+
 export default function GoogleMapView({ salones, selectedSalon, onSelectSalon }: GoogleMapViewProps) {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
     const [hoveredId, setHoveredId] = useState<number | null>(null);
+
+    if (!apiKey) {
+        return <MapUnavailablePlaceholder salonCount={salones.length} />;
+    }
 
     // Center of GBA roughly (San Isidro/Vicente Lopez area)
     const defaultCenter = { lat: -34.58, lng: -58.55 };

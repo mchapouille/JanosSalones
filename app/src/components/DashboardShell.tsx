@@ -91,7 +91,7 @@ export default function DashboardShell({
 
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex bg-[#faf8f4]">
             {/* Mobile overlay */}
             <AnimatePresence>
                 {mobileOpen && (
@@ -100,22 +100,22 @@ export default function DashboardShell({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setMobileOpen(false)}
-                        className="fixed inset-0 bg-black/60 z-40 md:hidden"
+                        className="fixed inset-0 bg-black/30 z-40 md:hidden"
                     />
                 )}
             </AnimatePresence>
 
             {/* Sidebar */}
             <aside
-                className={`fixed md:static z-50 top-0 left-0 h-full flex flex-col bg-slate-950/95 backdrop-blur-xl border-r border-slate-800/50 transition-all duration-300 ${collapsed ? "w-20" : "w-72"
+                className={`fixed md:static z-50 top-0 left-0 h-full flex flex-col bg-[#f3ede3] border-r border-[#b8891a]/20 transition-all duration-300 ${collapsed ? "w-20" : "w-72"
                     } ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
             >
                 {/* Logo */}
-                <div className="p-5 border-b border-slate-800/50 flex items-center justify-between">
+                <div className="p-5 border-b border-[#b8891a]/15 flex items-center justify-between">
                     <JanosLogo size="sm" />
                     <button
                         onClick={() => setCollapsed(!collapsed)}
-                        className="hidden md:flex w-8 h-8 items-center justify-center rounded-lg hover:bg-slate-800/60 text-slate-400 hover:text-white transition-colors"
+                        className="hidden md:flex w-8 h-8 items-center justify-center rounded-lg hover:bg-[#7a1515]/10 text-[#7a6d5a] hover:text-[#b8891a] transition-colors"
                     >
                         {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
                     </button>
@@ -134,23 +134,23 @@ export default function DashboardShell({
                                 href={item.href}
                                 onClick={() => setMobileOpen(false)}
                                 className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group ${isActive
-                                    ? "bg-blue-500/15 border border-blue-500/30 text-white"
-                                    : "text-slate-400 hover:text-white hover:bg-slate-800/40 border border-transparent"
+                                    ? "bg-[#7a1515]/10 border border-[#b8891a]/30 text-[#1a1208]"
+                                    : "text-[#7a6d5a] hover:text-[#1a1208] hover:bg-[#7a1515]/6 border border-transparent"
                                     }`}
                             >
                                 <Icon
                                     size={20}
-                                    className={`flex-shrink-0 ${isActive ? "text-blue-400" : "text-slate-500 group-hover:text-blue-400"
+                                    className={`flex-shrink-0 ${isActive ? "text-[#b8891a]" : "text-[#856f57] group-hover:text-[#b8891a]"
                                         }`}
                                 />
                                 {!collapsed && (
                                     <div>
                                         <p className="text-sm font-medium">{item.label}</p>
-                                        <p className="text-[11px] text-slate-500">{item.description}</p>
+                                        <p className="text-[11px] text-[#856f57]">{item.description}</p>
                                     </div>
                                 )}
                                 {isActive && (
-                                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#b8891a] flex-shrink-0" />
                                 )}
                             </Link>
                         );
@@ -158,10 +158,10 @@ export default function DashboardShell({
                 </nav>
 
                 {/* Logout */}
-                <div className="p-3 border-t border-slate-800/50">
+                <div className="p-3 border-t border-[#b8891a]/15">
                     <button
                         onClick={() => signOut({ callbackUrl: "/login" })}
-                        className={`flex items-center gap-3 w-full px-3 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200 ${collapsed ? "justify-center" : ""
+                        className={`flex items-center gap-3 w-full px-3 py-3 rounded-xl text-[#7a6d5a] hover:text-red-600 hover:bg-red-50 transition-all duration-200 ${collapsed ? "justify-center" : ""
                             }`}
                     >
                         <LogOut size={20} />
@@ -173,26 +173,26 @@ export default function DashboardShell({
             {/* Main Content */}
             <div className="flex-1 flex flex-col min-w-0">
                 {/* Top bar */}
-                <header className="sticky top-0 z-30 h-16 flex items-center justify-between px-6 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/40">
+                <header className="sticky top-0 z-30 h-16 flex items-center justify-between px-6 bg-white/90 backdrop-blur-sm border-b border-[#b8891a]/15 shadow-sm">
                     <button
                         onClick={() => setMobileOpen(true)}
-                        className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-800/50 text-slate-400"
+                        className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#7a1515]/8 text-[#6b5d4a]"
                     >
                         <Menu size={20} />
                     </button>
 
                     <div className="flex items-center gap-6 ml-auto">
                         {/* Manual Conversion Rate Input */}
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/5 border border-blue-500/10">
-                            <DollarSign size={14} className="text-blue-400" />
-                            <span className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Tasa USD</span>
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#f0dfa0]/40 border border-[#b8891a]/20">
+                            <DollarSign size={14} className="text-[#b8891a]" />
+                            <span className="text-[10px] uppercase tracking-wider text-[#7a6d5a] font-bold">Tasa USD</span>
                             <div className="flex items-center">
-                                <span className="text-sm font-bold text-blue-300/60 mr-0.5">$</span>
+                                <span className="text-sm font-bold text-[#b8891a] mr-0.5">$</span>
                                 <input
                                     type="number"
                                     value={conversionRate}
                                     onChange={(e) => setConversionRate(Number(e.target.value))}
-                                    className="w-16 bg-transparent border-none text-sm font-bold text-blue-300 focus:outline-none focus:ring-0 p-0 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                    className="w-16 bg-transparent border-none text-sm font-bold text-[#b8891a] focus:outline-none focus:ring-0 p-0 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                 />
                             </div>
                         </div>
@@ -203,16 +203,16 @@ export default function DashboardShell({
                                 onClick={handleRefresh}
                                 disabled={refreshStatus === 'loading'}
                                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors group ${refreshStatus === 'loading'
-                                    ? 'bg-blue-500/20 border-blue-500/30 cursor-wait'
-                                    : 'bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/20'
+                                    ? 'bg-[#7a1515]/10 border-[#b8891a]/20 cursor-wait'
+                                    : 'bg-[#7a1515]/8 border-[#b8891a]/20 hover:bg-[#7a1515]/15'
                                     }`}
                                 title="Refrescar Datos del Excel"
                             >
                                 <RefreshCw
                                     size={14}
-                                    className={`text-blue-400 group-hover:text-white ${refreshStatus === 'loading' ? 'animate-spin' : ''}`}
+                                    className={`text-[#b8891a] group-hover:text-[#7a1515] ${refreshStatus === 'loading' ? 'animate-spin' : ''}`}
                                 />
-                                <span className="hidden sm:inline text-xs font-bold text-blue-400 group-hover:text-white">
+                                <span className="hidden sm:inline text-xs font-bold text-[#b8891a] group-hover:text-[#7a1515]">
                                     {refreshStatus === 'loading' ? 'Actualizando datos...' : 'Refrescar'}
                                 </span>
                             </button>
@@ -224,15 +224,15 @@ export default function DashboardShell({
                                         initial={{ opacity: 0, y: -8, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                                        className={`absolute right-0 top-10 z-50 flex items-start gap-2 px-4 py-3 rounded-xl shadow-2xl border min-w-[260px] max-w-[340px] backdrop-blur-xl ${refreshStatus === 'success'
-                                            ? 'bg-green-950/90 border-green-500/30 text-green-300'
+                                        className={`absolute right-0 top-10 z-50 flex items-start gap-2 px-4 py-3 rounded-xl shadow-lg border min-w-[260px] max-w-[340px] ${refreshStatus === 'success'
+                                            ? 'bg-green-50 border-green-200 text-green-700'
                                             : refreshStatus === 'async'
-                                                ? 'bg-blue-950/90 border-blue-500/30 text-blue-300'
-                                                : 'bg-red-950/90 border-red-500/30 text-red-300'
+                                                ? 'bg-[#fdf9f0] border-[#b8891a]/30 text-[#6b5d4a]'
+                                                : 'bg-red-50 border-red-200 text-red-700'
                                             }`}
                                     >
-                                        {(refreshStatus === 'success' || refreshStatus === 'async') && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-400" />}
-                                        {refreshStatus === 'error' && <AlertCircle size={16} className="flex-shrink-0 mt-0.5 text-red-400" />}
+                                        {(refreshStatus === 'success' || refreshStatus === 'async') && <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-green-500" />}
+                                        {refreshStatus === 'error' && <AlertCircle size={16} className="flex-shrink-0 mt-0.5 text-red-500" />}
                                         <p className="text-xs font-medium leading-snug break-all">
                                             {refreshStatus === 'error' ? refreshMsg : 'Datos actualizados correctamente'}
                                         </p>
@@ -244,15 +244,15 @@ export default function DashboardShell({
                         {/* Help Button */}
                         <button
                             onClick={() => setIsHelpOpen(true)}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#f3ede3] border border-[#b8891a]/15 hover:bg-[#7a1515]/8 hover:border-[#b8891a]/30 transition-colors group"
                         >
-                            <HelpCircle size={14} className="text-slate-400 group-hover:text-blue-400" />
-                            <span className="hidden sm:inline text-xs font-bold text-slate-400 group-hover:text-white">Ayuda</span>
+                            <HelpCircle size={14} className="text-[#7a6d5a] group-hover:text-[#b8891a]" />
+                            <span className="hidden sm:inline text-xs font-bold text-[#7a6d5a] group-hover:text-[#1a1208]">Ayuda</span>
                         </button>
 
                         <div className="flex items-center gap-3">
-                            <span className="hidden sm:inline text-sm text-slate-400">Admin</span>
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold">
+                            <span className="hidden sm:inline text-sm text-[#7a6d5a]">Admin</span>
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#7a1515] to-[#b8891a] flex items-center justify-center text-white text-xs font-bold">
                                 A
                             </div>
                         </div>
@@ -261,12 +261,12 @@ export default function DashboardShell({
 
                 {/* Salones error banner */}
                 {salonesError && (
-                    <div className="flex items-center gap-3 px-6 py-3 bg-red-950/60 border-b border-red-500/20 text-red-300 text-sm">
-                        <AlertCircle size={16} className="flex-shrink-0 text-red-400" />
+                    <div className="flex items-center gap-3 px-6 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">
+                        <AlertCircle size={16} className="flex-shrink-0 text-red-500" />
                         <span className="flex-1">{salonesError}</span>
                         <button
                             onClick={reloadSalones}
-                            className="text-xs font-bold text-red-400 hover:text-red-200 underline underline-offset-2 transition-colors"
+                            className="text-xs font-bold text-red-600 hover:text-red-800 underline underline-offset-2 transition-colors"
                         >
                             Reintentar
                         </button>

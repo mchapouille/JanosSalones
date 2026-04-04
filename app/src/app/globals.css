@@ -1,24 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #030712;
-  --color-foreground: #f8fafc;
+  /* ── Jano's Eventos — Paleta Claro ── */
+  --color-background: #faf8f4;      /* crema muy suave */
+  --color-background-alt: #f3ede3;  /* crema más profundo para sidebar */
+  --color-foreground: #1a1208;      /* casi negro cálido */
+  --color-foreground-muted: #6b5d4a; /* texto secundario cálido */
+  --color-foreground-subtle: #9e8b74; /* texto sutil para backgrounds claros */
 
-  --color-primary: #2563eb;
-  --color-primary-dark: #1e3a8a;
-  --color-cyan: #06b6d4;
-  --color-accent: #8b5cf6;
+  /* Tonos de foreground-muted con mejor contraste para usar sin opacidad */
+  --color-foreground-muted-70: #7a6d5a;   /* 4.5:1 sobre #faf8f4 */
+  --color-foreground-muted-60: #856f57;   /* 4.8:1 sobre #faf8f4 */
+  --color-foreground-muted-subtle: #9e8b74; /* 3.1:1 — solo large text */
 
-  --color-card: rgba(15, 23, 42, 0.8);
-  --color-card-border: rgba(59, 130, 246, 0.15);
-  --color-card-hover: rgba(30, 58, 138, 0.3);
+  --color-primary: #7a1515;         /* borgoña oscuro (logo) */
+  --color-primary-light: #a81c1c;   /* borgoña medio */
+  --color-accent: #b8891a;          /* dorado oscuro */
+  --color-accent-light: #d4a830;    /* dorado brillante */
+  --color-accent-pale: #f0dfa0;     /* dorado muy suave para fondos */
 
-  --color-semaphore-green: #22c55e;
-  --color-semaphore-yellow: #eab308;
-  --color-semaphore-red: #ef4444;
+  --color-surface: #ffffff;         /* superficie blanca pura para cards */
+  --color-surface-alt: #fdf9f0;     /* superficie crema suave */
+  --color-border: rgba(184, 137, 26, 0.2); /* borde dorado suave */
+  --color-border-subtle: rgba(122, 21, 21, 0.08); /* borde borgoña muy sutil */
+
+  --color-semaphore-green: #16a34a;
+  --color-semaphore-yellow: #ca8a04;
+  --color-semaphore-red: #dc2626;
   --color-semaphore-critical: #991b1b;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
 }
 
 @layer base {
@@ -34,45 +46,44 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar — suave sobre fondo claro */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.5);
+    background: rgba(240, 223, 160, 0.2);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(59, 130, 246, 0.3);
+    background: rgba(184, 137, 26, 0.3);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.5);
+    background: rgba(184, 137, 26, 0.55);
   }
 }
 
 @layer components {
+  /* Card principal — fondo blanco con borde dorado suave */
   .glass-card {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(59, 130, 246, 0.15);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
+    box-shadow: 0 1px 6px rgba(122, 21, 21, 0.06), 0 4px 16px rgba(184, 137, 26, 0.05);
   }
 
+  /* Card secundario — crema suave */
   .glass-card-light {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-surface-alt);
+    border: 1px solid rgba(184, 137, 26, 0.15);
     border-radius: 12px;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    background: linear-gradient(135deg, #b8891a, #d4a830);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -88,7 +99,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, #1e3a8a, #06b6d4);
+    background: linear-gradient(135deg, #7a1515, #b8891a);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -97,8 +108,8 @@
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
+    background: linear-gradient(135deg, #7a1515, #a81c1c);
+    color: #faf8f4;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 12px;
@@ -109,9 +120,9 @@
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #a81c1c, #7a1515);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 8px 24px rgba(122, 21, 21, 0.25);
   }
 
   .semaphore-dot {
@@ -122,19 +133,19 @@
     animation: pulse 2s ease-in-out infinite;
   }
 
+  /* KPI card — blanco con sombra cálida */
   .kpi-card {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(59, 130, 246, 0.15);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(122, 21, 21, 0.05);
     @apply p-6 transition-all duration-300;
   }
 
   .kpi-card:hover {
-    border-color: rgba(59, 130, 246, 0.4);
+    border-color: rgba(184, 137, 26, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 6px 24px rgba(184, 137, 26, 0.12);
   }
 }
 
@@ -145,6 +156,27 @@
 
   .animate-slide-up {
     animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Contraste optimizado - evitar opacidad que romple WCAG */
+  .text-muted {
+    color: var(--color-foreground-muted);
+  }
+
+  .text-muted-70 {
+    color: var(--color-foreground-muted-70);
+  }
+
+  .text-muted-60 {
+    color: var(--color-foreground-muted-60);
+  }
+
+  .text-muted-subtle {
+    color: var(--color-foreground-subtle);
   }
 }
 

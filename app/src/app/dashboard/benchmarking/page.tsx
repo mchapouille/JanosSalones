@@ -95,14 +95,14 @@ export default function BenchmarkingPage() {
         <div className="space-y-6">
 
             {/* ── Header + dual filter ── */}
-            <div className="flex flex-col gap-6 pb-6 border-b border-white/5">
+            <div className="flex flex-col gap-6 pb-6 border-b border-[#b8891a]/10">
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                        <BarChart3 size={18} className="text-blue-400" />
+                    <div className="w-8 h-8 rounded-lg bg-[#7a1515]/10 flex items-center justify-center">
+                        <BarChart3 size={18} className="text-[#b8891a]" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-white">Benchmarking</h1>
-                        <p className="text-slate-400 text-sm">Comparación $/m² vs Mercado (Zonaprop / Argenprop)</p>
+                        <h1 className="text-2xl font-bold text-[#1a1208] font-display">Benchmarking</h1>
+                        <p className="text-[#7a6d5a] text-sm">Comparación $/m² vs Mercado (Zonaprop / Argenprop)</p>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@ export default function BenchmarkingPage() {
                         onSelect={handleSelectSearch}
                     />
 
-                    <div className="flex items-end pb-2 text-slate-700 text-xs font-bold select-none">ó</div>
+                    <div className="flex items-end pb-2 text-[#856f57] text-xs font-bold select-none">ó</div>
 
                     {/* Select dropdown */}
                     <SalonSelector
@@ -124,7 +124,7 @@ export default function BenchmarkingPage() {
 
                     {selectedSalonId && (
                         <div className="flex items-end pb-2">
-                            <button onClick={() => handleSelectSalon(null)} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/8 hover:border-red-500/20 transition-all">
+                            <button onClick={() => handleSelectSalon(null)} className="text-xs text-[#7a6d5a] hover:text-red-600 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#b8891a]/15 hover:border-red-300 transition-all">
                                 Limpiar
                             </button>
                         </div>
@@ -133,12 +133,12 @@ export default function BenchmarkingPage() {
             </div>
 
             {/* ── Individual Analysis Panel (always visible) ── */}
-            <div className="glass-card p-5 border border-white/5">
+            <div className="glass-card p-5">
                 <div className="flex items-start justify-between mb-4">
                     <div>
-                        <p className="text-[10px] text-blue-400 uppercase font-black tracking-wider mb-1">Análisis Individual</p>
-                        <p className="text-base font-bold text-white">{panelValues.name}</p>
-                        {selectedSalon && <p className="text-xs text-slate-500 mt-0.5">Tier {panelValues.tier} · $/m² real vs referencia de mercado</p>}
+                        <p className="text-[10px] text-[#b8891a] uppercase font-black tracking-wider mb-1">Análisis Individual</p>
+                        <p className="text-base font-bold text-[#1a1208]">{panelValues.name}</p>
+                        {selectedSalon && <p className="text-xs text-[#7a6d5a] mt-0.5">Tier {panelValues.tier} · $/m² real vs referencia de mercado</p>}
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
@@ -147,15 +147,15 @@ export default function BenchmarkingPage() {
                             label: "Real $/m²",
                             value: panelValues.costPerMt2 > 0 ? formatARS(panelValues.costPerMt2) : "—",
                             sub: "costos_fijos / m²",
-                            colorClass: "text-white",
-                            bg: "bg-white/4 border-white/5",
+                            colorClass: "text-[#1a1208]",
+                            bg: "bg-[#faf8f4] border-[#b8891a]/10",
                         },
                         {
                             label: "Mercado $/m²",
                             value: panelValues.marketCost > 0 ? formatARS(panelValues.marketCost) : "—",
                             sub: `Referencia${selectedSalon ? ` Tier ${panelValues.tier}` : ""}`,
-                            colorClass: "text-blue-400",
-                            bg: "bg-blue-500/4 border-blue-500/10",
+                            colorClass: "text-[#b8891a]",
+                            bg: "bg-[#f0dfa0]/20 border-[#b8891a]/15",
                         },
                         {
                             label: "Desvío",
@@ -163,14 +163,14 @@ export default function BenchmarkingPage() {
                             sub: selectedSalon
                                 ? panelValues.deviation > 50 ? "Sobrecosto crítico" : panelValues.deviation > 0 ? "Sobre mercado" : "Bajo mercado"
                                 : "sin selección",
-                            colorClass: !selectedSalon ? "text-slate-500" : panelValues.deviation > 50 ? "text-red-400" : panelValues.deviation > 0 ? "text-yellow-400" : "text-green-400",
+                            colorClass: !selectedSalon ? "text-[#7a6d5a]" : panelValues.deviation > 50 ? "text-red-600" : panelValues.deviation > 0 ? "text-yellow-700" : "text-green-700",
                             bg: !selectedSalon ? "bg-white/4 border-white/5" : panelValues.deviation > 50 ? "bg-red-500/5 border-red-500/10" : panelValues.deviation > 0 ? "bg-yellow-500/5 border-yellow-500/10" : "bg-green-500/5 border-green-500/10",
                         },
                     ].map(card => (
                         <div key={card.label} className={`p-3.5 rounded-2xl border text-center ${card.bg}`}>
-                            <p className="text-[10px] text-slate-500 uppercase font-bold mb-1.5">{card.label}</p>
+                             <p className="text-[10px] text-[#7a6d5a] uppercase font-bold mb-1.5">{card.label}</p>
                             <p className={`text-xl font-black ${card.colorClass}`}>{card.value}</p>
-                            <p className="text-[10px] text-slate-500 mt-1">{card.sub}</p>
+                             <p className="text-[10px] text-[#856f57] mt-1">{card.sub}</p>
                         </div>
                     ))}
                 </div>
@@ -178,8 +178,8 @@ export default function BenchmarkingPage() {
 
             {/* ── Pirámide Tier 2–5 ── */}
             <div className="glass-card p-6">
-                <h2 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
-                    <BarChart3 size={16} className="text-blue-400" /> Pirámide de Tiers — Segmentos con Benchmarking
+                <h2 className="text-base font-semibold text-[#1a1208] mb-4 flex items-center gap-2">
+                    <BarChart3 size={16} className="text-[#b8891a]" /> Pirámide de Tiers — Segmentos con Benchmarking
                 </h2>
                 <div className="space-y-2">
                     {[2, 3, 4, 5].map((tier, idx) => {
@@ -197,19 +197,19 @@ export default function BenchmarkingPage() {
                             >
                                 <div className="flex items-center gap-3 px-4 py-2.5" style={{ background: `${color}10`, border: `1px solid ${color}22` }}>
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-bold text-white leading-tight">{def?.name}</p>
+                                        <p className="text-sm font-bold text-[#1a1208] leading-tight">{def?.name}</p>
                                     </div>
                                     <div className="flex items-center gap-5 flex-shrink-0">
                                         <div className="text-right">
-                                            <p className="text-sm font-bold text-white">{count}</p>
-                                            <p className="text-[9px] text-slate-500 uppercase">salones</p>
+                                            <p className="text-sm font-bold text-[#1a1208]">{count}</p>
+                                             <p className="text-[9px] text-[#856f57] uppercase">salones</p>
                                         </div>
                                         {benchmark && (
                                             <div className="text-right w-14">
                                                 <p className="text-sm font-bold" style={{ color: benchmark.desvio <= 0 ? "#22c55e" : "#ef4444" }}>
                                                     {benchmark.desvio > 0 ? "+" : ""}{formatPercentage(benchmark.desvio)}
                                                 </p>
-                                                <p className="text-[9px] text-slate-500 uppercase">desvío</p>
+                                                 <p className="text-[9px] text-[#856f57] uppercase">desvío</p>
                                             </div>
                                         )}
                                     </div>
@@ -222,14 +222,14 @@ export default function BenchmarkingPage() {
 
             {/* ── Bar Chart ── */}
             <div className="glass-card p-6">
-                <h2 className="text-base font-semibold text-white mb-4">$/m² Promedio: Real vs Mercado por Tier</h2>
+                <h2 className="text-base font-semibold text-[#1a1208] mb-4">$/m² Promedio: Real vs Mercado por Tier</h2>
                 <div className="h-[250px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={tierComparison} barGap={4} barCategoryGap="30%">
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                            <XAxis dataKey="tier" tick={{ fill: "#94a3b8", fontSize: 12 }} />
-                            <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
-                            <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1e3a8a40", borderRadius: 12, color: "#e2e8f0" }} formatter={(value: number | string | undefined) => value !== undefined ? formatARS(Number(value)) : ""} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e8dcc8" />
+                            <XAxis dataKey="tier" tick={{ fill: "#8a7560", fontSize: 12 }} />
+                            <YAxis tick={{ fill: "#8a7560", fontSize: 11 }} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
+                            <Tooltip contentStyle={{ background: "#fff", border: "1px solid rgba(184,137,26,0.2)", borderRadius: 12, color: "#1a1208" }} formatter={(value: number | string | undefined) => value !== undefined ? formatARS(Number(value)) : ""} />
                             <Bar dataKey="promedioReal" name="Costo Real /m²" fill="#ef4444" radius={[4, 4, 0, 0]} />
                             <Bar dataKey="promedioMercado" name="Mercado /m²" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         </BarChart>
@@ -239,21 +239,21 @@ export default function BenchmarkingPage() {
 
             {/* ── Tier Table ── */}
             <div className="glass-card p-6 overflow-x-auto">
-                <h2 className="text-base font-semibold text-white mb-4">Comparativa por Tier</h2>
+                <h2 className="text-base font-semibold text-[#1a1208] mb-4">Comparativa por Tier</h2>
                 <table className="w-full text-sm min-w-[500px]">
                     <thead>
-                        <tr className="border-b border-white/5">
+                        <tr className="border-b border-[#b8891a]/10">
                             {["Segmento", "Real /m²", "Mercado /m²", "Desvío", "Estado"].map((h, i) => (
-                                <th key={h} className={`py-3 px-4 text-slate-500 uppercase text-[10px] font-bold tracking-wider ${i === 0 ? "text-left" : i < 3 ? "text-right" : "text-center"}`}>{h}</th>
+                                 <th key={h} className={`py-3 px-4 text-[#7a6d5a] uppercase text-[10px] font-bold tracking-wider ${i === 0 ? "text-left" : i < 3 ? "text-right" : "text-center"}`}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {tierComparison.map(t => (
-                            <tr key={t.tier} className="border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors">
-                                <td className="py-3 px-4 text-white font-bold">{t.tier}</td>
-                                <td className="py-3 px-4 text-right text-slate-100 font-medium">{formatARS(t.promedioReal)}</td>
-                                <td className="py-3 px-4 text-right text-blue-400 font-medium">{formatARS(t.promedioMercado)}</td>
+                            <tr key={t.tier} className="border-b border-[#b8891a]/8 last:border-0 hover:bg-[#faf8f4] transition-colors">
+                                <td className="py-3 px-4 text-[#1a1208] font-bold">{t.tier}</td>
+                                <td className="py-3 px-4 text-right text-[#1a1208] font-medium">{formatARS(t.promedioReal)}</td>
+                                <td className="py-3 px-4 text-right text-[#b8891a] font-medium">{formatARS(t.promedioMercado)}</td>
                                 <td className="py-3 px-4 text-center font-bold" style={{ color: t.desvio <= 0 ? "#22c55e" : "#ef4444" }}>
                                     {t.desvio > 0 ? "+" : ""}{formatPercentage(t.desvio)}
                                 </td>
@@ -273,11 +273,11 @@ export default function BenchmarkingPage() {
             <div className="glass-card p-6">
                 <div className="flex items-center justify-between mb-5">
                     <div>
-                        <h2 className="text-base font-semibold text-white">Análisis Estratégico de Activos</h2>
-                        <p className="text-xs text-slate-500 mt-1">Dispersión Costo Real vs Referencia de Mercado · Click para seleccionar</p>
+                        <h2 className="text-base font-semibold text-[#1a1208]">Análisis Estratégico de Activos</h2>
+                         <p className="text-xs text-[#7a6d5a] mt-1">Dispersión Costo Real vs Referencia de Mercado · Click para seleccionar</p>
                     </div>
                     {selectedSalonId && (
-                        <button onClick={() => handleSelectSalon(null)} className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                             <button onClick={() => handleSelectSalon(null)} className="text-xs text-[#7a6d5a] hover:text-[#1a1208] flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#faf8f4] border border-[#b8891a]/15">
                             <X size={11} /> Deseleccionar
                         </button>
                     )}
@@ -286,19 +286,19 @@ export default function BenchmarkingPage() {
                 {/* Chart + legend same height */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
                     <div className="lg:col-span-3 h-[420px] relative">
-                        <div className="absolute top-3 right-3 text-[9px] font-black text-red-500/20 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-red-500/5 bg-red-500/5">SOBRE-MERCADO</div>
-                        <div className="absolute bottom-10 left-16 text-[9px] font-black text-green-500/20 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-green-500/5 bg-green-500/5">BAJO-MERCADO</div>
+                        <div className="absolute top-3 right-3 text-[9px] font-black text-red-700 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-red-200 bg-red-50">SOBRE-MERCADO</div>
+                        <div className="absolute bottom-10 left-16 text-[9px] font-black text-green-700 uppercase tracking-widest pointer-events-none px-2 py-1 rounded-md border border-green-200 bg-green-50">BAJO-MERCADO</div>
                         <ResponsiveContainer width="100%" height="100%">
                             <ScatterChart margin={{ top: 20, right: 20, bottom: 25, left: 20 }}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                                <XAxis type="number" dataKey="marketCost" name="Mercado /m²" stroke="#475569"
-                                    tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                    label={{ value: "Mercado ($/m²)", position: "bottom", offset: 5, fill: "#64748b", fontSize: 11 }}
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e8dcc8" vertical={false} />
+                                <XAxis type="number" dataKey="marketCost" name="Mercado /m²" stroke="#c8b49a"
+                                    tick={{ fill: "#8a7560", fontSize: 11 }}
+                                    label={{ value: "Mercado ($/m²)", position: "bottom", offset: 5, fill: "#8a7560", fontSize: 11 }}
                                     domain={["auto", "auto"]}
                                 />
-                                <YAxis type="number" dataKey="costPerMt2" name="Real /m²" stroke="#475569"
-                                    tick={{ fill: "#94a3b8", fontSize: 11 }}
-                                    label={{ value: "Real ($/m²)", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11, offset: 10 }}
+                                <YAxis type="number" dataKey="costPerMt2" name="Real /m²" stroke="#c8b49a"
+                                    tick={{ fill: "#8a7560", fontSize: 11 }}
+                                    label={{ value: "Real ($/m²)", angle: -90, position: "insideLeft", fill: "#8a7560", fontSize: 11, offset: 10 }}
                                     domain={["auto", "auto"]}
                                 />
                                 <ZAxis type="number" dataKey="dotSize" range={[70, 200]} />
@@ -307,16 +307,16 @@ export default function BenchmarkingPage() {
                                         if (!active || !payload?.length) return null;
                                         const d = payload[0].payload;
                                         return (
-                                            <div className="bg-slate-900 border border-white/10 p-3 rounded-xl shadow-2xl text-left min-w-[180px]">
-                                                <p className="text-xs font-bold text-white mb-2">{d.name}</p>
-                                                <div className="space-y-1 border-t border-white/5 pt-2">
-                                                    {[
-                                                        ["Real $/m²", formatARS(d.costPerMt2), "text-white"],
-                                                        ["Mercado $/m²", formatARS(d.marketCost), "text-blue-400"],
-                                                        ["Desvío", `${d.deviation > 0 ? "+" : ""}${d.deviation.toFixed(1)}%`, d.deviation > 0 ? "text-red-400" : "text-green-400"],
+                                            <div className="bg-white border border-[#b8891a]/20 p-3 rounded-xl shadow-lg text-left min-w-[180px]">
+                                                <p className="text-xs font-bold text-[#1a1208] mb-2">{d.name}</p>
+                                                <div className="space-y-1 border-t border-[#b8891a]/10 pt-2">
+                                                    {                                                    [
+                                                        ["Real $/m²", formatARS(d.costPerMt2), "text-[#1a1208]"],
+                                                        ["Mercado $/m²", formatARS(d.marketCost), "text-[#b8891a]"],
+                                                        ["Desvío", `${d.deviation > 0 ? "+" : ""}${d.deviation.toFixed(1)}%`, d.deviation > 0 ? "text-red-500" : "text-green-600"],
                                                     ].map(([k, v, cls]) => (
                                                         <div key={k as string} className="flex justify-between gap-4">
-                                                            <span className="text-[10px] text-slate-500">{k}:</span>
+                                                            <span className="text-[10px] text-[#7a6d5a]">{k}:</span>
                                                             <span className={`text-[10px] font-bold ${cls}`}>{v}</span>
                                                         </div>
                                                     ))}
@@ -327,7 +327,7 @@ export default function BenchmarkingPage() {
                                 />
                                 <ReferenceLine
                                     segment={[{ x: 0, y: 0 }, { x: 999999, y: 999999 }]}
-                                    stroke="#3b82f6" strokeWidth={1} strokeDasharray="5 5"
+                                    stroke="#b8891a" strokeWidth={1} strokeDasharray="5 5"
                                 />
                                 <Scatter
                                     name="Salones"
@@ -355,8 +355,8 @@ export default function BenchmarkingPage() {
                     </div>
 
                     {/* Legend — same h-[420px] as chart */}
-                    <div className="h-[420px] p-4 rounded-2xl bg-slate-900/50 border border-white/5 flex flex-col justify-center">
-                        <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Guía Estratégica</h3>
+                    <div className="h-[420px] p-4 rounded-2xl bg-[#faf8f4] border border-[#b8891a]/12 flex flex-col justify-center">
+                         <h3 className="text-[10px] font-black text-[#7a6d5a] uppercase tracking-widest mb-5">Guía Estratégica</h3>
                         <div className="space-y-5">
                             {[
                                 { color: "#22c55e", label: "Eficiencia Máxima", desc: "Costo real por debajo de la referencia zonal." },
@@ -368,28 +368,28 @@ export default function BenchmarkingPage() {
                                         <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: g.color }} />
                                         <p className="text-[11px] font-bold" style={{ color: g.color }}>{g.label}</p>
                                     </div>
-                                    <p className="text-[10px] text-slate-500 leading-relaxed pl-4">{g.desc}</p>
+                                     <p className="text-[10px] text-[#7a6d5a] leading-relaxed pl-4">{g.desc}</p>
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-auto pt-5 border-t border-white/5">
-                            <p className="text-[10px] text-slate-600 leading-relaxed">Cada punto es un salón. El eje de paridad (línea azul) representa la igualdad real=mercado.</p>
+                        <div className="mt-auto pt-5 border-t border-[#b8891a]/10">
+                             <p className="text-[10px] text-[#856f57] leading-relaxed">Cada punto es un salón. El eje de paridad (línea dorada) representa la igualdad real=mercado.</p>
                         </div>
                     </div>
                 </div>
 
                 {/* ── Group Lists ── */}
-                <div className="border-t border-white/5 pt-6">
+                <div className="border-t border-[#b8891a]/10 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {[
-                            { key: "efficient" as const, label: "Eficiencia Máxima", color: "#22c55e", glow: "rgba(34,197,94,0.35)", sub: "Bajo Mercado", prefix: "" },
-                            { key: "aligned" as const, label: "Alineados", color: "#eab308", glow: "rgba(234,179,8,0.35)", sub: "Desvío tolerable", prefix: "+" },
-                            { key: "critical" as const, label: "Sobrecosto Crítico", color: "#ef4444", glow: "rgba(239,68,68,0.35)", sub: "Fuerte Desvío", prefix: "+" },
-                        ].map(({ key, label, color, glow, sub, prefix }) => (
-                            <div key={key} className="glass-card !bg-slate-900/40 overflow-hidden flex flex-col h-[260px]">
-                                <div className="px-4 py-3 flex items-center justify-between flex-shrink-0" style={{ background: `${color}08`, borderBottom: `1px solid ${color}20` }}>
+                            { key: "efficient" as const, label: "Eficiencia Máxima", color: "#16a34a", sub: "Bajo Mercado", prefix: "" },
+                            { key: "aligned" as const, label: "Alineados", color: "#ca8a04", sub: "Desvío tolerable", prefix: "+" },
+                            { key: "critical" as const, label: "Sobrecosto Crítico", color: "#dc2626", sub: "Fuerte Desvío", prefix: "+" },
+                        ].map(({ key, label, color, sub, prefix }) => (
+                            <div key={key} className="glass-card overflow-hidden flex flex-col h-[260px]">
+                                <div className="px-4 py-3 flex items-center justify-between flex-shrink-0" style={{ background: `${color}06`, borderBottom: `1px solid ${color}18` }}>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color, boxShadow: `0 0 6px ${glow}` }} />
+                                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
                                         <span className="text-[10px] font-black uppercase tracking-widest" style={{ color }}>{label}</span>
                                     </div>
                                     <span className="px-2 py-0.5 rounded-full text-[10px] font-bold border" style={{ background: `${color}10`, color, borderColor: `${color}30` }}>
@@ -404,17 +404,17 @@ export default function BenchmarkingPage() {
                                                 key={s.id}
                                                 onClick={() => handleSelectSalon(isSel ? null : s.id)}
                                                 className="w-full p-2.5 rounded-lg border flex items-center justify-between transition-all text-left"
-                                                style={{ background: isSel ? `${color}12` : "transparent", borderColor: isSel ? `${color}40` : "rgba(255,255,255,0.05)" }}
+                                                style={{ background: isSel ? `${color}10` : "transparent", borderColor: isSel ? `${color}35` : "rgba(184,137,26,0.08)" }}
                                             >
-                                                <span className="text-[11px] font-semibold text-slate-200 truncate mr-2">{s.name}</span>
+                                                <span className="text-[11px] font-semibold text-[#1a1208] truncate mr-2">{s.name}</span>
                                                 <div className="text-right flex-shrink-0">
                                                     <p className="text-[10px] font-black" style={{ color }}>{prefix}{formatPercentage(s.deviation)}</p>
-                                                    <p className="text-[8px] text-slate-500 uppercase">{sub}</p>
+                                                     <p className="text-[8px] text-[#856f57] uppercase">{sub}</p>
                                                 </div>
                                             </button>
                                         );
-                                    }) : (
-                                        <div className="h-full flex items-center justify-center text-[10px] text-slate-600 italic">Sin registros</div>
+                                    }                                    ) : (
+                                         <div className="h-full flex items-center justify-center text-[10px] text-[#856f57] italic">Sin registros</div>
                                     )}
                                 </div>
                             </div>

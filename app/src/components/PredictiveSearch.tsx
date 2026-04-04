@@ -16,7 +16,7 @@ interface PredictiveSearchProps {
 export function PredictiveSearch({
     salones,
     onSelect,
-    placeholder = "Escribir nombre del salón...",
+    placeholder = "Buscar por nombre...",
     renderItem,
 }: PredictiveSearchProps) {
     const [searchQuery, setSearchQuery] = useState("");
@@ -60,10 +60,10 @@ export function PredictiveSearch({
     // Default render: simple name + "#" + id
     const defaultRenderItem = (s: SalonIntegral) => (
         <>
-            <span className="text-sm text-slate-200 font-medium flex-1 truncate">
+            <span className="text-sm text-[#1a1208] font-medium flex-1 truncate">
                 {s.nombre_salon}
             </span>
-            <span className="text-[10px] text-slate-600 font-mono flex-shrink-0">
+            <span className="text-[10px] text-[#6b5d4a] font-mono flex-shrink-0">
                 #{s.id_salon}
             </span>
         </>
@@ -73,12 +73,12 @@ export function PredictiveSearch({
 
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest pl-1">
+            <label className="text-[10px] text-[#6b5d4a] uppercase font-bold tracking-widest pl-1">
                 Buscar por nombre
             </label>
             <div className="relative" ref={searchRef}>
                 <div className="relative">
-                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#b8891a] pointer-events-none" />
                     <input
                         type="text"
                         value={searchQuery}
@@ -88,12 +88,12 @@ export function PredictiveSearch({
                         }}
                         onFocus={() => searchQuery && setShowSuggestions(true)}
                         placeholder={placeholder}
-                        className="bg-slate-900 border border-blue-500/30 rounded-lg pl-8 pr-4 py-2 text-sm text-blue-100 placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-[260px] transition-colors"
+                        className="bg-white border border-[#b8891a]/25 rounded-lg pl-8 pr-4 py-2 text-sm text-[#1a1208] placeholder-[#6b5d4a]/50 focus:outline-none focus:border-[#b8891a]/50 w-[260px] transition-colors"
                     />
                     {searchQuery && (
                         <button
                             onClick={() => { setSearchQuery(""); setShowSuggestions(false); }}
-                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#6b5d4a] hover:text-[#1a1208] transition-colors"
                         >
                             <X size={12} />
                         </button>
@@ -102,12 +102,12 @@ export function PredictiveSearch({
 
                 {/* Suggestions Dropdown */}
                 {showSuggestions && suggestions.length > 0 && (
-                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-slate-900 border border-blue-500/25 rounded-xl shadow-2xl shadow-black/50 overflow-hidden">
+                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full min-w-[300px] bg-[#faf8f4] border border-[#b8891a]/15 rounded-xl shadow-xl shadow-[#1a1208]/10 overflow-hidden">
                         {suggestions.map((s, idx) => (
                             <button
                                 key={s.id_salon}
                                 onMouseDown={() => handleSelect(s)}
-                                className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-white/5 transition-colors ${idx !== 0 ? "border-t border-white/5" : ""}`}
+                                className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-[#b8891a]/5 transition-colors ${idx !== 0 ? "border-t border-[#b8891a]/10" : ""}`}
                             >
                                 {renderItemFn(s)}
                             </button>
@@ -115,8 +115,8 @@ export function PredictiveSearch({
                     </div>
                 )}
                 {showSuggestions && searchQuery.trim() && suggestions.length === 0 && (
-                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full bg-slate-900 border border-white/10 rounded-xl shadow-xl px-4 py-3">
-                        <span className="text-sm text-slate-500">Sin resultados para &quot;{searchQuery}&quot;</span>
+                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-full bg-[#faf8f4] border border-[#b8891a]/15 rounded-xl shadow-xl px-4 py-3">
+                        <span className="text-sm text-[#6b5d4a]">Sin resultados para &quot;{searchQuery}&quot;</span>
                     </div>
                 )}
             </div>
@@ -136,14 +136,14 @@ export function renderSalonItem(s: SalonIntegral) {
                 className="w-2 h-2 rounded-full flex-shrink-0"
                 style={{ backgroundColor: semColor }}
             />
-            <span className="text-sm text-slate-200 font-medium flex-1 truncate">
+            <span className="text-sm text-[#1a1208] font-medium flex-1 truncate">
                 {s.nombre_salon}
             </span>
-            <span className="text-[10px] text-slate-600 font-mono flex-shrink-0">
+            <span className="text-[10px] text-[#6b5d4a] font-mono flex-shrink-0">
                 #{s.id_salon}
             </span>
             {s.estado_salon !== "ACTIVO" && (
-                <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${s.estado_salon === "OBRA" ? "bg-amber-500/20 text-amber-400" : "bg-slate-700 text-slate-400"}`}>
+                <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${s.estado_salon === "OBRA" ? "bg-amber-500/20 text-amber-600" : "bg-[#6b5d4a]/20 text-[#6b5d4a]"}`}>
                     {s.estado_salon}
                 </span>
             )}
