@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
+import { useSession } from "next-auth/react";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
 
 interface DashboardContextType {
@@ -101,11 +102,14 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     }, []); // No dependency on `salones` — avoids infinite loop
 
     // Refresh from server on mount — exactly once via hasFetched ref
+    // Only fetch if user is authenticated
+    const { status } = useSession();
     useEffect(() => {
+        if (status !== "authenticated") return;
         if (hasFetched.current) return;
         hasFetched.current = true;
         reloadSalones();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [status]);
 
     const setSelectedSalonId = useCallback((id: number | null) => {
         setSelectedSalonIdState(id);
