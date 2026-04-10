@@ -11,14 +11,13 @@ export interface GoogleRatingsErrorResponse {
     error: string;
 }
 
-export type GoogleRatingsSource = "cache" | "google" | "stale-cache";
+export type GoogleRatingsSource = "google";
 
 export type GoogleRatingsFailureType = "rate-limit" | "missing-key" | "upstream-error";
 
 export interface GoogleRatingsAvailableResponse {
     state: "available";
     source: GoogleRatingsSource;
-    stale: boolean;
     rating: GoogleRating;
 }
 

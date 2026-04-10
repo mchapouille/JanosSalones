@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { Prisma } from "@prisma/client";
 import { auth } from "@/auth";
-import { db } from "@/lib/db";
 import salonesData from "@/lib/salones_data.json";
 import type {
     GoogleRating,
@@ -98,15 +96,8 @@ interface ResolveSalonRatingResult {
 
 const GOOGLE_PLACES_URL = "https://places.googleapis.com/v1/places:searchText";
 const COUNTRY = "Argentina";
-const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const PROVINCE_VARIATIONS = ["Buenos Aires", "GBA", "Provincia de Buenos Aires"] as const;
 const UNAVAILABLE_MESSAGE = "No se pudo cargar la reputación de este salón en este momento.";
-
-function decimalToNumber(value: Prisma.Decimal | number | null): number | null {
-    if (value === null) return null;
-    if (typeof value === "number") return value;
-    return value.toNumber();
-}
 
 function buildNoMatchResponse(salon: SalonSource): GoogleRating {
     return {
@@ -204,8 +195,7 @@ function logGoogleRatingsEvent(
         salonId: number;
         errorType: "rate-limit" | "missing-key" | "upstream-error" | "no-match";
         status: number | null;
-        fallback: "cache-hit" | "stale-cache" | "unavailable" | "none";
-        cacheAgeHours: number | null;
+        fallback: "unavailable" | "none";
     }
 ): void {
     const payload = {
@@ -213,7 +203,6 @@ function logGoogleRatingsEvent(
         type: fields.errorType,
         status: fields.status,
         fallback: fields.fallback,
-        cacheAgeHours: fields.cacheAgeHours,
     };
 
     if (level === "error") {
@@ -361,31 +350,13 @@ async function resolveSalonRating(salon: SalonSource, apiKey: string): Promise<R
     };
 }
 
-function mapCacheToRating(salon: SalonSource, cacheEntry: {
-    google_rating: Prisma.Decimal | null;
-    review_count: number;
-    google_place_name: string | null;
-    formatted_address: string | null;
-}): GoogleRating {
-    return {
-        salonId: salon.id_salon,
-        nombreSalon: salon.nombre_salon,
-        rating: decimalToNumber(cacheEntry.google_rating),
-        reviewCount: cacheEntry.review_count,
-        googlePlaceName: cacheEntry.google_place_name,
-        formattedAddress: cacheEntry.formatted_address,
-    };
-}
-
 function buildAvailableResponse(
     source: GoogleRatingsSource,
-    rating: GoogleRating,
-    stale: boolean
+    rating: GoogleRating
 ): GoogleRatingsApiResponse {
     return {
         state: "available",
         source,
-        stale,
         rating,
     };
 }
@@ -397,10 +368,6 @@ function buildUnavailableResponse(salonId: number, reason: GoogleRatingsFailureT
         message: UNAVAILABLE_MESSAGE,
         salonId,
     };
-}
-
-function getCacheAgeHours(cachedAt: Date): number {
-    return Number(((Date.now() - cachedAt.getTime()) / (60 * 60 * 1000)).toFixed(2));
 }
 
 export async function GET(request: Request) {
@@ -477,27 +444,6 @@ export async function GET(request: Request) {
             return NextResponse.json<GoogleRatingsErrorResponse>({ error: "Salon not found" }, { status: 404 });
         }
 
-        const now = new Date();
-        const validCache = await db.googleRatingsCache.findFirst({
-            where: {
-                id_salon: salon.id_salon,
-                expires_at: {
-                    gt: now,
-                },
-            },
-        });
-
-        if (validCache) {
-            const cachedRating = mapCacheToRating(salon, validCache);
-            return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("cache", cachedRating, false));
-        }
-
-        const staleCache = await db.googleRatingsCache.findUnique({
-            where: {
-                id_salon: salon.id_salon,
-            },
-        });
-
         const apiKey = process.env.GOOGLE_PLACES_API_KEY;
         if (!apiKey) {
             logGoogleRatingsEvent("warn", "Google API key missing", {
@@ -505,7 +451,6 @@ export async function GET(request: Request) {
                 errorType: "missing-key",
                 status: null,
                 fallback: "unavailable",
-                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
             });
 
             return NextResponse.json<GoogleRatingsApiResponse>(
@@ -516,27 +461,11 @@ export async function GET(request: Request) {
         const { response, failedReason, failedStatus } = await resolveSalonRating(salon, apiKey);
 
         if (failedReason === "rate-limit") {
-            if (staleCache) {
-                const staleRating = mapCacheToRating(salon, staleCache);
-                logGoogleRatingsEvent("warn", "Rate limit reached, serving stale cache", {
-                    salonId: salon.id_salon,
-                    errorType: "rate-limit",
-                    status: failedStatus,
-                    fallback: "stale-cache",
-                    cacheAgeHours: getCacheAgeHours(staleCache.cached_at),
-                });
-
-                return NextResponse.json<GoogleRatingsApiResponse>(
-                    buildAvailableResponse("stale-cache", staleRating, true)
-                );
-            }
-
-            logGoogleRatingsEvent("error", "Rate limit reached and no cache available", {
+            logGoogleRatingsEvent("error", "Rate limit reached", {
                 salonId: salon.id_salon,
                 errorType: "rate-limit",
                 status: failedStatus,
                 fallback: "unavailable",
-                cacheAgeHours: null,
             });
 
             return NextResponse.json<GoogleRatingsApiResponse>(
@@ -550,7 +479,6 @@ export async function GET(request: Request) {
                 errorType: "upstream-error",
                 status: failedStatus,
                 fallback: "unavailable",
-                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
             });
 
             return NextResponse.json<GoogleRatingsApiResponse>(
@@ -564,39 +492,12 @@ export async function GET(request: Request) {
                 errorType: "no-match",
                 status: failedStatus,
                 fallback: "none",
-                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
             });
 
-            return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response, false));
+            return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response));
         }
 
-        const cachedAt = new Date();
-        const expiresAt = new Date(cachedAt.getTime() + CACHE_TTL_MS);
-
-        await db.googleRatingsCache.upsert({
-            where: {
-                id_salon: salon.id_salon,
-            },
-            create: {
-                id_salon: salon.id_salon,
-                google_rating: response.rating,
-                review_count: response.reviewCount,
-                google_place_name: response.googlePlaceName,
-                formatted_address: response.formattedAddress,
-                cached_at: cachedAt,
-                expires_at: expiresAt,
-            },
-            update: {
-                google_rating: response.rating,
-                review_count: response.reviewCount,
-                google_place_name: response.googlePlaceName,
-                formatted_address: response.formattedAddress,
-                cached_at: cachedAt,
-                expires_at: expiresAt,
-            },
-        });
-
-        return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response, false));
+        return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response));
     } catch (error) {
         console.error("[google-ratings] Unhandled route error", {
             message: error instanceof Error ? error.message : "unknown",
