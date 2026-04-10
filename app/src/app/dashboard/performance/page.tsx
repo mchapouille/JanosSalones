@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, AlertTriangle, Award, Sliders, BrainCircuit, Ticket, UserCheck, BarChart2 } from "lucide-react";
 import { formatARS, formatPercentage, formatMultiplier } from "@/lib/formatters";
-import { getSemaphoreColor, simulateRentReduction, calcPerformance, get_color_from_incidence } from "@/lib/calculations";
+import { getSemaphoreColor, simulateRentReduction, get_color_from_incidence } from "@/lib/calculations";
 
 import { useDashboard } from "@/components/DashboardContext";
 import { PredictiveSearch } from "@/components/PredictiveSearch";
@@ -21,26 +21,6 @@ import {
     ReferenceLine,
     Cell,
 } from "recharts";
-
-function getIpScoreLabel(score: number): string {
-    if (score >= 60) return "Alta";
-    if (score >= 40) return "Media";
-    if (score >= 20) return "Baja";
-    return "Muy baja";
-}
-
-function getIpScoreColor(score: number): string {
-    if (score >= 60) return "green";
-    if (score >= 40) return "yellow";
-    if (score >= 20) return "red";
-    return "critical";
-}
-
-function interpolateScore(val: number, x0: number, x1: number, y0: number, y1: number) {
-    if (val <= x0) return y0;
-    if (val >= x1) return y1;
-    return y0 + ((val - x0) / (x1 - x0)) * (y1 - y0);
-}
 
 export default function PerformancePage() {
     const { salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
@@ -132,9 +112,6 @@ export default function PerformancePage() {
             rentReduction
         )
         : null;
-
-    // Alert salones (>25%)
-    const alertSalones = salones.filter((s) => (s.performance?.rentIncidence || 0) > 25);
 
     return (
         <div className="space-y-6">

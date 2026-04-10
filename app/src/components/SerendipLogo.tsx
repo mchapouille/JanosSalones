@@ -5,6 +5,7 @@ import Image from "next/image";
 
 interface SerendipLogoProps {
     size?: "sm" | "md" | "lg" | "xl";
+    /* TODO: usar en Phase X para variante con texto */
     showText?: boolean;
     className?: string;
 }
@@ -16,7 +17,7 @@ const sizes = {
     xl: { width: 320, height: 106 },
 };
 
-export default function SerendipLogo({ size = "md", showText = true, className = "" }: SerendipLogoProps) {
+export default function SerendipLogo({ size = "md", className = "" }: SerendipLogoProps) {
     const s = sizes[size];
 
     return (

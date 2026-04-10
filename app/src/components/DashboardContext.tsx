@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
+import type { GoogleRating } from "@/lib/google-ratings";
 
 interface DashboardContextType {
     conversionRate: number;
@@ -14,6 +15,11 @@ interface DashboardContextType {
     salonesLoading: boolean;
     salonesError: string | null;
     reloadSalones: () => void;
+    ratings: GoogleRating[];
+    ratingsLoading: boolean;
+    ratingsError: string | null;
+    fetchGoogleRating: (salonId: number) => Promise<GoogleRating | null>;
+    loadGoogleRatings: () => Promise<void>;
     // Shared selection — lifted from pages; resets to null on section navigation
     selectedSalonId: number | null;
     setSelectedSalonId: (id: number | null) => void;
@@ -23,6 +29,7 @@ const DashboardContext = createContext<DashboardContextType | undefined>(undefin
 
 const CONVERSION_RATE_KEY = "janos:conversionRate";
 const DEFAULT_CONVERSION_RATE = 1470;
+export const MIN_REVIEW_COUNT_FOR_RANKING = 10;
 
 function getInitialConversionRate(): number {
     if (typeof window === "undefined") return DEFAULT_CONVERSION_RATE;
@@ -39,6 +46,7 @@ function getInitialConversionRate(): number {
 }
 
 export function DashboardProvider({ children }: { children: ReactNode }) {
+    const { status } = useSession();
     const [conversionRate, setConversionRateState] = useState<number>(DEFAULT_CONVERSION_RATE);
     const [isHelpOpen, setIsHelpOpen] = useState(false);
 
@@ -46,12 +54,16 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     const [salones, setSalones] = useState<SalonIntegral[]>(() => getSalonesData());
     const [salonesLoading, setSalonesLoading] = useState(false);
     const [salonesError, setSalonesError] = useState<string | null>(null);
+    const [ratings, setRatings] = useState<GoogleRating[]>([]);
+    const [ratingsLoading, setRatingsLoading] = useState(false);
+    const [ratingsError, setRatingsError] = useState<string | null>(null);
 
     // Shared selection lifted from pages; null = no selection
     const [selectedSalonId, setSelectedSalonIdState] = useState<number | null>(null);
 
     // Gate flag — ensures initial fetch runs exactly once regardless of re-renders
     const hasFetched = useRef(false);
+    const hasFetchedRatings = useRef(false);
 
     // Hydrate conversionRate from localStorage after mount (SSR-safe)
     useEffect(() => {
@@ -101,15 +113,68 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         }
     }, []); // No dependency on `salones` — avoids infinite loop
 
+    const fetchGoogleRating = useCallback(async (salonId: number): Promise<GoogleRating | null> => {
+        try {
+            const res = await fetch(`/api/google-ratings?salonId=${salonId}`);
+            if (!res.ok) {
+                return null;
+            }
+            const data = (await res.json()) as GoogleRating;
+            return data;
+        } catch {
+            return null;
+        }
+    }, []);
+
+    const loadGoogleRatings = useCallback(async (): Promise<void> => {
+        if (status !== "authenticated") return;
+        if (hasFetchedRatings.current) return;
+        hasFetchedRatings.current = true;
+
+        if (salones.length === 0) {
+            setRatings([]);
+            return;
+        }
+
+        setRatingsLoading(true);
+        setRatingsError(null);
+
+        const settled = await Promise.allSettled(
+            salones.map((salon) => fetchGoogleRating(salon.id_salon))
+        );
+
+        const ratingsBySalonId = new Map<number, GoogleRating>();
+        let failedCount = 0;
+
+        settled.forEach((result, index) => {
+            if (result.status === "fulfilled" && result.value) {
+                ratingsBySalonId.set(salones[index].id_salon, result.value);
+                return;
+            }
+            failedCount += 1;
+        });
+
+        const orderedRatings = salones
+            .map((salon) => ratingsBySalonId.get(salon.id_salon))
+            .filter((rating): rating is GoogleRating => rating !== undefined);
+
+        setRatings(orderedRatings);
+
+        if (failedCount > 0) {
+            setRatingsError("No se pudo cargar la reputación de algunos salones.");
+        }
+
+        setRatingsLoading(false);
+    }, [fetchGoogleRating, salones, status]);
+
     // Refresh from server on mount — exactly once via hasFetched ref
     // Only fetch if user is authenticated
-    const { status } = useSession();
     useEffect(() => {
         if (status !== "authenticated") return;
         if (hasFetched.current) return;
         hasFetched.current = true;
         reloadSalones();
-    }, [status]);
+    }, [reloadSalones, status]);
 
     const setSelectedSalonId = useCallback((id: number | null) => {
         setSelectedSalonIdState(id);
@@ -125,6 +190,11 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
             salonesLoading,
             salonesError,
             reloadSalones,
+            ratings,
+            ratingsLoading,
+            ratingsError,
+            fetchGoogleRating,
+            loadGoogleRatings,
             selectedSalonId,
             setSelectedSalonId,
         }}>

@@ -18,13 +18,14 @@ import {
     Circle,
     Receipt,
 } from "lucide-react";
-import { getSemaphoreColor, TIER_DEFINITIONS, get_color_from_incidence } from "@/lib/calculations";
-import { formatARS, formatNumber, formatPercentage, formatMultiplier } from "@/lib/formatters";
+import { getSemaphoreColor } from "@/lib/calculations";
+import { formatARS, formatNumber, formatPercentage } from "@/lib/formatters";
 import { type SalonIntegral } from "@/lib/sample-data";
 import GoogleMapView from "@/components/GoogleMapView";
 import { useDashboard } from "@/components/DashboardContext";
 import { PredictiveSearch, renderSalonItem } from "@/components/PredictiveSearch";
 import { SalonSelector } from "@/components/SalonSelector";
+import { GoogleRatingsPanel } from "@/components/GoogleRatingsPanel";
 
 function getSemaforoLabel(color: string): string {
     switch (color) {
@@ -34,20 +35,6 @@ function getSemaforoLabel(color: string): string {
         case "critical": return "Crítico";
         default: return "—";
     }
-}
-
-function getIpScoreLabel(score: number): string {
-    if (score >= 60) return "Alta";
-    if (score >= 40) return "Media";
-    if (score >= 20) return "Baja";
-    return "Muy baja";
-}
-
-function getIpScoreColor(score: number): string {
-    if (score >= 60) return "green";
-    if (score >= 40) return "yellow";
-    if (score >= 20) return "red";
-    return "critical";
 }
 
 function SemaforoIcon({ color, size = 20 }: { color: string; size?: number }) {
@@ -502,6 +489,8 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </motion.div>
+
+            <GoogleRatingsPanel />
         </div>
     );
 }

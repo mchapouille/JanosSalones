@@ -1,5 +1,5 @@
 // Data service for Dashboard - Connects to processed Excel data
-import { assignTier, getSemaphoreColor, type PerformanceResult } from "./calculations";
+import { type PerformanceResult } from "./calculations";
 import rawSalonesData from './salones_data.json';
 
 // ---- TypeScript Interfaces for calculated fields ----
@@ -101,4 +101,3 @@ export function getSalonesData(): SalonIntegral[] {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (rawSalonesData as any[]).map(mapRawToSalon);
 }
-

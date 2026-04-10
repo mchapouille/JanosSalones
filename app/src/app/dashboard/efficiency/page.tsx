@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Gauge, Info } from "lucide-react";
-import { formatPercentage } from "@/lib/formatters";
 import { getSemaphoreColor, TIER_DEFINITIONS } from "@/lib/calculations";
 
 import { useDashboard } from "@/components/DashboardContext";
@@ -11,7 +10,7 @@ import { useDashboard } from "@/components/DashboardContext";
 export default function EfficiencyPage() {
     const { salones: allSalones, selectedSalonId, setSelectedSalonId } = useDashboard();
     const salones = useMemo(() => allSalones.filter((s) => s.estado_salon === "ACTIVO"), [allSalones]);
-    const [tierFilter, setTierFilter] = useState<number | null>(null);
+    /* TODO: usar en Phase X para filtro por tier en la vista de eficiencia */
 
     const salonesWithEfficiency = useMemo(() => salones.filter((s) => s.efficiency), [salones]);
 
