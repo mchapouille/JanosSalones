@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { getSalonesData, type SalonIntegral } from "@/lib/sample-data";
-import type { GoogleRating } from "@/lib/google-ratings";
+import type { GoogleRating, GoogleRatingsApiResponse } from "@/lib/google-ratings";
 
 interface DashboardContextType {
     conversionRate: number;
@@ -18,7 +18,7 @@ interface DashboardContextType {
     ratings: GoogleRating[];
     ratingsLoading: boolean;
     ratingsError: string | null;
-    fetchGoogleRating: (salonId: number) => Promise<GoogleRating | null>;
+    fetchGoogleRating: (salonId: number) => Promise<GoogleRatingsApiResponse | null>;
     loadGoogleRatings: () => Promise<void>;
     // Shared selection — lifted from pages; resets to null on section navigation
     selectedSalonId: number | null;
@@ -113,13 +113,13 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         }
     }, []); // No dependency on `salones` — avoids infinite loop
 
-    const fetchGoogleRating = useCallback(async (salonId: number): Promise<GoogleRating | null> => {
+    const fetchGoogleRating = useCallback(async (salonId: number): Promise<GoogleRatingsApiResponse | null> => {
         try {
             const res = await fetch(`/api/google-ratings?salonId=${salonId}`);
             if (!res.ok) {
                 return null;
             }
-            const data = (await res.json()) as GoogleRating;
+            const data = (await res.json()) as GoogleRatingsApiResponse;
             return data;
         } catch {
             return null;
@@ -144,14 +144,14 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         );
 
         const ratingsBySalonId = new Map<number, GoogleRating>();
-        let failedCount = 0;
+        let unavailableCount = 0;
 
         settled.forEach((result, index) => {
-            if (result.status === "fulfilled" && result.value) {
-                ratingsBySalonId.set(salones[index].id_salon, result.value);
+            if (result.status === "fulfilled" && result.value?.state === "available") {
+                ratingsBySalonId.set(salones[index].id_salon, result.value.rating);
                 return;
             }
-            failedCount += 1;
+            unavailableCount += 1;
         });
 
         const orderedRatings = salones
@@ -160,7 +160,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
 
         setRatings(orderedRatings);
 
-        if (failedCount > 0) {
+        if (unavailableCount > 0) {
             setRatingsError("No se pudo cargar la reputación de algunos salones.");
         }
 

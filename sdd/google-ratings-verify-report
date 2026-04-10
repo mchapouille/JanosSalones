@@ -1,0 +1,14 @@
+## Verification Report
+
+Saved canonical report at `openspec/changes/google-ratings-proposal/verify-report.md`.
+
+Summary:
+- `tsc --noEmit`: ✅
+- `eslint src`: ✅ with 16 warnings / 0 errors
+- API route: structurally correct
+- Dashboard integration: panel is rendered at end of `dashboard/page.tsx`
+- Verdict: **FAIL**
+
+Main blocker:
+- Spec requires ratings for **all salons**.
+- Implementation filters to `estado_salon === "ACTIVO"` in `app/src/components/DashboardContext.tsx` and `app/src/components/GoogleRatingsPanel.tsx`.

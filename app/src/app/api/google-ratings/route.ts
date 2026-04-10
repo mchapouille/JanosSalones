@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { auth } from "@/auth";
+import { db } from "@/lib/db";
 import salonesData from "@/lib/salones_data.json";
-import type { GoogleRating, GoogleRatingsErrorResponse } from "@/lib/google-ratings";
+import type {
+    GoogleRating,
+    GoogleRatingsApiResponse,
+    GoogleRatingsErrorResponse,
+    GoogleRatingsFailureType,
+    GoogleRatingsSource,
+} from "@/lib/google-ratings";
 
 interface PlaceSearchRequest {
     textQuery: string;
@@ -42,7 +50,7 @@ interface GoogleRatingsDiagnosticFailure {
     nombreSalon: string;
     direccionSalon: string | null;
     municipioSalon: string | null;
-    failedReason: "no-match" | "upstream-error";
+    failedReason: "rate-limit" | "upstream-error" | "no-match" | "missing-key";
     attempts: PlaceSearchAttemptResult[];
 }
 
@@ -80,9 +88,25 @@ interface SalonSource {
     lon_salon: number | null;
 }
 
+type ResolveFailedReason = "rate-limit" | "upstream-error" | "no-match";
+
+interface ResolveSalonRatingResult {
+    response: GoogleRatingWithDebug;
+    failedReason: ResolveFailedReason | null;
+    failedStatus: number | null;
+}
+
 const GOOGLE_PLACES_URL = "https://places.googleapis.com/v1/places:searchText";
 const COUNTRY = "Argentina";
+const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const PROVINCE_VARIATIONS = ["Buenos Aires", "GBA", "Provincia de Buenos Aires"] as const;
+const UNAVAILABLE_MESSAGE = "No se pudo cargar la reputación de este salón en este momento.";
+
+function decimalToNumber(value: Prisma.Decimal | number | null): number | null {
+    if (value === null) return null;
+    if (typeof value === "number") return value;
+    return value.toNumber();
+}
 
 function buildNoMatchResponse(salon: SalonSource): GoogleRating {
     return {
@@ -173,18 +197,31 @@ function buildSearchAttempts(salon: SalonSource): PlaceSearchAttempt[] {
     });
 }
 
-function logFailedRatingLookup(
-    salon: SalonSource,
-    attempts: PlaceSearchAttemptResult[],
-    failedReason: "no-match" | "upstream-error"
+function logGoogleRatingsEvent(
+    level: "warn" | "error",
+    message: string,
+    fields: {
+        salonId: number;
+        errorType: "rate-limit" | "missing-key" | "upstream-error" | "no-match";
+        status: number | null;
+        fallback: "cache-hit" | "stale-cache" | "unavailable" | "none";
+        cacheAgeHours: number | null;
+    }
 ): void {
-    console.warn("[google-ratings] rating lookup failed", {
-        salonId: salon.id_salon,
-        nombre_salon: salon.nombre_salon,
-        direccion_salon: salon.direccion_salon,
-        failedReason,
-        attempts,
-    });
+    const payload = {
+        salonId: fields.salonId,
+        type: fields.errorType,
+        status: fields.status,
+        fallback: fields.fallback,
+        cacheAgeHours: fields.cacheAgeHours,
+    };
+
+    if (level === "error") {
+        console.error(`[google-ratings] ${message}`, payload);
+        return;
+    }
+
+    console.warn(`[google-ratings] ${message}`, payload);
 }
 
 async function executePlaceSearch(
@@ -210,11 +247,7 @@ async function executePlaceSearch(
         const placesData = (await placesResponse.json()) as PlaceSearchResponse;
         place = placesData.places?.[0] ?? null;
     } else {
-        try {
-            googleError = await placesResponse.text();
-        } catch {
-            googleError = null;
-        }
+        googleError = `HTTP ${placesResponse.status}`;
     }
 
     const result: PlaceSearchAttemptResult = {
@@ -230,10 +263,7 @@ async function executePlaceSearch(
     return { result, place };
 }
 
-async function resolveSalonRating(salon: SalonSource, apiKey: string): Promise<{
-    response: GoogleRatingWithDebug;
-    failedReason: "no-match" | "upstream-error" | null;
-}> {
+async function resolveSalonRating(salon: SalonSource, apiKey: string): Promise<ResolveSalonRatingResult> {
     const attempts = buildSearchAttempts(salon);
     const debugAttempts: PlaceSearchAttemptResult[] = [];
     let matchedPlace: PlaceCandidate | null = null;
@@ -259,14 +289,25 @@ async function resolveSalonRating(salon: SalonSource, apiKey: string): Promise<{
         const { result, place } = await executePlaceSearch(attempt, apiKey, payload);
         debugAttempts.push(result);
 
-        if (result.status >= 500 || result.status === 429) {
-            logFailedRatingLookup(salon, debugAttempts, "upstream-error");
+        if (result.status === 429) {
+            return {
+                response: {
+                    ...buildNoMatchResponse(salon),
+                    debug: { attempts: debugAttempts },
+                },
+                failedReason: "rate-limit",
+                failedStatus: result.status,
+            };
+        }
+
+        if (result.status >= 400) {
             return {
                 response: {
                     ...buildNoMatchResponse(salon),
                     debug: { attempts: debugAttempts },
                 },
                 failedReason: "upstream-error",
+                failedStatus: result.status,
             };
         }
 
@@ -277,47 +318,89 @@ async function resolveSalonRating(salon: SalonSource, apiKey: string): Promise<{
     }
 
     if (!matchedPlace) {
-        const noMatchResponse: GoogleRatingWithDebug = {
-            ...buildNoMatchResponse(salon),
-            debug: { attempts: debugAttempts },
+        return {
+            response: {
+                ...buildNoMatchResponse(salon),
+                debug: { attempts: debugAttempts },
+            },
+            failedReason: "no-match",
+            failedStatus: 200,
         };
-
-        logFailedRatingLookup(salon, debugAttempts, "no-match");
-        return { response: noMatchResponse, failedReason: "no-match" };
     }
 
     const reviewCount = matchedPlace.userRatingCount ?? 0;
     const rating = typeof matchedPlace.rating === "number" && reviewCount > 0 ? matchedPlace.rating : 0;
 
-    const responseQuery = normalizeQuery([
-        matchedPlace.displayName?.text,
-        matchedPlace.formattedAddress,
-    ]);
+    const responseQuery = normalizeQuery([matchedPlace.displayName?.text, matchedPlace.formattedAddress]);
 
-    const response: GoogleRatingWithDebug = {
+    return {
+        response: {
+            salonId: salon.id_salon,
+            nombreSalon: salon.nombre_salon,
+            rating,
+            reviewCount,
+            googlePlaceName: matchedPlace.displayName?.text ?? null,
+            formattedAddress: matchedPlace.formattedAddress ?? null,
+            debug: {
+                attempts: [
+                    ...debugAttempts,
+                    {
+                        label: "resolved-displayName-formattedAddress",
+                        textQuery: responseQuery,
+                        status: 200,
+                        found: true,
+                        candidateName: matchedPlace.displayName?.text ?? null,
+                        candidateAddress: matchedPlace.formattedAddress ?? null,
+                        googleError: null,
+                    },
+                ],
+            },
+        },
+        failedReason: null,
+        failedStatus: null,
+    };
+}
+
+function mapCacheToRating(salon: SalonSource, cacheEntry: {
+    google_rating: Prisma.Decimal | null;
+    review_count: number;
+    google_place_name: string | null;
+    formatted_address: string | null;
+}): GoogleRating {
+    return {
         salonId: salon.id_salon,
         nombreSalon: salon.nombre_salon,
-        rating,
-        reviewCount,
-        googlePlaceName: matchedPlace.displayName?.text ?? null,
-        formattedAddress: matchedPlace.formattedAddress ?? null,
-        debug: {
-            attempts: [
-                ...debugAttempts,
-                {
-                    label: "resolved-displayName-formattedAddress",
-                    textQuery: responseQuery,
-                    status: 200,
-                    found: true,
-                    candidateName: matchedPlace.displayName?.text ?? null,
-                    candidateAddress: matchedPlace.formattedAddress ?? null,
-                    googleError: null,
-                },
-            ],
-        },
+        rating: decimalToNumber(cacheEntry.google_rating),
+        reviewCount: cacheEntry.review_count,
+        googlePlaceName: cacheEntry.google_place_name,
+        formattedAddress: cacheEntry.formatted_address,
     };
+}
 
-    return { response, failedReason: null };
+function buildAvailableResponse(
+    source: GoogleRatingsSource,
+    rating: GoogleRating,
+    stale: boolean
+): GoogleRatingsApiResponse {
+    return {
+        state: "available",
+        source,
+        stale,
+        rating,
+    };
+}
+
+function buildUnavailableResponse(salonId: number, reason: GoogleRatingsFailureType): GoogleRatingsApiResponse {
+    return {
+        state: "unavailable",
+        reason,
+        message: UNAVAILABLE_MESSAGE,
+        salonId,
+    };
+}
+
+function getCacheAgeHours(cachedAt: Date): number {
+    return Number(((Date.now() - cachedAt.getTime()) / (60 * 60 * 1000)).toFixed(2));
 }
 
 export async function GET(request: Request) {
@@ -333,28 +416,34 @@ export async function GET(request: Request) {
         const diagnosticMode = searchParams.get("diagnostic") === "1" || searchParams.get("diagnostic") === "true";
         const salonIdParam = searchParams.get("salonId");
 
-        const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-        if (!apiKey) {
-            return NextResponse.json<GoogleRatingsErrorResponse>(
-                { error: "Google Places API unavailable" },
-                { status: 502 }
-            );
-        }
-
         if (diagnosticMode) {
+            const apiKey = process.env.GOOGLE_PLACES_API_KEY;
             const diagnosticFailures: GoogleRatingsDiagnosticFailure[] = [];
 
-            for (const salon of salonesData as SalonSource[]) {
-                const { response, failedReason } = await resolveSalonRating(salon, apiKey);
-                if (failedReason) {
+            if (!apiKey) {
+                for (const salon of salonesData as SalonSource[]) {
                     diagnosticFailures.push({
                         salonId: salon.id_salon,
                         nombreSalon: salon.nombre_salon,
                         direccionSalon: salon.direccion_salon,
                         municipioSalon: salon.municipio_salon,
-                        failedReason,
-                        attempts: response.debug?.attempts ?? [],
+                        failedReason: "missing-key",
+                        attempts: [],
                     });
+                }
+            } else {
+                for (const salon of salonesData as SalonSource[]) {
+                    const { response, failedReason } = await resolveSalonRating(salon, apiKey);
+                    if (failedReason) {
+                        diagnosticFailures.push({
+                            salonId: salon.id_salon,
+                            nombreSalon: salon.nombre_salon,
+                            direccionSalon: salon.direccion_salon,
+                            municipioSalon: salon.municipio_salon,
+                            failedReason,
+                            attempts: response.debug?.attempts ?? [],
+                        });
+                    }
                 }
             }
 
@@ -388,23 +477,132 @@ export async function GET(request: Request) {
             return NextResponse.json<GoogleRatingsErrorResponse>({ error: "Salon not found" }, { status: 404 });
         }
 
-        const { response, failedReason } = await resolveSalonRating(salon, apiKey);
-        if (failedReason === "upstream-error") {
-            return NextResponse.json<GoogleRatingsErrorResponse & { debug: GoogleRatingDebug }>(
-                {
-                    error: "Google Places API unavailable",
-                    debug: response.debug ?? { attempts: [] },
+        const now = new Date();
+        const validCache = await db.googleRatingsCache.findFirst({
+            where: {
+                id_salon: salon.id_salon,
+                expires_at: {
+                    gt: now,
                 },
-                { status: 502 }
+            },
+        });
+
+        if (validCache) {
+            const cachedRating = mapCacheToRating(salon, validCache);
+            return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("cache", cachedRating, false));
+        }
+
+        const staleCache = await db.googleRatingsCache.findUnique({
+            where: {
+                id_salon: salon.id_salon,
+            },
+        });
+
+        const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+        if (!apiKey) {
+            logGoogleRatingsEvent("warn", "Google API key missing", {
+                salonId: salon.id_salon,
+                errorType: "missing-key",
+                status: null,
+                fallback: "unavailable",
+                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
+            });
+
+            return NextResponse.json<GoogleRatingsApiResponse>(
+                buildUnavailableResponse(salon.id_salon, "missing-key")
             );
         }
 
-        return NextResponse.json<GoogleRatingWithDebug>(response);
+        const { response, failedReason, failedStatus } = await resolveSalonRating(salon, apiKey);
+
+        if (failedReason === "rate-limit") {
+            if (staleCache) {
+                const staleRating = mapCacheToRating(salon, staleCache);
+                logGoogleRatingsEvent("warn", "Rate limit reached, serving stale cache", {
+                    salonId: salon.id_salon,
+                    errorType: "rate-limit",
+                    status: failedStatus,
+                    fallback: "stale-cache",
+                    cacheAgeHours: getCacheAgeHours(staleCache.cached_at),
+                });
+
+                return NextResponse.json<GoogleRatingsApiResponse>(
+                    buildAvailableResponse("stale-cache", staleRating, true)
+                );
+            }
+
+            logGoogleRatingsEvent("error", "Rate limit reached and no cache available", {
+                salonId: salon.id_salon,
+                errorType: "rate-limit",
+                status: failedStatus,
+                fallback: "unavailable",
+                cacheAgeHours: null,
+            });
+
+            return NextResponse.json<GoogleRatingsApiResponse>(
+                buildUnavailableResponse(salon.id_salon, "rate-limit")
+            );
+        }
+
+        if (failedReason === "upstream-error") {
+            logGoogleRatingsEvent("error", "Upstream Google Places failure", {
+                salonId: salon.id_salon,
+                errorType: "upstream-error",
+                status: failedStatus,
+                fallback: "unavailable",
+                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
+            });
+
+            return NextResponse.json<GoogleRatingsApiResponse>(
+                buildUnavailableResponse(salon.id_salon, "upstream-error")
+            );
+        }
+
+        if (failedReason === "no-match") {
+            logGoogleRatingsEvent("warn", "No Google Place match found", {
+                salonId: salon.id_salon,
+                errorType: "no-match",
+                status: failedStatus,
+                fallback: "none",
+                cacheAgeHours: staleCache ? getCacheAgeHours(staleCache.cached_at) : null,
+            });
+
+            return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response, false));
+        }
+
+        const cachedAt = new Date();
+        const expiresAt = new Date(cachedAt.getTime() + CACHE_TTL_MS);
+
+        await db.googleRatingsCache.upsert({
+            where: {
+                id_salon: salon.id_salon,
+            },
+            create: {
+                id_salon: salon.id_salon,
+                google_rating: response.rating,
+                review_count: response.reviewCount,
+                google_place_name: response.googlePlaceName,
+                formatted_address: response.formattedAddress,
+                cached_at: cachedAt,
+                expires_at: expiresAt,
+            },
+            update: {
+                google_rating: response.rating,
+                review_count: response.reviewCount,
+                google_place_name: response.googlePlaceName,
+                formatted_address: response.formattedAddress,
+                cached_at: cachedAt,
+                expires_at: expiresAt,
+            },
+        });
+
+        return NextResponse.json<GoogleRatingsApiResponse>(buildAvailableResponse("google", response, false));
     } catch (error) {
-        console.error("Error fetching Google rating:", error);
-        return NextResponse.json<GoogleRatingsErrorResponse>(
-            { error: "Google Places API unavailable" },
-            { status: 502 }
+        console.error("[google-ratings] Unhandled route error", {
+            message: error instanceof Error ? error.message : "unknown",
+        });
+        return NextResponse.json<GoogleRatingsApiResponse>(
+            buildUnavailableResponse(0, "upstream-error")
         );
     }
 }

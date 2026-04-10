@@ -1,0 +1,19 @@
+## Implementation Progress
+
+**Change**: google-ratings-proposal
+**Mode**: Standard (strict_tdd: false)
+
+### Completed Tasks
+- [x] Phase 1 (1.1, 1.2)
+- [x] Phase 2 (2.1, 2.2, 2.3, 2.4, 2.5)
+- [x] Phase 3 (3.1, 3.2, 3.3)
+- [x] Phase 4 (4.1, 4.2, 4.3)
+
+### Notes
+- API route implementada con Places Text Search v1, field mask mínima y manejo de errores 400/404/502.
+- DashboardContext ahora maneja slice `ratings` con fetch lazy one-shot + `Promise.allSettled` para tolerancia a fallos parciales.
+- Panel agregado al final del dashboard con estados loading/error/sin presencia y orden por rating descendente (null al final).
+- `.env.local` actualizado con placeholder manual para `GOOGLE_PLACES_API_KEY` (server-side only).
+
+### Remaining
+- Phase 5 verification (tsc, eslint, verificación manual de escenarios).

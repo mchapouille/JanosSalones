@@ -49,13 +49,26 @@ The revalidation endpoint MUST accept the secret via `Authorization: Bearer <tok
 - THEN the request is rejected with unauthorized status
 
 ### Requirement: Non-blocking visible data error state
-The dashboard context MUST expose a user-visible non-blocking error state when fresh data loading fails, while preserving last known usable data.
+The dashboard context MUST expose a user-visible non-blocking error state for reputation data ONLY when BOTH the cache lookup AND the upstream Google Places call fail. If cached data (even stale) is available, the error state MUST NOT be shown.
+(Previously: error state was shown whenever fresh data loading fails, without distinguishing cache availability)
 
 #### Scenario: Upstream failure with fallback continuity
 - GIVEN upstream fetch fails during reload
 - WHEN fallback or previous dataset exists
 - THEN users can continue navigating with existing data
 - AND an error message is exposed in shared context/UI
+
+#### Scenario: Google API failure with stale cache available
+- GIVEN Google Places API fails (rate-limit or network error)
+- WHEN a stale cache entry exists for the requested salon
+- THEN the dashboard displays the stale cached rating data
+- AND NO error message is shown to the user
+
+#### Scenario: Both cache and API unavailable
+- GIVEN no cache entry exists for the salon AND Google Places API call fails
+- WHEN the ratings endpoint returns an unavailable state
+- THEN the dashboard displays the "No se pudo cargar..." error message
+- AND the rest of the dashboard remains functional and navigable
 
 ## Non-Functional Requirements
 - Performance: Under normal navigation, repeated route changes SHOULD reduce upstream GitHub API calls by at least 60% compared to no-cache baseline.
@@ -172,3 +185,86 @@ The dashboard SHOULD apply a display font to section headings for brand expressi
 - WHEN text appears on warm dark backgrounds
 - THEN body/data text contrast is sufficient for normal dashboard use
 - AND decorative typography does not reduce legibility of operational information
+
+---
+
+## Change 4 — `google-ratings-cache-7d-ttl`
+### Capability: `google-ratings-cache-resilience` (NEW)
+
+## Functional Requirements
+
+### Requirement: Cache-first rating retrieval
+The ratings API MUST read from `GoogleRatingsCache` by `id_salon` before calling Google Places. If a valid cache entry exists (`expires_at > now`), the API SHALL return cached data without any upstream call.
+
+#### Scenario: Cache hit within TTL
+- GIVEN a `GoogleRatingsCache` row exists for `id_salon` with `expires_at` in the future
+- WHEN `GET /api/google-ratings?salonId={id}` is called
+- THEN the API returns `google_rating`, `review_count`, `google_place_name`, `formatted_address` from cache
+- AND no request is made to Google Places API
+
+#### Scenario: Cache miss — entry does not exist
+- GIVEN no `GoogleRatingsCache` row exists for `id_salon`
+- WHEN `GET /api/google-ratings?salonId={id}` is called
+- THEN the API calls Google Places API
+- AND on success, inserts a new cache row with `cached_at = now` and `expires_at = now + 7 days`
+- AND returns the fresh data to the caller
+
+#### Scenario: Cache expired — TTL exceeded
+- GIVEN a `GoogleRatingsCache` row exists for `id_salon` with `expires_at` in the past
+- WHEN `GET /api/google-ratings?salonId={id}` is called
+- THEN the API calls Google Places API
+- AND on success, upserts the cache row with new `cached_at` and `expires_at`
+- AND returns the fresh data to the caller
+
+### Requirement: Stale-cache fallback on Google rate-limit
+When Google Places returns a rate-limit error, the API MUST return the existing cache entry (even if expired) rather than propagating an error to the caller.
+
+#### Scenario: Rate-limit with stale cache available
+- GIVEN a `GoogleRatingsCache` row exists for `id_salon` (expired or valid)
+- WHEN Google Places API returns a rate-limit error (HTTP 429 or equivalent)
+- THEN the API returns the stale cached data
+- AND logs a server-side warning with `salonId`, error type, and cache age
+
+#### Scenario: Rate-limit with no cache available
+- GIVEN no `GoogleRatingsCache` row exists for `id_salon`
+- WHEN Google Places API returns a rate-limit error
+- THEN the API returns a non-blocking response indicating data is unavailable
+- AND logs a server-side error with `salonId` and error type
+
+### Requirement: Missing API key handling
+If the Google Places API key environment variable is absent, the API MUST NOT throw a visible error to the caller. It SHALL log a server-side warning and return a non-blocking unavailable state.
+
+#### Scenario: API key missing at request time
+- GIVEN the Google Places API key environment variable is not set
+- WHEN `GET /api/google-ratings?salonId={id}` is called
+- THEN the API logs a `WARN` entry with context (`salonId`, missing-key indicator)
+- AND returns a response that does not expose an error state to the UI
+
+### Requirement: Structured server-side logging
+The API MUST log upstream errors and warnings with structured context: `salonId`, error type/status, and fallback decision taken.
+
+#### Scenario: Upstream error logged with context
+- GIVEN any Google Places call fails (rate-limit, network error, invalid key)
+- WHEN the API handles the error
+- THEN a server log entry is emitted containing `salonId`, error classification, and the fallback path chosen (stale cache / unavailable)
+- AND no secret values or raw API responses are included in the log
+
+### Requirement: Cache upsert atomicity
+Cache writes MUST use an upsert keyed on `id_salon` to prevent duplicate rows from concurrent requests.
+
+#### Scenario: Concurrent miss for same salon
+- GIVEN two simultaneous requests for the same `id_salon` with no cache entry
+- WHEN both complete their Google Places call and attempt to write
+- THEN only one cache row exists for `id_salon` after both writes complete
+- AND no database constraint violation is raised
+
+## Non-Functional Requirements
+- Performance: Cache hits within 7-day TTL MUST avoid any Google Places API calls.
+- Reliability: Stale cache fallback ensures availability during Google outages.
+- Observability: Structured logs enable debugging without exposing API secrets.
+
+## Acceptance Criteria
+- Requests within 7 days return cached data without calling Google.
+- Rate-limit errors return stale cache if available.
+- Missing API key logs warning but returns non-blocking unavailable state.
+- Concurrent cache writes are atomic through Prisma upsert.
